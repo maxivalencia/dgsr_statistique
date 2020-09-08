@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtHistorique index{% endblock %}
+
+{% block body %}
+    <h1>CtHistorique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>HstDescription</th>
+                <th>HstDateCreate</th>
+                <th>HstIsView</th>
+                <th>CtCentreId</th>
+                <th>HistType</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_historique in ct_historiques %}
+            <tr>
+                <td>{{ ct_historique.id }}</td>
+                <td>{{ ct_historique.hstDescription }}</td>
+                <td>{{ ct_historique.hstDateCreate ? ct_historique.hstDateCreate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_historique.hstIsView ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_historique.ctCentreId }}</td>
+                <td>{{ ct_historique.histType }}</td>
+                <td>
+                    <a href="{{ path('ct_historique_show', {'id': ct_historique.id}) }}">show</a>
+                    <a href="{{ path('ct_historique_edit', {'id': ct_historique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_historique_new') }}">Create new</a>
+{% endblock %}

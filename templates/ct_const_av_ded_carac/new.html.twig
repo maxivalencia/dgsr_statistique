@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtConstAvDedCarac{% endblock %}
+
+{% block body %}
+    <h1>Create new CtConstAvDedCarac</h1>
+
+    {{ include('ct_const_av_ded_carac/_form.html.twig') }}
+
+    <a href="{{ path('ct_const_av_ded_carac_index') }}">back to list</a>
+{% endblock %}

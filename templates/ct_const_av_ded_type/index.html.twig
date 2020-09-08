@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtConstAvDedType index{% endblock %}
+
+{% block body %}
+    <h1>CtConstAvDedType index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CadTpLibelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_const_av_ded_type in ct_const_av_ded_types %}
+            <tr>
+                <td>{{ ct_const_av_ded_type.id }}</td>
+                <td>{{ ct_const_av_ded_type.cadTpLibelle }}</td>
+                <td>
+                    <a href="{{ path('ct_const_av_ded_type_show', {'id': ct_const_av_ded_type.id}) }}">show</a>
+                    <a href="{{ path('ct_const_av_ded_type_edit', {'id': ct_const_av_ded_type.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_const_av_ded_type_new') }}">Create new</a>
+{% endblock %}

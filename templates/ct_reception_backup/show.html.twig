@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtReceptionBackup{% endblock %}
+
+{% block body %}
+    <h1>CtReceptionBackup</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_reception_backup.id }}</td>
+            </tr>
+            <tr>
+                <th>CtCentreId</th>
+                <td>{{ ct_reception_backup.ctCentreId }}</td>
+            </tr>
+            <tr>
+                <th>CtMotifId</th>
+                <td>{{ ct_reception_backup.ctMotifId }}</td>
+            </tr>
+            <tr>
+                <th>CtTypeReceptionId</th>
+                <td>{{ ct_reception_backup.ctTypeReceptionId }}</td>
+            </tr>
+            <tr>
+                <th>CtUserId</th>
+                <td>{{ ct_reception_backup.ctUserId }}</td>
+            </tr>
+            <tr>
+                <th>CtUtilisationId</th>
+                <td>{{ ct_reception_backup.ctUtilisationId }}</td>
+            </tr>
+            <tr>
+                <th>CtVehiculeId</th>
+                <td>{{ ct_reception_backup.ctVehiculeId }}</td>
+            </tr>
+            <tr>
+                <th>RcpMiseService</th>
+                <td>{{ ct_reception_backup.rcpMiseService ? ct_reception_backup.rcpMiseService|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>RcpImmatriculation</th>
+                <td>{{ ct_reception_backup.rcpImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>RcpProprietaire</th>
+                <td>{{ ct_reception_backup.rcpProprietaire }}</td>
+            </tr>
+            <tr>
+                <th>RcpProfession</th>
+                <td>{{ ct_reception_backup.rcpProfession }}</td>
+            </tr>
+            <tr>
+                <th>RcpAdresse</th>
+                <td>{{ ct_reception_backup.rcpAdresse }}</td>
+            </tr>
+            <tr>
+                <th>RcpNbrAssis</th>
+                <td>{{ ct_reception_backup.rcpNbrAssis }}</td>
+            </tr>
+            <tr>
+                <th>RcpNbrDebout</th>
+                <td>{{ ct_reception_backup.rcpNbrDebout }}</td>
+            </tr>
+            <tr>
+                <th>RcpNumPv</th>
+                <td>{{ ct_reception_backup.rcpNumPv }}</td>
+            </tr>
+            <tr>
+                <th>CtSourceEnergieId</th>
+                <td>{{ ct_reception_backup.ctSourceEnergieId }}</td>
+            </tr>
+            <tr>
+                <th>CtCarosserieId</th>
+                <td>{{ ct_reception_backup.ctCarosserieId }}</td>
+            </tr>
+            <tr>
+                <th>RcpNumGroup</th>
+                <td>{{ ct_reception_backup.rcpNumGroup }}</td>
+            </tr>
+            <tr>
+                <th>RcpCreated</th>
+                <td>{{ ct_reception_backup.rcpCreated ? ct_reception_backup.rcpCreated|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_reception_backup_index') }}">back to list</a>
+
+    <a href="{{ path('ct_reception_backup_edit', {'id': ct_reception_backup.id}) }}">edit</a>
+
+    {{ include('ct_reception_backup/_delete_form.html.twig') }}
+{% endblock %}

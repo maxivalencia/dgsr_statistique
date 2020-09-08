@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtCentre index{% endblock %}
+
+{% block body %}
+    <h1>CtCentre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CtrNom</th>
+                <th>CtrCode</th>
+                <th>CtrCreatedAt</th>
+                <th>CtrUpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_centre in ct_centres %}
+            <tr>
+                <td>{{ ct_centre.id }}</td>
+                <td>{{ ct_centre.ctrNom }}</td>
+                <td>{{ ct_centre.ctrCode }}</td>
+                <td>{{ ct_centre.ctrCreatedAt ? ct_centre.ctrCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_centre.ctrUpdatedAt ? ct_centre.ctrUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('ct_centre_show', {'id': ct_centre.id}) }}">show</a>
+                    <a href="{{ path('ct_centre_edit', {'id': ct_centre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_centre_new') }}">Create new</a>
+{% endblock %}

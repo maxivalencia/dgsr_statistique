@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtAnomalie{% endblock %}
+
+{% block body %}
+    <h1>Create new CtAnomalie</h1>
+
+    {{ include('ct_anomalie/_form.html.twig') }}
+
+    <a href="{{ path('ct_anomalie_index') }}">back to list</a>
+{% endblock %}

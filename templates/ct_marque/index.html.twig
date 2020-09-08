@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtMarque index{% endblock %}
+
+{% block body %}
+    <h1>CtMarque index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MrqLibelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_marque in ct_marques %}
+            <tr>
+                <td>{{ ct_marque.id }}</td>
+                <td>{{ ct_marque.mrqLibelle }}</td>
+                <td>
+                    <a href="{{ path('ct_marque_show', {'id': ct_marque.id}) }}">show</a>
+                    <a href="{{ path('ct_marque_edit', {'id': ct_marque.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_marque_new') }}">Create new</a>
+{% endblock %}

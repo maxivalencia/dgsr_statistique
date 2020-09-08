@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtCarteGrise{% endblock %}
+
+{% block body %}
+    <h1>Create new CtCarteGrise</h1>
+
+    {{ include('ct_carte_grise/_form.html.twig') }}
+
+    <a href="{{ path('ct_carte_grise_index') }}">back to list</a>
+{% endblock %}

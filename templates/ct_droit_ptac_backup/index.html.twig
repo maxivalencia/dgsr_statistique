@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtDroitPtacBackup index{% endblock %}
+
+{% block body %}
+    <h1>CtDroitPtacBackup index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CtGenreCategorieId</th>
+                <th>DpPrixMin</th>
+                <th>DpPrixMax</th>
+                <th>DpDroit</th>
+                <th>CtTypeDroitPtacId</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_droit_ptac_backup in ct_droit_ptac_backups %}
+            <tr>
+                <td>{{ ct_droit_ptac_backup.id }}</td>
+                <td>{{ ct_droit_ptac_backup.ctGenreCategorieId }}</td>
+                <td>{{ ct_droit_ptac_backup.dpPrixMin }}</td>
+                <td>{{ ct_droit_ptac_backup.dpPrixMax }}</td>
+                <td>{{ ct_droit_ptac_backup.dpDroit }}</td>
+                <td>{{ ct_droit_ptac_backup.ctTypeDroitPtacId }}</td>
+                <td>
+                    <a href="{{ path('ct_droit_ptac_backup_show', {'id': ct_droit_ptac_backup.id}) }}">show</a>
+                    <a href="{{ path('ct_droit_ptac_backup_edit', {'id': ct_droit_ptac_backup.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_droit_ptac_backup_new') }}">Create new</a>
+{% endblock %}

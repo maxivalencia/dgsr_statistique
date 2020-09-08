@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtMotif index{% endblock %}
+
+{% block body %}
+    <h1>CtMotif index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MtfLibelle</th>
+                <th>MtfIsCalculable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_motif in ct_motifs %}
+            <tr>
+                <td>{{ ct_motif.id }}</td>
+                <td>{{ ct_motif.mtfLibelle }}</td>
+                <td>{{ ct_motif.mtfIsCalculable ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('ct_motif_show', {'id': ct_motif.id}) }}">show</a>
+                    <a href="{{ path('ct_motif_edit', {'id': ct_motif.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_motif_new') }}">Create new</a>
+{% endblock %}

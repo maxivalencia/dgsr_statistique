@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtRole{% endblock %}
+
+{% block body %}
+    <h1>Create new CtRole</h1>
+
+    {{ include('ct_role/_form.html.twig') }}
+
+    <a href="{{ path('ct_role_index') }}">back to list</a>
+{% endblock %}

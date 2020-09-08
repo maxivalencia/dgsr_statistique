@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtVehicule index{% endblock %}
+
+{% block body %}
+    <h1>CtVehicule index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>VhcCylindre</th>
+                <th>VhcPuissance</th>
+                <th>VhcPoidsVide</th>
+                <th>VhcChargeUtile</th>
+                <th>VhcHauteur</th>
+                <th>VhcLargeur</th>
+                <th>VhcLongueur</th>
+                <th>VhcNumSerie</th>
+                <th>VhcNumMoteur</th>
+                <th>VhcCreated</th>
+                <th>VhcProvenance</th>
+                <th>VhcType</th>
+                <th>VhcPoidsTotalCharge</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_vehicule in ct_vehicules %}
+            <tr>
+                <td>{{ ct_vehicule.id }}</td>
+                <td>{{ ct_vehicule.vhcCylindre }}</td>
+                <td>{{ ct_vehicule.vhcPuissance }}</td>
+                <td>{{ ct_vehicule.vhcPoidsVide }}</td>
+                <td>{{ ct_vehicule.vhcChargeUtile }}</td>
+                <td>{{ ct_vehicule.vhcHauteur }}</td>
+                <td>{{ ct_vehicule.vhcLargeur }}</td>
+                <td>{{ ct_vehicule.vhcLongueur }}</td>
+                <td>{{ ct_vehicule.vhcNumSerie }}</td>
+                <td>{{ ct_vehicule.vhcNumMoteur }}</td>
+                <td>{{ ct_vehicule.vhcCreated ? ct_vehicule.vhcCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_vehicule.vhcProvenance }}</td>
+                <td>{{ ct_vehicule.vhcType }}</td>
+                <td>{{ ct_vehicule.vhcPoidsTotalCharge }}</td>
+                <td>
+                    <a href="{{ path('ct_vehicule_show', {'id': ct_vehicule.id}) }}">show</a>
+                    <a href="{{ path('ct_vehicule_edit', {'id': ct_vehicule.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_vehicule_new') }}">Create new</a>
+{% endblock %}

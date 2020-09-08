@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtDroitPtac index{% endblock %}
+
+{% block body %}
+    <h1>CtDroitPtac index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DpPrixMin</th>
+                <th>DpPrixMax</th>
+                <th>DpDroit</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_droit_ptac in ct_droit_ptacs %}
+            <tr>
+                <td>{{ ct_droit_ptac.id }}</td>
+                <td>{{ ct_droit_ptac.dpPrixMin }}</td>
+                <td>{{ ct_droit_ptac.dpPrixMax }}</td>
+                <td>{{ ct_droit_ptac.dpDroit }}</td>
+                <td>
+                    <a href="{{ path('ct_droit_ptac_show', {'id': ct_droit_ptac.id}) }}">show</a>
+                    <a href="{{ path('ct_droit_ptac_edit', {'id': ct_droit_ptac.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_droit_ptac_new') }}">Create new</a>
+{% endblock %}

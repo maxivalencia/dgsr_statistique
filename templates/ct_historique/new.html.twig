@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtHistorique{% endblock %}
+
+{% block body %}
+    <h1>Create new CtHistorique</h1>
+
+    {{ include('ct_historique/_form.html.twig') }}
+
+    <a href="{{ path('ct_historique_index') }}">back to list</a>
+{% endblock %}

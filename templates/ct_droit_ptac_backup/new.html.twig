@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtDroitPtacBackup{% endblock %}
+
+{% block body %}
+    <h1>Create new CtDroitPtacBackup</h1>
+
+    {{ include('ct_droit_ptac_backup/_form.html.twig') }}
+
+    <a href="{{ path('ct_droit_ptac_backup_index') }}">back to list</a>
+{% endblock %}

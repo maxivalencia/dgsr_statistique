@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtGenre{% endblock %}
+
+{% block body %}
+    <h1>Create new CtGenre</h1>
+
+    {{ include('ct_genre/_form.html.twig') }}
+
+    <a href="{{ path('ct_genre_index') }}">back to list</a>
+{% endblock %}

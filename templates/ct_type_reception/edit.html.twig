@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtTypeReception{% endblock %}
+
+{% block body %}
+    <h1>Edit CtTypeReception</h1>
+
+    {{ include('ct_type_reception/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_type_reception_index') }}">back to list</a>
+
+    {{ include('ct_type_reception/_delete_form.html.twig') }}
+{% endblock %}

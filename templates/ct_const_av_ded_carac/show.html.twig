@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtConstAvDedCarac{% endblock %}
+
+{% block body %}
+    <h1>CtConstAvDedCarac</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_const_av_ded_carac.id }}</td>
+            </tr>
+            <tr>
+                <th>CadCylindre</th>
+                <td>{{ ct_const_av_ded_carac.cadCylindre }}</td>
+            </tr>
+            <tr>
+                <th>CadPuissance</th>
+                <td>{{ ct_const_av_ded_carac.cadPuissance }}</td>
+            </tr>
+            <tr>
+                <th>CadPoidsVide</th>
+                <td>{{ ct_const_av_ded_carac.cadPoidsVide }}</td>
+            </tr>
+            <tr>
+                <th>CadChargeUtile</th>
+                <td>{{ ct_const_av_ded_carac.cadChargeUtile }}</td>
+            </tr>
+            <tr>
+                <th>CadHauteur</th>
+                <td>{{ ct_const_av_ded_carac.cadHauteur }}</td>
+            </tr>
+            <tr>
+                <th>CadLargeur</th>
+                <td>{{ ct_const_av_ded_carac.cadLargeur }}</td>
+            </tr>
+            <tr>
+                <th>CadLongueur</th>
+                <td>{{ ct_const_av_ded_carac.cadLongueur }}</td>
+            </tr>
+            <tr>
+                <th>CadNumSerieType</th>
+                <td>{{ ct_const_av_ded_carac.cadNumSerieType }}</td>
+            </tr>
+            <tr>
+                <th>CadNumMoteur</th>
+                <td>{{ ct_const_av_ded_carac.cadNumMoteur }}</td>
+            </tr>
+            <tr>
+                <th>CadTypeCar</th>
+                <td>{{ ct_const_av_ded_carac.cadTypeCar }}</td>
+            </tr>
+            <tr>
+                <th>CadPoidsMaxima</th>
+                <td>{{ ct_const_av_ded_carac.cadPoidsMaxima }}</td>
+            </tr>
+            <tr>
+                <th>CadPoidsTotalCharge</th>
+                <td>{{ ct_const_av_ded_carac.cadPoidsTotalCharge }}</td>
+            </tr>
+            <tr>
+                <th>CadPremiereCircule</th>
+                <td>{{ ct_const_av_ded_carac.cadPremiereCircule }}</td>
+            </tr>
+            <tr>
+                <th>CadNbrAssis</th>
+                <td>{{ ct_const_av_ded_carac.cadNbrAssis }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_const_av_ded_carac_index') }}">back to list</a>
+
+    <a href="{{ path('ct_const_av_ded_carac_edit', {'id': ct_const_av_ded_carac.id}) }}">edit</a>
+
+    {{ include('ct_const_av_ded_carac/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtVisiteBuckup index{% endblock %}
+
+{% block body %}
+    <h1>CtVisiteBuckup index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CtCarteGriseId</th>
+                <th>CtCentreId</th>
+                <th>CtTypeVisiteId</th>
+                <th>CtUsageId</th>
+                <th>CtUserId</th>
+                <th>CtVerificateurId</th>
+                <th>VstNumPv</th>
+                <th>VstNumFeuilleCaisse</th>
+                <th>VstDateExpiration</th>
+                <th>VstCreated</th>
+                <th>VstUpdated</th>
+                <th>CtUtilisationId</th>
+                <th>VstIsApte</th>
+                <th>VstIsContreVisite</th>
+                <th>VstDureeReparation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_visite_buckup in ct_visite_buckups %}
+            <tr>
+                <td>{{ ct_visite_buckup.id }}</td>
+                <td>{{ ct_visite_buckup.ctCarteGriseId }}</td>
+                <td>{{ ct_visite_buckup.ctCentreId }}</td>
+                <td>{{ ct_visite_buckup.ctTypeVisiteId }}</td>
+                <td>{{ ct_visite_buckup.ctUsageId }}</td>
+                <td>{{ ct_visite_buckup.ctUserId }}</td>
+                <td>{{ ct_visite_buckup.ctVerificateurId }}</td>
+                <td>{{ ct_visite_buckup.vstNumPv }}</td>
+                <td>{{ ct_visite_buckup.vstNumFeuilleCaisse }}</td>
+                <td>{{ ct_visite_buckup.vstDateExpiration ? ct_visite_buckup.vstDateExpiration|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_visite_buckup.vstCreated ? ct_visite_buckup.vstCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_visite_buckup.vstUpdated ? ct_visite_buckup.vstUpdated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_visite_buckup.ctUtilisationId }}</td>
+                <td>{{ ct_visite_buckup.vstIsApte ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_visite_buckup.vstIsContreVisite ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_visite_buckup.vstDureeReparation }}</td>
+                <td>
+                    <a href="{{ path('ct_visite_buckup_show', {'id': ct_visite_buckup.id}) }}">show</a>
+                    <a href="{{ path('ct_visite_buckup_edit', {'id': ct_visite_buckup.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_visite_buckup_new') }}">Create new</a>
+{% endblock %}

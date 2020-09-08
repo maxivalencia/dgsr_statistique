@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtUser{% endblock %}
+
+{% block body %}
+    <h1>CtUser</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ ct_user.username }}</td>
+            </tr>
+            <tr>
+                <th>UsernameCanonical</th>
+                <td>{{ ct_user.usernameCanonical }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ ct_user.email }}</td>
+            </tr>
+            <tr>
+                <th>EmailCanonical</th>
+                <td>{{ ct_user.emailCanonical }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{{ ct_user.enabled ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Salt</th>
+                <td>{{ ct_user.salt }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ ct_user.password }}</td>
+            </tr>
+            <tr>
+                <th>LastLogin</th>
+                <td>{{ ct_user.lastLogin ? ct_user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ConfirmationToken</th>
+                <td>{{ ct_user.confirmationToken }}</td>
+            </tr>
+            <tr>
+                <th>PasswordRequestedAt</th>
+                <td>{{ ct_user.passwordRequestedAt ? ct_user.passwordRequestedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ ct_user.roles ? ct_user.roles|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UsrName</th>
+                <td>{{ ct_user.usrName }}</td>
+            </tr>
+            <tr>
+                <th>UsrEmail</th>
+                <td>{{ ct_user.usrEmail }}</td>
+            </tr>
+            <tr>
+                <th>UsrLocked</th>
+                <td>{{ ct_user.usrLocked ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UsrPassword</th>
+                <td>{{ ct_user.usrPassword }}</td>
+            </tr>
+            <tr>
+                <th>UsrAdresse</th>
+                <td>{{ ct_user.usrAdresse }}</td>
+            </tr>
+            <tr>
+                <th>UsrToken</th>
+                <td>{{ ct_user.usrToken }}</td>
+            </tr>
+            <tr>
+                <th>UsrCreatedAt</th>
+                <td>{{ ct_user.usrCreatedAt ? ct_user.usrCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UsrUpdatedAt</th>
+                <td>{{ ct_user.usrUpdatedAt ? ct_user.usrUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UsrLockedUpdate</th>
+                <td>{{ ct_user.usrLockedUpdate ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UsrRequestUpdate</th>
+                <td>{{ ct_user.usrRequestUpdate ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UsrProfession</th>
+                <td>{{ ct_user.usrProfession }}</td>
+            </tr>
+            <tr>
+                <th>UsrTelephone</th>
+                <td>{{ ct_user.usrTelephone }}</td>
+            </tr>
+            <tr>
+                <th>UsrIsConnected</th>
+                <td>{{ ct_user.usrIsConnected ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UsrPresence</th>
+                <td>{{ ct_user.usrPresence ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_user_index') }}">back to list</a>
+
+    <a href="{{ path('ct_user_edit', {'id': ct_user.id}) }}">edit</a>
+
+    {{ include('ct_user/_delete_form.html.twig') }}
+{% endblock %}

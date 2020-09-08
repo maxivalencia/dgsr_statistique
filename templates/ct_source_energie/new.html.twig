@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtSourceEnergie{% endblock %}
+
+{% block body %}
+    <h1>Create new CtSourceEnergie</h1>
+
+    {{ include('ct_source_energie/_form.html.twig') }}
+
+    <a href="{{ path('ct_source_energie_index') }}">back to list</a>
+{% endblock %}

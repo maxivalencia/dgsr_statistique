@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtMotif{% endblock %}
+
+{% block body %}
+    <h1>CtMotif</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_motif.id }}</td>
+            </tr>
+            <tr>
+                <th>MtfLibelle</th>
+                <td>{{ ct_motif.mtfLibelle }}</td>
+            </tr>
+            <tr>
+                <th>MtfIsCalculable</th>
+                <td>{{ ct_motif.mtfIsCalculable ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_motif_index') }}">back to list</a>
+
+    <a href="{{ path('ct_motif_edit', {'id': ct_motif.id}) }}">edit</a>
+
+    {{ include('ct_motif/_delete_form.html.twig') }}
+{% endblock %}

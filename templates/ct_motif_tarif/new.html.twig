@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtMotifTarif{% endblock %}
+
+{% block body %}
+    <h1>Create new CtMotifTarif</h1>
+
+    {{ include('ct_motif_tarif/_form.html.twig') }}
+
+    <a href="{{ path('ct_motif_tarif_index') }}">back to list</a>
+{% endblock %}

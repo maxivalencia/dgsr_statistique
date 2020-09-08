@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtProcesVerbal index{% endblock %}
+
+{% block body %}
+    <h1>CtProcesVerbal index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PvType</th>
+                <th>PvTarif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_proces_verbal in ct_proces_verbals %}
+            <tr>
+                <td>{{ ct_proces_verbal.id }}</td>
+                <td>{{ ct_proces_verbal.pvType }}</td>
+                <td>{{ ct_proces_verbal.pvTarif }}</td>
+                <td>
+                    <a href="{{ path('ct_proces_verbal_show', {'id': ct_proces_verbal.id}) }}">show</a>
+                    <a href="{{ path('ct_proces_verbal_edit', {'id': ct_proces_verbal.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_proces_verbal_new') }}">Create new</a>
+{% endblock %}

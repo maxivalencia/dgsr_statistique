@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtVisite{% endblock %}
+
+{% block body %}
+    <h1>Create new CtVisite</h1>
+
+    {{ include('ct_visite/_form.html.twig') }}
+
+    <a href="{{ path('ct_visite_index') }}">back to list</a>
+{% endblock %}

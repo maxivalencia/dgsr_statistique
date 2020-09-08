@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtVehicule{% endblock %}
+
+{% block body %}
+    <h1>CtVehicule</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_vehicule.id }}</td>
+            </tr>
+            <tr>
+                <th>VhcCylindre</th>
+                <td>{{ ct_vehicule.vhcCylindre }}</td>
+            </tr>
+            <tr>
+                <th>VhcPuissance</th>
+                <td>{{ ct_vehicule.vhcPuissance }}</td>
+            </tr>
+            <tr>
+                <th>VhcPoidsVide</th>
+                <td>{{ ct_vehicule.vhcPoidsVide }}</td>
+            </tr>
+            <tr>
+                <th>VhcChargeUtile</th>
+                <td>{{ ct_vehicule.vhcChargeUtile }}</td>
+            </tr>
+            <tr>
+                <th>VhcHauteur</th>
+                <td>{{ ct_vehicule.vhcHauteur }}</td>
+            </tr>
+            <tr>
+                <th>VhcLargeur</th>
+                <td>{{ ct_vehicule.vhcLargeur }}</td>
+            </tr>
+            <tr>
+                <th>VhcLongueur</th>
+                <td>{{ ct_vehicule.vhcLongueur }}</td>
+            </tr>
+            <tr>
+                <th>VhcNumSerie</th>
+                <td>{{ ct_vehicule.vhcNumSerie }}</td>
+            </tr>
+            <tr>
+                <th>VhcNumMoteur</th>
+                <td>{{ ct_vehicule.vhcNumMoteur }}</td>
+            </tr>
+            <tr>
+                <th>VhcCreated</th>
+                <td>{{ ct_vehicule.vhcCreated ? ct_vehicule.vhcCreated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>VhcProvenance</th>
+                <td>{{ ct_vehicule.vhcProvenance }}</td>
+            </tr>
+            <tr>
+                <th>VhcType</th>
+                <td>{{ ct_vehicule.vhcType }}</td>
+            </tr>
+            <tr>
+                <th>VhcPoidsTotalCharge</th>
+                <td>{{ ct_vehicule.vhcPoidsTotalCharge }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_vehicule_index') }}">back to list</a>
+
+    <a href="{{ path('ct_vehicule_edit', {'id': ct_vehicule.id}) }}">edit</a>
+
+    {{ include('ct_vehicule/_delete_form.html.twig') }}
+{% endblock %}

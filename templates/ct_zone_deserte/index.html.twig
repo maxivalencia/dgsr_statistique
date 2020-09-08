@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtZoneDeserte index{% endblock %}
+
+{% block body %}
+    <h1>CtZoneDeserte index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ZdLibelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_zone_deserte in ct_zone_desertes %}
+            <tr>
+                <td>{{ ct_zone_deserte.id }}</td>
+                <td>{{ ct_zone_deserte.zdLibelle }}</td>
+                <td>
+                    <a href="{{ path('ct_zone_deserte_show', {'id': ct_zone_deserte.id}) }}">show</a>
+                    <a href="{{ path('ct_zone_deserte_edit', {'id': ct_zone_deserte.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_zone_deserte_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtMotif{% endblock %}
+
+{% block body %}
+    <h1>Edit CtMotif</h1>
+
+    {{ include('ct_motif/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_motif_index') }}">back to list</a>
+
+    {{ include('ct_motif/_delete_form.html.twig') }}
+{% endblock %}

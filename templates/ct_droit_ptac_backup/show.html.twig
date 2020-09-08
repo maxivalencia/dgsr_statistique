@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtDroitPtacBackup{% endblock %}
+
+{% block body %}
+    <h1>CtDroitPtacBackup</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_droit_ptac_backup.id }}</td>
+            </tr>
+            <tr>
+                <th>CtGenreCategorieId</th>
+                <td>{{ ct_droit_ptac_backup.ctGenreCategorieId }}</td>
+            </tr>
+            <tr>
+                <th>DpPrixMin</th>
+                <td>{{ ct_droit_ptac_backup.dpPrixMin }}</td>
+            </tr>
+            <tr>
+                <th>DpPrixMax</th>
+                <td>{{ ct_droit_ptac_backup.dpPrixMax }}</td>
+            </tr>
+            <tr>
+                <th>DpDroit</th>
+                <td>{{ ct_droit_ptac_backup.dpDroit }}</td>
+            </tr>
+            <tr>
+                <th>CtTypeDroitPtacId</th>
+                <td>{{ ct_droit_ptac_backup.ctTypeDroitPtacId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_droit_ptac_backup_index') }}">back to list</a>
+
+    <a href="{{ path('ct_droit_ptac_backup_edit', {'id': ct_droit_ptac_backup.id}) }}">edit</a>
+
+    {{ include('ct_droit_ptac_backup/_delete_form.html.twig') }}
+{% endblock %}

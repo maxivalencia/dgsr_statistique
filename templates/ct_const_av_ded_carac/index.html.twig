@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtConstAvDedCarac index{% endblock %}
+
+{% block body %}
+    <h1>CtConstAvDedCarac index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CadCylindre</th>
+                <th>CadPuissance</th>
+                <th>CadPoidsVide</th>
+                <th>CadChargeUtile</th>
+                <th>CadHauteur</th>
+                <th>CadLargeur</th>
+                <th>CadLongueur</th>
+                <th>CadNumSerieType</th>
+                <th>CadNumMoteur</th>
+                <th>CadTypeCar</th>
+                <th>CadPoidsMaxima</th>
+                <th>CadPoidsTotalCharge</th>
+                <th>CadPremiereCircule</th>
+                <th>CadNbrAssis</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_const_av_ded_carac in ct_const_av_ded_caracs %}
+            <tr>
+                <td>{{ ct_const_av_ded_carac.id }}</td>
+                <td>{{ ct_const_av_ded_carac.cadCylindre }}</td>
+                <td>{{ ct_const_av_ded_carac.cadPuissance }}</td>
+                <td>{{ ct_const_av_ded_carac.cadPoidsVide }}</td>
+                <td>{{ ct_const_av_ded_carac.cadChargeUtile }}</td>
+                <td>{{ ct_const_av_ded_carac.cadHauteur }}</td>
+                <td>{{ ct_const_av_ded_carac.cadLargeur }}</td>
+                <td>{{ ct_const_av_ded_carac.cadLongueur }}</td>
+                <td>{{ ct_const_av_ded_carac.cadNumSerieType }}</td>
+                <td>{{ ct_const_av_ded_carac.cadNumMoteur }}</td>
+                <td>{{ ct_const_av_ded_carac.cadTypeCar }}</td>
+                <td>{{ ct_const_av_ded_carac.cadPoidsMaxima }}</td>
+                <td>{{ ct_const_av_ded_carac.cadPoidsTotalCharge }}</td>
+                <td>{{ ct_const_av_ded_carac.cadPremiereCircule }}</td>
+                <td>{{ ct_const_av_ded_carac.cadNbrAssis }}</td>
+                <td>
+                    <a href="{{ path('ct_const_av_ded_carac_show', {'id': ct_const_av_ded_carac.id}) }}">show</a>
+                    <a href="{{ path('ct_const_av_ded_carac_edit', {'id': ct_const_av_ded_carac.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_const_av_ded_carac_new') }}">Create new</a>
+{% endblock %}

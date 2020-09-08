@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtGenreTarif{% endblock %}
+
+{% block body %}
+    <h1>CtGenreTarif</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_genre_tarif.id }}</td>
+            </tr>
+            <tr>
+                <th>GrtPrix</th>
+                <td>{{ ct_genre_tarif.grtPrix }}</td>
+            </tr>
+            <tr>
+                <th>GrtAnnee</th>
+                <td>{{ ct_genre_tarif.grtAnnee }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_genre_tarif_index') }}">back to list</a>
+
+    <a href="{{ path('ct_genre_tarif_edit', {'id': ct_genre_tarif.id}) }}">edit</a>
+
+    {{ include('ct_genre_tarif/_delete_form.html.twig') }}
+{% endblock %}

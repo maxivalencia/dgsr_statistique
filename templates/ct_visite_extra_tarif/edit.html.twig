@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtVisiteExtraTarif{% endblock %}
+
+{% block body %}
+    <h1>Edit CtVisiteExtraTarif</h1>
+
+    {{ include('ct_visite_extra_tarif/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_visite_extra_tarif_index') }}">back to list</a>
+
+    {{ include('ct_visite_extra_tarif/_delete_form.html.twig') }}
+{% endblock %}

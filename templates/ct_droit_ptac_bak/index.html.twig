@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtDroitPtacBak index{% endblock %}
+
+{% block body %}
+    <h1>CtDroitPtacBak index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CtGenreCategorieId</th>
+                <th>DpPrixMin</th>
+                <th>DpPrixMax</th>
+                <th>DpDroit</th>
+                <th>CtTypeDroitPtacId</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_droit_ptac_bak in ct_droit_ptac_baks %}
+            <tr>
+                <td>{{ ct_droit_ptac_bak.id }}</td>
+                <td>{{ ct_droit_ptac_bak.ctGenreCategorieId }}</td>
+                <td>{{ ct_droit_ptac_bak.dpPrixMin }}</td>
+                <td>{{ ct_droit_ptac_bak.dpPrixMax }}</td>
+                <td>{{ ct_droit_ptac_bak.dpDroit }}</td>
+                <td>{{ ct_droit_ptac_bak.ctTypeDroitPtacId }}</td>
+                <td>
+                    <a href="{{ path('ct_droit_ptac_bak_show', {'id': ct_droit_ptac_bak.id}) }}">show</a>
+                    <a href="{{ path('ct_droit_ptac_bak_edit', {'id': ct_droit_ptac_bak.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_droit_ptac_bak_new') }}">Create new</a>
+{% endblock %}

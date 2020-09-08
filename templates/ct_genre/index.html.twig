@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtGenre index{% endblock %}
+
+{% block body %}
+    <h1>CtGenre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>GrLibelle</th>
+                <th>GrCode</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_genre in ct_genres %}
+            <tr>
+                <td>{{ ct_genre.id }}</td>
+                <td>{{ ct_genre.grLibelle }}</td>
+                <td>{{ ct_genre.grCode }}</td>
+                <td>
+                    <a href="{{ path('ct_genre_show', {'id': ct_genre.id}) }}">show</a>
+                    <a href="{{ path('ct_genre_edit', {'id': ct_genre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_genre_new') }}">Create new</a>
+{% endblock %}

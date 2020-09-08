@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtSourceEnergie{% endblock %}
+
+{% block body %}
+    <h1>Edit CtSourceEnergie</h1>
+
+    {{ include('ct_source_energie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_source_energie_index') }}">back to list</a>
+
+    {{ include('ct_source_energie/_delete_form.html.twig') }}
+{% endblock %}

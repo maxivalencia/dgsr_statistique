@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtVisiteExtraTarif{% endblock %}
+
+{% block body %}
+    <h1>Create new CtVisiteExtraTarif</h1>
+
+    {{ include('ct_visite_extra_tarif/_form.html.twig') }}
+
+    <a href="{{ path('ct_visite_extra_tarif_index') }}">back to list</a>
+{% endblock %}

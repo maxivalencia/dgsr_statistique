@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtProvince{% endblock %}
+
+{% block body %}
+    <h1>CtProvince</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_province.id }}</td>
+            </tr>
+            <tr>
+                <th>PrvNom</th>
+                <td>{{ ct_province.prvNom }}</td>
+            </tr>
+            <tr>
+                <th>PrvCode</th>
+                <td>{{ ct_province.prvCode }}</td>
+            </tr>
+            <tr>
+                <th>PrvCreatedAt</th>
+                <td>{{ ct_province.prvCreatedAt ? ct_province.prvCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PrvUpdatedAt</th>
+                <td>{{ ct_province.prvUpdatedAt ? ct_province.prvUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_province_index') }}">back to list</a>
+
+    <a href="{{ path('ct_province_edit', {'id': ct_province.id}) }}">edit</a>
+
+    {{ include('ct_province/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtZoneDeserte{% endblock %}
+
+{% block body %}
+    <h1>CtZoneDeserte</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_zone_deserte.id }}</td>
+            </tr>
+            <tr>
+                <th>ZdLibelle</th>
+                <td>{{ ct_zone_deserte.zdLibelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_zone_deserte_index') }}">back to list</a>
+
+    <a href="{{ path('ct_zone_deserte_edit', {'id': ct_zone_deserte.id}) }}">edit</a>
+
+    {{ include('ct_zone_deserte/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtVisiteBuckup{% endblock %}
+
+{% block body %}
+    <h1>Edit CtVisiteBuckup</h1>
+
+    {{ include('ct_visite_buckup/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_visite_buckup_index') }}">back to list</a>
+
+    {{ include('ct_visite_buckup/_delete_form.html.twig') }}
+{% endblock %}

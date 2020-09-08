@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtUtilisation index{% endblock %}
+
+{% block body %}
+    <h1>CtUtilisation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UtLibelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_utilisation in ct_utilisations %}
+            <tr>
+                <td>{{ ct_utilisation.id }}</td>
+                <td>{{ ct_utilisation.utLibelle }}</td>
+                <td>
+                    <a href="{{ path('ct_utilisation_show', {'id': ct_utilisation.id}) }}">show</a>
+                    <a href="{{ path('ct_utilisation_edit', {'id': ct_utilisation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_utilisation_new') }}">Create new</a>
+{% endblock %}

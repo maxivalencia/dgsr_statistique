@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtMotifTarif index{% endblock %}
+
+{% block body %}
+    <h1>CtMotifTarif index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MtfTrfPrix</th>
+                <th>MtfTrfDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_motif_tarif in ct_motif_tarifs %}
+            <tr>
+                <td>{{ ct_motif_tarif.id }}</td>
+                <td>{{ ct_motif_tarif.mtfTrfPrix }}</td>
+                <td>{{ ct_motif_tarif.mtfTrfDate }}</td>
+                <td>
+                    <a href="{{ path('ct_motif_tarif_show', {'id': ct_motif_tarif.id}) }}">show</a>
+                    <a href="{{ path('ct_motif_tarif_edit', {'id': ct_motif_tarif.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_motif_tarif_new') }}">Create new</a>
+{% endblock %}

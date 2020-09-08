@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtVisite{% endblock %}
+
+{% block body %}
+    <h1>CtVisite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_visite.id }}</td>
+            </tr>
+            <tr>
+                <th>VstNumPv</th>
+                <td>{{ ct_visite.vstNumPv }}</td>
+            </tr>
+            <tr>
+                <th>VstNumFeuilleCaisse</th>
+                <td>{{ ct_visite.vstNumFeuilleCaisse }}</td>
+            </tr>
+            <tr>
+                <th>VstDateExpiration</th>
+                <td>{{ ct_visite.vstDateExpiration ? ct_visite.vstDateExpiration|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>VstCreated</th>
+                <td>{{ ct_visite.vstCreated ? ct_visite.vstCreated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>VstUpdated</th>
+                <td>{{ ct_visite.vstUpdated ? ct_visite.vstUpdated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>VstIsApte</th>
+                <td>{{ ct_visite.vstIsApte ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>VstIsContreVisite</th>
+                <td>{{ ct_visite.vstIsContreVisite ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>VstDureeReparation</th>
+                <td>{{ ct_visite.vstDureeReparation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_visite_index') }}">back to list</a>
+
+    <a href="{{ path('ct_visite_edit', {'id': ct_visite.id}) }}">edit</a>
+
+    {{ include('ct_visite/_delete_form.html.twig') }}
+{% endblock %}

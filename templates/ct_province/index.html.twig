@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtProvince index{% endblock %}
+
+{% block body %}
+    <h1>CtProvince index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PrvNom</th>
+                <th>PrvCode</th>
+                <th>PrvCreatedAt</th>
+                <th>PrvUpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_province in ct_provinces %}
+            <tr>
+                <td>{{ ct_province.id }}</td>
+                <td>{{ ct_province.prvNom }}</td>
+                <td>{{ ct_province.prvCode }}</td>
+                <td>{{ ct_province.prvCreatedAt ? ct_province.prvCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_province.prvUpdatedAt ? ct_province.prvUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('ct_province_show', {'id': ct_province.id}) }}">show</a>
+                    <a href="{{ path('ct_province_edit', {'id': ct_province.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_province_new') }}">Create new</a>
+{% endblock %}

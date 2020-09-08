@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtProcesVerbal{% endblock %}
+
+{% block body %}
+    <h1>Edit CtProcesVerbal</h1>
+
+    {{ include('ct_proces_verbal/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_proces_verbal_index') }}">back to list</a>
+
+    {{ include('ct_proces_verbal/_delete_form.html.twig') }}
+{% endblock %}

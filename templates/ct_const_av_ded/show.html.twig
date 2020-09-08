@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtConstAvDed{% endblock %}
+
+{% block body %}
+    <h1>CtConstAvDed</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_const_av_ded.id }}</td>
+            </tr>
+            <tr>
+                <th>CadProvenance</th>
+                <td>{{ ct_const_av_ded.cadProvenance }}</td>
+            </tr>
+            <tr>
+                <th>CadDivers</th>
+                <td>{{ ct_const_av_ded.cadDivers }}</td>
+            </tr>
+            <tr>
+                <th>CadProprietaireNom</th>
+                <td>{{ ct_const_av_ded.cadProprietaireNom }}</td>
+            </tr>
+            <tr>
+                <th>CadProprietaireAdresse</th>
+                <td>{{ ct_const_av_ded.cadProprietaireAdresse }}</td>
+            </tr>
+            <tr>
+                <th>CadBonEtat</th>
+                <td>{{ ct_const_av_ded.cadBonEtat ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CadSecPers</th>
+                <td>{{ ct_const_av_ded.cadSecPers ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CadSecMarch</th>
+                <td>{{ ct_const_av_ded.cadSecMarch ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CadProtecEnv</th>
+                <td>{{ ct_const_av_ded.cadProtecEnv ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CadNumero</th>
+                <td>{{ ct_const_av_ded.cadNumero }}</td>
+            </tr>
+            <tr>
+                <th>CadImmatriculation</th>
+                <td>{{ ct_const_av_ded.cadImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>CadDateEmbarquement</th>
+                <td>{{ ct_const_av_ded.cadDateEmbarquement ? ct_const_av_ded.cadDateEmbarquement|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CadLieuEmbarquement</th>
+                <td>{{ ct_const_av_ded.cadLieuEmbarquement }}</td>
+            </tr>
+            <tr>
+                <th>CadCreated</th>
+                <td>{{ ct_const_av_ded.cadCreated ? ct_const_av_ded.cadCreated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CadConforme</th>
+                <td>{{ ct_const_av_ded.cadConforme ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CadObservation</th>
+                <td>{{ ct_const_av_ded.cadObservation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_const_av_ded_index') }}">back to list</a>
+
+    <a href="{{ path('ct_const_av_ded_edit', {'id': ct_const_av_ded.id}) }}">edit</a>
+
+    {{ include('ct_const_av_ded/_delete_form.html.twig') }}
+{% endblock %}

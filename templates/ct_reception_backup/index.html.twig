@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtReceptionBackup index{% endblock %}
+
+{% block body %}
+    <h1>CtReceptionBackup index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CtCentreId</th>
+                <th>CtMotifId</th>
+                <th>CtTypeReceptionId</th>
+                <th>CtUserId</th>
+                <th>CtUtilisationId</th>
+                <th>CtVehiculeId</th>
+                <th>RcpMiseService</th>
+                <th>RcpImmatriculation</th>
+                <th>RcpProprietaire</th>
+                <th>RcpProfession</th>
+                <th>RcpAdresse</th>
+                <th>RcpNbrAssis</th>
+                <th>RcpNbrDebout</th>
+                <th>RcpNumPv</th>
+                <th>CtSourceEnergieId</th>
+                <th>CtCarosserieId</th>
+                <th>RcpNumGroup</th>
+                <th>RcpCreated</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_reception_backup in ct_reception_backups %}
+            <tr>
+                <td>{{ ct_reception_backup.id }}</td>
+                <td>{{ ct_reception_backup.ctCentreId }}</td>
+                <td>{{ ct_reception_backup.ctMotifId }}</td>
+                <td>{{ ct_reception_backup.ctTypeReceptionId }}</td>
+                <td>{{ ct_reception_backup.ctUserId }}</td>
+                <td>{{ ct_reception_backup.ctUtilisationId }}</td>
+                <td>{{ ct_reception_backup.ctVehiculeId }}</td>
+                <td>{{ ct_reception_backup.rcpMiseService ? ct_reception_backup.rcpMiseService|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_reception_backup.rcpImmatriculation }}</td>
+                <td>{{ ct_reception_backup.rcpProprietaire }}</td>
+                <td>{{ ct_reception_backup.rcpProfession }}</td>
+                <td>{{ ct_reception_backup.rcpAdresse }}</td>
+                <td>{{ ct_reception_backup.rcpNbrAssis }}</td>
+                <td>{{ ct_reception_backup.rcpNbrDebout }}</td>
+                <td>{{ ct_reception_backup.rcpNumPv }}</td>
+                <td>{{ ct_reception_backup.ctSourceEnergieId }}</td>
+                <td>{{ ct_reception_backup.ctCarosserieId }}</td>
+                <td>{{ ct_reception_backup.rcpNumGroup }}</td>
+                <td>{{ ct_reception_backup.rcpCreated ? ct_reception_backup.rcpCreated|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('ct_reception_backup_show', {'id': ct_reception_backup.id}) }}">show</a>
+                    <a href="{{ path('ct_reception_backup_edit', {'id': ct_reception_backup.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="20">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_reception_backup_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtRole index{% endblock %}
+
+{% block body %}
+    <h1>CtRole index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RoleName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_role in ct_roles %}
+            <tr>
+                <td>{{ ct_role.id }}</td>
+                <td>{{ ct_role.roleName }}</td>
+                <td>
+                    <a href="{{ path('ct_role_show', {'id': ct_role.id}) }}">show</a>
+                    <a href="{{ path('ct_role_edit', {'id': ct_role.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_role_new') }}">Create new</a>
+{% endblock %}

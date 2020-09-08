@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtCarteGrise{% endblock %}
+
+{% block body %}
+    <h1>Edit CtCarteGrise</h1>
+
+    {{ include('ct_carte_grise/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_carte_grise_index') }}">back to list</a>
+
+    {{ include('ct_carte_grise/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtUtilisation{% endblock %}
+
+{% block body %}
+    <h1>Edit CtUtilisation</h1>
+
+    {{ include('ct_utilisation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_utilisation_index') }}">back to list</a>
+
+    {{ include('ct_utilisation/_delete_form.html.twig') }}
+{% endblock %}

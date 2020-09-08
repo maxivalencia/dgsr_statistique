@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtConstAvDedType{% endblock %}
+
+{% block body %}
+    <h1>CtConstAvDedType</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_const_av_ded_type.id }}</td>
+            </tr>
+            <tr>
+                <th>CadTpLibelle</th>
+                <td>{{ ct_const_av_ded_type.cadTpLibelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_const_av_ded_type_index') }}">back to list</a>
+
+    <a href="{{ path('ct_const_av_ded_type_edit', {'id': ct_const_av_ded_type.id}) }}">edit</a>
+
+    {{ include('ct_const_av_ded_type/_delete_form.html.twig') }}
+{% endblock %}

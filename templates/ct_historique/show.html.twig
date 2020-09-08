@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtHistorique{% endblock %}
+
+{% block body %}
+    <h1>CtHistorique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_historique.id }}</td>
+            </tr>
+            <tr>
+                <th>HstDescription</th>
+                <td>{{ ct_historique.hstDescription }}</td>
+            </tr>
+            <tr>
+                <th>HstDateCreate</th>
+                <td>{{ ct_historique.hstDateCreate ? ct_historique.hstDateCreate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HstIsView</th>
+                <td>{{ ct_historique.hstIsView ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CtCentreId</th>
+                <td>{{ ct_historique.ctCentreId }}</td>
+            </tr>
+            <tr>
+                <th>HistType</th>
+                <td>{{ ct_historique.histType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_historique_index') }}">back to list</a>
+
+    <a href="{{ path('ct_historique_edit', {'id': ct_historique.id}) }}">edit</a>
+
+    {{ include('ct_historique/_delete_form.html.twig') }}
+{% endblock %}

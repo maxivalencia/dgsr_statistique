@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtAnomalie{% endblock %}
+
+{% block body %}
+    <h1>Edit CtAnomalie</h1>
+
+    {{ include('ct_anomalie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_anomalie_index') }}">back to list</a>
+
+    {{ include('ct_anomalie/_delete_form.html.twig') }}
+{% endblock %}
