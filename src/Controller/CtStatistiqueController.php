@@ -16,11 +16,12 @@ class CtStatistiqueController extends AbstractController
     /**
      * @Route("/ct/statistique/{id}", name="ct_statistique", methods={"GET","POST"})
      */
-    public function index(CtCarteGrise $ctCarteGrise): Response
+    public function index(string $id/* CtCarteGrise $ctCarteGrise */): Response
     {
         $cg_vehicule = new CtCarteGrise();
         $vehicule_identification = new CtVehicule();
         // Récupération des informations de la carte grise
+        $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $id]);
         $cg_vehicule = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['id' => $ctCarteGrise]);
         $ns_vehicule = $cg_vehicule->getCtVehicule();
         $vehicule_identification = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['id' => $ns_vehicule]);

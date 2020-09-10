@@ -1,0 +1,39 @@
+.kl-largeur {
+    width: 615px;
+    align-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.kl-fond-login {
+    background-color: darkgray;
+}
+
+.kl-texte-header {
+    text-align: center;
+    margin: 25px;
+}
+
+.kl-taille-container{
+    width: 614px;
+}
+
+.kl-bouton-droite{
+    text-align: right;
+    margin-left: auto;
+    margin-right: 10px;
+    padding-left: auto;
+    padding-right: 10px;
+}
+
+.kl-bordure-form {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.kl-bordure-bouton {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}

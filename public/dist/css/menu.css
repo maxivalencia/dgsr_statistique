@@ -1,0 +1,50 @@
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+  
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+  
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+  
+.vertical-menu a.active {    
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+.kl-menu {
+    margin-top: 50px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.kl-fond-menu {
+    background-color: rgb(41, 46, 51);    
+}
+
+.kl-titre {
+    text-align: center;
+    align-content: center;
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.kl-ajustement {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    max-width: 100%;
+}
+
+.kl-fond-entete {    
+    background-color: rgb(86, 98, 133);
+}
