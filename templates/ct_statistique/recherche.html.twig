@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ct Historique du véhicule {% endblock %}
+
+{% block body %}
+    <div align="center"><img src="/dist/images/header.png" class="img-fluid" alt="Image en-tête de la DGSR"></div>
+    <div align="center"><h1>Ct Historique Véhicule</h1></div>
+
+    <div align="center">
+        <form method="GET" action="{{ path('ct_statistique') }}">
+            <input type="text" name="numero" id="numero" value="">
+            <input type="submit" class="btn" value="Rechercher" name="bouton" id="bouton">
+        </form>
+    </div>
+{% endblock %}

@@ -14,14 +14,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CtStatistiqueController extends AbstractController
 {
     /**
-     * @Route("/ct/statistique/{id}", name="ct_statistique", methods={"GET","POST"})
+     * @Route("/ct/statistique", name="ct_statistique", methods={"GET","POST"})
      */
-    public function index(string $id/* CtCarteGrise $ctCarteGrise */): Response
+    public function statistique(Request $request): Response
     {
+        $numero = $request->query->get('numero');
+        if($numero == ''){
+            return $this->render('ct_statistique/recherche.html.twig');
+        }
         $cg_vehicule = new CtCarteGrise();
         $vehicule_identification = new CtVehicule();
         // Récupération des informations de la carte grise
-        $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $id]);
+        $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $numero]);
         $cg_vehicule = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['id' => $ctCarteGrise]);
         $ns_vehicule = $cg_vehicule->getCtVehicule();
         $vehicule_identification = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['id' => $ns_vehicule]);
@@ -40,5 +44,13 @@ class CtStatistiqueController extends AbstractController
             'visites' => $visites,
             'receptions' => $reception,
         ]);
+    }
+
+    /**
+     * @Route("/ct/recherche", name="ct_recherche", methods={"GET", "POST"})
+     */
+    public function recherche(): Response
+    {
+        return $this->render('ct_statistique/recherche.html.twig');
     }
 }

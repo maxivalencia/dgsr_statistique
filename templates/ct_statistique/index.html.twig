@@ -3,9 +3,17 @@
 {% block title %} Ct Historique du véhicule {{ ct_carte_grise.cgImmatriculation }} {% endblock %}
 
 {% block body %}
-    <h1>Ct Historique Véhicule</h1>
+    <div align="center"><img src="/dist/images/header.png" class="img-fluid" alt="Image en-tête de la DGSR"></div>
+    <div align="center"><h1>Ct Historique Véhicule</h1></div>
+
+    <div align="center">
+        <form method="GET" action="{{ path('ct_statistique') }}">
+            <input type="text" name="numero" id="numero" value="">
+            <input type="submit" class="btn" value="Rechercher" name="bouton" id="bouton">
+        </form>
+    </div>
     
-    <h2>Information sur le véhicule</h2>
+    <div align="center"><h2>Information sur le véhicule : {{ ct_carte_grise.cgImmatriculation }}</h2></div>
     
     <table class="table">
         <tbody>
@@ -200,7 +208,7 @@
         </tbody>
     </table>
 
-    <h2>Liste des visites effectué</h2>
+    <div align="center"><h2>Liste des visites effectué</h2></div>
 
     <table class="table">
         <thead>
@@ -245,7 +253,7 @@
         </tbody>
     </table>
 
-    <h2>Liste des réceptions effectué</h2>
+    <div align="center"><h2>Liste des réceptions effectué</h2></div>
 
     <table class="table">
         <thead>
@@ -304,5 +312,5 @@
         </tbody>
     </table>
 
-    {# <h2>Constatation avant dédouanement</h2> #}
+    {# <div align="center"><h2>Constatation avant dédouanement</h2></div> #}
 {% endblock %}
