@@ -27,14 +27,17 @@ class CtStatistiqueController extends AbstractController
         // Récupération des informations de la carte grise
         $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $numero]);
         $cg_vehicule = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['id' => $ctCarteGrise]);
+        if($cg_vehicule == null){
+            return $this->render('ct_statistique/recherche.html.twig');
+        }
         $ns_vehicule = $cg_vehicule->getCtVehicule();
         $vehicule_identification = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['id' => $ns_vehicule]);
 
         // Récupération des visites
-        $visites = $this->getDoctrine()->getRepository(CtVisite::class)->findBy(['ctCarteGrise' => $cg_vehicule->getId()]);
+        $visites = $this->getDoctrine()->getRepository(CtVisite::class)->findBy(['ctCarteGrise' => $cg_vehicule->getId()], ['id' => 'DESC']);
 
         // Récupération des réceptions
-        $reception = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule_identification]);
+        $reception = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule_identification], ['id' => 'DESC']);
 
         // Rendu pou affichage des informations obtenue
         return $this->render('ct_statistique/index.html.twig', [
