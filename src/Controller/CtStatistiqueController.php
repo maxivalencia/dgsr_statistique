@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\CtVisite;
 use App\Entity\CtVehicule;
-use App\Entity\CtCarteGrise;
 use App\Entity\CtReception;
+use App\Entity\CtCarteGrise;
+use App\Entity\CtConstAvDed;
+use App\Entity\CtConstAvDedCarac;
+use App\Form\CtConstAvDedCaracType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,6 +42,14 @@ class CtStatistiqueController extends AbstractController
         // Récupération des réceptions
         $reception = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule_identification], ['id' => 'DESC']);
 
+        // Récupération des constatations avant dédouanement
+        $constatations_informations = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $ns_vehicule]);
+        $constatation[] = new CtConstAvDed();
+        foreach($constatations_informations as $constatation_information)
+        {
+            $constatation += $constatations_informations->getConstAvDed();
+        }
+
         // Rendu pou affichage des informations obtenue
         return $this->render('ct_statistique/index.html.twig', [
             'ct_carte_grise' => $ctCarteGrise,
@@ -46,6 +57,8 @@ class CtStatistiqueController extends AbstractController
             'vehicule_identification' => $vehicule_identification,
             'visites' => $visites,
             'receptions' => $reception,
+            'ct_const_av_ded_caracs' => $constatations_informations,
+            'ct_const_av_deds' => $constatation,
         ]);
     }
 

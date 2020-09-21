@@ -180,6 +180,7 @@ class CtConstAvDedCarac
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="CtConstAvDed", mappedBy="constAvDedCarac")
+     * @ORM\JoinTable(name="CtConstAvDedsConstAvDedCaracs")
      */
     private $constAvDed;
 
