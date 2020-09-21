@@ -208,52 +208,9 @@
         </tbody>
     </table>
 
-    <div align="center" style="background-color:#1faccb;"><h2>Liste des visites effectué</h2></div>
+    {# <div align="center" style="background-color:#1faccb;"><h2>Constatation avant dédouanement</h2></div> #}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Numéro PV</th>
-                <th>Centre</th>
-                <th>Type de visite</th>
-                <th>Usage</th>
-                <th>Secrétaire</th>
-                <th>Vérificateur</th>
-                <th>Numéro PV détail</th>
-                <th>Date d'éxpiration</th>
-                <th>Date de visite</th>
-                <th>Utilisation</th>
-                <th>Aptitude de la visite</th>
-                <th>Mode de Visite</th>
-                <th>Durée de réparation</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for visite in visites %}
-            <tr>
-                <td>{{ visite.id }}</td>
-                <td>{{ visite.ctCentre }}</td>
-                <td>{{ visite.ctTypeVisite }}</td>
-                <td>{{ visite.ctUsage }}</td>
-                <td>{{ visite.ctUser }}</td>
-                <td>{{ visite.ctVerificateur }}</td>
-                <td>{{ visite.vstNumPv }}</td>
-                <td>{{ visite.vstDateExpiration ? visite.vstDateExpiration|date('d/m/Y') : '' }}</td>
-                <td>{{ visite.vstCreated ? visite.vstCreated|date('d/m/Y') : '' }}</td>
-                <td>{{ visite.ctUtilisation }}</td>
-                <td>{{ visite.vstIsApte ? 'Apte' : 'Inapte' }}</td>
-                <td>{{ visite.vstIsContreVisite ? 'Contre visite' : 'Visite normale' }}</td>
-                <td>{{ visite.vstDureeReparation }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="13">Aucune visite trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <div align="center" style="background-color:#1faccb;"><h2>Liste des réceptions effectué</h2></div>
+    <div align="center" style="background-color:#1faccb;"><h2>Liste des réceptions effectuée</h2></div>
 
     <table class="table">
         <thead>
@@ -306,11 +263,54 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="19">Aucune reception trouvé</td>
+                <td colspan="19">Aucune reception trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    {# <div align="center" style="background-color:#1faccb;"><h2>Constatation avant dédouanement</h2></div> #}
+    <div align="center" style="background-color:#1faccb;"><h2>Liste des visites effectué</h2></div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro PV</th>
+                <th>Centre</th>
+                <th>Type de visite</th>
+                <th>Usage</th>
+                <th>Secrétaire</th>
+                <th>Vérificateur</th>
+                <th>Numéro PV détail</th>
+                <th>Date d'éxpiration</th>
+                <th>Date de visite</th>
+                <th>Utilisation</th>
+                <th>Aptitude de la visite</th>
+                <th>Mode de Visite</th>
+                <th>Durée de réparation</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for visite in visites %}
+            <tr>
+                <td>{{ visite.id }}</td>
+                <td>{{ visite.ctCentre }}</td>
+                <td>{{ visite.ctTypeVisite }}</td>
+                <td>{{ visite.ctUsage }}</td>
+                <td>{{ visite.ctUser }}</td>
+                <td>{{ visite.ctVerificateur }}</td>
+                <td>{{ visite.vstNumPv }}</td>
+                <td>{{ visite.vstDateExpiration ? visite.vstDateExpiration|date('d/m/Y') : '' }}</td>
+                <td>{{ visite.vstCreated ? visite.vstCreated|date('d/m/Y') : '' }}</td>
+                <td>{{ visite.ctUtilisation }}</td>
+                <td>{{ visite.vstIsApte ? 'Apte' : 'Inapte' }}</td>
+                <td>{{ visite.vstIsContreVisite ? 'Contre visite' : 'Visite normale' }}</td>
+                <td>{{ visite.vstDureeReparation }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">Aucune visite trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
