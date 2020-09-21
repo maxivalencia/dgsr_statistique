@@ -156,10 +156,10 @@ class CtConstAvDed
      * @ORM\ManyToMany(targetEntity="CtConstAvDedCarac", inversedBy="constAvDed")
      * @ORM\JoinTable(name="CtConstAvDedsConstAvDedCaracs",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="ConstAvDedId", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="constAvDedId", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="ConstAvDedCaracId", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="constAvDedCaracId", referencedColumnName="id")
      *   }
      * )
      */

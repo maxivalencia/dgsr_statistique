@@ -49,7 +49,7 @@ class CtStatistiqueController extends AbstractController
         foreach($constatations_caracteristiques as $constatation_caracteristique)
         {
             $constatation = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findBy(['constAvDedCarac' => $constatation_caracteristique]);
-            //$constatations[] = $constatation;
+            $constatations[] = $constatation;
         }
 
         // Rendu pou affichage des informations obtenue
@@ -60,7 +60,7 @@ class CtStatistiqueController extends AbstractController
             'visites' => $visites,
             'receptions' => $reception,
             'ct_const_av_ded_caracs' => $constatations_caracteristiques,
-            'ct_const_av_deds' => $constatation,
+            'ct_const_av_deds' => $constatations,
         ]);
     }
 
