@@ -45,12 +45,12 @@ class CtStatistiqueController extends AbstractController
         // Récupération des constatations avant dédouanement
         //$constatations_informations = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $ns_vehicule]);
         $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => "A6002766"]);        
-        $constatations[] = new CtConstAvDed();
+        /* $constatations[] = new CtConstAvDed();
         foreach($constatations_caracteristiques as $constatation_caracteristique)
         {
             $constatation = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findBy(['constAvDedCarac' => $constatation_caracteristique]);
             $constatations[] = $constatation;
-        }
+        } */
 
         // Rendu pou affichage des informations obtenue
         return $this->render('ct_statistique/index.html.twig', [
@@ -60,7 +60,7 @@ class CtStatistiqueController extends AbstractController
             'visites' => $visites,
             'receptions' => $reception,
             'ct_const_av_ded_caracs' => $constatations_caracteristiques,
-            'ct_const_av_deds' => $constatations,
+            /* 'ct_const_av_deds' => $constatations, */
         ]);
     }
 
