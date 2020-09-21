@@ -154,12 +154,12 @@ class CtConstAvDed
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="CtConstAvDedCarac", inversedBy="constAvDed")
-     * @ORM\JoinTable(name="ct_const_av_deds_const_av_ded_caracs",
+     * @ORM\JoinTable(name="CtConstAvDedsConstAvDedCaracs",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="const_av_ded_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="ConstAvDedId", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="const_av_ded_carac_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="ConstAvDedCaracId", referencedColumnName="id")
      *   }
      * )
      */

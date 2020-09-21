@@ -43,11 +43,13 @@ class CtStatistiqueController extends AbstractController
         $reception = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule_identification], ['id' => 'DESC']);
 
         // Récupération des constatations avant dédouanement
-        $constatations_informations = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $ns_vehicule]);
-        $constatation[] = new CtConstAvDed();
-        foreach($constatations_informations as $constatation_information)
+        //$constatations_informations = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $ns_vehicule]);
+        $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => "A6002766"]);        
+        $constatations[] = new CtConstAvDed();
+        foreach($constatations_caracteristiques as $constatation_caracteristique)
         {
-            $constatation += $constatations_informations->getConstAvDed();
+            $constatation = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findBy(['constAvDedCarac' => $constatation_caracteristique]);
+            //$constatations[] = $constatation;
         }
 
         // Rendu pou affichage des informations obtenue
@@ -57,7 +59,7 @@ class CtStatistiqueController extends AbstractController
             'vehicule_identification' => $vehicule_identification,
             'visites' => $visites,
             'receptions' => $reception,
-            'ct_const_av_ded_caracs' => $constatations_informations,
+            'ct_const_av_ded_caracs' => $constatations_caracteristiques,
             'ct_const_av_deds' => $constatation,
         ]);
     }
