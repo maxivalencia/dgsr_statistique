@@ -22,14 +22,20 @@ class CtStatistiqueController extends AbstractController
      */
     public function statistique(Request $request): Response
     {
-        $numero = $request->query->get('numero');
+        $numero = trim($request->query->get('numero'));
         if($numero == ''){
             return $this->render('ct_statistique/recherche.html.twig');
         }
+        $ctCarteGrise = new CtCarteGrise();
         $cg_vehicule = new CtCarteGrise();
         $vehicule_identification = new CtVehicule();
         // Récupération des informations de la carte grise
         $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $numero]);
+        if($ctCarteGrise == null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $numero]);
+            $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule]);
+        }
+
         $cg_vehicule = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['id' => $ctCarteGrise]);
         if($cg_vehicule == null){
             return $this->render('ct_statistique/recherche.html.twig');
