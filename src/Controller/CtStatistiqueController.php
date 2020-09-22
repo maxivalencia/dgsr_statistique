@@ -8,6 +8,7 @@ use App\Entity\CtReception;
 use App\Entity\CtCarteGrise;
 use App\Entity\CtConstAvDed;
 use App\Entity\CtConstAvDedCarac;
+use App\Entity\CtConstAvDedsConstAvDedCaracs;
 use App\Form\CtConstAvDedCaracType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,14 +44,13 @@ class CtStatistiqueController extends AbstractController
         $reception = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule_identification], ['id' => 'DESC']);
 
         // Récupération des constatations avant dédouanement
-        //$constatations_informations = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $ns_vehicule]);
-        $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => "A6002766"]);        
-        /* $constatations[] = new CtConstAvDed();
-        foreach($constatations_caracteristiques as $constatation_caracteristique)
-        {
-            $constatation = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findBy(['constAvDedCarac' => $constatation_caracteristique]);
-            $constatations[] = $constatation;
-        } */
+        $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $ns_vehicule]);
+        $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $ns_vehicule]);     
+        $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
+        $constatation[] = new CtConstAvDed();
+        if ($constatations_jointures != null) {
+            $constatation = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findBy(['id' => $constatations_jointures->getConstAvDedId()]);
+        }
 
         // Rendu pou affichage des informations obtenue
         return $this->render('ct_statistique/index.html.twig', [
@@ -60,7 +60,7 @@ class CtStatistiqueController extends AbstractController
             'visites' => $visites,
             'receptions' => $reception,
             'ct_const_av_ded_caracs' => $constatations_caracteristiques,
-            /* 'ct_const_av_deds' => $constatations, */
+            'ct_const_av_deds' => $constatation,
         ]);
     }
 

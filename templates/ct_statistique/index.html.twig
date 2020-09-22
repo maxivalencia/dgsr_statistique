@@ -201,6 +201,10 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Carosserie</th>
+                <th>Genre</th>
+                <th>Marque</th>
+                <th>Source d'energie</th>
                 <th>Cylindre</th>
                 <th>Puissance</th>
                 <th>Poids à Vide</th>
@@ -220,6 +224,10 @@
         <tbody>
         {% for ct_const_av_ded_carac in ct_const_av_ded_caracs %}
             <tr>
+                <td>{{ ct_const_av_ded_carac.ctCarosserie }}</td>
+                <td>{{ ct_const_av_ded_carac.ctGenre }}</td>
+                <td>{{ ct_const_av_ded_carac.ctMarque }}</td>
+                <td>{{ ct_const_av_ded_carac.ctSourceEnergie }}</td>
                 <td>{{ ct_const_av_ded_carac.cadCylindre }}</td>
                 <td>{{ ct_const_av_ded_carac.cadPuissance }}</td>
                 <td>{{ ct_const_av_ded_carac.cadPoidsVide }}</td>
@@ -243,10 +251,12 @@
         </tbody>
     </table>
 
-    {# {% if ct_const_av_ded_caracs %}
+    {% if ct_const_av_ded_caracs %}
         <table class="table">
             <thead>
                 <tr>
+                    <th>Centre</th>
+                    <th>Vérificateur</th>
                     <th>Provenance</th>
                     <th>Divers</th>
                     <th>Nom du propriétaire</th>
@@ -266,6 +276,8 @@
             <tbody>
             {% for ct_const_av_ded in ct_const_av_deds %}
                 <tr>
+                    <td>{{ ct_const_av_ded.ctCentre }}</td>
+                    <td>{{ ct_const_av_ded.ctVerificateur }}</td>
                     <td>{{ ct_const_av_ded.cadProvenance }}</td>
                     <td>{{ ct_const_av_ded.cadDivers }}</td>
                     <td>{{ ct_const_av_ded.cadProprietaireNom }}</td>
@@ -288,7 +300,7 @@
             {% endfor %}
             </tbody>
         </table>        
-    {% endif %} #}
+    {% endif %}
 
     <div align="center" style="background-color:#1faccb;"><h2>Liste des réceptions effectuée</h2></div>
 
