@@ -22,12 +22,12 @@ class CtStatistiqueController extends AbstractController
      */
     public function statistique(Request $request): Response
     {
-        $numero = trim($request->query->get('numero'));
-        $numeros = explode(' ', $numero);
+        $numero = strtoupper(trim($request->query->get('numero')));
+        /* $numeros = explode(' ', $numero);
         $numero = "";
         foreach($numeros as $num){
             $numero .= strtoupper($num);
-        }
+        } */
 
         if($numero == ''){
             return $this->render('ct_statistique/recherche.html.twig');
