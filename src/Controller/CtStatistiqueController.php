@@ -18,6 +18,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+use Knp\Snappy\Pdf;
+
 class CtStatistiqueController extends AbstractController
 {
     /**
@@ -88,10 +90,40 @@ class CtStatistiqueController extends AbstractController
     }
 
     /**
-     * @Route("/ct/stat/pdf", name="ct_pdf_historique", methods={"GET", "POST"})
+     * @Route("/ct/statistique/pdfknp", name="ct_pdf_historique", methods={"GET", "POST"})
+     */
+    public function pdfknp(Request $request): Response
+    {
+
+    }
+
+    /**
+     * @Route("/ct/statistique/pdf", name="ct_pdf_historique", methods={"GET", "POST"})
      */
     public function pdf(Request $request)
     {
+        $numero = strtoupper(trim($request->query->get('numero')));
+
+        if($numero == ''){
+            return $this->render('ct_statistique/recherche.html.twig');
+        }
+        $ctCarteGrise = new CtCarteGrise();
+        $cg_vehicule = new CtCarteGrise();
+        $vehicule_identification = new CtVehicule();
+        // Récupération des informations de la carte grise
+        $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $numero]);
+        if($ctCarteGrise == null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $numero]);
+            $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule]);
+        }
+
+        $cg_vehicule = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['id' => $ctCarteGrise]);
+        if($cg_vehicule == null){
+            return $this->render('ct_statistique/recherche.html.twig');
+        }
+        $ns_vehicule = $cg_vehicule->getCtVehicule();
+        $vehicule_identification = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['id' => $ns_vehicule]);
+
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -99,9 +131,12 @@ class CtStatistiqueController extends AbstractController
         // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
         
+        $logo = $this->getParameter('image').'/logo_dgsr.png';
         // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('default/mypdf.html.twig', [
-            'title' => "Welcome to our PDF Test"
+        $html = $this->renderView('ct_statistique/pdf.html.twig', [
+            'ct_carte_grise' => $ctCarteGrise,
+            'vehicule_identification' => $vehicule_identification,
+            'logo' => $logo,
         ]);
         
         // Load HTML to Dompdf
@@ -113,9 +148,14 @@ class CtStatistiqueController extends AbstractController
         // Render the HTML as PDF
         $dompdf->render();
 
+        $fiche_technique = $ctCarteGrise->getCgImmatriculation();
         // Output the generated PDF to Browser (force download)
-        $dompdf->stream("mypdf.pdf", [
-            "Attachment" => true
+        $dompdf->stream("fiche_technique_".$fiche_technique.".pdf", [
+            "Attachment" => true,
         ]);
+        return new Response("Fichier pdf générer avec succés !");
+        /* return $this->redirectToRoute('ct_statistique',[
+            "numero" => $numero,
+        ]); */
     }
 }
