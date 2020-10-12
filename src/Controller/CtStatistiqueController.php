@@ -18,8 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-use Knp\Snappy\Pdf;
-
 class CtStatistiqueController extends AbstractController
 {
     /**
@@ -79,14 +77,6 @@ class CtStatistiqueController extends AbstractController
             'ct_const_av_ded_caracs' => $constatations_caracteristiques,
             'ct_const_av_deds' => $constatation,
         ]);
-    }
-
-    /**
-     * @Route("/ct/recherche", name="ct_recherche", methods={"GET", "POST"})
-     */
-    public function recherche(): Response
-    {
-        return $this->render('ct_statistique/recherche.html.twig');
     }
 
     /**
