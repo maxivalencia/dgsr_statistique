@@ -43,17 +43,17 @@ class CtStatistiqueController extends AbstractController
         if ($ctCarteGrise != null){
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
-        if ($cg_vehicule == null){
+        if ($cg_vehicule == null || $ctCarteGrise == null){
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $numero]);
-            if ($ctCarteGrise == null) {
+            if ($cg_vehicule != null) {
                 $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule->getId()]);
             }
         }
-        if($cg_vehicule == null){
+        if($cg_vehicule == null || $ctCarteGrise == null){
             $rcp_immatriculation = $this->getDoctrine()->getRepository(CtReception::class)->findOneBy(['rcpImmatriculation' => $numero]);
-            if ($cg_vehicule == null) {
+            if ($rcp_immatriculation != null) {
                 $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $rcp_immatriculation->getCtVehicule()->getVhcNumSerie()]);
-                if ($ctCarteGrise == null) {
+                if ($cg_vehicule != null) {
                     $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule->getId()]);
                 }
             }
@@ -64,7 +64,7 @@ class CtStatistiqueController extends AbstractController
         //    return $this->render('ct_statistique/recherche.html.twig');
         //}
         $visites[] = new CtVisite();
-        $reception[] = new CtReception();
+        $receptions[] = new CtReception();
         $constatation[] = new CtConstAvDed();
         $constatation_caracteristique = new CtConstAvDedCarac();
         $constatations_caracteristiques[] = new CtConstAvDedCarac();
@@ -81,22 +81,37 @@ class CtStatistiqueController extends AbstractController
             if ($cg_vehicule != null) {
                 $receptions = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $cg_vehicule->getId()], ['id' => 'DESC']);
             }
-            // Récupération des constatations avant dédouanement
-            if ($cg_vehicule != null) {
-                $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
-                $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
-                $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
-                //$constatation[] = new CtConstAvDed();
-                if ($constatations_jointures != null) {
-                    $jointure = new CtConstAvDedsConstAvDedCaracs();
-                    foreach ($jointure as $constatations_jointures) {
-                        $constatation = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findBy(['id' => $jointure->getConstAvDedId()]);
-                    }
-                }
-            }
         }
-        if( $ctCarteGrise == null){
+        // Récupération des constatations avant dédouanement
+        if ($cg_vehicule != null) {
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
+            if ($constatations_jointures != null) {
+                //$jointure = new CtConstAvDedsConstAvDedCaracs();
+                //foreach ($jointure as $constatations_jointures) {
+                    $constatation[] = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findOneBy(['id' => $constatations_jointures->getConstAvDedId()]);
+                //}
+            }
+        } else {
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero]);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
+            if ($constatations_jointures != null) {
+                //$jointure = new CtConstAvDedsConstAvDedCaracs();
+                //foreach ($jointure as $constatations_jointures) {
+                    $constatation[] = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findOneBy(['id' => $constatations_jointures->getConstAvDedId()]);
+                //}
+            }
+        }  
+        if ($ctCarteGrise == null){
             $ctCarteGrise = new CtCarteGrise();
+        }
+        if ($rcp_immatriculation == null){
+            $rcp_immatriculation = new CtReception();
+        }
+        if ($cg_vehicule == null){
+            $cg_vehicule = new CtVehicule();
         }
         // Rendu pou affichage des informations obtenue
         return $this->render('ct_statistique/index.html.twig', [
@@ -105,7 +120,7 @@ class CtStatistiqueController extends AbstractController
             'vehicule_identification' => $cg_vehicule,
             'visites' => $visites,
             'receptions' => $receptions,
-            'ct_const_av_ded_caracs' => $constatation_caracteristique,
+            'ct_const_av_ded_caracs' => $constatations_caracteristiques,
             'ct_const_av_deds' => $constatation,
         ]);
     }

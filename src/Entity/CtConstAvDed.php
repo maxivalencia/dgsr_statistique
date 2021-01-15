@@ -171,8 +171,8 @@ class CtConstAvDed
     public function __construct()
     {
         $this->constAvDedCarac = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ctVerificateur =  new ArrayCollection();
-        $this->ctCentre =  new ArrayCollection();
+        //$this->ctVerificateur =  new ArrayCollection();
+        //$this->ctCentre =  new ArrayCollection();
     }
 
     public function getId(): ?int
