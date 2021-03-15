@@ -226,21 +226,24 @@ class CtStatistiqueController extends AbstractController
         $non_recue = '';
         foreach($numeros as $num){
             $vehicule = new CtVehicule();
-            $vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $num]);
-            if ($vehicule != null) {
-                $receptionss = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule->getId()], ['id' => 'DESC']);
-                foreach ($receptionss as $rec) {
-                    if ($rec != null) {
-                        $receptions[$compte] = $rec;
-                        $compte++;
+            //$vehicules = $this->getDoctrine()->getRepository(CtVehicule::class)->findBy(['vhcNumSerie' => ' LIKE %'.$num.'%']);
+            $vehicules = $this->getDoctrine()->getRepository(CtVehicule::class)->findLike($num);
+            foreach ($vehicules as $vehicule) {
+                if ($vehicule != null) {
+                    $receptionss = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule->getId()], ['id' => 'DESC']);
+                    foreach ($receptionss as $rec) {
+                        if ($rec != null) {
+                            $receptions[$compte] = $rec;
+                            $compte++;
+                        }
                     }
+                } else {
+                    if ($non_recue != '') {
+                        $non_recue .= ', ';
+                    }
+                    $non_recue .= $num;
+                    $compte2++;
                 }
-            } else {
-                if($non_recue != ''){
-                    $non_recue .= ', ';
-                }
-                $non_recue .= $num;
-                $compte2++;
             }
         }
         $numero .= ' nombre de véhicule trouvé : ' . $compte;

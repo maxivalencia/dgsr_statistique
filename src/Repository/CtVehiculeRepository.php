@@ -47,4 +47,21 @@ class CtVehiculeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return CtVehicule[] Returns an array of CtVehicule objects
+     */
+    
+    public function findLike($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.vhcNumSerie LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('c.id', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+   
 }
