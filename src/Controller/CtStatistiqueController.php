@@ -291,11 +291,14 @@ class CtStatistiqueController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
         
         $logo = $this->getParameter('image').'/logo_dgsr.png';
+        $logo_data = base64_encode(file_get_contents($logo));
+        $logo_src = 'data:image/png;base64,'.$logo_data;
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('ct_statistique/pdf.html.twig', [
             'ct_carte_grise' => $ctCarteGrise,
             'vehicule_identification' => $vehicule_identification,
             'logo' => $logo,
+            'logos' => $logo_src,
         ]);
         
         // Load HTML to Dompdf
