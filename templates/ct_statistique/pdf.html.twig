@@ -3,7 +3,7 @@
 {% block title %} Ct Historique du véhicule {{ ct_carte_grise.cgImmatriculation }} {% endblock %}
 
 {% block body %}
-    <table style="font-size:14px">
+    <table style="font-size:14px;padding:0;margin:0;">
         <tr>
             <td width="300" align="center">
                 SECRETARIAT D’ETAT AU PRES DU MINISTERE DE LA<br>
@@ -32,185 +32,186 @@
     </table>
     
     <div align="center" style="background-color:#1faccb;"><h2>Information sur le véhicule : {{ ct_carte_grise.cgImmatriculation }}</h2></div>
-    
-    <table class="table" align="left" style="font-size=10">
+    <div style="font-size:14px;">
+    <table class="table" align="left" style="padding:0;margin:0;font-size=8px;">
         <tbody>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Date d'émission de la carte grise</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgDateEmission ? ct_carte_grise.cgDateEmission|date('d/m/Y') : '' }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Date d'émission de la carte grise</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgDateEmission ? ct_carte_grise.cgDateEmission|date('d/m/Y') : '' }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Carosserie</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.ctCarosserie }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Carosserie</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.ctCarosserie }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Centre</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.ctCentre }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Centre</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.ctCentre }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Source d'énergie</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.ctSourceEnergie }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Source d'énergie</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.ctSourceEnergie }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Véhicule identification</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.ctVehicule }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Véhicule identification</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.ctVehicule }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Nom du propriétaire</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgNom }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Nom du propriétaire</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgNom }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Prénom du propriétaire</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgPrenom }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Prénom du propriétaire</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgPrenom }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Profession du propriétaire</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgProfession }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Profession du propriétaire</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgProfession }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Adresse du propriétaire</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgAdresse }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Adresse du propriétaire</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgAdresse }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Commune</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgCommune }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Commune</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgCommune }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Nombre de place assis</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgNbrAssis }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Nombre de place assis</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgNbrAssis }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Nombre de place débout</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgNbrDebout }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Nombre de place débout</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgNbrDebout }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Puissance administrer</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgPuissanceAdmin }} Ch</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Puissance administrer</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgPuissanceAdmin }} Ch</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Date de mise en service</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgMiseEnService ? ct_carte_grise.cgMiseEnService|date('d/m/Y') : '' }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Date de mise en service</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgMiseEnService ? ct_carte_grise.cgMiseEnService|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Patente</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgPatente }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Patente</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgPatente }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Ani</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgAni }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Ani</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgAni }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Révue technique automobile</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgRta }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Révue technique automobile</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgRta }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Numéro de la carte violette</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgNumCarteViolette }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Numéro de la carte violette</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgNumCarteViolette }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Date de la carte violette</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgDateCarteViolette ? ct_carte_grise.cgDateCarteViolette|date('d/m/Y') : '' }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Date de la carte violette</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgDateCarteViolette ? ct_carte_grise.cgDateCarteViolette|date('d/m/Y') : '' }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Lieu de la carte violette</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgLieuCarteViolette }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Lieu de la carte violette</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgLieuCarteViolette }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Numéro de vignette</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgNumVignette }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Numéro de vignette</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgNumVignette }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Date de vignette</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgDateVignette ? ct_carte_grise.cgDateVignette|date('d/m/Y') : '' }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Date de vignette</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgDateVignette ? ct_carte_grise.cgDateVignette|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Lieu de vignette</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgLieuVignette }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Lieu de vignette</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgLieuVignette }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Numéro d'immatriculation</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgImmatriculation }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Numéro d'immatriculation</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgImmatriculation }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Nom de la cooperative</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgNomCooperative }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Nom de la cooperative</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgNomCooperative }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Itineraire</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgItineraire }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Itineraire</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgItineraire }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Est transporteur</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgIsTransport ? 'Oui' : 'Non' }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Est transporteur</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgIsTransport ? 'Oui' : 'Non' }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Numéro d'identification</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgNumIdentification }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Numéro d'identification</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgNumIdentification }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Zone deserte</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ ct_carte_grise.cgZoneDeserte }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Zone deserte</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ ct_carte_grise.cgZoneDeserte }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Genre du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.ctGenre }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Genre du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.ctGenre }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Marque du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.ctMarque }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Marque du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.ctMarque }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Nombre de cylindre</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcCylindre }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Nombre de cylindre</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcCylindre }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Puissance du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcPuissance }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Puissance du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcPuissance }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Poids à vide</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcPoidsVide }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Poids à vide</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcPoidsVide }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Charge utile</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcChargeUtile }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Charge utile</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcChargeUtile }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Hauteur du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcHauteur }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Hauteur du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcHauteur }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Largeur du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcLargeur }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Largeur du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcLargeur }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Longueur du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcLongueur }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Longueur du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcLongueur }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Numéro de serie du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcNumSerie }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Numéro de serie du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcNumSerie }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Numéro du moteur</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10">: {{ vehicule_identification.vhcNumMoteur }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Numéro du moteur</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;">: {{ vehicule_identification.vhcNumMoteur }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Provenance du véhicule</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcProvenance }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Provenance du véhicule</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcProvenance }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Type</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcType }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Type</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcType }}</td>
             </tr>
             <tr>
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10">Poids total à charge</th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"> : {{ vehicule_identification.vhcPoidsTotalCharge }}</td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;">Poids total à charge</th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"> : {{ vehicule_identification.vhcPoidsTotalCharge }}</td>
             {# </tr>
             <tr> #}
-                <th style="text-align:left;vertical-align:top;padding:0;font-size=10"></th>
-                <td style="text-align:left;vertical-align:top;padding:0;font-size=10"></td>
+                <th style="text-align:left;vertical-align:top;padding:0;margin:0;"></th>
+                <td style="text-align:left;vertical-align:top;padding:0;margin:0;"></td>
             </tr>
         </tbody>
     </table>
+    </div>
 {% endblock %}
