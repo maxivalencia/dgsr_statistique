@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}suppression d'erreur{% endblock %}
+
+{% block body %}
+    <div align="center"><img src="/dist/images/header.png" class="img-fluid" alt="Image en-tête de la DGSR"></div>
+    <div align="center"><h1>Page de suppression d'erreur</h1></div>
+    {% if flash is not empty %}
+        <div class="alert alert-{{ typeflash }}">
+            {{ flash }}
+        </div>
+    {% endif %}
+    <div align="center">
+        <form method="GET" action="{{ path('suppression_erreur') }}">
+            <label for="numero">Entrer numéro : </label>
+            <input type="text" name="numero" id="numero" value=""><br>
+            <label for="operation">Type d'opération : </label>
+            <select name="operation" id="operation">
+                <option value="">--Choisir une opération--</option>
+                <option value="0">Visite</option>
+                <option value="1">Réception</option>
+                <option value="2">Constatation</option>
+            </select><br>
+            <label for="type">Type d'opération : </label>
+            <select name="type" id="type">
+                <option value="">--Choisir type de numéro--</option>
+                <option value="0">PV</option>
+                <option value="1">Immatriculation</option>
+            </select><br>
+            <label for="motif">Entrer motif de suppresion : </label>
+            <input type="text" name="motif" id="motif" value=""><br>
+            <input type="submit" class="btn" value="supprimer" name="bouton" id="bouton">
+        </form>
+    </div>
+{% endblock %}
