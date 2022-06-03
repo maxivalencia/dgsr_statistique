@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CtPrincipaleController extends AbstractController
 {
     /**
-     * @Route("/", name="ct_principale")
+     * @Route("/principale", name="ct_principale")
      */
     public function index()
     {

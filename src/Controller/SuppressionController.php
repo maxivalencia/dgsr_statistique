@@ -25,6 +25,16 @@ use Symfony\Component\HttpFoundation\Response;
 class SuppressionController extends AbstractController
 {
     /**
+     * @Route("/", name="acceuil", methods={"GET","POST"})
+     */
+    public function Acceuil(Request $request): Response{
+        return $this->render('suppression/acceuil.html.twig', [
+            'controller_name' => 'AcceuilController',
+        ]);
+    }
+
+
+    /**
      * @Route("/ct/suppression", name="suppression_erreur", methods={"GET", "POST"})
      */
     public function index(Request $request, CtVisiteRepository $ctVisiteRepository, CtReceptionRepository $ctReceptionRepository, CtConstAvDedRepository $ctConstAvDedRepository, CtCarteGriseRepository $ctCarteGriseRepository)

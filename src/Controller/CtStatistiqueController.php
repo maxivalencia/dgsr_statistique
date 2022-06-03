@@ -226,8 +226,8 @@ class CtStatistiqueController extends AbstractController
         $non_recue = '';
         foreach($numeros as $num){
             $vehicule = new CtVehicule();
-            //$vehicules = $this->getDoctrine()->getRepository(CtVehicule::class)->findBy(['vhcNumSerie' => ' LIKE %'.$num.'%']);
-            $vehicules = $this->getDoctrine()->getRepository(CtVehicule::class)->findLike($num);
+            $vehicules = $this->getDoctrine()->getRepository(CtVehicule::class)->findBy(['vhcNumSerie' => ' LIKE %'.$num.'%']);
+            //$vehicules = $this->getDoctrine()->getRepository(CtVehicule::class)->findLike($num);
             foreach ($vehicules as $vehicule) {
                 if ($vehicule != null) {
                     $receptionss = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $vehicule->getId()], ['id' => 'DESC']);
