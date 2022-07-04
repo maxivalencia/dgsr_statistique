@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtUser{% endblock %}
+
+{% block body %}
+    <div align="center"><img src="/dist/images/header.png" class="img-fluid" alt="Image en-tête de la DGSR"></div>
+    <div align="center"><h1>Ct User Affectation</h1></div>
+
+    <div align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div>
+
+    {{ include('ct_user/_form.html.twig', {'button_label': 'Affecter'}) }}
+
+    <a href="{{ path('ct_liste') }}">Retour vers la liste</a>
+
+    {# {{ include('ct_user/_delete_form.html.twig') }} #}
+{% endblock %}
