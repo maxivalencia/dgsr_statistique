@@ -18,32 +18,9 @@
     <table class="table">
         <thead>
             <tr>
-                {# <th>Id</th> #}
                 <th>Username</th>
-                {# <th>UsernameCanonical</th> #}
                 <th>Mail</th>
-                {# <th>EmailCanonical</th> #}
-                {# <th>Enabled</th>
-                <th>Salt</th>
-                <th>Password</th>
-                <th>LastLogin</th>
-                <th>ConfirmationToken</th>
-                <th>PasswordRequestedAt</th>
-                <th>Roles</th> #}
                 <th>Nom et prénom</th>
-                {# <th>UsrEmail</th>
-                <th>UsrLocked</th>
-                <th>UsrPassword</th>
-                <th>UsrAdresse</th>
-                <th>UsrToken</th>
-                <th>UsrCreatedAt</th>
-                <th>UsrUpdatedAt</th>
-                <th>UsrLockedUpdate</th>
-                <th>UsrRequestUpdate</th>
-                <th>UsrProfession</th>
-                <th>UsrTelephone</th>
-                <th>UsrIsConnected</th>
-                <th>UsrPresence</th> #}
                 <th>Centre</th>
                 <th>Actions</th>
             </tr>
@@ -51,35 +28,11 @@
         <tbody>
         {% for ct_user in ct_users %}
             <tr>
-                {# <td>{{ ct_user.id }}</td> #}
                 <td>{{ ct_user.username }}</td>
-                {# <td>{{ ct_user.usernameCanonical }}</td> #}
                 <td>{{ ct_user.email }}</td>
-                {# <td>{{ ct_user.emailCanonical }}</td> #}
-                {# <td>{{ ct_user.enabled ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_user.salt }}</td>
-                <td>{{ ct_user.password }}</td>
-                <td>{{ ct_user.lastLogin ? ct_user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_user.confirmationToken }}</td>
-                <td>{{ ct_user.passwordRequestedAt ? ct_user.passwordRequestedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_user.roles ? ct_user.roles|join(', ') : '' }}</td> #}
                 <td>{{ ct_user.usrName }}</td>
-                {# <td>{{ ct_user.usrEmail }}</td>
-                <td>{{ ct_user.usrLocked ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_user.usrPassword }}</td>
-                <td>{{ ct_user.usrAdresse }}</td>
-                <td>{{ ct_user.usrToken }}</td>
-                <td>{{ ct_user.usrCreatedAt ? ct_user.usrCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_user.usrUpdatedAt ? ct_user.usrUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_user.usrLockedUpdate ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_user.usrRequestUpdate ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_user.usrProfession }}</td>
-                <td>{{ ct_user.usrTelephone }}</td>
-                <td>{{ ct_user.usrIsConnected ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_user.usrPresence ? 'Yes' : 'No' }}</td> #}
                 <td>{{ ct_user.ctCentre.ctrNom }}</td>
                 <td>
-                    {# <a href="{{ path('ct_user_show', {'id': ct_user.id}) }}">show</a> #}
                     <a href="{{ path('ct_affectation', {'id': ct_user.id}) }}">Affecter</a>
                 </td>
             </tr>

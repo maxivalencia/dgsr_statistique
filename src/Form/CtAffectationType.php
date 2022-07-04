@@ -37,7 +37,11 @@ class CtAffectationType extends AbstractType
             //->add('usrTelephone')
             //->add('usrIsConnected')
             //->add('usrPresence')
-            ->add('ctCentre')
+            ->add('ctCentre', null, [
+                'attr' => [
+                    'class' => 'js-example-basic-multiple',
+                ]
+            ])
             //->add('ctRole')
         ;
     }
