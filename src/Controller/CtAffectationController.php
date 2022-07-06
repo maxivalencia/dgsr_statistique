@@ -62,20 +62,20 @@ class CtAffectationController extends AbstractController
     /**
      * @Route("/recherche", name="user_recherche", methods={"GET"})
      */
-    public function recherche(CtUserRepository $ctUserRepository/* , PhotosRepository $photosRepository */, Request $request/* , PaginatorInterface $paginator */): Response
+    public function recherche(CtUserRepository $ctUserRepository/* , PhotosRepository $photosRepository */, Request $request, PaginatorInterface $paginator): Response
     {
-        //$pagination = $paginator->paginate(
-        //    $personnelsRepository->rechercher($request->query->get('search')), /* query NOT result */
-        //    $request->query->getInt('page', 1)/*page number*/,
-        //    10/*limit per page*/
-        //);      
+        $pagination = $paginator->paginate(
+            $ctUsers = $ctUserRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );      
         /* $ctUsers = $this->getDoctrine()
             ->getRepository(CtUser::class)
             ->rechercher(['username' => $request->query->get('search')]); */
-        $ctUsers = $ctUserRepository->rechercher($request->query->get('search'));
+        //$ctUsers = $ctUserRepository->rechercher($request->query->get('search'));
         return $this->render('ct_affectation/liste.html.twig', [
             'controller_name' => 'Ct Affectation liste',
-            'ct_users' => $ctUsers,
+            'ct_users' => $pagination,
         ]);
     }
 }
