@@ -44,5 +44,9 @@
         </tbody>
     </table>
 
+    <div class="navigation">
+        {{ knp_pagination_render(ct_users) }}
+    </div>
+
     <a href="{{ path('ct_liste') }}">Retours vers la liste</a>
 {% endblock %}
