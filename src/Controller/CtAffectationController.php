@@ -46,7 +46,7 @@ class CtAffectationController extends AbstractController
                 $request->query->getInt('page', 1)/*page number*/,
                 10/*limit per page*/
             ); 
-            $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]);
+            //$ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]);
             return $this->render('ct_affectation/liste.html.twig', [
                 'controller_name' => 'Ct Affectation liste',
                 'ct_users' => $pagination,
