@@ -35,18 +35,21 @@ class CtAffectationController extends AbstractController
     /**
      * @Route("/ct/affectation/{id}", name="ct_affectation", methods={"GET","POST"})
      */
-    public function affectation(Request $request, CtUser $ctUser): Response
+    public function affectation(Request $request, CtUser $ctUser, PaginatorInterface $paginator): Response
     {
         $form = $this->createForm(CtAffectationType::class, $ctUser);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            $ctUsers = $this->getDoctrine()
-                ->getRepository(CtUser::class)
-                ->findBy(["id" => $ctUser->getId()]);
+            $pagination = $paginator->paginate(
+                $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]), /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                10/*limit per page*/
+            ); 
+            $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]);
             return $this->render('ct_affectation/liste.html.twig', [
                 'controller_name' => 'Ct Affectation liste',
-                'ct_users' => $ctUsers,
+                'ct_users' => $pagination,
             ]);
 
             //return $this->redirectToRoute('ct_liste');
