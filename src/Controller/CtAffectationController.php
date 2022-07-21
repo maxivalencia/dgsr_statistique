@@ -42,18 +42,18 @@ class CtAffectationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            $pagination = $paginator->paginate(
-                $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]), /* query NOT result */
-                $request->query->getInt('page', 1)/*page number*/,
-                10/*limit per page*/
-            ); 
-            //$ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]);
+            //$pagination = $paginator->paginate(
+            //    $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]), /* query NOT result */
+            //    $request->query->getInt('page', 1)/*page number*/,
+            //    10/*limit per page*/
+            //); 
+            /* $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findBy(["id" => $ctUser->getId()]);
             return $this->render('ct_affectation/liste.html.twig', [
                 'controller_name' => 'Ct Affectation liste',
-                'ct_users' => $pagination,
-            ]);
+                'ct_users' => $ctUsers,
+            ]) */;
 
-            //return $this->redirectToRoute('ct_liste');
+            return $this->redirectToRoute('ct_liste');
         }
 
         return $this->render('ct_affectation/index.html.twig', [
