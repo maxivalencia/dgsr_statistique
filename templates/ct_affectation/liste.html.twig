@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des utilisateurs{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+{% endblock %}
 {% block body %}
     <div align="center"><img src="/dist/images/header.png" class="img-fluid" alt="Image en-tête de la DGSR"></div>
     <div align="center"><h1>Ct User Liste</h1></div>
 
     <div align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div>
     <br>
-    <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('user_recherche') }}">
+    {# <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('user_recherche') }}">
         <div class="input-group">
             <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
             <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
         </div>
-    </form>
+    </form> #}
 
-    <table class="table">
+    <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Username</th>
@@ -44,9 +46,18 @@
         </tbody>
     </table>
 
-    <div class="navigation">
+    {# <div class="navigation">
         {{ knp_pagination_render(ct_users) }}
-    </div>
+    </div> #}
 
     <a href="{{ path('ct_liste') }}">Retours vers la liste</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
 {% endblock %}

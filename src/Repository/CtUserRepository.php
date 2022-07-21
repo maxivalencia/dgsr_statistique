@@ -51,10 +51,10 @@ class CtUserRepository extends ServiceEntityRepository
     /**
      * @return User[] Returns an array of User objects
      */
-    public function rechercher($value)
+    public function rechercher($value, $centre)
     {
         $values= $value;
-        $centre = strtoupper($values);
+        $centres = $centre;
         //$centre = $value;
         
         return $this->createQueryBuilder('p') 

@@ -47,4 +47,23 @@ class CtCentreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return User[] Returns an array of User objects
+     */
+    public function rechercher($centre)
+    {
+        //$values= $value;
+        $centres = $centre;
+        //$centre = $value;
+        
+        return $this->createQueryBuilder('p') 
+            ->Where('p.ctrNom LIKE :val')
+            ->setParameter('val', '%'.$centres.'%')
+            //->setParameter('ct', '%'.$centre.'%')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

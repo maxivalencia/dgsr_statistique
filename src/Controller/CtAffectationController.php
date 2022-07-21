@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CtUser;
 use App\Entity\CtCentre;
 use App\Form\CtAffectationType;
+use App\Repository\CtCentreRepository;
 use App\Repository\CtUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,16 +20,16 @@ class CtAffectationController extends AbstractController
      */
     public function liste(Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findAll(), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
-        );
-        //$ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findAll();
+        //$pagination = $paginator->paginate(
+        //    $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findAll(), /* query NOT result */
+        //    $request->query->getInt('page', 1)/*page number*/,
+        //    20/*limit per page*/
+        //);
+        $ctUsers = $this->getDoctrine()->getRepository(CtUser::class)->findAll();
 
         return $this->render('ct_affectation/liste.html.twig', [
             'controller_name' => 'Ct Affectation liste',
-            'ct_users' => $pagination,
+            'ct_users' => $ctUsers,
         ]);
     }
 
@@ -65,10 +66,12 @@ class CtAffectationController extends AbstractController
     /**
      * @Route("/recherche", name="user_recherche", methods={"GET"})
      */
-    public function recherche(CtUserRepository $ctUserRepository/* , PhotosRepository $photosRepository */, Request $request, PaginatorInterface $paginator): Response
+    public function recherche(CtCentreRepository $ctCentreRepository, CtUserRepository $ctUserRepository/* , PhotosRepository $photosRepository */, Request $request, PaginatorInterface $paginator): Response
     {
+        $valeur = $request->query->get('search');
+        $centre = $ctCentreRepository->rechercher($valeur);
         $pagination = $paginator->paginate(
-            $ctUsers = $ctUserRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $ctUsers = $ctUserRepository->rechercher($valeur, $centre), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );      
