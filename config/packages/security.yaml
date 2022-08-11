@@ -1,7 +1,15 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -9,7 +17,14 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\AppCustomAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -22,3 +37,51 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/ct/affectation, roles: ROLE_ADMIN }
+        - { path: ^/ct/anomalie, roles: ROLE_ADMIN }
+        - { path: ^/ct/anomalietype, roles: ROLE_ADMIN }
+        - { path: ^/ct/carosserie, roles: ROLE_ADMIN }
+        - { path: ^/ct/carte/grise, roles: ROLE_ADMIN }
+        - { path: ^/ct/centre, roles: ROLE_ADMIN }
+        - { path: ^/ct/const/av/dedcarac, roles: ROLE_ADMIN }
+        - { path: ^/ct/const/av/ded, roles: ROLE_ADMIN }
+        - { path: ^/ct/const/av/dedtype, roles: ROLE_ADMIN }
+        - { path: ^/ct/droit/ptacbackup, roles: ROLE_ADMIN }
+        - { path: ^/ct/droit/ptacbak, roles: ROLE_ADMIN }
+        - { path: ^/ct/droit/ptac, roles: ROLE_ADMIN }
+        - { path: ^/ct/genrecategorie, roles: ROLE_ADMIN }
+        - { path: ^/ct/genre, roles: ROLE_ADMIN }
+        - { path: ^/ct/genretarif, roles: ROLE_ADMIN }
+        - { path: ^/ct/historique, roles: ROLE_ADMIN }
+        - { path: ^/ct/marque, roles: ROLE_ADMIN }
+        - { path: ^/ct/motif, roles: ROLE_ADMIN }
+        - { path: ^/ct/motiftarif, roles: ROLE_ADMIN }
+        - { path: ^/ct/principale, roles: ROLE_ADMIN }
+        - { path: ^/ct/proces/verbal, roles: ROLE_ADMIN }
+        - { path: ^/ct/province, roles: ROLE_ADMIN }
+        - { path: ^/ct/receptionbackup, roles: ROLE_ADMIN }
+        - { path: ^/ct/reception, roles: ROLE_ADMIN }
+        - { path: ^/ct/role, roles: ROLE_ADMIN }
+        - { path: ^/ct/source/energie, roles: ROLE_ADMIN }
+        - { path: ^/ct/statistique, roles: ROLE_ADMIN }
+        - { path: ^/ct/api, roles: ROLE_ADMIN }
+        - { path: ^/ct/manifeste, roles: ROLE_ADMIN }
+        - { path: ^/ct/statistique/pdf, roles: ROLE_ADMIN }
+        - { path: ^/ct/type/droit/ptac, roles: ROLE_ADMIN }
+        - { path: ^/ct/type/reception, roles: ROLE_ADMIN }
+        - { path: ^/ct/type/usage, roles: ROLE_ADMIN }
+        - { path: ^/ct/type/visite, roles: ROLE_ADMIN }
+        - { path: ^/ct/usage, roles: ROLE_ADMIN }
+        - { path: ^/ct/usagetarif, roles: ROLE_ADMIN }
+        - { path: ^/ct/user, roles: ROLE_ADMIN }
+        - { path: ^/ct/utilisation, roles: ROLE_ADMIN }
+        - { path: ^/ct/vehicule, roles: ROLE_ADMIN }
+        - { path: ^/ct/visite/anomalie, roles: ROLE_ADMIN }
+        - { path: ^/ct/visite/buckup, roles: ROLE_ADMIN }
+        - { path: ^/ct/visite, roles: ROLE_ADMIN }
+        - { path: ^/ct/visiteextra, roles: ROLE_ADMIN }
+        - { path: ^/ct/visiteextratarif, roles: ROLE_ADMIN }
+        - { path: ^/ct/zone/deserte, roles: ROLE_ADMIN }
+        - { path: ^/ct/suppression, roles: ROLE_ADMIN }
+        - { path: ^/, roles: ROLE_ADMIN }
