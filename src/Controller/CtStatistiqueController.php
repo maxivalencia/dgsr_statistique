@@ -142,7 +142,7 @@ class CtStatistiqueController extends AbstractController
         } */
 
         if($numero == ''){
-            return $this->render('ct_statistique/recherche.html.twig');
+            return $this->render('ct_statistique/adm_recherche.html.twig');
         }
         $ctCarteGrise = new CtCarteGrise();
         $cg_vehicule = new CtVehicule();

@@ -7,10 +7,10 @@
     <div align="center"><h1>Ct Historique Véhicule</h1></div>
 
     <div align="center">
-        <form method="GET" action="{{ path('ct_statistique') }}">
+        <form method="GET" action="{{ path('ct_adm_statistique') }}">
             <input type="text" name="numero" id="numero" value="">
             <input type="submit" class="btn" value="Rechercher" name="bouton" id="bouton">
         </form>
     </div>
-    {# <div align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div> #}
+    <div align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div>
 {% endblock %}
