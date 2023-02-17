@@ -6,6 +6,7 @@
         <link rel="icon" type="image/x-icon" href="/dist/images/logo_dgsr.png" />
         <link rel="stylesheet" href="/dist/css/bootstrap.css" media="all" type="text/css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -20,6 +21,12 @@
             $(document).ready(function() {
                 $('.js-example-basic-multiple').select2();
             });
+        </script>        
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
         </script>
     </body>
 </html>
