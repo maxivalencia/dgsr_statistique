@@ -3,13 +3,13 @@
 {% block title %}CtTypeUsage index{% endblock %}
 
 {% block body %}
-    <h1>CtTypeUsage index</h1>
+    <h1>Liste Type d'Usage</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>TpuLibelle</th>
+                <th>Libelle Type Usage</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,17 +19,17 @@
                 <td>{{ ct_type_usage.id }}</td>
                 <td>{{ ct_type_usage.tpuLibelle }}</td>
                 <td>
-                    <a href="{{ path('ct_type_usage_show', {'id': ct_type_usage.id}) }}">show</a>
+                    <a href="{{ path('ct_type_usage_show', {'id': ct_type_usage.id}) }}">voir</a>
                     <a href="{{ path('ct_type_usage_edit', {'id': ct_type_usage.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_type_usage_new') }}">Create new</a>
+    <a href="{{ path('ct_type_usage_new') }}">Créer</a>
 {% endblock %}

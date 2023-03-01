@@ -3,11 +3,11 @@
 {% block title %}Edit CtZoneDeserte{% endblock %}
 
 {% block body %}
-    <h1>Edit CtZoneDeserte</h1>
+    <h1>Modification Zone Desserte</h1>
 
-    {{ include('ct_zone_deserte/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_zone_deserte/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_zone_deserte_index') }}">back to list</a>
+    <a href="{{ path('ct_zone_deserte_index') }}">Retour</a>
 
     {{ include('ct_zone_deserte/_delete_form.html.twig') }}
 {% endblock %}

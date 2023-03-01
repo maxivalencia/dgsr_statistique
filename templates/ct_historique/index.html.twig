@@ -9,11 +9,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>HstDescription</th>
-                <th>HstDateCreate</th>
-                <th>HstIsView</th>
-                <th>CtCentreId</th>
-                <th>HistType</th>
+                <th>Historique Description</th>
+                <th>Historique Date Création</th>
+                <th>Historique Est Vue</th>
+                <th>Centre Id</th>
+                <th>Type Historique</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,22 +22,22 @@
             <tr>
                 <td>{{ ct_historique.id }}</td>
                 <td>{{ ct_historique.hstDescription }}</td>
-                <td>{{ ct_historique.hstDateCreate ? ct_historique.hstDateCreate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_historique.hstIsView ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_historique.hstDateCreate ? ct_historique.hstDateCreate|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ ct_historique.hstIsView ? 'Oui' : 'Non' }}</td>
                 <td>{{ ct_historique.ctCentreId }}</td>
                 <td>{{ ct_historique.histType }}</td>
                 <td>
-                    <a href="{{ path('ct_historique_show', {'id': ct_historique.id}) }}">show</a>
+                    <a href="{{ path('ct_historique_show', {'id': ct_historique.id}) }}">voir</a>
                     <a href="{{ path('ct_historique_edit', {'id': ct_historique.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_historique_new') }}">Create new</a>
+    <a href="{{ path('ct_historique_new') }}">Créer</a>
 {% endblock %}

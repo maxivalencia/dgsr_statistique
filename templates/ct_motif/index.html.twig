@@ -3,14 +3,14 @@
 {% block title %}CtMotif index{% endblock %}
 
 {% block body %}
-    <h1>CtMotif index</h1>
+    <h1>Liste Motif</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>MtfLibelle</th>
-                <th>MtfIsCalculable</th>
+                <th>Motif Libelle</th>
+                <th>Motif Est Calculable</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,19 +19,19 @@
             <tr>
                 <td>{{ ct_motif.id }}</td>
                 <td>{{ ct_motif.mtfLibelle }}</td>
-                <td>{{ ct_motif.mtfIsCalculable ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_motif.mtfIsCalculable ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('ct_motif_show', {'id': ct_motif.id}) }}">show</a>
+                    <a href="{{ path('ct_motif_show', {'id': ct_motif.id}) }}">voir</a>
                     <a href="{{ path('ct_motif_edit', {'id': ct_motif.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_motif_new') }}">Create new</a>
+    <a href="{{ path('ct_motif_new') }}">Créer</a>
 {% endblock %}

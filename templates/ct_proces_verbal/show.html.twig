@@ -3,7 +3,7 @@
 {% block title %}CtProcesVerbal{% endblock %}
 
 {% block body %}
-    <h1>CtProcesVerbal</h1>
+    <h1>Proces Verbal</h1>
 
     <table class="table">
         <tbody>
@@ -12,19 +12,19 @@
                 <td>{{ ct_proces_verbal.id }}</td>
             </tr>
             <tr>
-                <th>PvType</th>
+                <th>Pv Type</th>
                 <td>{{ ct_proces_verbal.pvType }}</td>
             </tr>
             <tr>
-                <th>PvTarif</th>
+                <th>Pv Tarif</th>
                 <td>{{ ct_proces_verbal.pvTarif }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_proces_verbal_index') }}">back to list</a>
+    <a href="{{ path('ct_proces_verbal_index') }}">Retour</a>
 
-    <a href="{{ path('ct_proces_verbal_edit', {'id': ct_proces_verbal.id}) }}">edit</a>
+    <a href="{{ path('ct_proces_verbal_edit', {'id': ct_proces_verbal.id}) }}">Modifier</a>
 
     {{ include('ct_proces_verbal/_delete_form.html.twig') }}
 {% endblock %}

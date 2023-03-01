@@ -3,11 +3,11 @@
 {% block title %}Edit CtVisiteBuckup{% endblock %}
 
 {% block body %}
-    <h1>Edit CtVisiteBuckup</h1>
+    <h1>Modification Buckup Visite</h1>
 
-    {{ include('ct_visite_buckup/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_visite_buckup/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_visite_buckup_index') }}">back to list</a>
+    <a href="{{ path('ct_visite_buckup_index') }}">Retour</a>
 
     {{ include('ct_visite_buckup/_delete_form.html.twig') }}
 {% endblock %}

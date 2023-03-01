@@ -3,14 +3,14 @@
 {% block title %}CtAnomalie index{% endblock %}
 
 {% block body %}
-    <h1>CtAnomalie index</h1>
+    <h1>Liste Anomalie</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>AnmlLibelle</th>
-                <th>AnmlCode</th>
+                <th>Anomalie Libelle</th>
+                <th>Anomalie Code</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,17 +21,17 @@
                 <td>{{ ct_anomalie.anmlLibelle }}</td>
                 <td>{{ ct_anomalie.anmlCode }}</td>
                 <td>
-                    <a href="{{ path('ct_anomalie_show', {'id': ct_anomalie.id}) }}">show</a>
+                    <a href="{{ path('ct_anomalie_show', {'id': ct_anomalie.id}) }}">voir</a>
                     <a href="{{ path('ct_anomalie_edit', {'id': ct_anomalie.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_anomalie_new') }}">Create new</a>
+    <a href="{{ path('ct_anomalie_new') }}">Créer</a>
 {% endblock %}

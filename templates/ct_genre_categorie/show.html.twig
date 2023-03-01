@@ -3,7 +3,7 @@
 {% block title %}CtGenreCategorie{% endblock %}
 
 {% block body %}
-    <h1>CtGenreCategorie</h1>
+    <h1>Genre Catégorie</h1>
 
     <table class="table">
         <tbody>
@@ -12,19 +12,19 @@
                 <td>{{ ct_genre_categorie.id }}</td>
             </tr>
             <tr>
-                <th>GcLibelle</th>
+                <th>Genre catégorie Libelle</th>
                 <td>{{ ct_genre_categorie.gcLibelle }}</td>
             </tr>
             <tr>
-                <th>GcIsCalculable</th>
-                <td>{{ ct_genre_categorie.gcIsCalculable ? 'Yes' : 'No' }}</td>
+                <th>Genre catégorie Est Calculable</th>
+                <td>{{ ct_genre_categorie.gcIsCalculable ? 'Oui' : 'Non' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_genre_categorie_index') }}">back to list</a>
+    <a href="{{ path('ct_genre_categorie_index') }}">Retour</a>
 
-    <a href="{{ path('ct_genre_categorie_edit', {'id': ct_genre_categorie.id}) }}">edit</a>
+    <a href="{{ path('ct_genre_categorie_edit', {'id': ct_genre_categorie.id}) }}">Modifier</a>
 
     {{ include('ct_genre_categorie/_delete_form.html.twig') }}
 {% endblock %}

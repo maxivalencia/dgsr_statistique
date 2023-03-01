@@ -3,25 +3,25 @@
 {% block title %}CtVehicule index{% endblock %}
 
 {% block body %}
-    <h1>CtVehicule index</h1>
+    <h1>Liste Vehicule</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>VhcCylindre</th>
-                <th>VhcPuissance</th>
-                <th>VhcPoidsVide</th>
-                <th>VhcChargeUtile</th>
-                <th>VhcHauteur</th>
-                <th>VhcLargeur</th>
-                <th>VhcLongueur</th>
-                <th>VhcNumSerie</th>
-                <th>VhcNumMoteur</th>
-                <th>VhcCreated</th>
-                <th>VhcProvenance</th>
-                <th>VhcType</th>
-                <th>VhcPoidsTotalCharge</th>
+                <th>Cylindre</th>
+                <th>Puissance</th>
+                <th>Poids A Vide</th>
+                <th>Charge Utile</th>
+                <th>Hauteur</th>
+                <th>Largeur</th>
+                <th>Longueur</th>
+                <th>Numéro de Serie</th>
+                <th>Numéro Moteur</th>
+                <th>Created</th>
+                <th>Provenance</th>
+                <th>Type</th>
+                <th>Poids Total A Charge</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -38,22 +38,22 @@
                 <td>{{ ct_vehicule.vhcLongueur }}</td>
                 <td>{{ ct_vehicule.vhcNumSerie }}</td>
                 <td>{{ ct_vehicule.vhcNumMoteur }}</td>
-                <td>{{ ct_vehicule.vhcCreated ? ct_vehicule.vhcCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_vehicule.vhcCreated ? ct_vehicule.vhcCreated|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ ct_vehicule.vhcProvenance }}</td>
                 <td>{{ ct_vehicule.vhcType }}</td>
                 <td>{{ ct_vehicule.vhcPoidsTotalCharge }}</td>
                 <td>
-                    <a href="{{ path('ct_vehicule_show', {'id': ct_vehicule.id}) }}">show</a>
+                    <a href="{{ path('ct_vehicule_show', {'id': ct_vehicule.id}) }}">voir</a>
                     <a href="{{ path('ct_vehicule_edit', {'id': ct_vehicule.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="15">no records found</td>
+                <td colspan="15">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_vehicule_new') }}">Create new</a>
+    <a href="{{ path('ct_vehicule_new') }}">Créer</a>
 {% endblock %}

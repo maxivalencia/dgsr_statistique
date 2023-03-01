@@ -3,7 +3,7 @@
 {% block title %}CtVisiteExtraTarif{% endblock %}
 
 {% block body %}
-    <h1>CtVisiteExtraTarif</h1>
+    <h1>Visite Extra Tarif</h1>
 
     <table class="table">
         <tbody>
@@ -12,19 +12,19 @@
                 <td>{{ ct_visite_extra_tarif.id }}</td>
             </tr>
             <tr>
-                <th>VetAnnee</th>
+                <th>Visite extra tarif Annee</th>
                 <td>{{ ct_visite_extra_tarif.vetAnnee }}</td>
             </tr>
             <tr>
-                <th>VetPrix</th>
+                <th>Visite extra tarif Prix</th>
                 <td>{{ ct_visite_extra_tarif.vetPrix }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_visite_extra_tarif_index') }}">back to list</a>
+    <a href="{{ path('ct_visite_extra_tarif_index') }}">Retour</a>
 
-    <a href="{{ path('ct_visite_extra_tarif_edit', {'id': ct_visite_extra_tarif.id}) }}">edit</a>
+    <a href="{{ path('ct_visite_extra_tarif_edit', {'id': ct_visite_extra_tarif.id}) }}">Modifier</a>
 
     {{ include('ct_visite_extra_tarif/_delete_form.html.twig') }}
 {% endblock %}

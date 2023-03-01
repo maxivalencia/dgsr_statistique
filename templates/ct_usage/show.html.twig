@@ -3,7 +3,7 @@
 {% block title %}CtUsage{% endblock %}
 
 {% block body %}
-    <h1>CtUsage</h1>
+    <h1>Usage</h1>
 
     <table class="table">
         <tbody>
@@ -12,23 +12,23 @@
                 <td>{{ ct_usage.id }}</td>
             </tr>
             <tr>
-                <th>UsgLibelle</th>
+                <th>Usage Libelle</th>
                 <td>{{ ct_usage.usgLibelle }}</td>
             </tr>
             <tr>
-                <th>UsgValidite</th>
+                <th>Usage Validite</th>
                 <td>{{ ct_usage.usgValidite }}</td>
             </tr>
             <tr>
                 <th>UsgCreated</th>
-                <td>{{ ct_usage.usgCreated ? ct_usage.usgCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_usage.usgCreated ? ct_usage.usgCreated|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_usage_index') }}">back to list</a>
+    <a href="{{ path('ct_usage_index') }}">Retour</a>
 
-    <a href="{{ path('ct_usage_edit', {'id': ct_usage.id}) }}">edit</a>
+    <a href="{{ path('ct_usage_edit', {'id': ct_usage.id}) }}">Modifier</a>
 
     {{ include('ct_usage/_delete_form.html.twig') }}
 {% endblock %}

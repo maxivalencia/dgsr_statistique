@@ -3,7 +3,7 @@
 {% block title %}CtReceptionBackup{% endblock %}
 
 {% block body %}
-    <h1>CtReceptionBackup</h1>
+    <h1>Reception Backup</h1>
 
     <table class="table">
         <tbody>
@@ -12,83 +12,83 @@
                 <td>{{ ct_reception_backup.id }}</td>
             </tr>
             <tr>
-                <th>CtCentreId</th>
+                <th>Centre Id</th>
                 <td>{{ ct_reception_backup.ctCentreId }}</td>
             </tr>
             <tr>
-                <th>CtMotifId</th>
+                <th>Motif Id</th>
                 <td>{{ ct_reception_backup.ctMotifId }}</td>
             </tr>
             <tr>
-                <th>CtTypeReceptionId</th>
+                <th>Type Reception Id</th>
                 <td>{{ ct_reception_backup.ctTypeReceptionId }}</td>
             </tr>
             <tr>
-                <th>CtUserId</th>
+                <th>Secrétaire Id</th>
                 <td>{{ ct_reception_backup.ctUserId }}</td>
             </tr>
             <tr>
-                <th>CtUtilisationId</th>
+                <th>Utilisation Id</th>
                 <td>{{ ct_reception_backup.ctUtilisationId }}</td>
             </tr>
             <tr>
-                <th>CtVehiculeId</th>
+                <th>Vehicule Id</th>
                 <td>{{ ct_reception_backup.ctVehiculeId }}</td>
             </tr>
             <tr>
-                <th>RcpMiseService</th>
-                <td>{{ ct_reception_backup.rcpMiseService ? ct_reception_backup.rcpMiseService|date('Y-m-d') : '' }}</td>
+                <th>Mise Service</th>
+                <td>{{ ct_reception_backup.rcpMiseService ? ct_reception_backup.rcpMiseService|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>RcpImmatriculation</th>
+                <th>Immatriculation</th>
                 <td>{{ ct_reception_backup.rcpImmatriculation }}</td>
             </tr>
             <tr>
-                <th>RcpProprietaire</th>
+                <th>Proprietaire</th>
                 <td>{{ ct_reception_backup.rcpProprietaire }}</td>
             </tr>
             <tr>
-                <th>RcpProfession</th>
+                <th>Profession</th>
                 <td>{{ ct_reception_backup.rcpProfession }}</td>
             </tr>
             <tr>
-                <th>RcpAdresse</th>
+                <th>Adresse</th>
                 <td>{{ ct_reception_backup.rcpAdresse }}</td>
             </tr>
             <tr>
-                <th>RcpNbrAssis</th>
+                <th>Nombre de place Assise</th>
                 <td>{{ ct_reception_backup.rcpNbrAssis }}</td>
             </tr>
             <tr>
-                <th>RcpNbrDebout</th>
+                <th>Nombre de place Debout</th>
                 <td>{{ ct_reception_backup.rcpNbrDebout }}</td>
             </tr>
             <tr>
-                <th>RcpNumPv</th>
+                <th>Numéro Pv</th>
                 <td>{{ ct_reception_backup.rcpNumPv }}</td>
             </tr>
             <tr>
-                <th>CtSourceEnergieId</th>
+                <th>Source d'Energie Id</th>
                 <td>{{ ct_reception_backup.ctSourceEnergieId }}</td>
             </tr>
             <tr>
-                <th>CtCarosserieId</th>
+                <th>Carosserie Id</th>
                 <td>{{ ct_reception_backup.ctCarosserieId }}</td>
             </tr>
             <tr>
-                <th>RcpNumGroup</th>
+                <th>Numéro Groupe</th>
                 <td>{{ ct_reception_backup.rcpNumGroup }}</td>
             </tr>
             <tr>
-                <th>RcpCreated</th>
-                <td>{{ ct_reception_backup.rcpCreated ? ct_reception_backup.rcpCreated|date('Y-m-d') : '' }}</td>
+                <th>Created</th>
+                <td>{{ ct_reception_backup.rcpCreated ? ct_reception_backup.rcpCreated|date('d/m/Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_reception_backup_index') }}">back to list</a>
+    <a href="{{ path('ct_reception_backup_index') }}">Retour</a>
 
-    <a href="{{ path('ct_reception_backup_edit', {'id': ct_reception_backup.id}) }}">edit</a>
+    <a href="{{ path('ct_reception_backup_edit', {'id': ct_reception_backup.id}) }}">Modifier</a>
 
     {{ include('ct_reception_backup/_delete_form.html.twig') }}
 {% endblock %}

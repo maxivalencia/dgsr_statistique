@@ -3,14 +3,14 @@
 {% block title %}CtGenreCategorie index{% endblock %}
 
 {% block body %}
-    <h1>CtGenreCategorie index</h1>
+    <h1>Liste des Categorie de Genre</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>GcLibelle</th>
-                <th>GcIsCalculable</th>
+                <th>Gc Libelle</th>
+                <th>Gc Est Calculable</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,19 +19,19 @@
             <tr>
                 <td>{{ ct_genre_categorie.id }}</td>
                 <td>{{ ct_genre_categorie.gcLibelle }}</td>
-                <td>{{ ct_genre_categorie.gcIsCalculable ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_genre_categorie.gcIsCalculable ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('ct_genre_categorie_show', {'id': ct_genre_categorie.id}) }}">show</a>
+                    <a href="{{ path('ct_genre_categorie_show', {'id': ct_genre_categorie.id}) }}">voir</a>
                     <a href="{{ path('ct_genre_categorie_edit', {'id': ct_genre_categorie.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_genre_categorie_new') }}">Create new</a>
+    <a href="{{ path('ct_genre_categorie_new') }}">Créer</a>
 {% endblock %}

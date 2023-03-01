@@ -3,37 +3,37 @@
 {% block title %}CtUser index{% endblock %}
 
 {% block body %}
-    <h1>CtUser index</h1>
+    <h1>Liste User</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Username</th>
-                <th>UsernameCanonical</th>
+                <th>Username Canonical</th>
                 <th>Email</th>
-                <th>EmailCanonical</th>
+                <th>Email Canonical</th>
                 <th>Enabled</th>
                 <th>Salt</th>
                 <th>Password</th>
-                <th>LastLogin</th>
-                <th>ConfirmationToken</th>
-                <th>PasswordRequestedAt</th>
+                <th>Last Login</th>
+                <th>Confirmation Token</th>
+                <th>Password Requested At</th>
                 <th>Roles</th>
-                <th>UsrName</th>
-                <th>UsrEmail</th>
-                <th>UsrLocked</th>
-                <th>UsrPassword</th>
-                <th>UsrAdresse</th>
-                <th>UsrToken</th>
-                <th>UsrCreatedAt</th>
-                <th>UsrUpdatedAt</th>
-                <th>UsrLockedUpdate</th>
-                <th>UsrRequestUpdate</th>
-                <th>UsrProfession</th>
-                <th>UsrTelephone</th>
-                <th>UsrIsConnected</th>
-                <th>UsrPresence</th>
+                <th>Usr Name</th>
+                <th>Usr Email</th>
+                <th>Usr Locked</th>
+                <th>Usr Password</th>
+                <th>Usr Adresse</th>
+                <th>Usr Token</th>
+                <th>Usr Created At</th>
+                <th>Usr Updated At</th>
+                <th>Usr Locked Update</th>
+                <th>Usr Request Update</th>
+                <th>Usr Profession</th>
+                <th>Usr Telephone</th>
+                <th>Usr Is Connected</th>
+                <th>Usr Presence</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -45,39 +45,39 @@
                 <td>{{ ct_user.usernameCanonical }}</td>
                 <td>{{ ct_user.email }}</td>
                 <td>{{ ct_user.emailCanonical }}</td>
-                <td>{{ ct_user.enabled ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_user.enabled ? 'Oui' : 'Non' }}</td>
                 <td>{{ ct_user.salt }}</td>
                 <td>{{ ct_user.password }}</td>
-                <td>{{ ct_user.lastLogin ? ct_user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_user.lastLogin ? ct_user.lastLogin|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ ct_user.confirmationToken }}</td>
-                <td>{{ ct_user.passwordRequestedAt ? ct_user.passwordRequestedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_user.passwordRequestedAt ? ct_user.passwordRequestedAt|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ ct_user.roles ? ct_user.roles|join(', ') : '' }}</td>
                 <td>{{ ct_user.usrName }}</td>
                 <td>{{ ct_user.usrEmail }}</td>
-                <td>{{ ct_user.usrLocked ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_user.usrLocked ? 'Oui' : 'Non' }}</td>
                 <td>{{ ct_user.usrPassword }}</td>
                 <td>{{ ct_user.usrAdresse }}</td>
                 <td>{{ ct_user.usrToken }}</td>
-                <td>{{ ct_user.usrCreatedAt ? ct_user.usrCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_user.usrUpdatedAt ? ct_user.usrUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_user.usrLockedUpdate ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_user.usrRequestUpdate ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_user.usrCreatedAt ? ct_user.usrCreatedAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ ct_user.usrUpdatedAt ? ct_user.usrUpdatedAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ ct_user.usrLockedUpdate ? 'Oui' : 'Non' }}</td>
+                <td>{{ ct_user.usrRequestUpdate ? 'Oui' : 'Non' }}</td>
                 <td>{{ ct_user.usrProfession }}</td>
                 <td>{{ ct_user.usrTelephone }}</td>
-                <td>{{ ct_user.usrIsConnected ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_user.usrPresence ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_user.usrIsConnected ? 'Oui' : 'Non' }}</td>
+                <td>{{ ct_user.usrPresence ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('ct_user_show', {'id': ct_user.id}) }}">show</a>
+                    <a href="{{ path('ct_user_show', {'id': ct_user.id}) }}">voir</a>
                     <a href="{{ path('ct_user_edit', {'id': ct_user.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="27">no records found</td>
+                <td colspan="27">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_user_new') }}">Create new</a>
+    <a href="{{ path('ct_user_new') }}">Créer</a>
 {% endblock %}

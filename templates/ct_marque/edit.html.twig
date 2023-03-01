@@ -3,11 +3,11 @@
 {% block title %}Edit CtMarque{% endblock %}
 
 {% block body %}
-    <h1>Edit CtMarque</h1>
+    <h1>Modification Marque</h1>
 
-    {{ include('ct_marque/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_marque/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_marque_index') }}">back to list</a>
+    <a href="{{ path('ct_marque_index') }}">Retour</a>
 
     {{ include('ct_marque/_delete_form.html.twig') }}
 {% endblock %}

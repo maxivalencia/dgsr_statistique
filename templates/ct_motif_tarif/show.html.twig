@@ -3,7 +3,7 @@
 {% block title %}CtMotifTarif{% endblock %}
 
 {% block body %}
-    <h1>CtMotifTarif</h1>
+    <h1>Motif Tarif</h1>
 
     <table class="table">
         <tbody>
@@ -12,19 +12,19 @@
                 <td>{{ ct_motif_tarif.id }}</td>
             </tr>
             <tr>
-                <th>MtfTrfPrix</th>
+                <th>Motif Tarif Prix</th>
                 <td>{{ ct_motif_tarif.mtfTrfPrix }}</td>
             </tr>
             <tr>
-                <th>MtfTrfDate</th>
+                <th>Motif Tarif Date</th>
                 <td>{{ ct_motif_tarif.mtfTrfDate }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_motif_tarif_index') }}">back to list</a>
+    <a href="{{ path('ct_motif_tarif_index') }}">Retour</a>
 
-    <a href="{{ path('ct_motif_tarif_edit', {'id': ct_motif_tarif.id}) }}">edit</a>
+    <a href="{{ path('ct_motif_tarif_edit', {'id': ct_motif_tarif.id}) }}">Modifier</a>
 
     {{ include('ct_motif_tarif/_delete_form.html.twig') }}
 {% endblock %}

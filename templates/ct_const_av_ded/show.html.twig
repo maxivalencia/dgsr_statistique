@@ -3,7 +3,7 @@
 {% block title %}CtConstAvDed{% endblock %}
 
 {% block body %}
-    <h1>CtConstAvDed</h1>
+    <h1>Constatation Avant Dedouanement</h1>
 
     <table class="table">
         <tbody>
@@ -12,60 +12,60 @@
                 <td>{{ ct_const_av_ded.id }}</td>
             </tr>
             <tr>
-                <th>CadProvenance</th>
+                <th>Provenance</th>
                 <td>{{ ct_const_av_ded.cadProvenance }}</td>
             </tr>
             <tr>
-                <th>CadDivers</th>
+                <th>Divers</th>
                 <td>{{ ct_const_av_ded.cadDivers }}</td>
             </tr>
             <tr>
-                <th>CadProprietaireNom</th>
+                <th>Nom Propriétaire</th>
                 <td>{{ ct_const_av_ded.cadProprietaireNom }}</td>
             </tr>
             <tr>
-                <th>CadProprietaireAdresse</th>
+                <th>Adresse Proprietaire</th>
                 <td>{{ ct_const_av_ded.cadProprietaireAdresse }}</td>
             </tr>
             <tr>
-                <th>CadBonEtat</th>
-                <td>{{ ct_const_av_ded.cadBonEtat ? 'Yes' : 'No' }}</td>
+                <th>Etat</th>
+                <td>{{ ct_const_av_ded.cadBonEtat ? 'Bonne' : 'Mauvaise' }}</td>
             </tr>
             <tr>
-                <th>CadSecPers</th>
-                <td>{{ ct_const_av_ded.cadSecPers ? 'Yes' : 'No' }}</td>
+                <th>SecPers</th>
+                <td>{{ ct_const_av_ded.cadSecPers ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>CadSecMarch</th>
-                <td>{{ ct_const_av_ded.cadSecMarch ? 'Yes' : 'No' }}</td>
+                <th>SecMarch</th>
+                <td>{{ ct_const_av_ded.cadSecMarch ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>CadProtecEnv</th>
-                <td>{{ ct_const_av_ded.cadProtecEnv ? 'Yes' : 'No' }}</td>
+                <th>Protection Environnement</th>
+                <td>{{ ct_const_av_ded.cadProtecEnv ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>CadNumero</th>
+                <th>Numéro</th>
                 <td>{{ ct_const_av_ded.cadNumero }}</td>
             </tr>
             <tr>
-                <th>CadImmatriculation</th>
+                <th>Immatriculation</th>
                 <td>{{ ct_const_av_ded.cadImmatriculation }}</td>
             </tr>
             <tr>
-                <th>CadDateEmbarquement</th>
-                <td>{{ ct_const_av_ded.cadDateEmbarquement ? ct_const_av_ded.cadDateEmbarquement|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date Embarquement</th>
+                <td>{{ ct_const_av_ded.cadDateEmbarquement ? ct_const_av_ded.cadDateEmbarquement|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>CadLieuEmbarquement</th>
+                <th>Lieu Embarquement</th>
                 <td>{{ ct_const_av_ded.cadLieuEmbarquement }}</td>
             </tr>
             <tr>
-                <th>CadCreated</th>
-                <td>{{ ct_const_av_ded.cadCreated ? ct_const_av_ded.cadCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Création</th>
+                <td>{{ ct_const_av_ded.cadCreated ? ct_const_av_ded.cadCreated|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>CadConforme</th>
-                <td>{{ ct_const_av_ded.cadConforme ? 'Yes' : 'No' }}</td>
+                <th>Conforme</th>
+                <td>{{ ct_const_av_ded.cadConforme ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>CadObservation</th>
@@ -74,9 +74,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ct_const_av_ded_index') }}">back to list</a>
+    <a href="{{ path('ct_const_av_ded_index') }}">Retour</a>
 
-    <a href="{{ path('ct_const_av_ded_edit', {'id': ct_const_av_ded.id}) }}">edit</a>
+    <a href="{{ path('ct_const_av_ded_edit', {'id': ct_const_av_ded.id}) }}">Modifier</a>
 
     {{ include('ct_const_av_ded/_delete_form.html.twig') }}
 {% endblock %}

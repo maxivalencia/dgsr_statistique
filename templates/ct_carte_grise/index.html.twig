@@ -3,38 +3,38 @@
 {% block title %}CtCarteGrise index{% endblock %}
 
 {% block body %}
-    <h1>CtCarteGrise index</h1>
+    <h1>Liste Carte Grise</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>CgDateEmission</th>
-                <th>CgNom</th>
-                <th>CgPrenom</th>
-                <th>CgProfession</th>
-                <th>CgAdresse</th>
-                <th>CgCommune</th>
-                <th>CgNbrAssis</th>
-                <th>CgNbrDebout</th>
-                <th>CgPuissanceAdmin</th>
-                <th>CgMiseEnService</th>
-                <th>CgPatente</th>
-                <th>CgAni</th>
-                <th>CgRta</th>
-                <th>CgNumCarteViolette</th>
-                <th>CgDateCarteViolette</th>
-                <th>CgLieuCarteViolette</th>
-                <th>CgNumVignette</th>
-                <th>CgDateVignette</th>
-                <th>CgLieuVignette</th>
-                <th>CgImmatriculation</th>
-                <th>CgCreated</th>
-                <th>CgNomCooperative</th>
-                <th>CgItineraire</th>
-                <th>CgIsTransport</th>
-                <th>CgNumIdentification</th>
-                <th>CgZoneDeserte</th>
+                <th>Cg Date Emission</th>
+                <th>Cg Nom</th>
+                <th>Cg Prenom</th>
+                <th>Cg Profession</th>
+                <th>Cg Adresse</th>
+                <th>Cg Commune</th>
+                <th>Cg Nombre Assis</th>
+                <th>Cg Nombre Debout</th>
+                <th>Cg Puissance Admin</th>
+                <th>Cg Mise En Service</th>
+                <th>Cg Patente</th>
+                <th>Cg Ani</th>
+                <th>Cg Rta</th>
+                <th>Cg Numéro Carte Violette</th>
+                <th>Cg Date Carte Violette</th>
+                <th>Cg Lieu Carte Violette</th>
+                <th>Cg Numéro Vignette</th>
+                <th>Cg Date Vignette</th>
+                <th>Cg Lieu Vignette</th>
+                <th>Cg Immatriculation</th>
+                <th>Cg Created</th>
+                <th>Cg Nom Cooperative</th>
+                <th>Cg Itineraire</th>
+                <th>Cg est Transport</th>
+                <th>Cg Numéro Identification</th>
+                <th>Cg Zone Desserte</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -42,7 +42,7 @@
         {% for ct_carte_grise in ct_carte_grises %}
             <tr>
                 <td>{{ ct_carte_grise.id }}</td>
-                <td>{{ ct_carte_grise.cgDateEmission ? ct_carte_grise.cgDateEmission|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_carte_grise.cgDateEmission ? ct_carte_grise.cgDateEmission|date('d/m/Y') : '' }}</td>
                 <td>{{ ct_carte_grise.cgNom }}</td>
                 <td>{{ ct_carte_grise.cgPrenom }}</td>
                 <td>{{ ct_carte_grise.cgProfession }}</td>
@@ -51,35 +51,35 @@
                 <td>{{ ct_carte_grise.cgNbrAssis }}</td>
                 <td>{{ ct_carte_grise.cgNbrDebout }}</td>
                 <td>{{ ct_carte_grise.cgPuissanceAdmin }}</td>
-                <td>{{ ct_carte_grise.cgMiseEnService ? ct_carte_grise.cgMiseEnService|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_carte_grise.cgMiseEnService ? ct_carte_grise.cgMiseEnService|date('d/m/Y') : '' }}</td>
                 <td>{{ ct_carte_grise.cgPatente }}</td>
                 <td>{{ ct_carte_grise.cgAni }}</td>
                 <td>{{ ct_carte_grise.cgRta }}</td>
                 <td>{{ ct_carte_grise.cgNumCarteViolette }}</td>
-                <td>{{ ct_carte_grise.cgDateCarteViolette ? ct_carte_grise.cgDateCarteViolette|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_carte_grise.cgDateCarteViolette ? ct_carte_grise.cgDateCarteViolette|date('d/m/Y') : '' }}</td>
                 <td>{{ ct_carte_grise.cgLieuCarteViolette }}</td>
                 <td>{{ ct_carte_grise.cgNumVignette }}</td>
-                <td>{{ ct_carte_grise.cgDateVignette ? ct_carte_grise.cgDateVignette|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_carte_grise.cgDateVignette ? ct_carte_grise.cgDateVignette|date('d/m/Y') : '' }}</td>
                 <td>{{ ct_carte_grise.cgLieuVignette }}</td>
                 <td>{{ ct_carte_grise.cgImmatriculation }}</td>
-                <td>{{ ct_carte_grise.cgCreated ? ct_carte_grise.cgCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_carte_grise.cgCreated ? ct_carte_grise.cgCreated|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ ct_carte_grise.cgNomCooperative }}</td>
                 <td>{{ ct_carte_grise.cgItineraire }}</td>
-                <td>{{ ct_carte_grise.cgIsTransport ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_carte_grise.cgIsTransport ? 'Oui' : 'Non' }}</td>
                 <td>{{ ct_carte_grise.cgNumIdentification }}</td>
                 <td>{{ ct_carte_grise.cgZoneDeserte }}</td>
                 <td>
-                    <a href="{{ path('ct_carte_grise_show', {'id': ct_carte_grise.id}) }}">show</a>
+                    <a href="{{ path('ct_carte_grise_show', {'id': ct_carte_grise.id}) }}">voir</a>
                     <a href="{{ path('ct_carte_grise_edit', {'id': ct_carte_grise.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="28">no records found</td>
+                <td colspan="28">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_carte_grise_new') }}">Create new</a>
+    <a href="{{ path('ct_carte_grise_new') }}">Créer</a>
 {% endblock %}

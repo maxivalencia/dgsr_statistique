@@ -3,27 +3,27 @@
 {% block title %}CtConstAvDed index{% endblock %}
 
 {% block body %}
-    <h1>CtConstAvDed index</h1>
+    <h1>Liste Constatation Avant Dedouanement</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>CadProvenance</th>
-                <th>CadDivers</th>
-                <th>CadProprietaireNom</th>
-                <th>CadProprietaireAdresse</th>
-                <th>CadBonEtat</th>
-                <th>CadSecPers</th>
-                <th>CadSecMarch</th>
-                <th>CadProtecEnv</th>
-                <th>CadNumero</th>
-                <th>CadImmatriculation</th>
-                <th>CadDateEmbarquement</th>
-                <th>CadLieuEmbarquement</th>
-                <th>CadCreated</th>
-                <th>CadConforme</th>
-                <th>CadObservation</th>
+                <th>Cad Provenance</th>
+                <th>Cad Divers</th>
+                <th>Cad Nom Proprietaire</th>
+                <th>Cad Adresse Proprietaire</th>
+                <th>Cad Bon Etat</th>
+                <th>Cad SecPers</th>
+                <th>Cad SecMarch</th>
+                <th>Cad ProtecEnv</th>
+                <th>Cad Numero</th>
+                <th>Cad Immatriculation</th>
+                <th>Cad Date Embarquement</th>
+                <th>Cad Lieu Embarquement</th>
+                <th>Cad Created</th>
+                <th>Cad Conforme</th>
+                <th>Cad Observation</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -35,29 +35,29 @@
                 <td>{{ ct_const_av_ded.cadDivers }}</td>
                 <td>{{ ct_const_av_ded.cadProprietaireNom }}</td>
                 <td>{{ ct_const_av_ded.cadProprietaireAdresse }}</td>
-                <td>{{ ct_const_av_ded.cadBonEtat ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_const_av_ded.cadSecPers ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_const_av_ded.cadSecMarch ? 'Yes' : 'No' }}</td>
-                <td>{{ ct_const_av_ded.cadProtecEnv ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_const_av_ded.cadBonEtat ? 'Oui' : 'Non' }}</td>
+                <td>{{ ct_const_av_ded.cadSecPers ? 'Oui' : 'Non' }}</td>
+                <td>{{ ct_const_av_ded.cadSecMarch ? 'Oui' : 'Non' }}</td>
+                <td>{{ ct_const_av_ded.cadProtecEnv ? 'Oui' : 'Non' }}</td>
                 <td>{{ ct_const_av_ded.cadNumero }}</td>
                 <td>{{ ct_const_av_ded.cadImmatriculation }}</td>
-                <td>{{ ct_const_av_ded.cadDateEmbarquement ? ct_const_av_ded.cadDateEmbarquement|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_const_av_ded.cadDateEmbarquement ? ct_const_av_ded.cadDateEmbarquement|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ ct_const_av_ded.cadLieuEmbarquement }}</td>
-                <td>{{ ct_const_av_ded.cadCreated ? ct_const_av_ded.cadCreated|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ct_const_av_ded.cadConforme ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_const_av_ded.cadCreated ? ct_const_av_ded.cadCreated|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ ct_const_av_ded.cadConforme ? 'Oui' : 'Non' }}</td>
                 <td>{{ ct_const_av_ded.cadObservation }}</td>
                 <td>
-                    <a href="{{ path('ct_const_av_ded_show', {'id': ct_const_av_ded.id}) }}">show</a>
+                    <a href="{{ path('ct_const_av_ded_show', {'id': ct_const_av_ded.id}) }}">voir</a>
                     <a href="{{ path('ct_const_av_ded_edit', {'id': ct_const_av_ded.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="17">no records found</td>
+                <td colspan="17">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_const_av_ded_new') }}">Create new</a>
+    <a href="{{ path('ct_const_av_ded_new') }}">Créer</a>
 {% endblock %}

@@ -3,13 +3,13 @@
 {% block title %}CtVisiteExtra index{% endblock %}
 
 {% block body %}
-    <h1>CtVisiteExtra index</h1>
+    <h1>Liste Visite Extra</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>VsteLibelle</th>
+                <th>Visite Libelle</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,17 +19,17 @@
                 <td>{{ ct_visite_extra.id }}</td>
                 <td>{{ ct_visite_extra.vsteLibelle }}</td>
                 <td>
-                    <a href="{{ path('ct_visite_extra_show', {'id': ct_visite_extra.id}) }}">show</a>
+                    <a href="{{ path('ct_visite_extra_show', {'id': ct_visite_extra.id}) }}">voir</a>
                     <a href="{{ path('ct_visite_extra_edit', {'id': ct_visite_extra.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_visite_extra_new') }}">Create new</a>
+    <a href="{{ path('ct_visite_extra_new') }}">Créer</a>
 {% endblock %}

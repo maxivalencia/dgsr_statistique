@@ -3,15 +3,15 @@
 {% block title %}CtUsage index{% endblock %}
 
 {% block body %}
-    <h1>CtUsage index</h1>
+    <h1>Liste Usage</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>UsgLibelle</th>
-                <th>UsgValidite</th>
-                <th>UsgCreated</th>
+                <th>Libelle Usage</th>
+                <th>Validite Usage</th>
+                <th>Création Usage</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,19 +21,19 @@
                 <td>{{ ct_usage.id }}</td>
                 <td>{{ ct_usage.usgLibelle }}</td>
                 <td>{{ ct_usage.usgValidite }}</td>
-                <td>{{ ct_usage.usgCreated ? ct_usage.usgCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_usage.usgCreated ? ct_usage.usgCreated|date('d/m/Y H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('ct_usage_show', {'id': ct_usage.id}) }}">show</a>
+                    <a href="{{ path('ct_usage_show', {'id': ct_usage.id}) }}">voir</a>
                     <a href="{{ path('ct_usage_edit', {'id': ct_usage.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_usage_new') }}">Create new</a>
+    <a href="{{ path('ct_usage_new') }}">Créer</a>
 {% endblock %}

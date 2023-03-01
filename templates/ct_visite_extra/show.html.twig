@@ -3,7 +3,7 @@
 {% block title %}CtVisiteExtra{% endblock %}
 
 {% block body %}
-    <h1>CtVisiteExtra</h1>
+    <h1>Visite Extra</h1>
 
     <table class="table">
         <tbody>
@@ -12,15 +12,15 @@
                 <td>{{ ct_visite_extra.id }}</td>
             </tr>
             <tr>
-                <th>VsteLibelle</th>
+                <th>Visite Libelle</th>
                 <td>{{ ct_visite_extra.vsteLibelle }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_visite_extra_index') }}">back to list</a>
+    <a href="{{ path('ct_visite_extra_index') }}">Retour</a>
 
-    <a href="{{ path('ct_visite_extra_edit', {'id': ct_visite_extra.id}) }}">edit</a>
+    <a href="{{ path('ct_visite_extra_edit', {'id': ct_visite_extra.id}) }}">Modifier</a>
 
     {{ include('ct_visite_extra/_delete_form.html.twig') }}
 {% endblock %}

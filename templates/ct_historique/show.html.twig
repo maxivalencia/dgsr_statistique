@@ -3,7 +3,7 @@
 {% block title %}CtHistorique{% endblock %}
 
 {% block body %}
-    <h1>CtHistorique</h1>
+    <h1>Historique</h1>
 
     <table class="table">
         <tbody>
@@ -12,31 +12,31 @@
                 <td>{{ ct_historique.id }}</td>
             </tr>
             <tr>
-                <th>HstDescription</th>
+                <th>Description</th>
                 <td>{{ ct_historique.hstDescription }}</td>
             </tr>
             <tr>
-                <th>HstDateCreate</th>
-                <td>{{ ct_historique.hstDateCreate ? ct_historique.hstDateCreate|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date Création</th>
+                <td>{{ ct_historique.hstDateCreate ? ct_historique.hstDateCreate|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>HstIsView</th>
-                <td>{{ ct_historique.hstIsView ? 'Yes' : 'No' }}</td>
+                <th>Est Vue</th>
+                <td>{{ ct_historique.hstIsView ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>CtCentreId</th>
+                <th>Centre Id</th>
                 <td>{{ ct_historique.ctCentreId }}</td>
             </tr>
             <tr>
-                <th>HistType</th>
+                <th>Type</th>
                 <td>{{ ct_historique.histType }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_historique_index') }}">back to list</a>
+    <a href="{{ path('ct_historique_index') }}">Retour</a>
 
-    <a href="{{ path('ct_historique_edit', {'id': ct_historique.id}) }}">edit</a>
+    <a href="{{ path('ct_historique_edit', {'id': ct_historique.id}) }}">Modifier</a>
 
     {{ include('ct_historique/_delete_form.html.twig') }}
 {% endblock %}

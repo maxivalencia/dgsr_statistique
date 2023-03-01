@@ -3,7 +3,7 @@
 {% block title %}CtCarteGrise{% endblock %}
 
 {% block body %}
-    <h1>CtCarteGrise</h1>
+    <h1>Carte Grise</h1>
 
     <table class="table">
         <tbody>
@@ -12,115 +12,115 @@
                 <td>{{ ct_carte_grise.id }}</td>
             </tr>
             <tr>
-                <th>CgDateEmission</th>
-                <td>{{ ct_carte_grise.cgDateEmission ? ct_carte_grise.cgDateEmission|date('Y-m-d') : '' }}</td>
+                <th>Date d'Emission</th>
+                <td>{{ ct_carte_grise.cgDateEmission ? ct_carte_grise.cgDateEmission|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>CgNom</th>
+                <th>Nom propriétaire</th>
                 <td>{{ ct_carte_grise.cgNom }}</td>
             </tr>
             <tr>
-                <th>CgPrenom</th>
+                <th>Prénom propriétaire</th>
                 <td>{{ ct_carte_grise.cgPrenom }}</td>
             </tr>
             <tr>
-                <th>CgProfession</th>
+                <th>Profession</th>
                 <td>{{ ct_carte_grise.cgProfession }}</td>
             </tr>
             <tr>
-                <th>CgAdresse</th>
+                <th>Adresse</th>
                 <td>{{ ct_carte_grise.cgAdresse }}</td>
             </tr>
             <tr>
-                <th>CgCommune</th>
+                <th>Commune</th>
                 <td>{{ ct_carte_grise.cgCommune }}</td>
             </tr>
             <tr>
-                <th>CgNbrAssis</th>
+                <th>Nombre de place Assise</th>
                 <td>{{ ct_carte_grise.cgNbrAssis }}</td>
             </tr>
             <tr>
-                <th>CgNbrDebout</th>
+                <th>Nombre de place Debout</th>
                 <td>{{ ct_carte_grise.cgNbrDebout }}</td>
             </tr>
             <tr>
-                <th>CgPuissanceAdmin</th>
+                <th>Puissance Administrative</th>
                 <td>{{ ct_carte_grise.cgPuissanceAdmin }}</td>
             </tr>
             <tr>
-                <th>CgMiseEnService</th>
-                <td>{{ ct_carte_grise.cgMiseEnService ? ct_carte_grise.cgMiseEnService|date('Y-m-d') : '' }}</td>
+                <th>Mise En Service</th>
+                <td>{{ ct_carte_grise.cgMiseEnService ? ct_carte_grise.cgMiseEnService|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>CgPatente</th>
+                <th>Patente</th>
                 <td>{{ ct_carte_grise.cgPatente }}</td>
             </tr>
             <tr>
-                <th>CgAni</th>
+                <th>Ani</th>
                 <td>{{ ct_carte_grise.cgAni }}</td>
             </tr>
             <tr>
-                <th>CgRta</th>
+                <th>Rta</th>
                 <td>{{ ct_carte_grise.cgRta }}</td>
             </tr>
             <tr>
-                <th>CgNumCarteViolette</th>
+                <th>Numéro de la Carte Violette</th>
                 <td>{{ ct_carte_grise.cgNumCarteViolette }}</td>
             </tr>
             <tr>
-                <th>CgDateCarteViolette</th>
-                <td>{{ ct_carte_grise.cgDateCarteViolette ? ct_carte_grise.cgDateCarteViolette|date('Y-m-d') : '' }}</td>
+                <th>Date de la Carte Violette</th>
+                <td>{{ ct_carte_grise.cgDateCarteViolette ? ct_carte_grise.cgDateCarteViolette|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>CgLieuCarteViolette</th>
+                <th>Lieu de la Carte Violette</th>
                 <td>{{ ct_carte_grise.cgLieuCarteViolette }}</td>
             </tr>
             <tr>
-                <th>CgNumVignette</th>
+                <th>Numéro Vignette</th>
                 <td>{{ ct_carte_grise.cgNumVignette }}</td>
             </tr>
             <tr>
-                <th>CgDateVignette</th>
-                <td>{{ ct_carte_grise.cgDateVignette ? ct_carte_grise.cgDateVignette|date('Y-m-d') : '' }}</td>
+                <th>Date de la Vignette</th>
+                <td>{{ ct_carte_grise.cgDateVignette ? ct_carte_grise.cgDateVignette|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>CgLieuVignette</th>
+                <th>Lieu de la Vignette</th>
                 <td>{{ ct_carte_grise.cgLieuVignette }}</td>
             </tr>
             <tr>
-                <th>CgImmatriculation</th>
+                <th>Immatriculation</th>
                 <td>{{ ct_carte_grise.cgImmatriculation }}</td>
             </tr>
             <tr>
-                <th>CgCreated</th>
-                <td>{{ ct_carte_grise.cgCreated ? ct_carte_grise.cgCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Created</th>
+                <td>{{ ct_carte_grise.cgCreated ? ct_carte_grise.cgCreated|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>CgNomCooperative</th>
+                <th>Nom Cooperative</th>
                 <td>{{ ct_carte_grise.cgNomCooperative }}</td>
             </tr>
             <tr>
-                <th>CgItineraire</th>
+                <th>Itineraire</th>
                 <td>{{ ct_carte_grise.cgItineraire }}</td>
             </tr>
             <tr>
-                <th>CgIsTransport</th>
-                <td>{{ ct_carte_grise.cgIsTransport ? 'Yes' : 'No' }}</td>
+                <th>Est Transport</th>
+                <td>{{ ct_carte_grise.cgIsTransport ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>CgNumIdentification</th>
+                <th>Numéro d'Identification</th>
                 <td>{{ ct_carte_grise.cgNumIdentification }}</td>
             </tr>
             <tr>
-                <th>CgZoneDeserte</th>
+                <th>Zone Desserte</th>
                 <td>{{ ct_carte_grise.cgZoneDeserte }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_carte_grise_index') }}">back to list</a>
+    <a href="{{ path('ct_carte_grise_index') }}">Retour</a>
 
-    <a href="{{ path('ct_carte_grise_edit', {'id': ct_carte_grise.id}) }}">edit</a>
+    <a href="{{ path('ct_carte_grise_edit', {'id': ct_carte_grise.id}) }}">Modifier</a>
 
     {{ include('ct_carte_grise/_delete_form.html.twig') }}
 {% endblock %}

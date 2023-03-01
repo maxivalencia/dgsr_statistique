@@ -3,11 +3,11 @@
 {% block title %}Edit CtGenreCategorie{% endblock %}
 
 {% block body %}
-    <h1>Edit CtGenreCategorie</h1>
+    <h1>Modification Categorie des Genre</h1>
 
-    {{ include('ct_genre_categorie/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_genre_categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_genre_categorie_index') }}">back to list</a>
+    <a href="{{ path('ct_genre_categorie_index') }}">Retour</a>
 
     {{ include('ct_genre_categorie/_delete_form.html.twig') }}
 {% endblock %}

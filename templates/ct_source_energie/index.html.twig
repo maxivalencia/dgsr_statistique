@@ -3,13 +3,13 @@
 {% block title %}CtSourceEnergie index{% endblock %}
 
 {% block body %}
-    <h1>CtSourceEnergie index</h1>
+    <h1>Liste Source d'Energie</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>SreLibelle</th>
+                <th>Libelle Source d'Energie</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,17 +19,17 @@
                 <td>{{ ct_source_energie.id }}</td>
                 <td>{{ ct_source_energie.sreLibelle }}</td>
                 <td>
-                    <a href="{{ path('ct_source_energie_show', {'id': ct_source_energie.id}) }}">show</a>
+                    <a href="{{ path('ct_source_energie_show', {'id': ct_source_energie.id}) }}">voir</a>
                     <a href="{{ path('ct_source_energie_edit', {'id': ct_source_energie.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_source_energie_new') }}">Create new</a>
+    <a href="{{ path('ct_source_energie_new') }}">Créer</a>
 {% endblock %}

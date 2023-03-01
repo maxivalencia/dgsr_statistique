@@ -3,11 +3,11 @@
 {% block title %}Edit CtGenreTarif{% endblock %}
 
 {% block body %}
-    <h1>Edit CtGenreTarif</h1>
+    <h1>Modification Tarif des Genres</h1>
 
-    {{ include('ct_genre_tarif/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_genre_tarif/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_genre_tarif_index') }}">back to list</a>
+    <a href="{{ path('ct_genre_tarif_index') }}">Retour</a>
 
     {{ include('ct_genre_tarif/_delete_form.html.twig') }}
 {% endblock %}

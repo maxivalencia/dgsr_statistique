@@ -3,26 +3,26 @@
 {% block title %}CtConstAvDedCarac index{% endblock %}
 
 {% block body %}
-    <h1>CtConstAvDedCarac index</h1>
+    <h1>Liste Caractéristique Constatation Avant Dedouanement</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>CadCylindre</th>
-                <th>CadPuissance</th>
-                <th>CadPoidsVide</th>
-                <th>CadChargeUtile</th>
-                <th>CadHauteur</th>
-                <th>CadLargeur</th>
-                <th>CadLongueur</th>
-                <th>CadNumSerieType</th>
-                <th>CadNumMoteur</th>
-                <th>CadTypeCar</th>
-                <th>CadPoidsMaxima</th>
-                <th>CadPoidsTotalCharge</th>
-                <th>CadPremiereCircule</th>
-                <th>CadNbrAssis</th>
+                <th>Cad Cylindre</th>
+                <th>Cad Puissance</th>
+                <th>Cad Poids A Vide</th>
+                <th>Cad Charge Utile</th>
+                <th>Cad Hauteur</th>
+                <th>Cad Largeur</th>
+                <th>Cad Longueur</th>
+                <th>Cad Type de Numéro de Serie</th>
+                <th>Cad Numéro Moteur</th>
+                <th>Cad Type Caractéristique</th>
+                <th>Cad Poids Maximal</th>
+                <th>Cad Poids Total A Charge</th>
+                <th>Cad Première Circulation</th>
+                <th>Cad Nombre place Assis</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -45,17 +45,17 @@
                 <td>{{ ct_const_av_ded_carac.cadPremiereCircule }}</td>
                 <td>{{ ct_const_av_ded_carac.cadNbrAssis }}</td>
                 <td>
-                    <a href="{{ path('ct_const_av_ded_carac_show', {'id': ct_const_av_ded_carac.id}) }}">show</a>
+                    <a href="{{ path('ct_const_av_ded_carac_show', {'id': ct_const_av_ded_carac.id}) }}">voir</a>
                     <a href="{{ path('ct_const_av_ded_carac_edit', {'id': ct_const_av_ded_carac.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="16">no records found</td>
+                <td colspan="16">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_const_av_ded_carac_new') }}">Create new</a>
+    <a href="{{ path('ct_const_av_ded_carac_new') }}">Créer</a>
 {% endblock %}

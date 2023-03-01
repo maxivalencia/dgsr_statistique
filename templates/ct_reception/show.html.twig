@@ -3,7 +3,7 @@
 {% block title %}CtReception{% endblock %}
 
 {% block body %}
-    <h1>CtReception</h1>
+    <h1>Reception</h1>
 
     <table class="table">
         <tbody>
@@ -12,51 +12,51 @@
                 <td>{{ ct_reception.id }}</td>
             </tr>
             <tr>
-                <th>RcpMiseService</th>
-                <td>{{ ct_reception.rcpMiseService ? ct_reception.rcpMiseService|date('Y-m-d') : '' }}</td>
+                <th>Mise Service</th>
+                <td>{{ ct_reception.rcpMiseService ? ct_reception.rcpMiseService|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>RcpImmatriculation</th>
+                <th>Immatriculation</th>
                 <td>{{ ct_reception.rcpImmatriculation }}</td>
             </tr>
             <tr>
-                <th>RcpProprietaire</th>
+                <th>Proprietaire</th>
                 <td>{{ ct_reception.rcpProprietaire }}</td>
             </tr>
             <tr>
-                <th>RcpProfession</th>
+                <th>Profession</th>
                 <td>{{ ct_reception.rcpProfession }}</td>
             </tr>
             <tr>
-                <th>RcpAdresse</th>
+                <th>Adresse</th>
                 <td>{{ ct_reception.rcpAdresse }}</td>
             </tr>
             <tr>
-                <th>RcpNbrAssis</th>
+                <th>Nombre de place Assise</th>
                 <td>{{ ct_reception.rcpNbrAssis }}</td>
             </tr>
             <tr>
-                <th>RcpNbrDebout</th>
+                <th>Nombre de place Debout</th>
                 <td>{{ ct_reception.rcpNbrDebout }}</td>
             </tr>
             <tr>
-                <th>RcpNumPv</th>
+                <th>Numéro Pv</th>
                 <td>{{ ct_reception.rcpNumPv }}</td>
             </tr>
             <tr>
-                <th>RcpNumGroup</th>
+                <th>Numéro Groupe</th>
                 <td>{{ ct_reception.rcpNumGroup }}</td>
             </tr>
             <tr>
-                <th>RcpCreated</th>
-                <td>{{ ct_reception.rcpCreated ? ct_reception.rcpCreated|date('Y-m-d') : '' }}</td>
+                <th>Created</th>
+                <td>{{ ct_reception.rcpCreated ? ct_reception.rcpCreated|date('d/m/Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_reception_index') }}">back to list</a>
+    <a href="{{ path('ct_reception_index') }}">Retour</a>
 
-    <a href="{{ path('ct_reception_edit', {'id': ct_reception.id}) }}">edit</a>
+    <a href="{{ path('ct_reception_edit', {'id': ct_reception.id}) }}">Modifier</a>
 
     {{ include('ct_reception/_delete_form.html.twig') }}
 {% endblock %}

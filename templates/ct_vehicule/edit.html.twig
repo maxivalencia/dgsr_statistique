@@ -3,11 +3,11 @@
 {% block title %}Edit CtVehicule{% endblock %}
 
 {% block body %}
-    <h1>Edit CtVehicule</h1>
+    <h1>Modification Vehicule</h1>
 
-    {{ include('ct_vehicule/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_vehicule/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_vehicule_index') }}">back to list</a>
+    <a href="{{ path('ct_vehicule_index') }}">Retour</a>
 
     {{ include('ct_vehicule/_delete_form.html.twig') }}
 {% endblock %}

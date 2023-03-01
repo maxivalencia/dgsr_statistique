@@ -3,14 +3,14 @@
 {% block title %}CtMotifTarif index{% endblock %}
 
 {% block body %}
-    <h1>CtMotifTarif index</h1>
+    <h1>Liste Motif Tarif</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>MtfTrfPrix</th>
-                <th>MtfTrfDate</th>
+                <th>Motif Tarif Prix</th>
+                <th>Motif Tarif Date</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,17 +21,17 @@
                 <td>{{ ct_motif_tarif.mtfTrfPrix }}</td>
                 <td>{{ ct_motif_tarif.mtfTrfDate }}</td>
                 <td>
-                    <a href="{{ path('ct_motif_tarif_show', {'id': ct_motif_tarif.id}) }}">show</a>
+                    <a href="{{ path('ct_motif_tarif_show', {'id': ct_motif_tarif.id}) }}">voir</a>
                     <a href="{{ path('ct_motif_tarif_edit', {'id': ct_motif_tarif.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_motif_tarif_new') }}">Create new</a>
+    <a href="{{ path('ct_motif_tarif_new') }}">Créer</a>
 {% endblock %}

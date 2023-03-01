@@ -3,7 +3,7 @@
 {% block title %}CtDroitPtac{% endblock %}
 
 {% block body %}
-    <h1>CtDroitPtac</h1>
+    <h1>Droit PTAC</h1>
 
     <table class="table">
         <tbody>
@@ -12,23 +12,23 @@
                 <td>{{ ct_droit_ptac.id }}</td>
             </tr>
             <tr>
-                <th>DpPrixMin</th>
+                <th>Prix Minimum</th>
                 <td>{{ ct_droit_ptac.dpPrixMin }}</td>
             </tr>
             <tr>
-                <th>DpPrixMax</th>
+                <th>Prix Maximum</th>
                 <td>{{ ct_droit_ptac.dpPrixMax }}</td>
             </tr>
             <tr>
-                <th>DpDroit</th>
+                <th>Droit</th>
                 <td>{{ ct_droit_ptac.dpDroit }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_droit_ptac_index') }}">back to list</a>
+    <a href="{{ path('ct_droit_ptac_index') }}">Retour</a>
 
-    <a href="{{ path('ct_droit_ptac_edit', {'id': ct_droit_ptac.id}) }}">edit</a>
+    <a href="{{ path('ct_droit_ptac_edit', {'id': ct_droit_ptac.id}) }}">Modifier</a>
 
     {{ include('ct_droit_ptac/_delete_form.html.twig') }}
 {% endblock %}

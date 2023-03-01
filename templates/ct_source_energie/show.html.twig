@@ -3,7 +3,7 @@
 {% block title %}CtSourceEnergie{% endblock %}
 
 {% block body %}
-    <h1>CtSourceEnergie</h1>
+    <h1>Source d'Energie</h1>
 
     <table class="table">
         <tbody>
@@ -12,15 +12,15 @@
                 <td>{{ ct_source_energie.id }}</td>
             </tr>
             <tr>
-                <th>SreLibelle</th>
+                <th>Source d'energie Libelle</th>
                 <td>{{ ct_source_energie.sreLibelle }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_source_energie_index') }}">back to list</a>
+    <a href="{{ path('ct_source_energie_index') }}">Retour</a>
 
-    <a href="{{ path('ct_source_energie_edit', {'id': ct_source_energie.id}) }}">edit</a>
+    <a href="{{ path('ct_source_energie_edit', {'id': ct_source_energie.id}) }}">Modifier</a>
 
     {{ include('ct_source_energie/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,13 +3,13 @@
 {% block title %}CtZoneDeserte index{% endblock %}
 
 {% block body %}
-    <h1>CtZoneDeserte index</h1>
+    <h1>Liste Zone Desserte</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>ZdLibelle</th>
+                <th>Zone Desserte Libelle</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,17 +19,17 @@
                 <td>{{ ct_zone_deserte.id }}</td>
                 <td>{{ ct_zone_deserte.zdLibelle }}</td>
                 <td>
-                    <a href="{{ path('ct_zone_deserte_show', {'id': ct_zone_deserte.id}) }}">show</a>
+                    <a href="{{ path('ct_zone_deserte_show', {'id': ct_zone_deserte.id}) }}">voir</a>
                     <a href="{{ path('ct_zone_deserte_edit', {'id': ct_zone_deserte.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_zone_deserte_new') }}">Create new</a>
+    <a href="{{ path('ct_zone_deserte_new') }}">Créer</a>
 {% endblock %}

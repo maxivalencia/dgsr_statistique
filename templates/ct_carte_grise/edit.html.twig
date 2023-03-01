@@ -3,11 +3,11 @@
 {% block title %}Edit CtCarteGrise{% endblock %}
 
 {% block body %}
-    <h1>Edit CtCarteGrise</h1>
+    <h1>Modification Carte Grise</h1>
 
-    {{ include('ct_carte_grise/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_carte_grise/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_carte_grise_index') }}">back to list</a>
+    <a href="{{ path('ct_carte_grise_index') }}">Retour</a>
 
     {{ include('ct_carte_grise/_delete_form.html.twig') }}
 {% endblock %}

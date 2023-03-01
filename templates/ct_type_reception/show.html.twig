@@ -3,7 +3,7 @@
 {% block title %}CtTypeReception{% endblock %}
 
 {% block body %}
-    <h1>CtTypeReception</h1>
+    <h1>Type de Réception</h1>
 
     <table class="table">
         <tbody>
@@ -12,15 +12,15 @@
                 <td>{{ ct_type_reception.id }}</td>
             </tr>
             <tr>
-                <th>TprcpLibelle</th>
+                <th>Type de réception Libelle</th>
                 <td>{{ ct_type_reception.tprcpLibelle }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_type_reception_index') }}">back to list</a>
+    <a href="{{ path('ct_type_reception_index') }}">Retour</a>
 
-    <a href="{{ path('ct_type_reception_edit', {'id': ct_type_reception.id}) }}">edit</a>
+    <a href="{{ path('ct_type_reception_edit', {'id': ct_type_reception.id}) }}">Modifier</a>
 
     {{ include('ct_type_reception/_delete_form.html.twig') }}
 {% endblock %}

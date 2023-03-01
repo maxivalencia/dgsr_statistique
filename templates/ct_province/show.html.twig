@@ -3,7 +3,7 @@
 {% block title %}CtProvince{% endblock %}
 
 {% block body %}
-    <h1>CtProvince</h1>
+    <h1>Province</h1>
 
     <table class="table">
         <tbody>
@@ -12,27 +12,27 @@
                 <td>{{ ct_province.id }}</td>
             </tr>
             <tr>
-                <th>PrvNom</th>
+                <th>Province Nom</th>
                 <td>{{ ct_province.prvNom }}</td>
             </tr>
             <tr>
-                <th>PrvCode</th>
+                <th>Province Code</th>
                 <td>{{ ct_province.prvCode }}</td>
             </tr>
             <tr>
-                <th>PrvCreatedAt</th>
-                <td>{{ ct_province.prvCreatedAt ? ct_province.prvCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Province CreatedAt</th>
+                <td>{{ ct_province.prvCreatedAt ? ct_province.prvCreatedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>PrvUpdatedAt</th>
-                <td>{{ ct_province.prvUpdatedAt ? ct_province.prvUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_province.prvUpdatedAt ? ct_province.prvUpdatedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_province_index') }}">back to list</a>
+    <a href="{{ path('ct_province_index') }}">Retour</a>
 
-    <a href="{{ path('ct_province_edit', {'id': ct_province.id}) }}">edit</a>
+    <a href="{{ path('ct_province_edit', {'id': ct_province.id}) }}">Modifier</a>
 
     {{ include('ct_province/_delete_form.html.twig') }}
 {% endblock %}

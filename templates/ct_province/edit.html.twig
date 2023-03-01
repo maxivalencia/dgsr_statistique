@@ -3,11 +3,11 @@
 {% block title %}Edit CtProvince{% endblock %}
 
 {% block body %}
-    <h1>Edit CtProvince</h1>
+    <h1>Modification Province</h1>
 
-    {{ include('ct_province/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_province/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_province_index') }}">back to list</a>
+    <a href="{{ path('ct_province_index') }}">Retour</a>
 
     {{ include('ct_province/_delete_form.html.twig') }}
 {% endblock %}

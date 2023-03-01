@@ -3,14 +3,14 @@
 {% block title %}CtVisiteExtraTarif index{% endblock %}
 
 {% block body %}
-    <h1>CtVisiteExtraTarif index</h1>
+    <h1>Liste Visite Extra Tarif</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>VetAnnee</th>
-                <th>VetPrix</th>
+                <th>Visite extra tarif Annee</th>
+                <th>Visite extra tarif Prix</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,17 +21,17 @@
                 <td>{{ ct_visite_extra_tarif.vetAnnee }}</td>
                 <td>{{ ct_visite_extra_tarif.vetPrix }}</td>
                 <td>
-                    <a href="{{ path('ct_visite_extra_tarif_show', {'id': ct_visite_extra_tarif.id}) }}">show</a>
+                    <a href="{{ path('ct_visite_extra_tarif_show', {'id': ct_visite_extra_tarif.id}) }}">voir</a>
                     <a href="{{ path('ct_visite_extra_tarif_edit', {'id': ct_visite_extra_tarif.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_visite_extra_tarif_new') }}">Create new</a>
+    <a href="{{ path('ct_visite_extra_tarif_new') }}">Créer</a>
 {% endblock %}

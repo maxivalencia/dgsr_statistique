@@ -3,11 +3,11 @@
 {% block title %}Edit CtUsageTarif{% endblock %}
 
 {% block body %}
-    <h1>Edit CtUsageTarif</h1>
+    <h1>Modification Tarif Usage</h1>
 
-    {{ include('ct_usage_tarif/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_usage_tarif/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_usage_tarif_index') }}">back to list</a>
+    <a href="{{ path('ct_usage_tarif_index') }}">Retour</a>
 
     {{ include('ct_usage_tarif/_delete_form.html.twig') }}
 {% endblock %}

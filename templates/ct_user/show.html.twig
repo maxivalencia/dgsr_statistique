@@ -16,7 +16,7 @@
                 <td>{{ ct_user.username }}</td>
             </tr>
             <tr>
-                <th>UsernameCanonical</th>
+                <th>Username Canonical</th>
                 <td>{{ ct_user.usernameCanonical }}</td>
             </tr>
             <tr>
@@ -24,12 +24,12 @@
                 <td>{{ ct_user.email }}</td>
             </tr>
             <tr>
-                <th>EmailCanonical</th>
+                <th>Email Canonical</th>
                 <td>{{ ct_user.emailCanonical }}</td>
             </tr>
             <tr>
                 <th>Enabled</th>
-                <td>{{ ct_user.enabled ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_user.enabled ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Salt</th>
@@ -40,83 +40,83 @@
                 <td>{{ ct_user.password }}</td>
             </tr>
             <tr>
-                <th>LastLogin</th>
-                <td>{{ ct_user.lastLogin ? ct_user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Last Login</th>
+                <td>{{ ct_user.lastLogin ? ct_user.lastLogin|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>ConfirmationToken</th>
+                <th>Confirmation Token</th>
                 <td>{{ ct_user.confirmationToken }}</td>
             </tr>
             <tr>
-                <th>PasswordRequestedAt</th>
-                <td>{{ ct_user.passwordRequestedAt ? ct_user.passwordRequestedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Password Requested At</th>
+                <td>{{ ct_user.passwordRequestedAt ? ct_user.passwordRequestedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Roles</th>
                 <td>{{ ct_user.roles ? ct_user.roles|join(', ') : '' }}</td>
             </tr>
             <tr>
-                <th>UsrName</th>
+                <th>Usr Name</th>
                 <td>{{ ct_user.usrName }}</td>
             </tr>
             <tr>
-                <th>UsrEmail</th>
+                <th>Usr Email</th>
                 <td>{{ ct_user.usrEmail }}</td>
             </tr>
             <tr>
-                <th>UsrLocked</th>
-                <td>{{ ct_user.usrLocked ? 'Yes' : 'No' }}</td>
+                <th>Usr Locked</th>
+                <td>{{ ct_user.usrLocked ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>UsrPassword</th>
+                <th>Usr Password</th>
                 <td>{{ ct_user.usrPassword }}</td>
             </tr>
             <tr>
-                <th>UsrAdresse</th>
+                <th>Usr Adresse</th>
                 <td>{{ ct_user.usrAdresse }}</td>
             </tr>
             <tr>
-                <th>UsrToken</th>
+                <th>Usr Token</th>
                 <td>{{ ct_user.usrToken }}</td>
             </tr>
             <tr>
-                <th>UsrCreatedAt</th>
-                <td>{{ ct_user.usrCreatedAt ? ct_user.usrCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Usr CreatedAt</th>
+                <td>{{ ct_user.usrCreatedAt ? ct_user.usrCreatedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UsrUpdatedAt</th>
-                <td>{{ ct_user.usrUpdatedAt ? ct_user.usrUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Usr UpdatedAt</th>
+                <td>{{ ct_user.usrUpdatedAt ? ct_user.usrUpdatedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UsrLockedUpdate</th>
-                <td>{{ ct_user.usrLockedUpdate ? 'Yes' : 'No' }}</td>
+                <th>Usr Locked Update</th>
+                <td>{{ ct_user.usrLockedUpdate ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>UsrRequestUpdate</th>
-                <td>{{ ct_user.usrRequestUpdate ? 'Yes' : 'No' }}</td>
+                <th>Usr Request Update</th>
+                <td>{{ ct_user.usrRequestUpdate ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>UsrProfession</th>
+                <th>Usr Profession</th>
                 <td>{{ ct_user.usrProfession }}</td>
             </tr>
             <tr>
-                <th>UsrTelephone</th>
+                <th>Usr Telephone</th>
                 <td>{{ ct_user.usrTelephone }}</td>
             </tr>
             <tr>
-                <th>UsrIsConnected</th>
-                <td>{{ ct_user.usrIsConnected ? 'Yes' : 'No' }}</td>
+                <th>Usr Est Connected</th>
+                <td>{{ ct_user.usrIsConnected ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>UsrPresence</th>
-                <td>{{ ct_user.usrPresence ? 'Yes' : 'No' }}</td>
+                <th>Usr Presence</th>
+                <td>{{ ct_user.usrPresence ? 'Oui' : 'Non' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ct_user_index') }}">back to list</a>
+    <a href="{{ path('ct_user_index') }}">Retour</a>
 
-    <a href="{{ path('ct_user_edit', {'id': ct_user.id}) }}">edit</a>
+    <a href="{{ path('ct_user_edit', {'id': ct_user.id}) }}">Modifier</a>
 
     {{ include('ct_user/_delete_form.html.twig') }}
 {% endblock %}

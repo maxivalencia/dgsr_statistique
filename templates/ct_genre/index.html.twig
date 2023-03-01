@@ -3,14 +3,14 @@
 {% block title %}CtGenre index{% endblock %}
 
 {% block body %}
-    <h1>CtGenre index</h1>
+    <h1>Liste Genre</h1>
 
     <table id="user_liste" class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>GrLibelle</th>
-                <th>GrCode</th>
+                <th>Genre Libelle</th>
+                <th>Genre Code</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,17 +21,17 @@
                 <td>{{ ct_genre.grLibelle }}</td>
                 <td>{{ ct_genre.grCode }}</td>
                 <td>
-                    <a href="{{ path('ct_genre_show', {'id': ct_genre.id}) }}">show</a>
+                    <a href="{{ path('ct_genre_show', {'id': ct_genre.id}) }}">voir</a>
                     <a href="{{ path('ct_genre_edit', {'id': ct_genre.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('ct_genre_new') }}">Create new</a>
+    <a href="{{ path('ct_genre_new') }}">Créer</a>
 {% endblock %}

@@ -3,11 +3,11 @@
 {% block title %}Edit CtUsage{% endblock %}
 
 {% block body %}
-    <h1>Edit CtUsage</h1>
+    <h1>Modification Usage</h1>
 
-    {{ include('ct_usage/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_usage/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_usage_index') }}">back to list</a>
+    <a href="{{ path('ct_usage_index') }}">Retour</a>
 
     {{ include('ct_usage/_delete_form.html.twig') }}
 {% endblock %}

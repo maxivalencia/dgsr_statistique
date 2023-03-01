@@ -3,11 +3,11 @@
 {% block title %}Edit CtAnomalie{% endblock %}
 
 {% block body %}
-    <h1>Edit CtAnomalie</h1>
+    <h1>Modification Anomalie</h1>
 
-    {{ include('ct_anomalie/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_anomalie/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_anomalie_index') }}">back to list</a>
+    <a href="{{ path('ct_anomalie_index') }}">Retour</a>
 
     {{ include('ct_anomalie/_delete_form.html.twig') }}
 {% endblock %}

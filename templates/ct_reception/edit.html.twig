@@ -3,11 +3,11 @@
 {% block title %}Edit CtReception{% endblock %}
 
 {% block body %}
-    <h1>Edit CtReception</h1>
+    <h1>Modification Reception</h1>
 
-    {{ include('ct_reception/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ct_reception/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('ct_reception_index') }}">back to list</a>
+    <a href="{{ path('ct_reception_index') }}">Retour</a>
 
     {{ include('ct_reception/_delete_form.html.twig') }}
 {% endblock %}
