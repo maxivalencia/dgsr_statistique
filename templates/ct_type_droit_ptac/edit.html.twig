@@ -3,7 +3,8 @@
 {% block title %}Edit CtTypeDroitPtac{% endblock %}
 
 {% block body %}
-    <h1>Modificatin Type Droit Poids Total A Charge</h1>
+    <h1>Modification Type Droit Poids Total A Charge</h1>
+    <div  align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div>
 
     {{ include('ct_type_droit_ptac/_form.html.twig', {'button_label': 'Modifier'}) }}
 

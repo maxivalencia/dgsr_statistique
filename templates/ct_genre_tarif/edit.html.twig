@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Modification Tarif des Genres</h1>
+    <div  align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div>
 
     {{ include('ct_genre_tarif/_form.html.twig', {'button_label': 'Modifier'}) }}
 

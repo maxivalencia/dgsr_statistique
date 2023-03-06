@@ -3,7 +3,8 @@
 {% block title %}Edit CtVehicule{% endblock %}
 
 {% block body %}
-    <h1>Modification Vehicule</h1>
+    <h1>Modification Véhicule</h1>
+    <div  align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div>
 
     {{ include('ct_vehicule/_form.html.twig', {'button_label': 'Modifier'}) }}
 

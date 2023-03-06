@@ -13,44 +13,55 @@
     </div>
     <hr>
     <div align="center">
-        <a href="{{ path('ct_anomalie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Anomalie</i></a>
-        <a href="{{ path('ct_visite_anomalie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Anomalie Visite</i></a>
-        <a href="{{ path('ct_const_av_ded_carac_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Carac Const</i></a>
-        <a href="{{ path('ct_carosserie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Carosserie</i></a>
-        <a href="{{ path('ct_carte_grise_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Carte Grise</i></a>
-        <a href="{{ path('ct_genre_categorie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Catégorie Genre</i></a>
-        <a href="{{ path('ct_centre_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Centre</i></a>
-        <a href="{{ path('ct_const_av_ded_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Constatation</i></a>
-        <a href="{{ path('ct_droit_ptac_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Droit PTAC</i></a>
-        <a href="{{ path('ct_droit_ptac_backup_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Droit PTAC Backup</i></a>
-        <a href="{{ path('ct_droit_ptac_bak_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Droit PTAC Bak</i></a>
-        <a href="{{ path('ct_genre_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Genre</i></a>
-        <a href="{{ path('ct_historique_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Historique</i></a>
-        <a href="{{ path('ct_marque_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Marque</i></a>
-        <a href="{{ path('ct_motif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Motif</i></a>
-        <a href="{{ path('ct_proces_verbal_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Proces Verbal</i></a>
-        <a href="{{ path('ct_province_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Province</i></a>
-        <a href="{{ path('ct_reception_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Réception</i></a>
-        <a href="{{ path('ct_reception_backup_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Réception Backup</i></a>
-        <a href="{{ path('ct_role_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Rôle</i></a>
-        <a href="{{ path('ct_source_energie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Source Energie</i></a>
-        <a href="{{ path('ct_motif_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Motif</i></a>
-        <a href="{{ path('ct_genre_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Genre</i></a>
-        <a href="{{ path('ct_visite_extra_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Visite extra</i></a>
-        <a href="{{ path('ct_usage_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Usage</i></a>
-        <a href="{{ path('ct_anomalie_type_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Anomalie</i></a>
-        <a href="{{ path('ct_const_av_ded_type_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Const</i></a>
-        <a href="{{ path('ct_type_droit_ptac_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Droit PTAC</i></a>
-        <a href="{{ path('ct_type_reception_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Réception</i></a>
-        <a href="{{ path('ct_type_usage_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Usage</i></a>
-        <a href="{{ path('ct_type_visite_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Visite</i></a>
-        <a href="{{ path('ct_usage_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Usage</i></a>
-        <a href="{{ path('ct_user_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Utilisateur</i></a>
-        <a href="{{ path('ct_utilisation_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Utilisation</i></a>
-        <a href="{{ path('ct_vehicule_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Véhicule</i></a>
-        <a href="{{ path('ct_visite_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Visite</i></a>
-        <a href="{{ path('ct_visite_buckup_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Visite Buckup</i></a>
-        <a href="{{ path('ct_visite_extra_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Visite extra</i></a>
-        <a href="{{ path('ct_zone_deserte_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Zone desserte</i></a>
+        <div>
+            <a href="{{ path('ct_anomalie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Anomalie</i></a>
+            <a href="{{ path('ct_visite_anomalie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Anomalie Visite</i></a>
+            <a href="{{ path('ct_const_av_ded_carac_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Carac Const</i></a>
+            <a href="{{ path('ct_carosserie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Carosserie</i></a>
+            <a href="{{ path('ct_carte_grise_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Carte Grise</i></a>
+            <a href="{{ path('ct_genre_categorie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Catégorie Genre</i></a>
+            <a href="{{ path('ct_centre_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Centre</i></a>
+            <a href="{{ path('ct_const_av_ded_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Constatation</i></a>
+            <a href="{{ path('ct_droit_ptac_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Droit PTAC</i></a>
+            <a href="{{ path('ct_droit_ptac_backup_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Droit PTAC Backup</i></a>
+        </div>
+        <br>
+        <div>
+            <a href="{{ path('ct_droit_ptac_bak_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Droit PTAC Bak</i></a>
+            <a href="{{ path('ct_genre_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Genre</i></a>
+            <a href="{{ path('ct_historique_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Historique</i></a>
+            <a href="{{ path('ct_marque_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Marque</i></a>
+            <a href="{{ path('ct_motif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Motif</i></a>
+            <a href="{{ path('ct_proces_verbal_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Proces Verbal</i></a>
+            <a href="{{ path('ct_province_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Province</i></a>
+            <a href="{{ path('ct_reception_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Réception</i></a>
+            <a href="{{ path('ct_reception_backup_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Réception Backup</i></a>
+            <a href="{{ path('ct_role_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Rôle</i></a>
+        </div>
+        <br>
+        <div>
+            <a href="{{ path('ct_source_energie_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Source Energie</i></a>
+            <a href="{{ path('ct_motif_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Motif</i></a>
+            <a href="{{ path('ct_genre_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Genre</i></a>
+            <a href="{{ path('ct_visite_extra_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Visite extra</i></a>
+            <a href="{{ path('ct_usage_tarif_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Tarif Usage</i></a>
+            <a href="{{ path('ct_anomalie_type_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Anomalie</i></a>
+            <a href="{{ path('ct_const_av_ded_type_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Const</i></a>
+            <a href="{{ path('ct_type_droit_ptac_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Droit PTAC</i></a>
+            <a href="{{ path('ct_type_reception_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Réception</i></a>
+            <a href="{{ path('ct_type_usage_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Usage</i></a>
+        </div>
+        <br>
+        <div>
+            <a href="{{ path('ct_type_visite_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Type Visite</i></a>
+            <a href="{{ path('ct_usage_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Usage</i></a>
+            <a href="{{ path('ct_user_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Utilisateur</i></a>
+            <a href="{{ path('ct_utilisation_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Utilisation</i></a>
+            <a href="{{ path('ct_vehicule_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Véhicule</i></a>
+            <a href="{{ path('ct_visite_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Visite</i></a>
+            <a href="{{ path('ct_visite_buckup_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Visite Buckup</i></a>
+            <a href="{{ path('ct_visite_extra_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Visite extra</i></a>
+            <a href="{{ path('ct_zone_deserte_index') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Zone desserte</i></a>
+        </div>
     </div>
 {% endblock %}
