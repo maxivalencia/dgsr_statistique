@@ -66,6 +66,13 @@ class CtCarteGrise
     /**
      * @var string|null
      *
+     * @ORM\Column(name="cg_phone", type="string", length=255, nullable=true)
+     */
+    private $cgPhone;
+
+    /**
+     * @var string|null
+     *
      * @ORM\Column(name="cg_commune", type="string", length=255, nullable=true)
      */
     private $cgCommune;
@@ -330,6 +337,18 @@ class CtCarteGrise
     public function setCgAdresse(?string $cgAdresse): self
     {
         $this->cgAdresse = $cgAdresse;
+
+        return $this;
+    }
+
+    public function getCgPhone(): ?string
+    {
+        return $this->cgPhone;
+    }
+
+    public function setCgPhone(?string $cgPhone): self
+    {
+        $this->cgPhone = $cgPhone;
 
         return $this;
     }
