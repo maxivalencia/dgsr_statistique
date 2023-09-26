@@ -103,6 +103,7 @@ class SuppressionController extends AbstractController
                 }
                 $rcp->setRcpImmatriculation($rcp->getRcpImmatriculation().'_'.$motif.' du '.$rcp->getRcpCreated()->format("Y-m-d H:m:s"));
                 $rcp->setRcpCreated(new DateTime('1990-01-01 00:00:00'));
+                $rcp->setRcpNumGroup($rcp->getRcpNumGroup().'_DELETED');
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($rcp);
                 $entityManager->flush();
@@ -184,6 +185,7 @@ class SuppressionController extends AbstractController
                 }
                 $rcp->setRcpImmatriculation($rcp->getRcpImmatriculation().'_'.$motif.' du '.$rcp->getRcpCreated()->format("Y-m-d H:m:s"));
                 $rcp->setRcpCreated(new DateTime('1990-01-01 00:00:00'));
+                $rcp->setRcpNumGroup($rcp->getRcpNumGroup().'_DELETED');
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($rcp);
                 $entityManager->flush();
