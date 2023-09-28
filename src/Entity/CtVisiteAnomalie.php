@@ -28,14 +28,14 @@ class CtVisiteAnomalie
      *
      * @ORM\Column(name="ct_anomalie_id", type="integer", nullable=false)
      */
-    private $ctAnomalieId = '0';
+    private $ctAnomalieId;
 
     /**
      * @var int
      *
      * @ORM\Column(name="ct_visite_id", type="integer", nullable=false)
      */
-    private $ctVisiteId = '0';
+    private $ctVisiteId;
 
     public function getId(): ?int
     {

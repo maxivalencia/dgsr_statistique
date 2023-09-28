@@ -47,4 +47,16 @@ class CtVisiteAnomalieRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findAnomalie($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.ctVisiteId')
+            ->andWhere('c.ctAnomalieId = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.ctAnomalieId', 'ASC')
+            ->setMaxResults(50)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
