@@ -84,9 +84,15 @@ class CtServiceMobileController extends AbstractController
             "vst_anomalies" => ""
         ];
         $separateurs = ["", " ", ".", "_", "-"];
+        $separateurs_saisie = ["", " ", ".", "_", "-"];
         $immatriculation = $request->get("IMM");
         $chiffre_immatriculation = substr($immatriculation, 0, 4);
         $lettre_immatriculation = strtoupper(substr($immatriculation, 4));
+        foreach($separateurs_saisie as $separateur){
+            if(substr($lettre_immatriculation, 0, 1) == $separateur){
+                $lettre_immatriculation = substr($lettre_immatriculation, 1);
+            }
+        }
         try {
             foreach($separateurs as $separateur){
                 $imm = $chiffre_immatriculation.$separateur.$lettre_immatriculation;
