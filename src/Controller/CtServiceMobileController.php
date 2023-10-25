@@ -46,6 +46,7 @@ class CtServiceMobileController extends AbstractController
             "cg_immatriculation" => "",
             "cg_nom" => "",
             "cg_prenom" => "",
+            "cg_phone" => "",
             "cg_profession" => "",
             "cg_nom_cooperative" => "",
             "cg_adresse" => "C",
@@ -126,7 +127,8 @@ class CtServiceMobileController extends AbstractController
                     $info_vehicule = [
                         "cg_immatriculation" => $carte_grise->getCgImmatriculation()?(string)$carte_grise->getCgImmatriculation():"",
                         "cg_nom" => $carte_grise->getCgNom()?(string)$carte_grise->getCgNom():"",
-                        "cg_prenom" => trim((string)$carte_grise->getCgPrenom()." ".(string)$carte_grise->getCgPhone()),
+                        "cg_prenom" => trim((string)$carte_grise->getCgPrenom()),
+                        "cg_phone" => trim((string)$carte_grise->getCgPhone()),
                         "cg_profession" => $carte_grise->getCgProfession()?(string)$carte_grise->getCgProfession():"",
                         "cg_nom_cooperative" => $carte_grise->getCgNomCooperative()?(string)$carte_grise->getCgNomCooperative():"",
                         "cg_adresse" => $carte_grise->getCgAdresse()?(string)$carte_grise->getCgAdresse():"",
