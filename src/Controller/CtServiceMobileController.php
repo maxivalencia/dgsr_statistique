@@ -170,7 +170,12 @@ class CtServiceMobileController extends AbstractController
                     //"vst_date_expiration" => $visite->getVstDateExpiration()?(string)$visite->getVstDateExpiration()->format('Y-m-d'):"",
                 }
             }
-            return new JsonResponse($array_vehicule->toArray());            
+            $response = new JsonResponse($array_vehicule->toArray());
+            $response->headers->set('Content-Type', 'application/json');
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+    
+            return $response;
+            //return new JsonResponse($array_vehicule->toArray());            
             //return new JsonResponse(['result' => 'ok', 'retour' => ['lien' => $arraysites->toArray()]]);
         } catch(\Exception $e) {
             return new JsonResponse($e);
