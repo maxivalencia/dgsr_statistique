@@ -426,4 +426,114 @@ class CtStatistiqueController extends AbstractController
             "numero" => $numero,
         ]); */
     }
+
+    /**
+     * @Route("/ct/identification", name="ct_identification", methods={"GET","POST"})
+     */
+    public function RechercheIdentification(Request $request): Response
+    {
+        $numero = strtoupper(trim($request->query->get('numero')));
+        /* $numeros = explode(' ', $numero);
+        $numero = "";
+        foreach($numeros as $num){
+            $numero .= strtoupper($num);
+        } */
+
+        if($numero == ''){
+            return $this->render('ct_statistique/recherche_id.html.twig');
+        }
+        $ctCarteGrise = new CtCarteGrise();
+        $cg_vehicule = new CtVehicule();
+        $rcp_immatriculation = new CtReception();
+        // Récupération des informations de la carte grise
+        $id = $numero;
+        $vst = $this->getDoctrine()->getRepository(CtVisite::class)->findOneBy(["id" => $id]);
+        $ctCarteGrise = $vst->getCtCarteGrise();
+        if ($ctCarteGrise == null){
+            $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $numero]);
+        }
+        if ($ctCarteGrise != null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
+        }
+        if ($cg_vehicule == null || $ctCarteGrise == null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $numero]);
+            if ($cg_vehicule != null) {
+                $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule->getId()]);
+            }
+        }
+        if($cg_vehicule == null || $ctCarteGrise == null){
+            $rcp_immatriculation = $this->getDoctrine()->getRepository(CtReception::class)->findOneBy(['rcpImmatriculation' => $numero]);
+            if ($rcp_immatriculation != null) {
+                $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $rcp_immatriculation->getCtVehicule()->getVhcNumSerie()]);
+                if ($cg_vehicule != null) {
+                    $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule->getId()]);
+                }
+            }
+        }
+
+        //$cg_vehicule = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['id' => $ctCarteGrise]);
+        //if($cg_vehicule == null){
+        //    return $this->render('ct_statistique/recherche.html.twig');
+        //}
+        $visites[] = new CtVisite();
+        $receptions[] = new CtReception();
+        $constatation[] = new CtConstAvDed();
+        $constatation_caracteristique = new CtConstAvDedCarac();
+        $constatations_caracteristiques[] = new CtConstAvDedCarac();
+        $constatations_jointures = new CtConstAvDedsConstAvDedCaracs();
+        if ($cg_vehicule != null) {
+            //$ns_vehicule = $cg_vehicule;
+            //$vehicule_identification = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['id' => $cg_vehicule]);
+
+            // Récupération des visites
+            if ($ctCarteGrise != null) {
+                $visites = $this->getDoctrine()->getRepository(CtVisite::class)->findBy(['ctCarteGrise' => $ctCarteGrise->getId()], ['id' => 'DESC']);
+            }
+            // Récupération des réceptions
+            if ($cg_vehicule != null) {
+                $receptions = $this->getDoctrine()->getRepository(CtReception::class)->findBy(['ctVehicule' => $cg_vehicule->getId()], ['id' => 'DESC']);
+            }
+        }
+        // Récupération des constatations avant dédouanement
+        if ($cg_vehicule != null) {
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
+            if ($constatations_jointures != null) {
+                //$jointure = new CtConstAvDedsConstAvDedCaracs();
+                //foreach ($jointure as $constatations_jointures) {
+                    $constatation[] = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findOneBy(['id' => $constatations_jointures->getConstAvDedId()]);
+                //}
+            }
+        } else {
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero]);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
+            if ($constatations_jointures != null) {
+                //$jointure = new CtConstAvDedsConstAvDedCaracs();
+                //foreach ($jointure as $constatations_jointures) {
+                    $constatation[] = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findOneBy(['id' => $constatations_jointures->getConstAvDedId()]);
+                //}
+            }
+        }  
+        if ($ctCarteGrise == null){
+            $ctCarteGrise = new CtCarteGrise();
+        }
+        if ($rcp_immatriculation == null){
+            $rcp_immatriculation = new CtReception();
+        }
+        if ($cg_vehicule == null){
+            $cg_vehicule = new CtVehicule();
+        }
+        // Rendu pou affichage des informations obtenue
+        return $this->render('ct_statistique/index_id.html.twig', [
+            'ct_carte_grise' => $ctCarteGrise,
+            'numero_de_serie' => $numero,
+            'vehicule_identification' => $cg_vehicule,
+            'visites' => $visites,
+            'receptions' => $receptions,
+            'ct_const_av_ded_caracs' => $constatations_caracteristiques,
+            'ct_const_av_deds' => $constatation,
+        ]);
+    }
 }
