@@ -428,9 +428,9 @@ class CtStatistiqueController extends AbstractController
     }
 
     /**
-     * @Route("/ct/identification", name="ct_identification", methods={"GET","POST"})
+     * @Route("/ct/identification", name="ct_identification_visite", methods={"GET","POST"})
      */
-    public function RechercheIdentification(Request $request): Response
+    public function RechercheIdentificationVisite(Request $request): Response
     {
         $numero = strtoupper(trim($request->query->get('numero')));
         /* $numeros = explode(' ', $numero);
@@ -450,35 +450,90 @@ class CtStatistiqueController extends AbstractController
         $vst = $this->getDoctrine()->getRepository(CtVisite::class)->findOneBy(["id" => $id]);
         $ctCarteGrise = $vst->getCtCarteGrise();
         $visites[] = $vst;
-        if ($ctCarteGrise == null){
-            $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['cgImmatriculation' => $numero]);
-        }
         if ($ctCarteGrise != null){
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
-        if ($cg_vehicule == null || $ctCarteGrise == null){
-            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $numero]);
-            if ($cg_vehicule != null) {
-                $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule->getId()]);
-            }
-        }
-        if($cg_vehicule == null || $ctCarteGrise == null){
-            $rcp_immatriculation = $this->getDoctrine()->getRepository(CtReception::class)->findOneBy(['rcpImmatriculation' => $numero]);
-            if ($rcp_immatriculation != null) {
-                $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $rcp_immatriculation->getCtVehicule()->getVhcNumSerie()]);
-                if ($cg_vehicule != null) {
-                    $ctCarteGrise = $this->getDoctrine()->getRepository(CtCarteGrise::class)->findOneBy(['ctVehicule' => $cg_vehicule->getId()]);
-                }
-            }
-        }
+        $visite = [
+            "id" => $vst->getId()?$vst->getId():"",
+            "centre" => $vst->getCtCentre()?$vst->getCtCentre()->getCtrNom():"",
+            "type_visite" => $vst->getCtTypeVisite()?$vst->getCtTypeVisite()->getTpvLibelle():"",
+            "usage" => $vst->getCtUsage()?$vst->getCtUsage()->getUsgLibelle():"",
+            "secretaire" => $vst->getCtUser()?$vst->getCtUser()->getUsrName():"",
+            "verificateur" => $vst->getCtVerificateur()?$vst->getCtVerificateur()->getUsrName():"",
+            "numero_controle" => $vst->getVstNumPv()?$vst->getVstNumPv():"",
+            "date_expiration" => $vst->getVstDateExpiration()?$vst->getVstDateExpiration()->format('m/d/Y'):"",
+            "date_visite" => $vst->getVstCreated()?$vst->getVstCreated()->format('m/d/Y'):"",
+            "date_modification" => $vst->getVstUpdated()?$vst->getVstUpdated()->format('m/d/Y'):"",
+            "utilisation" => $vst->getCtUtilisation()?$vst->getCtUtilisation()->getUtLibelle():"",
+            "aptitude" => $vst->getVstIsApte()?"Apte":"Inapte",
+            "mode_visite" => $vst->getVstIsContreVisite()?"Contre visite":"Visite première",
+            "duree_reparation" => $vst->getVstDureeReparation()?$vst->getVstDureeReparation():"",
+        ];
+        $carte_grise = [
+            "id" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
+            "carrosserie" => $ctCarteGrise->getCtCarosserie()?$ctCarteGrise->getCtCarosserie()->getCrsLibelle():"",
+            "centre" => $ctCarteGrise->getCtCentre()?$ctCarteGrise->getCtCentre()->getCtrNom():"",
+            "source_energie" => $ctCarteGrise->getCtSourceEnergie()?$ctCarteGrise->getCtSourceEnergie()->getSreLibelle():"",
+            "date_emission" => $ctCarteGrise->getCgDateEmission()?$ctCarteGrise->getCgDateEmission()->format('m/d/Y'):"",
+            "nom" => $ctCarteGrise->getCgNom()?$ctCarteGrise->getCgNom():"",
+            "prenom" => $ctCarteGrise->getCgPrenom()?$ctCarteGrise->getCgPrenom():"",
+            "profession" => $ctCarteGrise->getCgProfession()?$ctCarteGrise->getCgProfession():"",
+            "adresse" => $ctCarteGrise->getCgAdresse()?$ctCarteGrise->getCgAdresse():"",
+            "telephone" => $ctCarteGrise->getCgPhone()?$ctCarteGrise->getCgPhone():"",
+            "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
+            "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
+            "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
+            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('m/d/Y'):"",
+            "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
+            "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
+            "rta" => $ctCarteGrise->getCgRta()?$ctCarteGrise->getCgRta():"",
+            "num_carte_violette" => $ctCarteGrise->getCgNumCarteViolette()?$ctCarteGrise->getCgNumCarteViolette():"",
+            "date_carte_violette" => $ctCarteGrise->getCgDateCarteViolette()?$ctCarteGrise->getCgDateCarteViolette()->format('m/d/Y'):"",
+            "lieu_carte_violette" => $ctCarteGrise->getCgLieuCarteViolette()?$ctCarteGrise->getCgLieuCarteViolette():"",
+            "licence" => $ctCarteGrise->getCgNumVignette()?$ctCarteGrise->getCgNumVignette():"",
+            "date_licence" => $ctCarteGrise->getCgDateVignette()?$ctCarteGrise->getCgDateVignette()->format('m/d/Y'):"",
+            "lieu_licence" => $ctCarteGrise->getCgLieuVignette()?$ctCarteGrise->getCgLieuVignette():"",
+            "immatriculation" => $ctCarteGrise->getCgImmatriculation()?$ctCarteGrise->getCgImmatriculation():"",
+            "date" => $ctCarteGrise->getCgCreated()?$ctCarteGrise->getCgCreated()->format('m/d/Y'):"",
+            "nom_cooperative" => $ctCarteGrise->getCgNomCooperative()?$ctCarteGrise->getCgNomCooperative():"",
+            "itineraire" => $ctCarteGrise->getCgItineraire()?$ctCarteGrise->getCgItineraire():"",
+            "transporteur" => $ctCarteGrise->getCgIsTransport()?$ctCarteGrise->getCgIsTransport():"",
+            "numero_identification" => $ctCarteGrise->getCgNumIdentification()?$ctCarteGrise->getCgNumIdentification():"",
+            "zone_desserte" => $ctCarteGrise->getCtZoneDeserte()?$ctCarteGrise->getCtZoneDeserte()->getZdLibelle():"",
+        ];
+        $vehicule = [
+            "id" => $cg_vehicule->getId()?$cg_vehicule->getId():"",
+            "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
+            "marque" => $cg_vehicule->getCtMarque()?$cg_vehicule->getCtMarque()->getMrqLibelle():"",
+            "cylindre" => $cg_vehicule->getVhcCylindre()?$cg_vehicule->getVhcCylindre():"",
+            "puissance" => $cg_vehicule->getVhcPuissance()?$cg_vehicule->getVhcPuissance():"",
+            "poids_a_vide" => $cg_vehicule->getVhcPoidsVide()?$cg_vehicule->getVhcPoidsVide():"",
+            "charge_utile" => $cg_vehicule->getVhcChargeUtile()?$cg_vehicule->getVhcChargeUtile():"",
+            "hauteur" => $cg_vehicule->getVhcHauteur()?$cg_vehicule->getVhcHauteur():"",
+            "largeur" => $cg_vehicule->getVhcLargeur()?$cg_vehicule->getVhcLargeur():"",
+            "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
+            "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
+            "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
+            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('m/d/Y'):"",
+            "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
+            "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+        ];
+
+        $response = new JsonResponse();
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response = $this->json([$visite, $carte_grise, $vehicule]);
+
+        return $response;
 
         // Rendu pou affichage des informations obtenue
-        return $this->render('ct_statistique/index_id.html.twig', [
+        /* return $this->render('ct_statistique/index_id.html.twig', [
             'ct_carte_grise' => $ctCarteGrise,
             'numero_de_serie' => $numero,
             'vehicule_identification' => $cg_vehicule,
             'visites' => $visites,
-        ]);
+        ]); */
     }
 
     /**
@@ -500,15 +555,60 @@ class CtStatistiqueController extends AbstractController
         // Récupération des informations de la carte grise
         $id = $numero;
         $rcp = $this->getDoctrine()->getRepository(CtReception::class)->findOneBy(["id" => $id]);
-        $cg_vehicule = $this->getDoctrine()->getRepository(CtReception::class)->findOneBy(['ctVehicule' => $rcp->getCtVehicule()]);
-        $receptions[] = $rcp;
+        //$cg_vehicule = $this->getDoctrine()->getRepository(CtReception::class)->findOneBy(['ctVehicule' => $rcp->getCtVehicule()]);
+        $cg_vehicule = $rcp->getCtVehicule();
+        //$receptions[] = $rcp;
+        $reception = [
+            "id" => $rcp->getId()?$rcp->getId():"",
+            "centre" => $rcp->getCtCentre()?$rcp->getCtCentre()->getCtrNom():"",
+            "motif" => $rcp->getCtMotif()?$rcp->getCtMotif()->getMtfLibelle():"",
+            "type_reception" => $rcp->getCtTypeReception()?$rcp->getCtTypeReception()->getTprcpLibelle():"",
+            "secretaire" => $rcp->getCtUser()?$rcp->getCtUser()->getUsrName():"",
+            "utilisation" => $rcp->getCtUtilisation()?$rcp->getCtUtilisation()->getUtLibelle():"",
+            "date_mise_en_service" => $rcp->getRcpMiseService()?$rcp->getRcpMiseService()->format('m/d/Y'):"",
+            "immatriculation" => $rcp->getRcpImmatriculation()?$rcp->getRcpImmatriculation():"",
+            "proprietaire" => $rcp->getRcpProprietaire()?$rcp->getRcpProprietaire():"",
+            "profession" => $rcp->getRcpProfession()?$rcp->getRcpProfession():"",
+            "adresse" => $rcp->getRcpAdresse()?$rcp->getRcpAdresse():"",
+            "nombre_place_assis" => $rcp->getRcpNbrAssis()?$rcp->getRcpNbrAssis():"",
+            "nombre_place_debout" => $rcp->getRcpNbrDebout()?$rcp->getRcpNbrDebout():"",
+            "numero_controle" => $rcp->getRcpNumPv()?$rcp->getRcpNumPv():"",
+            "source_energie" => $rcp->getCtSourceEnergie()?$rcp->getCtSourceEnergie()->getSreLibelle():"",
+            "carrosserie" => $rcp->getCtCarosserie()?$rcp->getCtCarosserie()->getCrsLibelle():"",
+            "date" => $rcp->getRcpCreated()?$rcp->getRcpCreated()->format('m/d/Y'):"",
+            "genre" => $rcp->getCtGenre()?$rcp->getCtGenre()->getGrLibelle():"",
+        ];
+        $vehicule = [
+            "id" => $cg_vehicule->getId()?$cg_vehicule->getId():"",
+            "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
+            "marque" => $cg_vehicule->getCtMarque()?$cg_vehicule->getCtMarque()->getMrqLibelle():"",
+            "cylindre" => $cg_vehicule->getVhcCylindre()?$cg_vehicule->getVhcCylindre():"",
+            "puissance" => $cg_vehicule->getVhcPuissance()?$cg_vehicule->getVhcPuissance():"",
+            "poids_a_vide" => $cg_vehicule->getVhcPoidsVide()?$cg_vehicule->getVhcPoidsVide():"",
+            "charge_utile" => $cg_vehicule->getVhcChargeUtile()?$cg_vehicule->getVhcChargeUtile():"",
+            "hauteur" => $cg_vehicule->getVhcHauteur()?$cg_vehicule->getVhcHauteur():"",
+            "largeur" => $cg_vehicule->getVhcLargeur()?$cg_vehicule->getVhcLargeur():"",
+            "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
+            "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
+            "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
+            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('m/d/Y'):"",
+            "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
+            "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+        ];
+
+        $response = new JsonResponse();
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response = $this->json([$reception, $vehicule]);
+
+        return $response;
 
         // Rendu pou affichage des informations obtenue
-        return $this->render('ct_statistique/index_id_reception.html.twig', [
+        /* return $this->render('ct_statistique/index_id_reception.html.twig', [
             'numero_de_serie' => $numero,
             'vehicule_identification' => $cg_vehicule,
             'receptions' => $receptions,
-        ]);
+        ]); */
     }
 
     /**
@@ -517,11 +617,69 @@ class CtStatistiqueController extends AbstractController
     public function RechercheIdentificationConstatation(Request $request): Response
     {
         $numero = strtoupper(trim($request->query->get('numero')));
-        /* $numeros = explode(' ', $numero);
-        $numero = "";
-        foreach($numeros as $num){
-            $numero .= strtoupper($num);
-        } */
+        $constatation_carte_grise = [
+            "id" => "",
+            "carrosserie" => "",
+            "type" => "Carte grise",
+            "genre" => "",
+            "marque" => "",
+            "source_energie" => "",
+            "cylindre" => "",
+            "puissance" => "",
+            "poids_a_vide" => "",
+            "charge_utile" => "",
+            "hauteur" => "",
+            "largeur" => "",
+            "longueur" => "",
+            "numero_serie" => "",
+            "numero_moteur" => "",
+            "typ_car" => "",
+            "ptac" => "",
+            "date_premiere_circulation" => "",
+            "nombre_place_assis" => "",
+        ];
+        $constatation_corps_vehicule = [
+            "id" => "",
+            "carrosserie" => "",
+            "type" => "Corps du véhicule",
+            "genre" => "",
+            "marque" => "",
+            "source_energie" => "",
+            "cylindre" => "",
+            "puissance" => "",
+            "poids_a_vide" => "",
+            "charge_utile" => "",
+            "hauteur" => "",
+            "largeur" => "",
+            "longueur" => "",
+            "numero_serie" => "",
+            "numero_moteur" => "",
+            "typ_car" => "",
+            "ptac" => "",
+            "date_premiere_circulation" => "",
+            "nombre_place_assis" => "",
+        ];
+        $constatation_note_descriptive = [
+            "id" => "",
+            "carrosserie" => "",
+            "type" => "Note descriptive",
+            "genre" => "",
+            "marque" => "",
+            "source_energie" => "",
+            "cylindre" => "",
+            "puissance" => "",
+            "poids_a_vide" => "",
+            "charge_utile" => "",
+            "hauteur" => "",
+            "largeur" => "",
+            "longueur" => "",
+            "numero_serie" => "",
+            "numero_moteur" => "",
+            "typ_car" => "",
+            "ptac" => "",
+            "date_premiere_circulation" => "",
+            "nombre_place_assis" => "",
+        ];
 
         if($numero == ''){
             return $this->render('ct_statistique/recherche_id.html.twig');
@@ -531,19 +689,118 @@ class CtStatistiqueController extends AbstractController
         $cad = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findOneBy(["id" => $id]);
         //var_dump($cad);
         $constatation[] = $cad;
+        $constatation_information = [
+            "id" => $id?$id:"",
+            "centre" => $cad->getCtCentre()?$cad->getCtCentre()->getCtrNom():"",
+            "verificateur" => $cad->getCtVerificateur()?$cad->getCtVerificateur()->getUsrName():"",
+            "provenance" => $cad->getCadProvenance()?$cad->getCadProvenance():"",
+            "divers" => $cad->getCadDivers()?$cad->getCadDivers():"",
+            "nom_proprietaire" => $cad->getCadProprietaireNom()?$cad->getCadProprietaireNom():"",
+            "adresse_proprietaire" => $cad->getCadProprietaireAdresse()?$cad->getCadProprietaireAdresse():"",
+            "etat" => $cad->getCadBonEtat()?"Bon":"Mauvaise",
+            "sec_pers" => $cad->getCadSecPers()?"Oui":"Non",
+            "sec_march" => $cad->getCadSecMarch()?"Oui":"Non",
+            "protec_env" => $cad->getCadProtecEnv()?"Oui":"Non",
+            "numero_ctrl" => $cad->getCadNumero()?$cad->getCadNumero():"",
+            "immatriculation" => $cad->getCadImmatriculation()?$cad->getCadImmatriculation():"",
+            "date_embarquement" => $cad->getCadDateEmbarquement()?$cad->getCadDateEmbarquement()->format('m/d/Y'):"",
+            "lieu_embarquement" => $cad->getCadLieuEmbarquement()?$cad->getCadLieuEmbarquement():"",
+            "date" => $cad->getCadCreated()?$cad->getCadCreated()->format('m/d/Y'):"",
+            "conformite" => $cad->getCadConforme()?"Conforme":"Non conforme",
+            "observation" => $cad->getCadObservation()?$cad->getCadObservation():"",
+        ];
         $constatations_caracteristiques = new ArrayCollection();
         $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findBy(['const_av_ded_id' => $id]);
         if ($constatations_jointures != null) {
             foreach ($constatations_jointures as $jointure) {
                 $constatations_caracteristiques->add($this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['id' => $jointure->getConstAvDedCaracId()]));
+                $const_carac = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['id' => $jointure->getConstAvDedCaracId()]);
+                switch ($const_carac->getCtConstAvDedType()->getId()){
+                    case 1:
+                        $constatation_carte_grise = [
+                            "id" => $const_carac->getId()?$const_carac->getId():"",
+                            "carrosserie" => $const_carac->getCtCarosserie()?$const_carac->getCtCarosserie()->getCrsLibelle():"",
+                            "type" => $const_carac->getCtConstAvDedType()?$const_carac->getCtConstAvDedType()->getCadTpLibelle():"",
+                            "genre" => $const_carac->getCtGenre()?$const_carac->getCtGenre()->getGrLibelle():"",
+                            "marque" => $const_carac->getCtMarque()?$const_carac->getCtMarque()->getMrqLibelle():"",
+                            "source_energie" => $const_carac->getCtSourceEnergie()?$const_carac->getCtSourceEnergie()->getSreLibelle():"",
+                            "cylindre" => $const_carac->getCadCylindre()?$const_carac->getCadCylindre():"",
+                            "puissance" => $const_carac->getCadPuissance()?$const_carac->getCadPuissance():"",
+                            "poids_a_vide" => $const_carac->getCadPoidsVide()?$const_carac->getCadPoidsVide():"",
+                            "charge_utile" => $const_carac->getCadChargeUtile()?$const_carac->getCadChargeUtile():"",
+                            "hauteur" => $const_carac->getCadHauteur()?$const_carac->getCadHauteur():"",
+                            "largeur" => $const_carac->getCadLargeur()?$const_carac->getCadLargeur():"",
+                            "longueur" => $const_carac->getCadLongueur()?$const_carac->getCadLongueur():"",
+                            "numero_serie" => $const_carac->getCadNumSerieType()?$const_carac->getCadNumSerieType():"",
+                            "numero_moteur" => $const_carac->getCadNumMoteur()?$const_carac->getCadNumMoteur():"",
+                            "typ_car" => $const_carac->getCadTypeCar()?$const_carac->getCadTypeCar():"",
+                            "ptac" => $const_carac->getCadPoidsTotalCharge()?$const_carac->getCadPoidsTotalCharge():"",
+                            "date_premiere_circulation" => $const_carac->getCadPremiereCircule()?$const_carac->getCadPremiereCircule():"",
+                            "nombre_place_assis" => $const_carac->getCadNbrAssis()?$const_carac->getCadNbrAssis():"",
+                        ];
+                        break;
+                    case 2:
+                        $constatation_corps_vehicule = [
+                            "id" => $const_carac->getId()?$const_carac->getId():"",
+                            "carrosserie" => $const_carac->getCtCarosserie()?$const_carac->getCtCarosserie()->getCrsLibelle():"",
+                            "type" => $const_carac->getCtConstAvDedType()?$const_carac->getCtConstAvDedType()->getCadTpLibelle():"",
+                            "genre" => $const_carac->getCtGenre()?$const_carac->getCtGenre()->getGrLibelle():"",
+                            "marque" => $const_carac->getCtMarque()?$const_carac->getCtMarque()->getMrqLibelle():"",
+                            "source_energie" => $const_carac->getCtSourceEnergie()?$const_carac->getCtSourceEnergie()->getSreLibelle():"",
+                            "cylindre" => $const_carac->getCadCylindre()?$const_carac->getCadCylindre():"",
+                            "puissance" => $const_carac->getCadPuissance()?$const_carac->getCadPuissance():"",
+                            "poids_a_vide" => $const_carac->getCadPoidsVide()?$const_carac->getCadPoidsVide():"",
+                            "charge_utile" => $const_carac->getCadChargeUtile()?$const_carac->getCadChargeUtile():"",
+                            "hauteur" => $const_carac->getCadHauteur()?$const_carac->getCadHauteur():"",
+                            "largeur" => $const_carac->getCadLargeur()?$const_carac->getCadLargeur():"",
+                            "longueur" => $const_carac->getCadLongueur()?$const_carac->getCadLongueur():"",
+                            "numero_serie" => $const_carac->getCadNumSerieType()?$const_carac->getCadNumSerieType():"",
+                            "numero_moteur" => $const_carac->getCadNumMoteur()?$const_carac->getCadNumMoteur():"",
+                            "typ_car" => $const_carac->getCadTypeCar()?$const_carac->getCadTypeCar():"",
+                            "ptac" => $const_carac->getCadPoidsTotalCharge()?$const_carac->getCadPoidsTotalCharge():"",
+                            "date_premiere_circulation" => $const_carac->getCadPremiereCircule()?$const_carac->getCadPremiereCircule():"",
+                            "nombre_place_assis" => $const_carac->getCadNbrAssis()?$const_carac->getCadNbrAssis():"",
+                        ];
+                        break;
+                    case 3:
+                        $constatation_note_descriptive = [
+                            "id" => $const_carac->getId()?$const_carac->getId():"",
+                            "carrosserie" => $const_carac->getCtCarosserie()?$const_carac->getCtCarosserie()->getCrsLibelle():"",
+                            "type" => $const_carac->getCtConstAvDedType()?$const_carac->getCtConstAvDedType()->getCadTpLibelle():"",
+                            "genre" => $const_carac->getCtGenre()?$const_carac->getCtGenre()->getGrLibelle():"",
+                            "marque" => $const_carac->getCtMarque()?$const_carac->getCtMarque()->getMrqLibelle():"",
+                            "source_energie" => $const_carac->getCtSourceEnergie()?$const_carac->getCtSourceEnergie()->getSreLibelle():"",
+                            "cylindre" => $const_carac->getCadCylindre()?$const_carac->getCadCylindre():"",
+                            "puissance" => $const_carac->getCadPuissance()?$const_carac->getCadPuissance():"",
+                            "poids_a_vide" => $const_carac->getCadPoidsVide()?$const_carac->getCadPoidsVide():"",
+                            "charge_utile" => $const_carac->getCadChargeUtile()?$const_carac->getCadChargeUtile():"",
+                            "hauteur" => $const_carac->getCadHauteur()?$const_carac->getCadHauteur():"",
+                            "largeur" => $const_carac->getCadLargeur()?$const_carac->getCadLargeur():"",
+                            "longueur" => $const_carac->getCadLongueur()?$const_carac->getCadLongueur():"",
+                            "numero_serie" => $const_carac->getCadNumSerieType()?$const_carac->getCadNumSerieType():"",
+                            "numero_moteur" => $const_carac->getCadNumMoteur()?$const_carac->getCadNumMoteur():"",
+                            "typ_car" => $const_carac->getCadTypeCar()?$const_carac->getCadTypeCar():"",
+                            "ptac" => $const_carac->getCadPoidsTotalCharge()?$const_carac->getCadPoidsTotalCharge():"",
+                            "date_premiere_circulation" => $const_carac->getCadPremiereCircule()?$const_carac->getCadPremiereCircule():"",
+                            "nombre_place_assis" => $const_carac->getCadNbrAssis()?$const_carac->getCadNbrAssis():"",
+                        ];
+                        break;
+                }
             }
         }
 
+        $response = new JsonResponse();
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response = $this->json([$constatation_information, $constatation_carte_grise, $constatation_corps_vehicule, $constatation_note_descriptive]);
+
+        return $response;
+
         // Rendu pou affichage des informations obtenue
-        return $this->render('ct_statistique/index_id_constatation.html.twig', [
+        /* return $this->render('ct_statistique/index_id_constatation.html.twig', [
             'numero_de_serie' => $numero,
             'ct_const_av_ded_caracs' => $constatations_caracteristiques,
             'ct_const_av_deds' => $constatation,
-        ]);
+        ]); */
     }
 }
