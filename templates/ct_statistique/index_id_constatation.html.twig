@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ct Historique du numéro {{ numero_de_serie }} {% endblock %}
+
+{% block body %}
+    <div align="center"><img src="/dist/images/header.png" class="img-fluid" alt="Image en-tête de la DGSR"></div>
+    <div align="center"><h1>Ct Historique Véhicule Par Identification</h1></div>
+
+    <div align="center">
+        <form method="GET" action="{{ path('ct_identification') }}">
+            <input type="text" name="numero" id="numero" value="">
+            <input type="submit" class="btn" value="Rechercher" name="bouton" id="bouton">
+        </form>
+    </div>
+    {# <div align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div> #}
+    <div align="center" style="background-color:#1faccb;"><h2>Information sur le numéro : {{ numero_de_serie }}</h2></div>
+    
+
+    <div align="center" style="background-color:#1faccb;"><h2>Constatation avant dédouanement</h2></div>
+    {% if ct_const_av_ded_caracs %}
+        {# {{ dump(ct_const_av_ded_caracs) }} #}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Carosserie</th>
+                    <th>Genre</th>
+                    <th>Marque</th>
+                    <th>Source d'energie</th>
+                    <th>Cylindre</th>
+                    <th>Puissance</th>
+                    <th>Poids à Vide</th>
+                    <th>Charge Utile</th>
+                    <th>Hauteur</th>
+                    <th>Largeur</th>
+                    <th>Longueur</th>
+                    <th>Numéro de SerieType</th>
+                    <th>Numéro Moteur</th>
+                    <th>Type Caractéristique</th>
+                    <th>Poids Maximale</th>
+                    <th>Poids Total à Charge</th>
+                    <th>Première Circulation</th>
+                    <th>Nombre Assis</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ct_const_av_ded_carac in ct_const_av_ded_caracs %}
+                <tr>
+                    <td>{{ ct_const_av_ded_carac.ctCarosserie }}</td>
+                    <td>{{ ct_const_av_ded_carac.ctGenre }}</td>
+                    <td>{{ ct_const_av_ded_carac.ctMarque }}</td>
+                    <td>{{ ct_const_av_ded_carac.ctSourceEnergie }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadCylindre }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadPuissance }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadPoidsVide }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadChargeUtile }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadHauteur }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadLargeur }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadLongueur }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadNumSerieType }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadNumMoteur }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadTypeCar }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadPoidsMaxima }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadPoidsTotalCharge }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadPremiereCircule }}</td>
+                    <td>{{ ct_const_av_ded_carac.cadNbrAssis }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">Aucune constatation avant dédouanement trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% if ct_const_av_deds %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Centre</th>
+                    <th>Vérificateur</th>
+                    <th>Provenance</th>
+                    <th>Divers</th>
+                    <th>Nom du propriétaire</th>
+                    <th>Adresse du Proprietaire</th>
+                    <th>Etat</th>
+                    <th>Sécurité personnel</th>
+                    <th>Sécurité marchandise</th>
+                    <th>Protection environnement</th>
+                    <th>Numéro</th>
+                    <th>Immatriculation</th>
+                    <th>Date d'embarquement</th>
+                    <th>Lieu d'embarquement</th>
+                    <th>Conforme</th>
+                    <th>Observation</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ct_const_av_ded in ct_const_av_deds %}
+                <tr>
+                    <td>{{ ct_const_av_ded.ctCentre }}</td>
+                    <td>{{ ct_const_av_ded.ctVerificateur }}</td>
+                    <td>{{ ct_const_av_ded.cadProvenance }}</td>
+                    <td>{{ ct_const_av_ded.cadDivers }}</td>
+                    <td>{{ ct_const_av_ded.cadProprietaireNom }}</td>
+                    <td>{{ ct_const_av_ded.cadProprietaireAdresse }}</td>
+                    <td>{{ ct_const_av_ded.cadBonEtat ? 'Bon' : 'Mauvais' }}</td>
+                    <td>{{ ct_const_av_ded.cadSecPers ? 'Oui' : 'Non' }}</td>
+                    <td>{{ ct_const_av_ded.cadSecMarch ? 'Oui' : 'Non' }}</td>
+                    <td>{{ ct_const_av_ded.cadProtecEnv ? 'Oui' : 'Non' }}</td>
+                    <td>{{ ct_const_av_ded.cadNumero }}</td>
+                    <td>{{ ct_const_av_ded.cadImmatriculation }}</td>
+                    <td>{{ ct_const_av_ded.cadDateEmbarquement ? ct_const_av_ded.cadDateEmbarquement|date('d/m/Y') : '' }}</td>
+                    <td>{{ ct_const_av_ded.cadLieuEmbarquement }}</td>
+                    <td>{{ ct_const_av_ded.cadConforme ? 'Oui' : 'Non' }}</td>
+                    <td>{{ ct_const_av_ded.cadObservation }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">Aucune constatation avant dédouanement trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

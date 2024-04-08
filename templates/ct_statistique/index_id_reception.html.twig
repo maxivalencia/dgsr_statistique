@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ct Historique du numéro {{ numero_de_serie }} {% endblock %}
+
+{% block body %}
+    <div align="center"><img src="/dist/images/header.png" class="img-fluid" alt="Image en-tête de la DGSR"></div>
+    <div align="center"><h1>Ct Historique Véhicule Par Identification</h1></div>
+
+    <div align="center">
+        <form method="GET" action="{{ path('ct_identification') }}">
+            <input type="text" name="numero" id="numero" value="">
+            <input type="submit" class="btn" value="Rechercher" name="bouton" id="bouton">
+        </form>
+    </div>
+    {# <div align="center"><a href="{{ path('acceuil') }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"> Acceuil</i></a></div> #}
+    <div align="center" style="background-color:#1faccb;"><h2>Information sur le numéro : {{ numero_de_serie }}</h2></div>
+
+    <div align="center" style="background-color:#1faccb;"><h2>Liste des réceptions effectuée</h2></div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro PV</th>
+                <th>Centre</th>
+                <th>Motif</th>
+                <th>Type de reception</th>
+                <th>Secrétaire</th>
+                <th>Utilisation</th>
+                <th>Numéro de serie</th>
+                <th>Date de mise en service</th>
+                <th>Immatriculation</th>
+                <th>Propriétaire</th>
+                <th>Profession</th>
+                <th>Adresse</th>
+                <th>Nombre de place assis</th>
+                <th>Nombre de place debout</th>
+                <th>Numéro PV détail</th>
+                <th>Source d'énergie</th>
+                <th>Carosserie</th>
+                {# <th>Numéro du Groupe</th> #}
+                <th>Date de réception</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reception in receptions %}
+            <tr>
+                <td>{{ reception.id }}</td>
+                <td>{{ reception.ctCentre }}</td>
+                <td>{{ reception.ctMotif }}</td>
+                <td>{{ reception.ctTypeReception }}</td>
+                <td>{{ reception.ctUser }}</td>
+                <td>{{ reception.ctUtilisation }}</td>
+                <td>{{ reception.ctVehicule }}</td>
+                <td>{{ reception.rcpMiseService ? reception.rcpMiseService|date('d/m/Y') : '' }}</td>
+                <td>{{ reception.rcpImmatriculation }}</td>
+                <td>{{ reception.rcpProprietaire }}</td>
+                <td>{{ reception.rcpProfession }}</td>
+                <td>{{ reception.rcpAdresse }}</td>
+                <td>{{ reception.rcpNbrAssis }}</td>
+                <td>{{ reception.rcpNbrDebout }}</td>
+                <td>{{ reception.rcpNumPv }}</td>
+                <td>{{ reception.ctSourceEnergie }}</td>
+                <td>{{ reception.ctCarosserie }}</td>
+                {# <td>{{ reception.rcpNumGroup }}</td> #}
+                <td>{{ reception.rcpCreated ? reception.rcpCreated|date('d/m/Y') : '' }}</td>
+                <td>{{ reception.ctGenre }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">Aucune reception trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
