@@ -48,10 +48,26 @@ class CtAnomalie
      */
     private $ctAnomalieType;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="CtVisite", inversedBy="ctVisiteAnomalie")
+     * @ORM\JoinTable(name="ct_visite_anomalie",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="ct_anomalie_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="ct_visite_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $ctVisite;
+
     
     public function __construct()
     {
         $this->CtAnomalieType =  new ArrayCollection();
+        $this->ctVisite = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,6 +95,32 @@ class CtAnomalie
     public function setAnmlCode(?string $anmlCode): self
     {
         $this->anmlCode = $anmlCode;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CtVisite[]
+     */
+    public function getCtVisite(): Collection
+    {
+        return $this->ctVisite;
+    }
+
+    public function addCtVisite(CtVisite $ctVisite): self
+    {
+        if (!$this->ctVisite->contains($ctVisite)) {
+            $this->ctVisite[] = $ctVisite;
+        }
+
+        return $this;
+    }
+
+    public function removeCtVisite(CtVisite $ctVisite): self
+    {
+        if ($this->ctVisite->contains($ctVisite)) {
+            $this->ctVisite->removeElement($ctVisite);
+        }
 
         return $this;
     }
