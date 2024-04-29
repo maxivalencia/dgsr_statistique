@@ -520,10 +520,12 @@ class CtStatistiqueController extends AbstractController
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
         ];
 
-        $response = new JsonResponse();
+        $response = new JsonResponse([$visite, $carte_grise, $vehicule]);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response = $this->json([$visite, $carte_grise, $vehicule]);
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        //$response = $this->json([$visite, $carte_grise, $vehicule]);
 
         return $response;
 
@@ -596,10 +598,12 @@ class CtStatistiqueController extends AbstractController
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
         ];
 
-        $response = new JsonResponse();
+        $response = new JsonResponse([$reception, $vehicule]);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response = $this->json([$reception, $vehicule]);
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        //$response = $this->json([$reception, $vehicule]);
 
         return $response;
 
@@ -789,10 +793,12 @@ class CtStatistiqueController extends AbstractController
             }
         }
 
-        $response = new JsonResponse();
+        $response = new JsonResponse([$constatation_information, $constatation_carte_grise, $constatation_corps_vehicule, $constatation_note_descriptive]);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response = $this->json([$constatation_information, $constatation_carte_grise, $constatation_corps_vehicule, $constatation_note_descriptive]);
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        //$response = $this->json([$constatation_information, $constatation_carte_grise, $constatation_corps_vehicule, $constatation_note_descriptive]);
 
         return $response;
 
