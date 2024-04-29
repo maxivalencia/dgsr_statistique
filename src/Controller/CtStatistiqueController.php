@@ -430,7 +430,7 @@ class CtStatistiqueController extends AbstractController
     }
 
     /**
-     * @Route("/ct/identification", name="ct_identification_visite", methods={"GET","POST"})
+     * @Route("/ct/identification/visite", name="ct_identification_visite", methods={"GET","POST"})
      */
     public function RechercheIdentificationVisite(Request $request): Response
     {
