@@ -490,7 +490,7 @@ class CtStatistiqueController extends AbstractController
         $carte_grise = [ */
             "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
             "carrosserie" => $ctCarteGrise->getCtCarosserie()?$ctCarteGrise->getCtCarosserie()->getCrsLibelle():"",
-            "centre" => $ctCarteGrise->getCtCentre()?$ctCarteGrise->getCtCentre()->getCtrNom():"",
+            "centre_carte_grise" => $ctCarteGrise->getCtCentre()?$ctCarteGrise->getCtCentre()->getCtrNom():"",
             "source_energie" => $ctCarteGrise->getCtSourceEnergie()?$ctCarteGrise->getCtSourceEnergie()->getSreLibelle():"",
             "date_emission" => $ctCarteGrise->getCgDateEmission()?$ctCarteGrise->getCgDateEmission()->format('m/d/Y'):"",
             "nom" => $ctCarteGrise->getCgNom()?$ctCarteGrise->getCgNom():"",
