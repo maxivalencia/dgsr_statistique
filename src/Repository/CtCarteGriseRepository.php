@@ -47,4 +47,20 @@ class CtCarteGriseRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+      * @return CtCarteGrise[] Returns an array of CtCarteGrise objects
+      */
+    public function findInfoProprietaire($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.cgImmatriculation LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('c.id', 'DESC')
+            ->groupBy('c.cgImmatriculation')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

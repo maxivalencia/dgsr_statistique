@@ -17,6 +17,7 @@ use App\Repository\CtUserRepository;
 use App\Repository\CtUtilisationRepository;
 use App\Repository\CtVisiteAnomalieRepository;
 use App\Repository\CtAnomalieRepository;
+use App\Entity\CtCarteGrise;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +35,39 @@ class CtServiceMobileController extends AbstractController
         return $this->render('ct_service_mobile/index.html.twig', [
             'controller_name' => 'CtServiceMobileController',
         ]);
+    }
+
+    /**
+     * @Route("/ct/service/mobile/recherche/proprietaire", name="ct_service_mobile_recherche_immatriculation_proprietaire", methods={"GET", "POST"})
+     */
+    public function rechercheProprietaire(Request $request, CtCarteGriseRepository $ctCarteGriseRepository)
+    {
+        $information_vehicule = [
+            "nom_chauffeur" => "",
+            "contact_chauffeur" => "",
+            "nom_proprietaire" => "",
+            "contact_proprietaire" => "",
+        ];
+        $immatriculation = $request->query->get('immatriculation');
+        $info = new CtCarteGrise();
+        $liste_info = $ctCarteGriseRepository->findInfoProprietaire($immatriculation);
+        if(count($liste_info) == 1){
+            foreach($liste_info as $lst_i){
+                $information_vehicule = [
+                    "nom_chauffeur" => "",
+                    "contact_chauffeur" => "",
+                    "nom_proprietaire" => $lst_i->getCgNom().' '.$lst_i->getCgPrenom(),
+                    "contact_proprietaire" => $lst_i->getCgPhone(),
+                ];
+            }
+        }
+        $response = new JsonResponse($information_vehicule);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+        return $response;
     }
 
     /**
@@ -171,8 +205,10 @@ class CtServiceMobileController extends AbstractController
                 }
             }
             $response = new JsonResponse($array_vehicule->toArray());
+            $response->headers->set('Access-Control-Allow-Headers', '*');
             $response->headers->set('Content-Type', 'application/json');
             $response->headers->set('Access-Control-Allow-Origin', '*');
+            $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
     
             return $response;
             //return new JsonResponse($array_vehicule->toArray());            
