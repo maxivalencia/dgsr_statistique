@@ -471,6 +471,7 @@ class CtStatistiqueController extends AbstractController
             $anomalies_to_string .= $anm->getAnmlCode();
         }
         $visite = [
+            "type_operation" => "VT",
             "id_visite" => $vst->getId()?$vst->getId():"",
             "centre" => $vst->getCtCentre()?$vst->getCtCentre()->getCtrNom():"",
             "type_visite" => $vst->getCtTypeVisite()?$vst->getCtTypeVisite()->getTpvLibelle():"",
@@ -579,6 +580,7 @@ class CtStatistiqueController extends AbstractController
         $cg_vehicule = $rcp->getCtVehicule();
         //$receptions[] = $rcp;
         $reception = [
+            "type_operation" => "RT",
             "id_reception" => $rcp->getId()?$rcp->getId():"",
             "centre" => $rcp->getCtCentre()?$rcp->getCtCentre()->getCtrNom():"",
             "motif" => $rcp->getCtMotif()?$rcp->getCtMotif()->getMtfLibelle():"",
@@ -712,6 +714,7 @@ class CtStatistiqueController extends AbstractController
         //var_dump($cad);
         $constatation[] = $cad;
         $constatation_information = [
+            "type_operation" => "CAD",
             "id" => $id?$id:"",
             "centre" => $cad->getCtCentre()?$cad->getCtCentre()->getCtrNom():"",
             "verificateur" => $cad->getCtVerificateur()?$cad->getCtVerificateur()->getUsrName():"",
@@ -828,5 +831,66 @@ class CtStatistiqueController extends AbstractController
             'ct_const_av_ded_caracs' => $constatations_caracteristiques,
             'ct_const_av_deds' => $constatation,
         ]); */
+    }
+
+    /**
+    * Decrypt value to string readable
+    *
+    * @param mixed $value
+    * @return string
+    */
+    function DecryptageDGSR_v2024($value){
+        $_decrypted = "";
+
+        $_decrypted_64 = base64_decode($value);
+
+        $_table = str_split($_decrypted_64, 1);
+
+        $_base = $this->getParameter('basecode');
+        $_code = $this->getParameter('encodage');
+
+        foreach($_table as $_str){
+            $_key  = array_search($_str, $_code);
+            $_decrypted .= $_base[$_key];
+        }
+        return $_decrypted;
+    }
+
+    /**
+     * @Route("/ct/identification/qr_code", name="ct_identification_qr_code", methods={"GET", "POST"})
+     */
+    public function rechercheProprietaire(Request $request)
+    {
+        $code = trim($request->query->get('code'));
+        $decoded_string = $this->DecryptageDGSR_v2024($code);
+        $result_value = explode("-", $decoded_string);
+        $type_operation = $result_value[0];
+        $id = $result_value[1];
+        switch($type_operation){
+            case "VT":
+                return $this->redirectToRoute('ct_identification_visite', ["numero" => $id]);
+                break;
+            case "RT":
+                return $this->redirectToRoute('ct_identification_reception', ["numero" => $id]);
+                break;
+            case "CAD":
+                return $this->redirectToRoute('ct_identification_constatation', ["numero" => $id]);
+                break;
+            default:
+                $information_vehicule = [
+                    "code" => $code,
+                    "decoded" => $this->DecryptageDGSR_v2024($code),
+                    "type operation" => $type_operation,
+                    "identification" => $id,
+                ];
+        }
+
+        $response = new JsonResponse($information_vehicule);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+        return $response;
     }
 }

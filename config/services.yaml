@@ -6,6 +6,8 @@
 parameters:
     locale: 'fr'
     image: '%kernel.project_dir%/public/dist/images'
+    basecode: ["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    encodage: ["l", "g", "q", "G", "K", "L", "-", "4", "V", "b", "f", "v", "d", "0", "X", "7", "i", "h", "m", "I", "N", "z", "9", "k", "F", "a", "5", "p", "H", "y", "M", "x", "w", "e", "1", "2", "U", "S", "D", "R", "B", "6", "Y", "J", "E", "C", "P", "s", "3", "r", "O", "o", "t", "8", "T", "c", "Z", "u", "A", "j", "Q", "W", "n"]
 
 services:
     # default configuration for services in *this* file

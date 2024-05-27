@@ -25,10 +25,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * @Route("/ct/service", name="ct_service_mobile")
+ */
 class CtServiceMobileController extends AbstractController
 {
     /**
-     * @Route("/ct/service/mobile", name="ct_service_mobile")
+     * @Route("/mobile", name="ct_service_mobile")
      */
     public function index()
     {
@@ -38,7 +41,7 @@ class CtServiceMobileController extends AbstractController
     }
 
     /**
-     * @Route("/ct/service/mobile/recherche/proprietaire", name="ct_service_mobile_recherche_immatriculation_proprietaire", methods={"GET", "POST"})
+     * @Route("/mobile/recherche/proprietaire", name="ct_service_mobile_recherche_immatriculation_proprietaire", methods={"GET", "POST"})
      */
     public function rechercheProprietaire(Request $request, CtCarteGriseRepository $ctCarteGriseRepository)
     {
@@ -71,7 +74,7 @@ class CtServiceMobileController extends AbstractController
     }
 
     /**
-     * @Route("/ct/service/mobile/recherche", name="ct_service_mobile_recherche_immatriculation", methods={"GET", "POST"})
+     * @Route("/mobile/recherche", name="ct_service_mobile_recherche_immatriculation", methods={"GET", "POST"})
      */
     public function recherche(Request $request, CtAnomalieRepository $ctAnomalieRepository, CtVisiteAnomalieRepository $ctVisiteAnomalieRepository, CtUtilisationRepository $ctUtilisationRepository, CtUserRepository $ctUserRepository, CtUsageRepository $ctUsageRepository, CtProvinceRepository $ctProvinceRepository, CtCentreRepository $ctCentreRepository, CtVisiteRepository $ctVisiteRepository, CtGenreRepository $ctGenreRepository, CtMarqueRepository $ctMarqueRepository, CtSourceEnergieRepository $ctSourceEnergieRepository, CtCarteGriseRepository $ctCarteGriseRepository, CtVehiculeRepository $ctVehiculeRepository, CtCarosserieRepository $ctCarosserieRepository)
     {
