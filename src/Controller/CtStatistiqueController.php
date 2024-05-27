@@ -866,7 +866,7 @@ class CtStatistiqueController extends AbstractController
         $result_value = explode("-", $decoded_string);
         $type_operation = $result_value[0];
         $id = $result_value[1];
-        switch($type_operation){
+        /* switch($type_operation){
             case "VT":
                 return $this->redirectToRoute('ct_identification_visite', ["numero" => $id]);
                 break;
@@ -877,15 +877,21 @@ class CtStatistiqueController extends AbstractController
                 return $this->redirectToRoute('ct_identification_constatation', ["numero" => $id]);
                 break;
             default:
-                $information_vehicule = [
+                $information = [
                     "code" => $code,
                     "decoded" => $this->DecryptageDGSR_v2024($code),
-                    "type operation" => $type_operation,
+                    "type_operation" => $type_operation,
                     "identification" => $id,
                 ];
-        }
+        } */
+        $information = [
+            "code" => $code,
+            "decoded" => $decoded_string,
+            "type_operation" => $type_operation,
+            "identification" => $id,
+        ];
 
-        $response = new JsonResponse($information_vehicule);
+        $response = new JsonResponse($information);
         $response->headers->set('Access-Control-Allow-Headers', '*');
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
