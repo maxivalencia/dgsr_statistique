@@ -887,7 +887,7 @@ class CtStatistiqueController extends AbstractController
         $information = [
             "code" => $code,
             "decoded" => $decoded_string,
-            "type_operation" => $type_operation,
+            "operation" => $type_operation,
             "identification" => $id,
         ];
 
