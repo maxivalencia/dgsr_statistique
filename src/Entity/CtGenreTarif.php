@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtGenre;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtGenreTarif
  *
  * @ORM\Table(name="ct_genre_tarif", uniqueConstraints={@ORM\UniqueConstraint(name="uk_ct_genre_ct_annee", columns={"grt_annee", "ct_genre_id"})}, indexes={@ORM\Index(name="fk_ct_genre_tarif_ct_genre1_idx", columns={"ct_genre_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtGenreTarifRepository")
+ * @ORM\Entity
  */
 class CtGenreTarif
 {
@@ -27,16 +26,16 @@ class CtGenreTarif
     /**
      * @var float|null
      *
-     * @ORM\Column(name="grt_prix", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="grt_prix", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $grtPrix;
+    private $grtPrix = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="grt_annee", type="string", length=4, nullable=true)
+     * @ORM\Column(name="grt_annee", type="string", length=4, nullable=true, options={"default"="NULL"})
      */
-    private $grtAnnee;
+    private $grtAnnee = 'NULL';
 
     /**
      * @var \CtGenre
@@ -95,7 +94,7 @@ class CtGenreTarif
     */
     public function __toString()
     {
-        return $this->getGrtPrix();
+        return $this->getCtGenre();
     }
 
 

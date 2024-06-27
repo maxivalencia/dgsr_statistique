@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtTypeDroitPtac
  *
  * @ORM\Table(name="ct_type_droit_ptac")
- * @ORM\Entity(repositoryClass="App\Repository\CtTypeDroitPtacRepository")
+ * @ORM\Entity
  */
 class CtTypeDroitPtac
 {
@@ -26,9 +26,9 @@ class CtTypeDroitPtac
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tp_dp_libelle", type="string", length=45, nullable=true)
+     * @ORM\Column(name="tp_dp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $tpDpLibelle;
+    private $tpDpLibelle = 'NULL';
 
     public function getId(): ?int
     {

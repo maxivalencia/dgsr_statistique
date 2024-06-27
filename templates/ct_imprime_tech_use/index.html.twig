@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtImprimeTechUse index{% endblock %}
+
+{% block body %}
+    <h1>CtImprimeTechUse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CtControleId</th>
+                <th>ItuNumero</th>
+                <th>ItuUsed</th>
+                <th>ItuMotifUsed</th>
+                <th>ActivedAt</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>ItuObservation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_imprime_tech_use in ct_imprime_tech_uses %}
+            <tr>
+                <td>{{ ct_imprime_tech_use.id }}</td>
+                <td>{{ ct_imprime_tech_use.ctControleId }}</td>
+                <td>{{ ct_imprime_tech_use.ituNumero }}</td>
+                <td>{{ ct_imprime_tech_use.ituUsed ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_imprime_tech_use.ituMotifUsed }}</td>
+                <td>{{ ct_imprime_tech_use.activedAt ? ct_imprime_tech_use.activedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_imprime_tech_use.createdAt ? ct_imprime_tech_use.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_imprime_tech_use.updatedAt ? ct_imprime_tech_use.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_imprime_tech_use.ituObservation }}</td>
+                <td>
+                    <a href="{{ path('ct_imprime_tech_use_show', {'id': ct_imprime_tech_use.id}) }}">show</a>
+                    <a href="{{ path('ct_imprime_tech_use_edit', {'id': ct_imprime_tech_use.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_imprime_tech_use_new') }}">Create new</a>
+{% endblock %}

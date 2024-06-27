@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtDroitPtacBackup
  *
- * @ORM\Table(name="ct_droit_ptac_backup", indexes={@ORM\Index(name="IDX_DB918ADA7CFDF4AC", columns={"ct_type_droit_ptac_id"}), @ORM\Index(name="IDX_DB918ADA12DA9529", columns={"ct_genre_categorie_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtDroitPtacBackupRepository")
+ * @ORM\Table(name="ct_droit_ptac_backup", indexes={@ORM\Index(name="IDX_DB918ADA12DA9529", columns={"ct_genre_categorie_id"}), @ORM\Index(name="IDX_DB918ADA7CFDF4AC", columns={"ct_type_droit_ptac_id"})})
+ * @ORM\Entity
  */
 class CtDroitPtacBackup
 {
@@ -26,37 +26,37 @@ class CtDroitPtacBackup
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_genre_categorie_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_genre_categorie_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctGenreCategorieId;
+    private $ctGenreCategorieId = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_prix_min", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="dp_prix_min", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $dpPrixMin;
+    private $dpPrixMin = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_prix_max", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="dp_prix_max", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $dpPrixMax;
+    private $dpPrixMax = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_droit", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="dp_droit", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $dpDroit;
+    private $dpDroit = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_type_droit_ptac_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_type_droit_ptac_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctTypeDroitPtacId;
+    private $ctTypeDroitPtacId = 'NULL';
 
     public function getId(): ?int
     {

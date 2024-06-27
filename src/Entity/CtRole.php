@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtRole
  *
  * @ORM\Table(name="ct_role")
- * @ORM\Entity(repositoryClass="App\Repository\CtRoleRepository")
+ * @ORM\Entity
  */
 class CtRole
 {
@@ -26,9 +26,9 @@ class CtRole
     /**
      * @var string|null
      *
-     * @ORM\Column(name="role_name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="role_name", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $roleName;
+    private $roleName = 'NULL';
 
     public function getId(): ?int
     {

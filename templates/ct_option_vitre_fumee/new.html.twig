@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtOptionVitreFumee{% endblock %}
+
+{% block body %}
+    <h1>Create new CtOptionVitreFumee</h1>
+
+    {{ include('ct_option_vitre_fumee/_form.html.twig') }}
+
+    <a href="{{ path('ct_option_vitre_fumee_index') }}">back to list</a>
+{% endblock %}

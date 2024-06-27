@@ -10,11 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CtConstAvDedsConstAvDedCaracs
 {
-    ///**
-    // * @ORM\Id()
-    // * @ORM\GeneratedValue()
-    // * @ORM\Column(type="integer")
-    // */
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     /* private $id; */
 
     /**
@@ -55,5 +55,14 @@ class CtConstAvDedsConstAvDedCaracs
         $this->const_av_ded_carac_id = $const_av_ded_carac_id;
 
         return $this;
+    }
+
+    /**
+    * toString
+    * @return string
+    */
+    public function __toString()
+    {
+        return $this->getConstAvDedId();
     }
 }

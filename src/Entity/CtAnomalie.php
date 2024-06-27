@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtAnomalieType;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtAnomalie
  *
- * @ORM\Table(name="ct_anomalie", indexes={@ORM\Index(name="fk_ct_anomalie_ct_anomalie_type1_idx", columns={"ct_anomalie_type_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtAnomalieRepository")
+ * @ORM\Table(name="ct_anomalie", indexes={@ORM\Index(name="fk_ct_anomalie_ct_anomalie_type1_idx", columns={"ct_anomalie_type_id"}), @ORM\Index(name="id", columns={"id"})})
+ * @ORM\Entity
  */
 class CtAnomalie
 {
@@ -27,48 +26,26 @@ class CtAnomalie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="anml_libelle", type="string", length=100, nullable=true)
+     * @ORM\Column(name="anml_libelle", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $anmlLibelle;
+    private $anmlLibelle = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="anml_code", type="string", length=10, nullable=true)
+     * @ORM\Column(name="anml_code", type="string", length=10, nullable=true, options={"default"="NULL"})
      */
-    private $anmlCode;
+    private $anmlCode = 'NULL';
 
     /**
      * @var \CtAnomalieType
      *
-     * @ORM\ManyToOne(targetEntity="CtAnomalieType", inversedBy="ctAnomalies")
+     * @ORM\ManyToOne(targetEntity="CtAnomalieType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ct_anomalie_type_id", referencedColumnName="id")
      * })
      */
     private $ctAnomalieType;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="CtVisite", inversedBy="ctVisiteAnomalie")
-     * @ORM\JoinTable(name="ct_visite_anomalie",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="ct_anomalie_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="ct_visite_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $ctVisite;
-
-    
-    public function __construct()
-    {
-        $this->CtAnomalieType =  new ArrayCollection();
-        $this->ctVisite = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -99,28 +76,14 @@ class CtAnomalie
         return $this;
     }
 
-    /**
-     * @return Collection|CtVisite[]
-     */
-    public function getCtVisite(): Collection
+    public function getCtAnomalieType(): ?CtAnomalieType
     {
-        return $this->ctVisite;
+        return $this->ctAnomalieType;
     }
 
-    public function addCtVisite(CtVisite $ctVisite): self
+    public function setCtAnomalieType(?CtAnomalieType $ctAnomalieType): self
     {
-        if (!$this->ctVisite->contains($ctVisite)) {
-            $this->ctVisite[] = $ctVisite;
-        }
-
-        return $this;
-    }
-
-    public function removeCtVisite(CtVisite $ctVisite): self
-    {
-        if ($this->ctVisite->contains($ctVisite)) {
-            $this->ctVisite->removeElement($ctVisite);
-        }
+        $this->ctAnomalieType = $ctAnomalieType;
 
         return $this;
     }
@@ -132,18 +95,6 @@ class CtAnomalie
     public function __toString()
     {
         return $this->getAnmlLibelle();
-    }
-
-    public function getCtAnomalieType(): ?CtAnomalieType
-    {
-        return $this->ctAnomalieType;
-    }
-
-    public function setCtAnomalieType(?CtAnomalieType $ctAnomalieType): self
-    {
-        $this->ctAnomalieType = $ctAnomalieType;
-
-        return $this;
     }
 
 

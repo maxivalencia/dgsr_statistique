@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtProvince;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtCentre
  *
  * @ORM\Table(name="ct_centre", indexes={@ORM\Index(name="fk_ct_centre_ct_province1_idx", columns={"ct_province_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtCentreRepository")
+ * @ORM\Entity
  */
 class CtCentre
 {
@@ -27,30 +26,30 @@ class CtCentre
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ctr_nom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ctr_nom", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $ctrNom;
+    private $ctrNom = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ctr_code", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ctr_code", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $ctrCode;
+    private $ctrCode = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="ctr_created_at", type="datetime", nullable=true)
+     * @ORM\Column(name="ctr_created_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $ctrCreatedAt;
+    private $ctrCreatedAt = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="ctr_updated_at", type="datetime", nullable=true)
+     * @ORM\Column(name="ctr_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $ctrUpdatedAt;
+    private $ctrUpdatedAt = 'NULL';
 
     /**
      * @var \CtProvince
@@ -61,12 +60,6 @@ class CtCentre
      * })
      */
     private $ctProvince;
-
-    public function __construct()
-    {
-        $this->ctProvince =  new ArrayCollection();
-    }
-    
 
     public function getId(): ?int
     {

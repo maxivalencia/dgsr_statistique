@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtAutreSce{% endblock %}
+
+{% block body %}
+    <h1>CtAutreSce</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_autre_sce.id }}</td>
+            </tr>
+            <tr>
+                <th>CtControleId</th>
+                <td>{{ ct_autre_sce.ctControleId }}</td>
+            </tr>
+            <tr>
+                <th>AsDate</th>
+                <td>{{ ct_autre_sce.asDate ? ct_autre_sce.asDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AsCreated</th>
+                <td>{{ ct_autre_sce.asCreated ? ct_autre_sce.asCreated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AsUpdated</th>
+                <td>{{ ct_autre_sce.asUpdated ? ct_autre_sce.asUpdated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AsIsDeleted</th>
+                <td>{{ ct_autre_sce.asIsDeleted ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>AsMotifDeleted</th>
+                <td>{{ ct_autre_sce.asMotifDeleted }}</td>
+            </tr>
+            <tr>
+                <th>AsValiditeFumee</th>
+                <td>{{ ct_autre_sce.asValiditeFumee }}</td>
+            </tr>
+            <tr>
+                <th>AsItineraireSpeciale</th>
+                <td>{{ ct_autre_sce.asItineraireSpeciale }}</td>
+            </tr>
+            <tr>
+                <th>AsValiditeSpeciale</th>
+                <td>{{ ct_autre_sce.asValiditeSpeciale ? ct_autre_sce.asValiditeSpeciale|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AsDeleted</th>
+                <td>{{ ct_autre_sce.asDeleted ? ct_autre_sce.asDeleted|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AsNumPv</th>
+                <td>{{ ct_autre_sce.asNumPv }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_autre_sce_index') }}">back to list</a>
+
+    <a href="{{ path('ct_autre_sce_edit', {'id': ct_autre_sce.id}) }}">edit</a>
+
+    {{ include('ct_autre_sce/_delete_form.html.twig') }}
+{% endblock %}

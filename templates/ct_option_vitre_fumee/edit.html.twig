@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtOptionVitreFumee{% endblock %}
+
+{% block body %}
+    <h1>Edit CtOptionVitreFumee</h1>
+
+    {{ include('ct_option_vitre_fumee/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_option_vitre_fumee_index') }}">back to list</a>
+
+    {{ include('ct_option_vitre_fumee/_delete_form.html.twig') }}
+{% endblock %}

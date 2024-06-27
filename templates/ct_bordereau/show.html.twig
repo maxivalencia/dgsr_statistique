@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtBordereau{% endblock %}
+
+{% block body %}
+    <h1>CtBordereau</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_bordereau.id }}</td>
+            </tr>
+            <tr>
+                <th>BlNumero</th>
+                <td>{{ ct_bordereau.blNumero }}</td>
+            </tr>
+            <tr>
+                <th>BlDebutNumero</th>
+                <td>{{ ct_bordereau.blDebutNumero }}</td>
+            </tr>
+            <tr>
+                <th>BlFinNumero</th>
+                <td>{{ ct_bordereau.blFinNumero }}</td>
+            </tr>
+            <tr>
+                <th>BlCreatedAt</th>
+                <td>{{ ct_bordereau.blCreatedAt ? ct_bordereau.blCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>BlUpdatedAt</th>
+                <td>{{ ct_bordereau.blUpdatedAt ? ct_bordereau.blUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>RefExpr</th>
+                <td>{{ ct_bordereau.refExpr }}</td>
+            </tr>
+            <tr>
+                <th>DateRefExpr</th>
+                <td>{{ ct_bordereau.dateRefExpr ? ct_bordereau.dateRefExpr|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_bordereau_index') }}">back to list</a>
+
+    <a href="{{ path('ct_bordereau_edit', {'id': ct_bordereau.id}) }}">edit</a>
+
+    {{ include('ct_bordereau/_delete_form.html.twig') }}
+{% endblock %}

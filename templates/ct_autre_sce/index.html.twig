@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtAutreSce index{% endblock %}
+
+{% block body %}
+    <h1>CtAutreSce index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CtControleId</th>
+                <th>AsDate</th>
+                <th>AsCreated</th>
+                <th>AsUpdated</th>
+                <th>AsIsDeleted</th>
+                <th>AsMotifDeleted</th>
+                <th>AsValiditeFumee</th>
+                <th>AsItineraireSpeciale</th>
+                <th>AsValiditeSpeciale</th>
+                <th>AsDeleted</th>
+                <th>AsNumPv</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_autre_sce in ct_autre_sces %}
+            <tr>
+                <td>{{ ct_autre_sce.id }}</td>
+                <td>{{ ct_autre_sce.ctControleId }}</td>
+                <td>{{ ct_autre_sce.asDate ? ct_autre_sce.asDate|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_autre_sce.asCreated ? ct_autre_sce.asCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_autre_sce.asUpdated ? ct_autre_sce.asUpdated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_autre_sce.asIsDeleted ? 'Yes' : 'No' }}</td>
+                <td>{{ ct_autre_sce.asMotifDeleted }}</td>
+                <td>{{ ct_autre_sce.asValiditeFumee }}</td>
+                <td>{{ ct_autre_sce.asItineraireSpeciale }}</td>
+                <td>{{ ct_autre_sce.asValiditeSpeciale ? ct_autre_sce.asValiditeSpeciale|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_autre_sce.asDeleted ? ct_autre_sce.asDeleted|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_autre_sce.asNumPv }}</td>
+                <td>
+                    <a href="{{ path('ct_autre_sce_show', {'id': ct_autre_sce.id}) }}">show</a>
+                    <a href="{{ path('ct_autre_sce_edit', {'id': ct_autre_sce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_autre_sce_new') }}">Create new</a>
+{% endblock %}

@@ -2,21 +2,18 @@
 
 namespace App\Entity;
 
-use App\Entity\CtUser;
-use App\Entity\CtUsage;
-use App\Entity\CtCentre;
-use App\Entity\CtCarteGrise;
-use App\Entity\CtTypeVisite;
-use App\Entity\CtUtilisation;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\CtUser;
 
 /**
  * CtVisite
  *
- * @ORM\Table(name="ct_visite", indexes={@ORM\Index(name="fk_ct_visite_ct_usage1_idx", columns={"ct_usage_id"}), @ORM\Index(name="fk_ct_visite_ct_type_visite1_idx", columns={"ct_type_visite_id"}), @ORM\Index(name="fk_ct_visite_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="IDX_7F3E82E355B81AF1", columns={"ct_utilisation_id"}), @ORM\Index(name="fk_ct_visite_ct_carte_grise1_idx", columns={"ct_carte_grise_id"}), @ORM\Index(name="fk_ct_visite_ct_user1_idx", columns={"ct_user_id"}), @ORM\Index(name="fk_ct_visite_ct_user2_idx", columns={"ct_verificateur_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtVisiteRepository")
+ * @ORM\Table(name="ct_visite", indexes={@ORM\Index(name="IDX_7F3E82E355B81AF1", columns={"ct_utilisation_id"}), @ORM\Index(name="fk_ct_visite_ct_type_visite1_idx", columns={"ct_type_visite_id"}), @ORM\Index(name="fk_ct_visite_ct_carte_grise1_idx", columns={"ct_carte_grise_id"}), @ORM\Index(name="fk_ct_visite_ct_user2_idx", columns={"ct_verificateur_id"}), @ORM\Index(name="fk_ct_visite_ct_usage1_idx", columns={"ct_usage_id"}), @ORM\Index(name="fk_ct_visite_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="fk_ct_visite_ct_user1_idx", columns={"ct_user_id"})})
+ * @ORM\Entity
  */
 class CtVisite
 {
@@ -32,58 +29,58 @@ class CtVisite
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_num_pv", type="string", length=255, nullable=true)
+     * @ORM\Column(name="vst_num_pv", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $vstNumPv;
+    private $vstNumPv = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_num_feuille_caisse", type="string", length=255, nullable=true)
+     * @ORM\Column(name="vst_num_feuille_caisse", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $vstNumFeuilleCaisse;
+    private $vstNumFeuilleCaisse = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_date_expiration", type="date", nullable=true)
+     * @ORM\Column(name="vst_date_expiration", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $vstDateExpiration;
+    private $vstDateExpiration = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_created", type="datetime", nullable=true)
+     * @ORM\Column(name="vst_created", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $vstCreated;
+    private $vstCreated = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_updated", type="datetime", nullable=true)
+     * @ORM\Column(name="vst_updated", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $vstUpdated;
+    private $vstUpdated = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="vst_is_apte", type="boolean", nullable=true)
+     * @ORM\Column(name="vst_is_apte", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $vstIsApte;
+    private $vstIsApte = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="vst_is_contre_visite", type="boolean", nullable=true)
+     * @ORM\Column(name="vst_is_contre_visite", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $vstIsContreVisite;
+    private $vstIsContreVisite = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_duree_reparation", type="string", length=100, nullable=true)
+     * @ORM\Column(name="vst_duree_reparation", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $vstDureeReparation;
+    private $vstDureeReparation = 'NULL';
 
     /**
      * @var \CtUtilisation
@@ -163,19 +160,11 @@ class CtVisite
     private $ctVisiteExtra;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="CtAnomalie", mappedBy="ctVisite")
-     */
-    private $ctVisiteAnomalie;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->ctVisiteExtra = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ctVisiteAnomalie = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -386,34 +375,6 @@ class CtVisite
         if ($this->ctVisiteExtra->contains($ctVisiteExtra)) {
             $this->ctVisiteExtra->removeElement($ctVisiteExtra);
             $ctVisiteExtra->removeCtVisite($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|CtVisiteAnomalie[]
-     */
-    public function getCtVisiteAnomalie(): Collection
-    {
-        return $this->ctVisiteAnomalie;
-    }
-
-    public function addCtVisiteAnomalie(CtVisiteAnomalie $ctVisiteAnomalie): self
-    {
-        if (!$this->ctVisiteAnomalie->contains($ctVisiteAnomalie)) {
-            $this->ctVisiteAnomalie[] = $ctVisiteAnomalie;
-            $ctVisiteAnomalie->addCtVisite($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCtVisiteAnomalie(CtVisiteAnomalie $ctVisiteAnomalie): self
-    {
-        if ($this->ctVisiteAnomalie->contains($ctVisiteAnomalie)) {
-            $this->ctVisiteAnomalie->removeElement($ctVisiteAnomalie);
-            $ctVisiteAnomalie->removeCtVisite($this);
         }
 
         return $this;

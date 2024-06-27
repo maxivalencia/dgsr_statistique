@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtImprimeTech{% endblock %}
+
+{% block body %}
+    <h1>CtImprimeTech</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_imprime_tech.id }}</td>
+            </tr>
+            <tr>
+                <th>NomImprimeTech</th>
+                <td>{{ ct_imprime_tech.nomImprimeTech }}</td>
+            </tr>
+            <tr>
+                <th>UteImprimeTech</th>
+                <td>{{ ct_imprime_tech.uteImprimeTech }}</td>
+            </tr>
+            <tr>
+                <th>AbrevImprimeTech</th>
+                <td>{{ ct_imprime_tech.abrevImprimeTech }}</td>
+            </tr>
+            <tr>
+                <th>PrttCreatedAt</th>
+                <td>{{ ct_imprime_tech.prttCreatedAt ? ct_imprime_tech.prttCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PrttUpdatedAt</th>
+                <td>{{ ct_imprime_tech.prttUpdatedAt ? ct_imprime_tech.prttUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_imprime_tech_index') }}">back to list</a>
+
+    <a href="{{ path('ct_imprime_tech_edit', {'id': ct_imprime_tech.id}) }}">edit</a>
+
+    {{ include('ct_imprime_tech/_delete_form.html.twig') }}
+{% endblock %}

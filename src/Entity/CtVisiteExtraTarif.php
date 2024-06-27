@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\CtVisiteExtra;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\CtVisiteExtra;
+use App\Entity\CtArretePrix;
 
 /**
  * CtVisiteExtraTarif
  *
- * @ORM\Table(name="ct_visite_extra_tarif", uniqueConstraints={@ORM\UniqueConstraint(name="uk_ct_visite_extra_ct_vet_annee", columns={"vet_annee", "ct_visite_extra_id"})}, indexes={@ORM\Index(name="fk_ct_visite_extra_tarif_ct_visite_extra1_idx", columns={"ct_visite_extra_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtVisiteExtraTarifRepository")
+ * @ORM\Table(name="ct_visite_extra_tarif", uniqueConstraints={@ORM\UniqueConstraint(name="uk_ct_visite_extra_ct_vet_annee", columns={"vet_annee", "ct_visite_extra_id"})}, indexes={@ORM\Index(name="IDX_E3F1985E76255A68", columns={"ct_arrete_prix_id"}), @ORM\Index(name="fk_ct_visite_extra_tarif_ct_visite_extra1_idx", columns={"ct_visite_extra_id"})})
+ * @ORM\Entity
  */
 class CtVisiteExtraTarif
 {
@@ -27,16 +28,16 @@ class CtVisiteExtraTarif
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vet_annee", type="string", length=4, nullable=true)
+     * @ORM\Column(name="vet_annee", type="string", length=4, nullable=true, options={"default"="NULL"})
      */
-    private $vetAnnee;
+    private $vetAnnee = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vet_prix", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="vet_prix", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $vetPrix;
+    private $vetPrix = 'NULL';
 
     /**
      * @var \CtVisiteExtra
@@ -47,6 +48,16 @@ class CtVisiteExtraTarif
      * })
      */
     private $ctVisiteExtra;
+
+    /**
+     * @var \CtArretePrix
+     *
+     * @ORM\ManyToOne(targetEntity="CtArretePrix")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ct_arrete_prix_id", referencedColumnName="id")
+     * })
+     */
+    private $ctArretePrix;
 
     public function getId(): ?int
     {
@@ -89,13 +100,25 @@ class CtVisiteExtraTarif
         return $this;
     }
 
+    public function getCtArretePrix(): ?CtArretePrix
+    {
+        return $this->ctArretePrix;
+    }
+
+    public function setCtArretePrix(?CtArretePrix $ctArretePrix): self
+    {
+        $this->ctArretePrix = $ctArretePrix;
+
+        return $this;
+    }
+
     /**
     * toString
     * @return string
     */
     public function __toString()
     {
-        return $this->getVetPrix();
+        return $this->getVetAnnee();
     }
 
 

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CtTypeAutreSce{% endblock %}
+
+{% block body %}
+    <h1>Edit CtTypeAutreSce</h1>
+
+    {{ include('ct_type_autre_sce/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct_type_autre_sce_index') }}">back to list</a>
+
+    {{ include('ct_type_autre_sce/_delete_form.html.twig') }}
+{% endblock %}

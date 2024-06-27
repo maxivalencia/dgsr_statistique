@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CtVisiteExtra
  *
  * @ORM\Table(name="ct_visite_extra")
- * @ORM\Entity(repositoryClass="App\Repository\CtVisiteExtraRepository")
+ * @ORM\Entity
  */
 class CtVisiteExtra
 {
@@ -26,9 +28,9 @@ class CtVisiteExtra
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vste_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="vste_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $vsteLibelle;
+    private $vsteLibelle = 'NULL';
 
     /**
      * @var \Doctrine\Common\Collections\Collection

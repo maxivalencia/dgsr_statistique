@@ -17,7 +17,11 @@ use App\Repository\CtUserRepository;
 use App\Repository\CtUtilisationRepository;
 use App\Repository\CtVisiteAnomalieRepository;
 use App\Repository\CtAnomalieRepository;
+use App\Repository\CtImprimeTechUseRepository;
+use App\Repository\CtImprimeTechRepository;
+use App\Entity\ImprimeTech;
 use App\Entity\CtCarteGrise;
+use App\Entity\CtImprimeTechUse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,7 +80,7 @@ class CtServiceMobileController extends AbstractController
     /**
      * @Route("/mobile/recherche", name="ct_service_mobile_recherche_immatriculation", methods={"GET", "POST"})
      */
-    public function recherche(Request $request, CtAnomalieRepository $ctAnomalieRepository, CtVisiteAnomalieRepository $ctVisiteAnomalieRepository, CtUtilisationRepository $ctUtilisationRepository, CtUserRepository $ctUserRepository, CtUsageRepository $ctUsageRepository, CtProvinceRepository $ctProvinceRepository, CtCentreRepository $ctCentreRepository, CtVisiteRepository $ctVisiteRepository, CtGenreRepository $ctGenreRepository, CtMarqueRepository $ctMarqueRepository, CtSourceEnergieRepository $ctSourceEnergieRepository, CtCarteGriseRepository $ctCarteGriseRepository, CtVehiculeRepository $ctVehiculeRepository, CtCarosserieRepository $ctCarosserieRepository)
+    public function recherche(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository, CtAnomalieRepository $ctAnomalieRepository, CtVisiteAnomalieRepository $ctVisiteAnomalieRepository, CtUtilisationRepository $ctUtilisationRepository, CtUserRepository $ctUserRepository, CtUsageRepository $ctUsageRepository, CtProvinceRepository $ctProvinceRepository, CtCentreRepository $ctCentreRepository, CtVisiteRepository $ctVisiteRepository, CtGenreRepository $ctGenreRepository, CtMarqueRepository $ctMarqueRepository, CtSourceEnergieRepository $ctSourceEnergieRepository, CtCarteGriseRepository $ctCarteGriseRepository, CtVehiculeRepository $ctVehiculeRepository, CtCarosserieRepository $ctCarosserieRepository)
     {
         $array_vehicule = new ArrayCollection();
         $info_vehicule = [
@@ -119,11 +123,18 @@ class CtServiceMobileController extends AbstractController
             "nom_verificateur" => "",
             "usr_name" => "",
             "ut_libelle" => "",
-            "vst_anomalies" => ""
+            "vst_anomalies" => "",
+            "imprime" => "",
         ];
         $separateurs = ["", " ", ".", "_", "-"];
         $separateurs_saisie = ["", " ", ".", "_", "-"];
         $immatriculation = $request->get("IMM");
+        if($immatriculation == null){
+            $immatriculation = $request->query->get("IMM");
+        }
+        if($immatriculation == null){
+            $immatriculation = $request->request->get("IMM");
+        }
         $chiffre_immatriculation = substr($immatriculation, 0, 4);
         $lettre_immatriculation = strtoupper(substr($immatriculation, 4));
         foreach($separateurs_saisie as $separateur){
@@ -149,17 +160,28 @@ class CtServiceMobileController extends AbstractController
                     $secretaire = $ctUserRepository->findOneBy(["id" => $visite->getCtUser()]);
                     $utilisation = $ctUtilisationRepository->findOneBy(["id" => $visite->getCtUtilisation()]);
                     $liste_anomalies = "";
+                    $liste_imprime = "";
+                    //$imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite"]);
+                    $imprimesVisite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite"]);
+                    $imprimesContre = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Contre"]);
+                    $imprimes = array_merge($imprimesVisite, $imprimesContre);
                     if($visite->getVstIsApte() == 0){
                         //$anomalies = $ctVisiteAnomalieRepository->find(["ctAnomalieId" => $visite->getId()]);
                         $anomalies = $ctVisiteAnomalieRepository->findAnomalie($visite->getId());
                         foreach($anomalies as $anomalie) {
                             if($liste_anomalies != ""){
-                                $liste_anomalies .= ", ";
+                                $liste_anomalies .= " - ";
                             }
                             $anomal = $ctAnomalieRepository->findOneBy(["id" => $anomalie]);
                             $liste_anomalies .= $anomal->getAnmlLibelle();
                             //$liste_anomalies = (string)$liste_anomalies.(string)$anomalie." ";
                         }
+                    }
+                    foreach($imprimes as $imp){
+                        if($liste_imprime != ""){
+                            $liste_imprime .= " - ";
+                        }
+                        $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
                     }
                     $info_vehicule = [
                         "cg_immatriculation" => $carte_grise->getCgImmatriculation()?(string)$carte_grise->getCgImmatriculation():"",
@@ -201,7 +223,8 @@ class CtServiceMobileController extends AbstractController
                         "nom_verificateur" => $verificateur?(string)$verificateur->getUsrName():"",
                         "usr_name" => $secretaire?(string)$secretaire->getUsrName():"",
                         "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
-                        "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):""
+                        "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
+                        "imprime" => $liste_imprime,
                     ];
                     $array_vehicule->add($info_vehicule);
                     //"vst_date_expiration" => $visite->getVstDateExpiration()?(string)$visite->getVstDateExpiration()->format('Y-m-d'):"",

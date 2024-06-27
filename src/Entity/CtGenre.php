@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtGenreCategorie;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtGenre
  *
  * @ORM\Table(name="ct_genre", indexes={@ORM\Index(name="IDX_9BCBF2CE12DA9529", columns={"ct_genre_categorie_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtGenreRepository")
+ * @ORM\Entity
  */
 class CtGenre
 {
@@ -27,16 +26,16 @@ class CtGenre
     /**
      * @var string|null
      *
-     * @ORM\Column(name="gr_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gr_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $grLibelle;
+    private $grLibelle = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="gr_code", type="string", length=50, nullable=true)
+     * @ORM\Column(name="gr_code", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
-    private $grCode;
+    private $grCode = 'NULL';
 
     /**
      * @var \CtGenreCategorie

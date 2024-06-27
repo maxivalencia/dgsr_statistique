@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtTypeReception
  *
  * @ORM\Table(name="ct_type_reception")
- * @ORM\Entity(repositoryClass="App\Repository\CtTypeReceptionRepository")
+ * @ORM\Entity
  */
 class CtTypeReception
 {
@@ -26,9 +26,9 @@ class CtTypeReception
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tprcp_libelle", type="string", length=45, nullable=true)
+     * @ORM\Column(name="tprcp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $tprcpLibelle;
+    private $tprcpLibelle = 'NULL';
 
     public function getId(): ?int
     {

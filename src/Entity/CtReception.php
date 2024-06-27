@@ -2,24 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtUser;
-use App\Entity\CtGenre;
-use App\Entity\CtMotif;
-use App\Entity\CtCentre;
-use App\Entity\CtVehicule;
-use App\Entity\CtCarosserie;
-use App\Entity\CtUtilisation;
-use App\Entity\CtSourceEnergie;
-use App\Entity\CtTypeReception;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtReception
  *
- * @ORM\Table(name="ct_reception", indexes={@ORM\Index(name="IDX_942215A2F2AE3878", columns={"ct_carosserie_id"}), @ORM\Index(name="fk_ct_reception_ct_motif1_idx", columns={"ct_motif_id"}), @ORM\Index(name="fk_ct_reception_ct_user1_idx", columns={"ct_user_id"}), @ORM\Index(name="fk_ct_reception_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="IDX_942215A27EE62163", columns={"ct_source_energie_id"}), @ORM\Index(name="IDX_942215A2D74CE6E6", columns={"ct_genre_id"}), @ORM\Index(name="fk_ct_reception_ct_type_reception1_idx", columns={"ct_type_reception_id"}), @ORM\Index(name="fk_ct_reception_ct_utilisation1_idx", columns={"ct_utilisation_id"}), @ORM\Index(name="fk_ct_reception_ct_vehicule1_idx", columns={"ct_vehicule_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtReceptionRepository")
+ * @ORM\Table(name="ct_reception", indexes={@ORM\Index(name="IDX_942215A27EE62163", columns={"ct_source_energie_id"}), @ORM\Index(name="fk_ct_reception_ct_user1_idx", columns={"ct_user_id"}), @ORM\Index(name="fk_ct_reception_ct_type_reception1_idx", columns={"ct_type_reception_id"}), @ORM\Index(name="IDX_942215A2F2AE3878", columns={"ct_carosserie_id"}), @ORM\Index(name="fk_ct_reception_ct_vehicule1_idx", columns={"ct_vehicule_id"}), @ORM\Index(name="fk_ct_reception_ct_motif1_idx", columns={"ct_motif_id"}), @ORM\Index(name="IDX_942215A2D74CE6E6", columns={"ct_genre_id"}), @ORM\Index(name="fk_ct_reception_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="fk_ct_reception_ct_utilisation1_idx", columns={"ct_utilisation_id"})})
+ * @ORM\Entity
  */
 class CtReception
 {
@@ -35,72 +26,72 @@ class CtReception
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="rcp_mise_service", type="date", nullable=true)
+     * @ORM\Column(name="rcp_mise_service", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $rcpMiseService;
+    private $rcpMiseService = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_immatriculation", type="string", length=45, nullable=true)
+     * @ORM\Column(name="rcp_immatriculation", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $rcpImmatriculation;
+    private $rcpImmatriculation = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_proprietaire", type="string", length=255, nullable=true)
+     * @ORM\Column(name="rcp_proprietaire", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $rcpProprietaire;
+    private $rcpProprietaire = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_profession", type="string", length=100, nullable=true)
+     * @ORM\Column(name="rcp_profession", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $rcpProfession;
+    private $rcpProfession = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_adresse", type="string", length=255, nullable=true)
+     * @ORM\Column(name="rcp_adresse", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $rcpAdresse;
+    private $rcpAdresse = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="rcp_nbr_assis", type="integer", nullable=true)
+     * @ORM\Column(name="rcp_nbr_assis", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $rcpNbrAssis;
+    private $rcpNbrAssis = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="rcp_nbr_debout", type="integer", nullable=true)
+     * @ORM\Column(name="rcp_nbr_debout", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $rcpNbrDebout;
+    private $rcpNbrDebout = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_num_pv", type="string", length=100, nullable=true)
+     * @ORM\Column(name="rcp_num_pv", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $rcpNumPv;
+    private $rcpNumPv = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_num_group", type="string", length=255, nullable=true)
+     * @ORM\Column(name="rcp_num_group", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $rcpNumGroup;
+    private $rcpNumGroup = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="rcp_created", type="date", nullable=true)
+     * @ORM\Column(name="rcp_created", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $rcpCreated;
+    private $rcpCreated = 'NULL';
 
     /**
      * @var \CtVehicule
@@ -431,7 +422,7 @@ class CtReception
     */
     public function __toString()
     {
-        return $this->getRcpImmatriculation();
+        return $this->getRcpNumPv();
     }
 
 

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtProcesVerbal
  *
- * @ORM\Table(name="ct_proces_verbal")
- * @ORM\Entity(repositoryClass="App\Repository\CtProcesVerbalRepository")
+ * @ORM\Table(name="ct_proces_verbal", indexes={@ORM\Index(name="IDX_556CD10D76255A68", columns={"ct_arrete_prix_id"})})
+ * @ORM\Entity
  */
 class CtProcesVerbal
 {
@@ -26,16 +26,26 @@ class CtProcesVerbal
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pv_type", type="string", length=255, nullable=true)
+     * @ORM\Column(name="pv_type", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $pvType;
+    private $pvType = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="pv_tarif", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="pv_tarif", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $pvTarif;
+    private $pvTarif = 'NULL';
+
+    /**
+     * @var \CtArretePrix
+     *
+     * @ORM\ManyToOne(targetEntity="CtArretePrix")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ct_arrete_prix_id", referencedColumnName="id")
+     * })
+     */
+    private $ctArretePrix;
 
     public function getId(): ?int
     {
@@ -62,6 +72,18 @@ class CtProcesVerbal
     public function setPvTarif(?float $pvTarif): self
     {
         $this->pvTarif = $pvTarif;
+
+        return $this;
+    }
+
+    public function getCtArretePrix(): ?CtArretePrix
+    {
+        return $this->ctArretePrix;
+    }
+
+    public function setCtArretePrix(?CtArretePrix $ctArretePrix): self
+    {
+        $this->ctArretePrix = $ctArretePrix;
 
         return $this;
     }

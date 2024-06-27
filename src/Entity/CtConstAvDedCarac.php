@@ -2,20 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\CtGenre;
-use App\Entity\CtMarque;
-use App\Entity\CtCarosserie;
-use App\Entity\CtConstAvDed;
-use App\Entity\CtSourceEnergie;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtConstAvDedCarac
  *
- * @ORM\Table(name="ct_const_av_ded_carac", indexes={@ORM\Index(name="fk_ct_const_av_ded_carac_ct_carosserie1_idx", columns={"ct_carosserie_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_marque1_idx", columns={"ct_marque_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_source_energie1_idx", columns={"ct_source_energie_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_const_av_ded_type1_idx", columns={"ct_const_av_ded_type_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_genre1_idx", columns={"ct_genre_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtAvDedCaracRepository")
+ * @ORM\Table(name="ct_const_av_ded_carac", indexes={@ORM\Index(name="fk_ct_const_av_ded_carac_ct_carosserie1_idx", columns={"ct_carosserie_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_genre1_idx", columns={"ct_genre_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_const_av_ded_type1_idx", columns={"ct_const_av_ded_type_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_marque1_idx", columns={"ct_marque_id"}), @ORM\Index(name="fk_ct_const_av_ded_carac_ct_source_energie1_idx", columns={"ct_source_energie_id"})})
+ * @ORM\Entity
  */
 class CtConstAvDedCarac
 {
@@ -31,100 +28,100 @@ class CtConstAvDedCarac
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_cylindre", type="string", length=10, nullable=true)
+     * @ORM\Column(name="cad_cylindre", type="string", length=10, nullable=true, options={"default"="NULL"})
      */
-    private $cadCylindre;
+    private $cadCylindre = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_puissance", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="cad_puissance", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $cadPuissance;
+    private $cadPuissance = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_poids_vide", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="cad_poids_vide", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $cadPoidsVide;
+    private $cadPoidsVide = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_charge_utile", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="cad_charge_utile", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $cadChargeUtile;
+    private $cadChargeUtile = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_hauteur", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="cad_hauteur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $cadHauteur;
+    private $cadHauteur = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_largeur", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="cad_largeur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $cadLargeur;
+    private $cadLargeur = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_longueur", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="cad_longueur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $cadLongueur;
+    private $cadLongueur = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_num_serie_type", type="string", length=100, nullable=true)
+     * @ORM\Column(name="cad_num_serie_type", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $cadNumSerieType;
+    private $cadNumSerieType = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_num_moteur", type="string", length=100, nullable=true)
+     * @ORM\Column(name="cad_num_moteur", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $cadNumMoteur;
+    private $cadNumMoteur = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_type_car", type="string", length=45, nullable=true)
+     * @ORM\Column(name="cad_type_car", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $cadTypeCar;
+    private $cadTypeCar = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_poids_maxima", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="cad_poids_maxima", type="text", length=65535, nullable=true, options={"default"="NULL"})
      */
-    private $cadPoidsMaxima;
+    private $cadPoidsMaxima = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_poids_total_charge", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="cad_poids_total_charge", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $cadPoidsTotalCharge;
+    private $cadPoidsTotalCharge = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_premiere_circule", type="string", length=100, nullable=true)
+     * @ORM\Column(name="cad_premiere_circule", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $cadPremiereCircule;
+    private $cadPremiereCircule = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="cad_nbr_assis", type="integer", nullable=true)
+     * @ORM\Column(name="cad_nbr_assis", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $cadNbrAssis;
+    private $cadNbrAssis = 'NULL';
 
     /**
      * @var \CtSourceEnergie
@@ -180,14 +177,6 @@ class CtConstAvDedCarac
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="CtConstAvDed", mappedBy="constAvDedCarac")
-     * @ORM\JoinTable(name="ct_const_av_deds_const_av_ded_caracs",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="const_av_ded_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="const_av_ded_carac_id", referencedColumnName="id")
-     *   }
-     * )
      */
     private $constAvDed;
 

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtPlaqueChassis{% endblock %}
+
+{% block body %}
+    <h1>CtPlaqueChassis</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct_plaque_chassi.id }}</td>
+            </tr>
+            <tr>
+                <th>PlqType</th>
+                <td>{{ ct_plaque_chassi.plqType }}</td>
+            </tr>
+            <tr>
+                <th>PlqTarif</th>
+                <td>{{ ct_plaque_chassi.plqTarif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_plaque_chassis_index') }}">back to list</a>
+
+    <a href="{{ path('ct_plaque_chassis_edit', {'id': ct_plaque_chassi.id}) }}">edit</a>
+
+    {{ include('ct_plaque_chassis/_delete_form.html.twig') }}
+{% endblock %}

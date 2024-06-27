@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtUtilisation
  *
  * @ORM\Table(name="ct_utilisation")
- * @ORM\Entity(repositoryClass="App\Repository\CtUtilisationRepository")
+ * @ORM\Entity
  */
 class CtUtilisation
 {
@@ -26,9 +26,9 @@ class CtUtilisation
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ut_libelle", type="string", length=45, nullable=true)
+     * @ORM\Column(name="ut_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $utLibelle;
+    private $utLibelle = 'NULL';
 
     public function getId(): ?int
     {

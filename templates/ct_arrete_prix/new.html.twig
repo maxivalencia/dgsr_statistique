@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtArretePrix{% endblock %}
+
+{% block body %}
+    <h1>Create new CtArretePrix</h1>
+
+    {{ include('ct_arrete_prix/_form.html.twig') }}
+
+    <a href="{{ path('ct_arrete_prix_index') }}">back to list</a>
+{% endblock %}

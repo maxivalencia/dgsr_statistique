@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtCarosserie
  *
  * @ORM\Table(name="ct_carosserie")
- * @ORM\Entity(repositoryClass="App\Repository\CtCarosserieRepository")
+ * @ORM\Entity
  */
 class CtCarosserie
 {
@@ -26,9 +26,9 @@ class CtCarosserie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="crs_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="crs_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $crsLibelle;
+    private $crsLibelle = 'NULL';
 
     public function getId(): ?int
     {

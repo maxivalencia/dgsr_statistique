@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtReceptionBackup
  *
- * @ORM\Table(name="ct_reception_backup", indexes={@ORM\Index(name="fk_ct_reception_ct_user1_idx", columns={"ct_user_id"}), @ORM\Index(name="fk_ct_reception_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="IDX_942215A2F2AE3878", columns={"ct_carosserie_id"}), @ORM\Index(name="fk_ct_reception_ct_motif1_idx", columns={"ct_motif_id"}), @ORM\Index(name="fk_ct_reception_ct_vehicule1_idx", columns={"ct_vehicule_id"}), @ORM\Index(name="IDX_942215A27EE62163", columns={"ct_source_energie_id"}), @ORM\Index(name="fk_ct_reception_ct_type_reception1_idx", columns={"ct_type_reception_id"}), @ORM\Index(name="fk_ct_reception_ct_utilisation1_idx", columns={"ct_utilisation_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtReceptionBackupRepository")
+ * @ORM\Table(name="ct_reception_backup", indexes={@ORM\Index(name="IDX_942215A27EE62163", columns={"ct_source_energie_id"}), @ORM\Index(name="fk_ct_reception_ct_user1_idx", columns={"ct_user_id"}), @ORM\Index(name="fk_ct_reception_ct_type_reception1_idx", columns={"ct_type_reception_id"}), @ORM\Index(name="IDX_942215A2F2AE3878", columns={"ct_carosserie_id"}), @ORM\Index(name="fk_ct_reception_ct_vehicule1_idx", columns={"ct_vehicule_id"}), @ORM\Index(name="fk_ct_reception_ct_motif1_idx", columns={"ct_motif_id"}), @ORM\Index(name="fk_ct_reception_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="fk_ct_reception_ct_utilisation1_idx", columns={"ct_utilisation_id"})})
+ * @ORM\Entity
  */
 class CtReceptionBackup
 {
@@ -26,128 +26,128 @@ class CtReceptionBackup
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctCentreId;
+    private $ctCentreId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_motif_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_motif_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctMotifId;
+    private $ctMotifId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_type_reception_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_type_reception_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctTypeReceptionId;
+    private $ctTypeReceptionId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_user_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_user_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctUserId;
+    private $ctUserId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_utilisation_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_utilisation_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctUtilisationId;
+    private $ctUtilisationId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_vehicule_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_vehicule_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctVehiculeId;
+    private $ctVehiculeId = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="rcp_mise_service", type="date", nullable=true)
+     * @ORM\Column(name="rcp_mise_service", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $rcpMiseService;
+    private $rcpMiseService = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_immatriculation", type="string", length=45, nullable=true)
+     * @ORM\Column(name="rcp_immatriculation", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $rcpImmatriculation;
+    private $rcpImmatriculation = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_proprietaire", type="string", length=255, nullable=true)
+     * @ORM\Column(name="rcp_proprietaire", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $rcpProprietaire;
+    private $rcpProprietaire = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_profession", type="string", length=100, nullable=true)
+     * @ORM\Column(name="rcp_profession", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $rcpProfession;
+    private $rcpProfession = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_adresse", type="string", length=255, nullable=true)
+     * @ORM\Column(name="rcp_adresse", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $rcpAdresse;
+    private $rcpAdresse = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="rcp_nbr_assis", type="integer", nullable=true)
+     * @ORM\Column(name="rcp_nbr_assis", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $rcpNbrAssis;
+    private $rcpNbrAssis = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="rcp_nbr_debout", type="integer", nullable=true)
+     * @ORM\Column(name="rcp_nbr_debout", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $rcpNbrDebout;
+    private $rcpNbrDebout = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_num_pv", type="string", length=100, nullable=true)
+     * @ORM\Column(name="rcp_num_pv", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $rcpNumPv;
+    private $rcpNumPv = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_source_energie_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_source_energie_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctSourceEnergieId;
+    private $ctSourceEnergieId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_carosserie_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_carosserie_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctCarosserieId;
+    private $ctCarosserieId = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_num_group", type="string", length=255, nullable=true)
+     * @ORM\Column(name="rcp_num_group", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $rcpNumGroup;
+    private $rcpNumGroup = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="rcp_created", type="date", nullable=true)
+     * @ORM\Column(name="rcp_created", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $rcpCreated;
+    private $rcpCreated = 'NULL';
 
     public function getId(): ?int
     {
@@ -376,7 +376,7 @@ class CtReceptionBackup
     */
     public function __toString()
     {
-        return $this->getRcpImmatriculation();
+        return $this->getRcpNumPv();
     }
 
 

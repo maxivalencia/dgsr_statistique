@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtBordereau index{% endblock %}
+
+{% block body %}
+    <h1>CtBordereau index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>BlNumero</th>
+                <th>BlDebutNumero</th>
+                <th>BlFinNumero</th>
+                <th>BlCreatedAt</th>
+                <th>BlUpdatedAt</th>
+                <th>RefExpr</th>
+                <th>DateRefExpr</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_bordereau in ct_bordereaus %}
+            <tr>
+                <td>{{ ct_bordereau.id }}</td>
+                <td>{{ ct_bordereau.blNumero }}</td>
+                <td>{{ ct_bordereau.blDebutNumero }}</td>
+                <td>{{ ct_bordereau.blFinNumero }}</td>
+                <td>{{ ct_bordereau.blCreatedAt ? ct_bordereau.blCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_bordereau.blUpdatedAt ? ct_bordereau.blUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_bordereau.refExpr }}</td>
+                <td>{{ ct_bordereau.dateRefExpr ? ct_bordereau.dateRefExpr|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('ct_bordereau_show', {'id': ct_bordereau.id}) }}">show</a>
+                    <a href="{{ path('ct_bordereau_edit', {'id': ct_bordereau.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_bordereau_new') }}">Create new</a>
+{% endblock %}

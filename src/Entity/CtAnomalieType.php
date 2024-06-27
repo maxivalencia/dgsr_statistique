@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtAnomalieType
  *
  * @ORM\Table(name="ct_anomalie_type")
- * @ORM\Entity(repositoryClass="App\Repository\CtAnomalieTypeRepository")
+ * @ORM\Entity
  */
 class CtAnomalieType
 {
@@ -26,9 +26,9 @@ class CtAnomalieType
     /**
      * @var string|null
      *
-     * @ORM\Column(name="atp_libelle", type="string", length=45, nullable=true)
+     * @ORM\Column(name="atp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $atpLibelle;
+    private $atpLibelle = 'NULL';
 
     public function getId(): ?int
     {

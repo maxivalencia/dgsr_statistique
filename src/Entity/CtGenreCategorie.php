@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtGenreCategorie
  *
  * @ORM\Table(name="ct_genre_categorie")
- * @ORM\Entity(repositoryClass="App\Repository\CtGenreCategorieRepository")
+ * @ORM\Entity
  */
 class CtGenreCategorie
 {
@@ -26,9 +26,9 @@ class CtGenreCategorie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="gc_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gc_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $gcLibelle;
+    private $gcLibelle = 'NULL';
 
     /**
      * @var bool

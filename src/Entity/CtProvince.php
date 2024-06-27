@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtProvince
  *
  * @ORM\Table(name="ct_province")
- * @ORM\Entity(repositoryClass="App\Repository\CtProvinceRepository")
+ * @ORM\Entity
  */
 class CtProvince
 {
@@ -26,30 +26,30 @@ class CtProvince
     /**
      * @var string|null
      *
-     * @ORM\Column(name="prv_nom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prv_nom", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $prvNom;
+    private $prvNom = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="prv_code", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prv_code", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $prvCode;
+    private $prvCode = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="prv_created_at", type="datetime", nullable=true)
+     * @ORM\Column(name="prv_created_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $prvCreatedAt;
+    private $prvCreatedAt = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="prv_updated_at", type="datetime", nullable=true)
+     * @ORM\Column(name="prv_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $prvUpdatedAt;
+    private $prvUpdatedAt = 'NULL';
 
     public function getId(): ?int
     {

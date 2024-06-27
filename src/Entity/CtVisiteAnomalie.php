@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtVisiteAnomalie
  *
  * @ORM\Table(name="ct_visite_anomalie")
- * @ORM\Entity(repositoryClass="App\Repository\CtVisiteAnomalieRepository")
+ * @ORM\Entity
  */
 class CtVisiteAnomalie
 {
@@ -28,14 +28,14 @@ class CtVisiteAnomalie
      *
      * @ORM\Column(name="ct_anomalie_id", type="integer", nullable=false)
      */
-    private $ctAnomalieId;
+    private $ctAnomalieId = '0';
 
     /**
      * @var int
      *
      * @ORM\Column(name="ct_visite_id", type="integer", nullable=false)
      */
-    private $ctVisiteId;
+    private $ctVisiteId = '0';
 
     public function getId(): ?int
     {
@@ -72,7 +72,7 @@ class CtVisiteAnomalie
     */
     public function __toString()
     {
-        return $this->getCtVisiteId();
+        return $this->getCtAnomalieId();
     }
 
 

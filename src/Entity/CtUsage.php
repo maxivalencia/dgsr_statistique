@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtTypeUsage;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtUsage
  *
  * @ORM\Table(name="ct_usage", indexes={@ORM\Index(name="IDX_C8709F46E2563560", columns={"ct_type_usage_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtUsageRepository")
+ * @ORM\Entity
  */
 class CtUsage
 {
@@ -27,23 +26,23 @@ class CtUsage
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usg_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="usg_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $usgLibelle;
+    private $usgLibelle = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usg_validite", type="string", length=255, nullable=true)
+     * @ORM\Column(name="usg_validite", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $usgValidite;
+    private $usgValidite = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="usg_created", type="datetime", nullable=true)
+     * @ORM\Column(name="usg_created", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $usgCreated;
+    private $usgCreated = 'NULL';
 
     /**
      * @var \CtTypeUsage

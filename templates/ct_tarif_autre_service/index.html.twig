@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtTarifAutreService index{% endblock %}
+
+{% block body %}
+    <h1>CtTarifAutreService index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TasTarif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_tarif_autre_service in ct_tarif_autre_services %}
+            <tr>
+                <td>{{ ct_tarif_autre_service.id }}</td>
+                <td>{{ ct_tarif_autre_service.tasTarif }}</td>
+                <td>
+                    <a href="{{ path('ct_tarif_autre_service_show', {'id': ct_tarif_autre_service.id}) }}">show</a>
+                    <a href="{{ path('ct_tarif_autre_service_edit', {'id': ct_tarif_autre_service.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_tarif_autre_service_new') }}">Create new</a>
+{% endblock %}

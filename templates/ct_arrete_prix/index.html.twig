@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtArretePrix index{% endblock %}
+
+{% block body %}
+    <h1>CtArretePrix index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ArtNumero</th>
+                <th>ArtDate</th>
+                <th>ArtDateApplic</th>
+                <th>ArtCreatedAt</th>
+                <th>ArtUpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_arrete_prix in ct_arrete_prixes %}
+            <tr>
+                <td>{{ ct_arrete_prix.id }}</td>
+                <td>{{ ct_arrete_prix.artNumero }}</td>
+                <td>{{ ct_arrete_prix.artDate ? ct_arrete_prix.artDate|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_arrete_prix.artDateApplic ? ct_arrete_prix.artDateApplic|date('Y-m-d') : '' }}</td>
+                <td>{{ ct_arrete_prix.artCreatedAt ? ct_arrete_prix.artCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_arrete_prix.artUpdatedAt ? ct_arrete_prix.artUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('ct_arrete_prix_show', {'id': ct_arrete_prix.id}) }}">show</a>
+                    <a href="{{ path('ct_arrete_prix_edit', {'id': ct_arrete_prix.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_arrete_prix_new') }}">Create new</a>
+{% endblock %}

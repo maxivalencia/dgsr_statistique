@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtVisiteBuckup
  *
- * @ORM\Table(name="ct_visite_buckup", indexes={@ORM\Index(name="fk_ct_visite_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="fk_ct_visite_ct_usage1_idx", columns={"ct_usage_id"}), @ORM\Index(name="fk_ct_visite_ct_type_visite1_idx", columns={"ct_type_visite_id"}), @ORM\Index(name="fk_ct_visite_ct_user2_idx", columns={"ct_verificateur_id"}), @ORM\Index(name="IDX_7F3E82E355B81AF1", columns={"ct_utilisation_id"}), @ORM\Index(name="fk_ct_visite_ct_carte_grise1_idx", columns={"ct_carte_grise_id"}), @ORM\Index(name="fk_ct_visite_ct_user1_idx", columns={"ct_user_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtVisiteBuckupRepository")
+ * @ORM\Table(name="ct_visite_buckup", indexes={@ORM\Index(name="IDX_7F3E82E355B81AF1", columns={"ct_utilisation_id"}), @ORM\Index(name="fk_ct_visite_ct_type_visite1_idx", columns={"ct_type_visite_id"}), @ORM\Index(name="fk_ct_visite_ct_carte_grise1_idx", columns={"ct_carte_grise_id"}), @ORM\Index(name="fk_ct_visite_ct_user2_idx", columns={"ct_verificateur_id"}), @ORM\Index(name="fk_ct_visite_ct_usage1_idx", columns={"ct_usage_id"}), @ORM\Index(name="fk_ct_visite_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="fk_ct_visite_ct_user1_idx", columns={"ct_user_id"})})
+ * @ORM\Entity
  */
 class CtVisiteBuckup
 {
@@ -26,86 +26,86 @@ class CtVisiteBuckup
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_carte_grise_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_carte_grise_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctCarteGriseId;
+    private $ctCarteGriseId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctCentreId;
+    private $ctCentreId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_type_visite_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_type_visite_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctTypeVisiteId;
+    private $ctTypeVisiteId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_usage_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_usage_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctUsageId;
+    private $ctUsageId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_user_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_user_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctUserId;
+    private $ctUserId = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_verificateur_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_verificateur_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctVerificateurId;
+    private $ctVerificateurId = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_num_pv", type="string", length=255, nullable=true)
+     * @ORM\Column(name="vst_num_pv", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $vstNumPv;
+    private $vstNumPv = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_num_feuille_caisse", type="string", length=255, nullable=true)
+     * @ORM\Column(name="vst_num_feuille_caisse", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $vstNumFeuilleCaisse;
+    private $vstNumFeuilleCaisse = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_date_expiration", type="date", nullable=true)
+     * @ORM\Column(name="vst_date_expiration", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $vstDateExpiration;
+    private $vstDateExpiration = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_created", type="datetime", nullable=true)
+     * @ORM\Column(name="vst_created", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $vstCreated;
+    private $vstCreated = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_updated", type="datetime", nullable=true)
+     * @ORM\Column(name="vst_updated", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $vstUpdated;
+    private $vstUpdated = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_utilisation_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_utilisation_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctUtilisationId;
+    private $ctUtilisationId = 'NULL';
 
     /**
      * @var bool
@@ -124,9 +124,9 @@ class CtVisiteBuckup
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_duree_reparation", type="string", length=100, nullable=true)
+     * @ORM\Column(name="vst_duree_reparation", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $vstDureeReparation;
+    private $vstDureeReparation = 'NULL';
 
     public function getId(): ?int
     {

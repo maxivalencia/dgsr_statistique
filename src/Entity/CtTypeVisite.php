@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtTypeVisite
  *
  * @ORM\Table(name="ct_type_visite")
- * @ORM\Entity(repositoryClass="App\Repository\CtTypeVisiteRepository")
+ * @ORM\Entity
  */
 class CtTypeVisite
 {
@@ -26,9 +26,9 @@ class CtTypeVisite
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tpv_libelle", type="string", length=45, nullable=true)
+     * @ORM\Column(name="tpv_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $tpvLibelle;
+    private $tpvLibelle = 'NULL';
 
     public function getId(): ?int
     {
@@ -47,7 +47,6 @@ class CtTypeVisite
         return $this;
     }
 
-
     /**
     * toString
     * @return string
@@ -56,5 +55,6 @@ class CtTypeVisite
     {
         return $this->getTpvLibelle();
     }
+
 
 }

@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtUser;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtHistorique
  *
  * @ORM\Table(name="ct_historique", indexes={@ORM\Index(name="IDX_7E72DEE1C211A85D", columns={"ct_user_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtHistoriqueRepository")
+ * @ORM\Entity
  */
 class CtHistorique
 {
@@ -48,16 +47,16 @@ class CtHistorique
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true)
+     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $ctCentreId;
+    private $ctCentreId = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="hist_type", type="string", length=20, nullable=true)
+     * @ORM\Column(name="hist_type", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $histType;
+    private $histType = 'NULL';
 
     /**
      * @var \CtUser
@@ -152,7 +151,7 @@ class CtHistorique
     */
     public function __toString()
     {
-        return $this->getHstDescription();
+        return $this->getId();
     }
 
 

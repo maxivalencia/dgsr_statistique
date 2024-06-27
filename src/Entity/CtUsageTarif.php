@@ -2,17 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtUsage;
-use App\Entity\CtTypeVisite;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtUsageTarif
  *
- * @ORM\Table(name="ct_usage_tarif", uniqueConstraints={@ORM\UniqueConstraint(name="uk_ct_usage_ct_usg_trf_annee_ct_type_visite", columns={"usg_trf_annee", "ct_usage_id", "ct_type_visite_id"})}, indexes={@ORM\Index(name="fk_ct_usage_tarif_ct_usage1_idx", columns={"ct_usage_id"}), @ORM\Index(name="IDX_FA9D5B819C6EC188", columns={"ct_type_visite_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtUsageTarifRepository")
+ * @ORM\Table(name="ct_usage_tarif", uniqueConstraints={@ORM\UniqueConstraint(name="uk_ct_usage_ct_usg_trf_annee_ct_type_visite", columns={"usg_trf_annee", "ct_usage_id", "ct_type_visite_id"})}, indexes={@ORM\Index(name="fk_ct_usage_tarif_ct_usage1_idx", columns={"ct_usage_id"}), @ORM\Index(name="IDX_FA9D5B819C6EC188", columns={"ct_type_visite_id"}), @ORM\Index(name="IDX_FA9D5B8176255A68", columns={"ct_arrete_prix_id"})})
+ * @ORM\Entity
  */
 class CtUsageTarif
 {
@@ -28,16 +26,26 @@ class CtUsageTarif
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usg_trf_annee", type="string", length=4, nullable=true)
+     * @ORM\Column(name="usg_trf_annee", type="string", length=4, nullable=true, options={"default"="NULL"})
      */
-    private $usgTrfAnnee;
+    private $usgTrfAnnee = 'NULL';
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="usg_trf_prix", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="usg_trf_prix", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $usgTrfPrix;
+    private $usgTrfPrix = 'NULL';
+
+    /**
+     * @var \CtArretePrix
+     *
+     * @ORM\ManyToOne(targetEntity="CtArretePrix")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ct_arrete_prix_id", referencedColumnName="id")
+     * })
+     */
+    private $ctArretePrix;
 
     /**
      * @var \CtTypeVisite
@@ -88,6 +96,18 @@ class CtUsageTarif
         return $this;
     }
 
+    public function getCtArretePrix(): ?CtArretePrix
+    {
+        return $this->ctArretePrix;
+    }
+
+    public function setCtArretePrix(?CtArretePrix $ctArretePrix): self
+    {
+        $this->ctArretePrix = $ctArretePrix;
+
+        return $this;
+    }
+
     public function getCtTypeVisite(): ?CtTypeVisite
     {
         return $this->ctTypeVisite;
@@ -118,7 +138,7 @@ class CtUsageTarif
     */
     public function __toString()
     {
-        return $this->getUsgTrfPrix();
+        return $this->getCtUsage();
     }
 
 

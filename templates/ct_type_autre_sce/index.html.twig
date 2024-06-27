@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtTypeAutreSce index{% endblock %}
+
+{% block body %}
+    <h1>CtTypeAutreSce index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TpasLibelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_type_autre_sce in ct_type_autre_sces %}
+            <tr>
+                <td>{{ ct_type_autre_sce.id }}</td>
+                <td>{{ ct_type_autre_sce.tpasLibelle }}</td>
+                <td>
+                    <a href="{{ path('ct_type_autre_sce_show', {'id': ct_type_autre_sce.id}) }}">show</a>
+                    <a href="{{ path('ct_type_autre_sce_edit', {'id': ct_type_autre_sce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_type_autre_sce_new') }}">Create new</a>
+{% endblock %}

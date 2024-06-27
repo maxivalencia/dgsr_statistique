@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtPlaqueChassis index{% endblock %}
+
+{% block body %}
+    <h1>CtPlaqueChassis index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PlqType</th>
+                <th>PlqTarif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_plaque_chassi in ct_plaque_chasses %}
+            <tr>
+                <td>{{ ct_plaque_chassi.id }}</td>
+                <td>{{ ct_plaque_chassi.plqType }}</td>
+                <td>{{ ct_plaque_chassi.plqTarif }}</td>
+                <td>
+                    <a href="{{ path('ct_plaque_chassis_show', {'id': ct_plaque_chassi.id}) }}">show</a>
+                    <a href="{{ path('ct_plaque_chassis_edit', {'id': ct_plaque_chassi.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_plaque_chassis_new') }}">Create new</a>
+{% endblock %}

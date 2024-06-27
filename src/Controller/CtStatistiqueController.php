@@ -22,6 +22,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Component\VarDumper\VarDumper;
+use App\Entity\ImprimeTechUse;
+use App\Entity\ImprimeTech;
+use App\Repository\CtImprimeTechUseRepository;
+use App\Repository\CtImprimeTechRepository;
 
 class CtStatistiqueController extends AbstractController
 {
@@ -432,7 +436,7 @@ class CtStatistiqueController extends AbstractController
     /**
      * @Route("/ct/identification/visite", name="ct_identification_visite", methods={"GET","POST"})
      */
-    public function RechercheIdentificationVisite(Request $request): Response
+    public function RechercheIdentificationVisite(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository): Response
     {
         $numero = strtoupper(trim($request->query->get('numero')));
         /* $numeros = explode(' ', $numero);
@@ -461,6 +465,16 @@ class CtStatistiqueController extends AbstractController
         $anomalies_to_string = "";
         //$anomalies_to_string = $liste_anomalies->getAnmlLibelle();
         //var_dump($liste_anomalies);
+        $liste_imprime = "";
+        $imprimesVisite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $vst->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimesContre = $ctImprimeTechUseRepository->findBy(["ctControleId" => $vst->getId(), "ituMotifUsed" => "Contre"]);
+        $imprimes = array_merge($imprimesVisite, $imprimesContre);
+        foreach($imprimes as $imp){
+            if($liste_imprime != ""){
+                $liste_imprime .= " - ";
+            }
+            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
         foreach($liste_anomalies as $anm){
             //$anomalies_to_string .= $anm->getVsteLibelle();
             //$anomalie = $this->getDoctrine()->getRepository(CtAnomalie::class)->findOneBy(['id' => $anm->getCtAnomalieId()]);
@@ -537,6 +551,7 @@ class CtStatistiqueController extends AbstractController
             "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+            "imprime" => $liste_imprime,
         ];
 
         $response = new JsonResponse([$visite/* , $carte_grise, $vehicule */]);
@@ -560,7 +575,7 @@ class CtStatistiqueController extends AbstractController
     /**
      * @Route("/ct/identification/reception", name="ct_identification_reception", methods={"GET","POST"})
      */
-    public function RechercheIdentificationReception(Request $request): Response
+    public function RechercheIdentificationReception(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository): Response
     {
         $numero = strtoupper(trim($request->query->get('numero')));
         /* $numeros = explode(' ', $numero);
@@ -579,6 +594,14 @@ class CtStatistiqueController extends AbstractController
         //$cg_vehicule = $this->getDoctrine()->getRepository(CtReception::class)->findOneBy(['ctVehicule' => $rcp->getCtVehicule()]);
         $cg_vehicule = $rcp->getCtVehicule();
         //$receptions[] = $rcp;
+        $liste_imprime = "";
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $rcp->getId(), "ituMotifUsed" => "Réception"]);
+        foreach($imprimes as $imp){
+            if($liste_imprime != ""){
+                $liste_imprime .= " - ";
+            }
+            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
         $reception = [
             "type_operation" => "RT",
             "id_reception" => $rcp->getId()?$rcp->getId():"",
@@ -616,6 +639,7 @@ class CtStatistiqueController extends AbstractController
             "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+            "imprime" => $liste_imprime,
         ];
 
         $response = new JsonResponse([$reception/* , $vehicule */]);
@@ -638,7 +662,7 @@ class CtStatistiqueController extends AbstractController
     /**
      * @Route("/ct/identification/constatation", name="ct_identification_constatation", methods={"GET","POST"})
      */
-    public function RechercheIdentificationConstatation(Request $request): Response
+    public function RechercheIdentificationConstatation(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository): Response
     {
         $numero = strtoupper(trim($request->query->get('numero')));
         $constatation_carte_grise = [
@@ -711,6 +735,14 @@ class CtStatistiqueController extends AbstractController
         // Récupération des informations de la carte grise
         $id = $numero;
         $cad = $this->getDoctrine()->getRepository(CtConstAvDed::class)->findOneBy(["id" => $id]);
+        $liste_imprime = "";
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $cad->getId(), "ituMotifUsed" => "Constatation"]);
+        foreach($imprimes as $imp){
+            if($liste_imprime != ""){
+                $liste_imprime .= " - ";
+            }
+            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
         //var_dump($cad);
         $constatation[] = $cad;
         $constatation_information = [
@@ -733,6 +765,7 @@ class CtStatistiqueController extends AbstractController
             "date" => $cad->getCadCreated()?$cad->getCadCreated()->format('d/m/Y'):"",
             "conformite" => $cad->getCadConforme()?"Conforme":"Non conforme",
             "observation" => $cad->getCadObservation()?$cad->getCadObservation():"",
+            "imprime" => $liste_imprime,
         ];
         $constatations_caracteristiques = new ArrayCollection();
         $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findBy(['const_av_ded_id' => $id]);
@@ -859,7 +892,7 @@ class CtStatistiqueController extends AbstractController
     /**
      * @Route("/ct/identification/qr_code", name="ct_identification_qr_code", methods={"GET", "POST"})
      */
-    public function rechercheProprietaire(Request $request)
+    public function identificationQrCode(Request $request)
     {
         $code = trim($request->query->get('code'));
         $decoded_string = $this->DecryptageDGSR_v2024($code);

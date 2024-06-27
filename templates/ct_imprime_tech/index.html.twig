@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CtImprimeTech index{% endblock %}
+
+{% block body %}
+    <h1>CtImprimeTech index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomImprimeTech</th>
+                <th>UteImprimeTech</th>
+                <th>AbrevImprimeTech</th>
+                <th>PrttCreatedAt</th>
+                <th>PrttUpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct_imprime_tech in ct_imprime_teches %}
+            <tr>
+                <td>{{ ct_imprime_tech.id }}</td>
+                <td>{{ ct_imprime_tech.nomImprimeTech }}</td>
+                <td>{{ ct_imprime_tech.uteImprimeTech }}</td>
+                <td>{{ ct_imprime_tech.abrevImprimeTech }}</td>
+                <td>{{ ct_imprime_tech.prttCreatedAt ? ct_imprime_tech.prttCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct_imprime_tech.prttUpdatedAt ? ct_imprime_tech.prttUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('ct_imprime_tech_show', {'id': ct_imprime_tech.id}) }}">show</a>
+                    <a href="{{ path('ct_imprime_tech_edit', {'id': ct_imprime_tech.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct_imprime_tech_new') }}">Create new</a>
+{% endblock %}

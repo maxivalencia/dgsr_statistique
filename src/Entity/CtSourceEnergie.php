@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtSourceEnergie
  *
  * @ORM\Table(name="ct_source_energie")
- * @ORM\Entity(repositoryClass="App\Repository\CtSourceEnergieRepository")
+ * @ORM\Entity
  */
 class CtSourceEnergie
 {
@@ -26,9 +26,9 @@ class CtSourceEnergie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="sre_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="sre_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $sreLibelle;
+    private $sreLibelle = 'NULL';
 
     public function getId(): ?int
     {

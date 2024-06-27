@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CtImprimeTechUse{% endblock %}
+
+{% block body %}
+    <h1>Create new CtImprimeTechUse</h1>
+
+    {{ include('ct_imprime_tech_use/_form.html.twig') }}
+
+    <a href="{{ path('ct_imprime_tech_use_index') }}">back to list</a>
+{% endblock %}

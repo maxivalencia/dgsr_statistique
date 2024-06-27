@@ -2,17 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\CtRole;
-use App\Entity\CtCentre;
+
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * CtUser
  *
- * @ORM\Table(name="ct_user", uniqueConstraints={@ORM\UniqueConstraint(name="email_canonical_UNIQUE", columns={"email_canonical"}), @ORM\UniqueConstraint(name="username_canonical_UNIQUE", columns={"username_canonical"}), @ORM\UniqueConstraint(name="confirmation_token_UNIQUE", columns={"confirmation_token"})}, indexes={@ORM\Index(name="IDX_A115979E82C8474E", columns={"ct_centre_id"}), @ORM\Index(name="IDX_A115979EB37C5964", columns={"ct_role_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtUserRepository")
+ * @ORM\Table(name="ct_user", uniqueConstraints={@ORM\UniqueConstraint(name="username_canonical_UNIQUE", columns={"username_canonical"}), @ORM\UniqueConstraint(name="email_canonical_UNIQUE", columns={"email_canonical"}), @ORM\UniqueConstraint(name="confirmation_token_UNIQUE", columns={"confirmation_token"})}, indexes={@ORM\Index(name="IDX_A115979E82C8474E", columns={"ct_centre_id"}), @ORM\Index(name="IDX_A115979EB37C5964", columns={"ct_role_id"})})
+ * @ORM\Entity
  */
 class CtUser
 {
@@ -63,9 +61,9 @@ class CtUser
     /**
      * @var string|null
      *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
+     * @ORM\Column(name="salt", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $salt;
+    private $salt = 'NULL';
 
     /**
      * @var string
@@ -77,23 +75,23 @@ class CtUser
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     * @ORM\Column(name="last_login", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $lastLogin;
+    private $lastLogin = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="confirmation_token", type="string", length=180, nullable=true)
+     * @ORM\Column(name="confirmation_token", type="string", length=180, nullable=true, options={"default"="NULL"})
      */
-    private $confirmationToken;
+    private $confirmationToken = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="password_requested_at", type="datetime", nullable=true)
+     * @ORM\Column(name="password_requested_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $passwordRequestedAt;
+    private $passwordRequestedAt = 'NULL';
 
     /**
      * @var array
@@ -105,65 +103,65 @@ class CtUser
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usr_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="usr_name", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $usrName;
+    private $usrName = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usr_email", type="string", length=255, nullable=true)
+     * @ORM\Column(name="usr_email", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $usrEmail;
+    private $usrEmail = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="usr_locked", type="boolean", nullable=true)
+     * @ORM\Column(name="usr_locked", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $usrLocked;
+    private $usrLocked = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usr_password", type="string", length=255, nullable=true)
+     * @ORM\Column(name="usr_password", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $usrPassword;
+    private $usrPassword = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usr_adresse", type="string", length=255, nullable=true)
+     * @ORM\Column(name="usr_adresse", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $usrAdresse;
+    private $usrAdresse = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usr_token", type="string", length=100, nullable=true)
+     * @ORM\Column(name="usr_token", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $usrToken;
+    private $usrToken = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="usr_created_at", type="datetime", nullable=true)
+     * @ORM\Column(name="usr_created_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $usrCreatedAt;
+    private $usrCreatedAt = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="usr_updated_at", type="datetime", nullable=true)
+     * @ORM\Column(name="usr_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $usrUpdatedAt;
+    private $usrUpdatedAt = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="usr_locked_update", type="boolean", nullable=true)
+     * @ORM\Column(name="usr_locked_update", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $usrLockedUpdate;
+    private $usrLockedUpdate = 'NULL';
 
     /**
      * @var bool
@@ -175,30 +173,30 @@ class CtUser
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usr_profession", type="string", length=255, nullable=true)
+     * @ORM\Column(name="usr_profession", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $usrProfession;
+    private $usrProfession = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usr_telephone", type="string", length=45, nullable=true)
+     * @ORM\Column(name="usr_telephone", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $usrTelephone;
+    private $usrTelephone = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="usr_is_connected", type="boolean", nullable=true)
+     * @ORM\Column(name="usr_is_connected", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $usrIsConnected;
+    private $usrIsConnected = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="usr_presence", type="boolean", nullable=true)
+     * @ORM\Column(name="usr_presence", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $usrPresence;
+    private $usrPresence = 'NULL';
 
     /**
      * @var \CtCentre

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtZoneDeserte
  *
  * @ORM\Table(name="ct_zone_deserte")
- * @ORM\Entity(repositoryClass="App\Repository\CtZoneDeserteRepository")
+ * @ORM\Entity
  */
 class CtZoneDeserte
 {
@@ -26,9 +26,9 @@ class CtZoneDeserte
     /**
      * @var string|null
      *
-     * @ORM\Column(name="zd_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="zd_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $zdLibelle;
+    private $zdLibelle = 'NULL';
 
     public function getId(): ?int
     {

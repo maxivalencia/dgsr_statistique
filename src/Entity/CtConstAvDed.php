@@ -2,17 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\CtUser;
-use App\Entity\CtCentre;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtConstAvDed
  *
- * @ORM\Table(name="ct_const_av_ded", indexes={@ORM\Index(name="fk_ct_const_av_ded_ct_centre1_idx", columns={"ct_centre_id"}), @ORM\Index(name="fk_ct_const_av_ded_ct_user1_idx", columns={"ct_verificateur_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\CtConstAvDedRepository")
+ * @ORM\Table(name="ct_const_av_ded", indexes={@ORM\Index(name="fk_ct_const_av_ded_ct_user1_idx", columns={"ct_verificateur_id"}), @ORM\Index(name="fk_ct_const_av_ded_ct_centre1_idx", columns={"ct_centre_id"})})
+ * @ORM\Entity
  */
 class CtConstAvDed
 {
@@ -28,107 +28,107 @@ class CtConstAvDed
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_provenance", type="string", length=45, nullable=true)
+     * @ORM\Column(name="cad_provenance", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $cadProvenance;
+    private $cadProvenance = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_divers", type="string", length=100, nullable=true)
+     * @ORM\Column(name="cad_divers", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $cadDivers;
+    private $cadDivers = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_proprietaire_nom", type="string", length=100, nullable=true)
+     * @ORM\Column(name="cad_proprietaire_nom", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $cadProprietaireNom;
+    private $cadProprietaireNom = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_proprietaire_adresse", type="string", length=100, nullable=true)
+     * @ORM\Column(name="cad_proprietaire_adresse", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $cadProprietaireAdresse;
+    private $cadProprietaireAdresse = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_bon_etat", type="boolean", nullable=true)
+     * @ORM\Column(name="cad_bon_etat", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $cadBonEtat;
+    private $cadBonEtat = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_sec_pers", type="boolean", nullable=true)
+     * @ORM\Column(name="cad_sec_pers", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $cadSecPers;
+    private $cadSecPers = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_sec_march", type="boolean", nullable=true)
+     * @ORM\Column(name="cad_sec_march", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $cadSecMarch;
+    private $cadSecMarch = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_protec_env", type="boolean", nullable=true)
+     * @ORM\Column(name="cad_protec_env", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $cadProtecEnv;
+    private $cadProtecEnv = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_numero", type="string", length=45, nullable=true)
+     * @ORM\Column(name="cad_numero", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $cadNumero;
+    private $cadNumero = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_immatriculation", type="string", length=45, nullable=true)
+     * @ORM\Column(name="cad_immatriculation", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $cadImmatriculation;
+    private $cadImmatriculation = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cad_date_embarquement", type="datetime", nullable=true)
+     * @ORM\Column(name="cad_date_embarquement", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $cadDateEmbarquement;
+    private $cadDateEmbarquement = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_lieu_embarquement", type="string", length=45, nullable=true)
+     * @ORM\Column(name="cad_lieu_embarquement", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $cadLieuEmbarquement;
+    private $cadLieuEmbarquement = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cad_created", type="datetime", nullable=true)
+     * @ORM\Column(name="cad_created", type="datetime", nullable=true, options={"default"="NULL"})
      */
-    private $cadCreated;
+    private $cadCreated = 'NULL';
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_conforme", type="boolean", nullable=true)
+     * @ORM\Column(name="cad_conforme", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $cadConforme;
+    private $cadConforme = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_observation", type="string", length=255, nullable=true)
+     * @ORM\Column(name="cad_observation", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $cadObservation;
+    private $cadObservation = 'NULL';
 
     /**
      * @var \CtCentre
@@ -154,7 +154,7 @@ class CtConstAvDed
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="CtConstAvDedCarac", inversedBy="constAvDed")
-     * @ORM\JoinTable(name="ct_const_av_deds_const_av_ded_caracs", 
+     * @ORM\JoinTable(name="ct_const_av_deds_const_av_ded_caracs",
      *   joinColumns={
      *     @ORM\JoinColumn(name="const_av_ded_id", referencedColumnName="id")
      *   },
@@ -171,8 +171,6 @@ class CtConstAvDed
     public function __construct()
     {
         $this->constAvDedCarac = new \Doctrine\Common\Collections\ArrayCollection();
-        //$this->ctVerificateur =  new ArrayCollection();
-        //$this->ctCentre =  new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -416,7 +414,7 @@ class CtConstAvDed
     */
     public function __toString()
     {
-        return $this->getCadImmatriculation();
+        return $this->getCadNumero();
     }
 
 }

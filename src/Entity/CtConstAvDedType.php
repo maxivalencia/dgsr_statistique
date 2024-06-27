@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtConstAvDedType
  *
  * @ORM\Table(name="ct_const_av_ded_type")
- * @ORM\Entity(repositoryClass="App\Repository\CtAvDedTypeRepository")
+ * @ORM\Entity
  */
 class CtConstAvDedType
 {
@@ -26,9 +26,9 @@ class CtConstAvDedType
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_tp_libelle", type="string", length=45, nullable=true)
+     * @ORM\Column(name="cad_tp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
-    private $cadTpLibelle;
+    private $cadTpLibelle = 'NULL';
 
     public function getId(): ?int
     {

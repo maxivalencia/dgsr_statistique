@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CtMotif
  *
  * @ORM\Table(name="ct_motif")
- * @ORM\Entity(repositoryClass="App\Repository\CtMotifRepository")
+ * @ORM\Entity
  */
 class CtMotif
 {
@@ -26,9 +26,9 @@ class CtMotif
     /**
      * @var string|null
      *
-     * @ORM\Column(name="mtf_libelle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="mtf_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $mtfLibelle;
+    private $mtfLibelle = 'NULL';
 
     /**
      * @var bool
