@@ -11,6 +11,7 @@ use App\Entity\CtConstAvDed;
 use App\Entity\CtConstAvDedCarac;
 use App\Entity\CtConstAvDedsConstAvDedCaracs;
 use App\Entity\CtVisiteAnomalie;
+use App\Entity\CtAutreSce;
 use App\Form\CtConstAvDedCaracType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
@@ -747,7 +748,7 @@ class CtStatistiqueController extends AbstractController
         $constatation[] = $cad;
         $constatation_information = [
             "type_operation" => "CAD",
-            "id" => $id?$id:"",
+            "id_constatation" => $id?$id:"",
             "centre" => $cad->getCtCentre()?$cad->getCtCentre()->getCtrNom():"",
             "verificateur" => $cad->getCtVerificateur()?$cad->getCtVerificateur()->getUsrName():"",
             "provenance" => $cad->getCadProvenance()?$cad->getCadProvenance():"",
@@ -892,13 +893,59 @@ class CtStatistiqueController extends AbstractController
     /**
      * @Route("/ct/identification/qr_code", name="ct_identification_qr_code", methods={"GET", "POST"})
      */
-    public function identificationQrCode(Request $request)
+    public function identificationQrCode(Request $request, CtAutreSce $ctAutreSce)
     {
         $code = trim($request->query->get('code'));
         $decoded_string = $this->DecryptageDGSR_v2024($code);
         $result_value = explode("-", $decoded_string);
         $type_operation = $result_value[0];
         $id = $result_value[1];
+        if($type_operation == "AS"){
+            $id_as = $result_value[1];
+            $autre_service = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(['id' => $id_as]);
+            switch($autre_service->getCtTypeAutreSce()){
+                case 1:
+                    $type_operation = "AVF";
+                    $id = $autre_service->getId();
+                    break;
+                case 2:
+                    $type_operation = "VTS";
+                    $id = $autre_service->getId();
+                    break;
+                case 3:
+                    $type_operation = "VT";
+                    $id = $autre_service->getCtControleId();
+                    break;
+                case 4:
+                    $type_operation = "VT";
+                    $id = $autre_service->getCtControleId();
+                    break;
+                case 5:
+                    $type_operation = "RT";
+                    $id = $autre_service->getCtControleId();
+                    break;
+                case 6:
+                    $type_operation = "AVF";
+                    $id = $autre_service->getCtControleId();
+                    break;
+                case 7:
+                    $type_operation = "AVF";
+                    $id = $autre_service->getCtControleId();
+                    break;
+                case 8:
+                    $type_operation = "CAR";
+                    $id = $autre_service->getCtControleId();
+                    break;
+                case 9:
+                    $type_operation = "VS";
+                    $id = $autre_service->getCtControleId();
+                    break;
+                default:
+                    $type_operation = "ND";
+                    break;
+            }
+            $decoded_string = $type_operation . "-" . $id;
+        }
         /* switch($type_operation){
             case "VT":
                 return $this->redirectToRoute('ct_identification_visite', ["numero" => $id]);
@@ -925,6 +972,425 @@ class CtStatistiqueController extends AbstractController
         ];
 
         $response = new JsonResponse($information);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/ct/identification/authenticite/vitre/fumee", name="ct_identification_authenticite_vitre_fumee", methods={"GET","POST"})
+     */
+    public function RechercheIdentificationAuthenticiteVitreFumee(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository): Response
+    {
+        $numero = strtoupper(trim($request->query->get('numero')));
+        /* $numeros = explode(' ', $numero);
+        $numero = "";
+        foreach($numeros as $num){
+            $numero .= strtoupper($num);
+        } */
+
+        if($numero == ''){
+            return $this->render('ct_statistique/recherche_id.html.twig');
+        }
+        $ctCarteGrise = new CtCarteGrise();
+        $cg_vehicule = new CtVehicule();
+        $id = $numero;
+        $as = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(["id" => $id]);
+        $ctCarteGrise = $as->getCtCarteGrise();
+        if ($ctCarteGrise != null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
+        }
+        $liste_imprime = "";
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        foreach($imprimes as $imp){
+            if($liste_imprime != ""){
+                $liste_imprime .= " - ";
+            }
+            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autre_service = [
+            "type_operation" => "AVF",
+            "id_autre_service" => $as->getId()?$as->getId():"",
+            "centre" => $as->getCtCentre()?$as->getCtCentre()->getCtrNom():"",
+            "secretaire" => $as->getCtUser()?$as->getCtUser()->getUsrName():"",
+            "verificateur" => $as->getCtVerificateur()?$as->getCtVerificateur()->getUsrName():"",
+            "numero_controle" => $as->getAsNumPv()?$as->getAsNumPv():"",
+            "date_expiration" => $as->getAsValiditeFumee()?$as->getAsValiditeFumee():"",
+            "date_controle" => $as->getAsCreated()?$as->getAsCreated()->format('d/m/Y'):"",
+            "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
+            "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
+            "option_vitre_fumee" => $as->getCtOptionVitreFumee()?$as->getCtOptionVitreFumee()->getOvfLibelle():"",
+            "validite" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale()->format('d/m/Y'):"",
+        /* ];
+        $carte_grise = [ */
+            "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
+            "carrosserie" => $ctCarteGrise->getCtCarosserie()?$ctCarteGrise->getCtCarosserie()->getCrsLibelle():"",
+            "centre_carte_grise" => $ctCarteGrise->getCtCentre()?$ctCarteGrise->getCtCentre()->getCtrNom():"",
+            "source_energie" => $ctCarteGrise->getCtSourceEnergie()?$ctCarteGrise->getCtSourceEnergie()->getSreLibelle():"",
+            "date_emission" => $ctCarteGrise->getCgDateEmission()?$ctCarteGrise->getCgDateEmission()->format('d/m/Y'):"",
+            "nom" => $ctCarteGrise->getCgNom()?$ctCarteGrise->getCgNom():"",
+            "prenom" => $ctCarteGrise->getCgPrenom()?$ctCarteGrise->getCgPrenom():"",
+            "profession" => $ctCarteGrise->getCgProfession()?$ctCarteGrise->getCgProfession():"",
+            "adresse" => $ctCarteGrise->getCgAdresse()?$ctCarteGrise->getCgAdresse():"",
+            "telephone" => $ctCarteGrise->getCgPhone()?$ctCarteGrise->getCgPhone():"",
+            "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
+            "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
+            "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
+            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
+            "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
+            "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
+            "rta" => $ctCarteGrise->getCgRta()?$ctCarteGrise->getCgRta():"",
+            "num_carte_violette" => $ctCarteGrise->getCgNumCarteViolette()?$ctCarteGrise->getCgNumCarteViolette():"",
+            "date_carte_violette" => $ctCarteGrise->getCgDateCarteViolette()?$ctCarteGrise->getCgDateCarteViolette()->format('d/m/Y'):"",
+            "lieu_carte_violette" => $ctCarteGrise->getCgLieuCarteViolette()?$ctCarteGrise->getCgLieuCarteViolette():"",
+            "licence" => $ctCarteGrise->getCgNumVignette()?$ctCarteGrise->getCgNumVignette():"",
+            "date_licence" => $ctCarteGrise->getCgDateVignette()?$ctCarteGrise->getCgDateVignette()->format('d/m/Y'):"",
+            "lieu_licence" => $ctCarteGrise->getCgLieuVignette()?$ctCarteGrise->getCgLieuVignette():"",
+            "immatriculation" => $ctCarteGrise->getCgImmatriculation()?$ctCarteGrise->getCgImmatriculation():"",
+            "date" => $ctCarteGrise->getCgCreated()?$ctCarteGrise->getCgCreated()->format('d/m/Y'):"",
+            "nom_cooperative" => $ctCarteGrise->getCgNomCooperative()?$ctCarteGrise->getCgNomCooperative():"",
+            "itineraire" => $ctCarteGrise->getCgItineraire()?$ctCarteGrise->getCgItineraire():"",
+            "transporteur" => $ctCarteGrise->getCgIsTransport()?$ctCarteGrise->getCgIsTransport():"",
+            "numero_identification" => $ctCarteGrise->getCgNumIdentification()?$ctCarteGrise->getCgNumIdentification():"",
+            "zone_desserte" => $ctCarteGrise->getCtZoneDeserte()?$ctCarteGrise->getCtZoneDeserte()->getZdLibelle():"",
+        /* ];
+        $vehicule = [ */
+            "id_vehicule" => $cg_vehicule->getId()?$cg_vehicule->getId():"",
+            "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
+            "marque" => $cg_vehicule->getCtMarque()?$cg_vehicule->getCtMarque()->getMrqLibelle():"",
+            "cylindre" => $cg_vehicule->getVhcCylindre()?$cg_vehicule->getVhcCylindre():"",
+            "puissance" => $cg_vehicule->getVhcPuissance()?$cg_vehicule->getVhcPuissance():"",
+            "poids_a_vide" => $cg_vehicule->getVhcPoidsVide()?$cg_vehicule->getVhcPoidsVide():"",
+            "charge_utile" => $cg_vehicule->getVhcChargeUtile()?$cg_vehicule->getVhcChargeUtile():"",
+            "hauteur" => $cg_vehicule->getVhcHauteur()?$cg_vehicule->getVhcHauteur():"",
+            "largeur" => $cg_vehicule->getVhcLargeur()?$cg_vehicule->getVhcLargeur():"",
+            "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
+            "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
+            "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
+            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
+            "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+            "imprime" => $liste_imprime,
+        ];
+
+        $response = new JsonResponse([$autre_service/* , $carte_grise, $vehicule */]);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/ct/identification/visite/technique/speciale", name="ct_identification_visite_technique_speciale", methods={"GET","POST"})
+     */
+    public function RechercheIdentificationVisiteTechniqueSpeciale(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository): Response
+    {
+        $numero = strtoupper(trim($request->query->get('numero')));
+        /* $numeros = explode(' ', $numero);
+        $numero = "";
+        foreach($numeros as $num){
+            $numero .= strtoupper($num);
+        } */
+
+        if($numero == ''){
+            return $this->render('ct_statistique/recherche_id.html.twig');
+        }
+        $ctCarteGrise = new CtCarteGrise();
+        $cg_vehicule = new CtVehicule();
+        $id = $numero;
+        $as = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(["id" => $id]);
+        $ctCarteGrise = $as->getCtCarteGrise();
+        if ($ctCarteGrise != null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
+        }
+        $liste_imprime = "";
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        foreach($imprimes as $imp){
+            if($liste_imprime != ""){
+                $liste_imprime .= " - ";
+            }
+            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autre_service = [
+            "type_operation" => "VTS",
+            "id_autre_service" => $as->getId()?$as->getId():"",
+            "centre" => $as->getCtCentre()?$as->getCtCentre()->getCtrNom():"",
+            "secretaire" => $as->getCtUser()?$as->getCtUser()->getUsrName():"",
+            "verificateur" => $as->getCtVerificateur()?$as->getCtVerificateur()->getUsrName():"",
+            "numero_controle" => $as->getAsNumPv()?$as->getAsNumPv():"",
+            "date_expiration" => $as->getAsValiditeFumee()?$as->getAsValiditeFumee():"",
+            "date_controle" => $as->getAsCreated()?$as->getAsCreated()->format('d/m/Y'):"",
+            "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
+            "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
+            "itineraire" => $as->getAsItineraireSpeciale()?$as->getAsItineraireSpeciale():"",
+            "validite" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale()->format('d/m/Y'):"",
+        /* ];
+        $carte_grise = [ */
+            "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
+            "carrosserie" => $ctCarteGrise->getCtCarosserie()?$ctCarteGrise->getCtCarosserie()->getCrsLibelle():"",
+            "centre_carte_grise" => $ctCarteGrise->getCtCentre()?$ctCarteGrise->getCtCentre()->getCtrNom():"",
+            "source_energie" => $ctCarteGrise->getCtSourceEnergie()?$ctCarteGrise->getCtSourceEnergie()->getSreLibelle():"",
+            "date_emission" => $ctCarteGrise->getCgDateEmission()?$ctCarteGrise->getCgDateEmission()->format('d/m/Y'):"",
+            "nom" => $ctCarteGrise->getCgNom()?$ctCarteGrise->getCgNom():"",
+            "prenom" => $ctCarteGrise->getCgPrenom()?$ctCarteGrise->getCgPrenom():"",
+            "profession" => $ctCarteGrise->getCgProfession()?$ctCarteGrise->getCgProfession():"",
+            "adresse" => $ctCarteGrise->getCgAdresse()?$ctCarteGrise->getCgAdresse():"",
+            "telephone" => $ctCarteGrise->getCgPhone()?$ctCarteGrise->getCgPhone():"",
+            "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
+            "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
+            "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
+            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
+            "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
+            "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
+            "rta" => $ctCarteGrise->getCgRta()?$ctCarteGrise->getCgRta():"",
+            "num_carte_violette" => $ctCarteGrise->getCgNumCarteViolette()?$ctCarteGrise->getCgNumCarteViolette():"",
+            "date_carte_violette" => $ctCarteGrise->getCgDateCarteViolette()?$ctCarteGrise->getCgDateCarteViolette()->format('d/m/Y'):"",
+            "lieu_carte_violette" => $ctCarteGrise->getCgLieuCarteViolette()?$ctCarteGrise->getCgLieuCarteViolette():"",
+            "licence" => $ctCarteGrise->getCgNumVignette()?$ctCarteGrise->getCgNumVignette():"",
+            "date_licence" => $ctCarteGrise->getCgDateVignette()?$ctCarteGrise->getCgDateVignette()->format('d/m/Y'):"",
+            "lieu_licence" => $ctCarteGrise->getCgLieuVignette()?$ctCarteGrise->getCgLieuVignette():"",
+            "immatriculation" => $ctCarteGrise->getCgImmatriculation()?$ctCarteGrise->getCgImmatriculation():"",
+            "date" => $ctCarteGrise->getCgCreated()?$ctCarteGrise->getCgCreated()->format('d/m/Y'):"",
+            "nom_cooperative" => $ctCarteGrise->getCgNomCooperative()?$ctCarteGrise->getCgNomCooperative():"",
+            "itineraire" => $ctCarteGrise->getCgItineraire()?$ctCarteGrise->getCgItineraire():"",
+            "transporteur" => $ctCarteGrise->getCgIsTransport()?$ctCarteGrise->getCgIsTransport():"",
+            "numero_identification" => $ctCarteGrise->getCgNumIdentification()?$ctCarteGrise->getCgNumIdentification():"",
+            "zone_desserte" => $ctCarteGrise->getCtZoneDeserte()?$ctCarteGrise->getCtZoneDeserte()->getZdLibelle():"",
+        /* ];
+        $vehicule = [ */
+            "id_vehicule" => $cg_vehicule->getId()?$cg_vehicule->getId():"",
+            "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
+            "marque" => $cg_vehicule->getCtMarque()?$cg_vehicule->getCtMarque()->getMrqLibelle():"",
+            "cylindre" => $cg_vehicule->getVhcCylindre()?$cg_vehicule->getVhcCylindre():"",
+            "puissance" => $cg_vehicule->getVhcPuissance()?$cg_vehicule->getVhcPuissance():"",
+            "poids_a_vide" => $cg_vehicule->getVhcPoidsVide()?$cg_vehicule->getVhcPoidsVide():"",
+            "charge_utile" => $cg_vehicule->getVhcChargeUtile()?$cg_vehicule->getVhcChargeUtile():"",
+            "hauteur" => $cg_vehicule->getVhcHauteur()?$cg_vehicule->getVhcHauteur():"",
+            "largeur" => $cg_vehicule->getVhcLargeur()?$cg_vehicule->getVhcLargeur():"",
+            "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
+            "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
+            "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
+            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
+            "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+            "imprime" => $liste_imprime,
+        ];
+
+        $response = new JsonResponse([$autre_service/* , $carte_grise, $vehicule */]);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/ct/identification/caracteristique", name="ct_identification_caracteristique", methods={"GET","POST"})
+     */
+    public function RechercheIdentificationCaracteristique(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository): Response
+    {
+        $numero = strtoupper(trim($request->query->get('numero')));
+        /* $numeros = explode(' ', $numero);
+        $numero = "";
+        foreach($numeros as $num){
+            $numero .= strtoupper($num);
+        } */
+
+        if($numero == ''){
+            return $this->render('ct_statistique/recherche_id.html.twig');
+        }
+        $ctCarteGrise = new CtCarteGrise();
+        $cg_vehicule = new CtVehicule();
+        $id = $numero;
+        $as = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(["id" => $id]);
+        $ctCarteGrise = $as->getCtCarteGrise();
+        if ($ctCarteGrise != null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
+        }
+        $liste_imprime = "";
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        foreach($imprimes as $imp){
+            if($liste_imprime != ""){
+                $liste_imprime .= " - ";
+            }
+            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autre_service = [
+            "type_operation" => "CAR",
+            "id_autre_service" => $as->getId()?$as->getId():"",
+            "centre" => $as->getCtCentre()?$as->getCtCentre()->getCtrNom():"",
+            "secretaire" => $as->getCtUser()?$as->getCtUser()->getUsrName():"",
+            "verificateur" => $as->getCtVerificateur()?$as->getCtVerificateur()->getUsrName():"",
+            "numero_controle" => $as->getAsNumPv()?$as->getAsNumPv():"",
+            "date_expiration" => $as->getAsValiditeFumee()?$as->getAsValiditeFumee():"",
+            "date_controle" => $as->getAsCreated()?$as->getAsCreated()->format('d/m/Y'):"",
+            "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
+            "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
+        /* ];
+        $carte_grise = [ */
+            "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
+            "carrosserie" => $ctCarteGrise->getCtCarosserie()?$ctCarteGrise->getCtCarosserie()->getCrsLibelle():"",
+            "centre_carte_grise" => $ctCarteGrise->getCtCentre()?$ctCarteGrise->getCtCentre()->getCtrNom():"",
+            "source_energie" => $ctCarteGrise->getCtSourceEnergie()?$ctCarteGrise->getCtSourceEnergie()->getSreLibelle():"",
+            "date_emission" => $ctCarteGrise->getCgDateEmission()?$ctCarteGrise->getCgDateEmission()->format('d/m/Y'):"",
+            "nom" => $ctCarteGrise->getCgNom()?$ctCarteGrise->getCgNom():"",
+            "prenom" => $ctCarteGrise->getCgPrenom()?$ctCarteGrise->getCgPrenom():"",
+            "profession" => $ctCarteGrise->getCgProfession()?$ctCarteGrise->getCgProfession():"",
+            "adresse" => $ctCarteGrise->getCgAdresse()?$ctCarteGrise->getCgAdresse():"",
+            "telephone" => $ctCarteGrise->getCgPhone()?$ctCarteGrise->getCgPhone():"",
+            "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
+            "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
+            "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
+            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
+            "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
+            "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
+            "rta" => $ctCarteGrise->getCgRta()?$ctCarteGrise->getCgRta():"",
+            "num_carte_violette" => $ctCarteGrise->getCgNumCarteViolette()?$ctCarteGrise->getCgNumCarteViolette():"",
+            "date_carte_violette" => $ctCarteGrise->getCgDateCarteViolette()?$ctCarteGrise->getCgDateCarteViolette()->format('d/m/Y'):"",
+            "lieu_carte_violette" => $ctCarteGrise->getCgLieuCarteViolette()?$ctCarteGrise->getCgLieuCarteViolette():"",
+            "licence" => $ctCarteGrise->getCgNumVignette()?$ctCarteGrise->getCgNumVignette():"",
+            "date_licence" => $ctCarteGrise->getCgDateVignette()?$ctCarteGrise->getCgDateVignette()->format('d/m/Y'):"",
+            "lieu_licence" => $ctCarteGrise->getCgLieuVignette()?$ctCarteGrise->getCgLieuVignette():"",
+            "immatriculation" => $ctCarteGrise->getCgImmatriculation()?$ctCarteGrise->getCgImmatriculation():"",
+            "date" => $ctCarteGrise->getCgCreated()?$ctCarteGrise->getCgCreated()->format('d/m/Y'):"",
+            "nom_cooperative" => $ctCarteGrise->getCgNomCooperative()?$ctCarteGrise->getCgNomCooperative():"",
+            "itineraire" => $ctCarteGrise->getCgItineraire()?$ctCarteGrise->getCgItineraire():"",
+            "transporteur" => $ctCarteGrise->getCgIsTransport()?$ctCarteGrise->getCgIsTransport():"",
+            "numero_identification" => $ctCarteGrise->getCgNumIdentification()?$ctCarteGrise->getCgNumIdentification():"",
+            "zone_desserte" => $ctCarteGrise->getCtZoneDeserte()?$ctCarteGrise->getCtZoneDeserte()->getZdLibelle():"",
+        /* ];
+        $vehicule = [ */
+            "id_vehicule" => $cg_vehicule->getId()?$cg_vehicule->getId():"",
+            "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
+            "marque" => $cg_vehicule->getCtMarque()?$cg_vehicule->getCtMarque()->getMrqLibelle():"",
+            "cylindre" => $cg_vehicule->getVhcCylindre()?$cg_vehicule->getVhcCylindre():"",
+            "puissance" => $cg_vehicule->getVhcPuissance()?$cg_vehicule->getVhcPuissance():"",
+            "poids_a_vide" => $cg_vehicule->getVhcPoidsVide()?$cg_vehicule->getVhcPoidsVide():"",
+            "charge_utile" => $cg_vehicule->getVhcChargeUtile()?$cg_vehicule->getVhcChargeUtile():"",
+            "hauteur" => $cg_vehicule->getVhcHauteur()?$cg_vehicule->getVhcHauteur():"",
+            "largeur" => $cg_vehicule->getVhcLargeur()?$cg_vehicule->getVhcLargeur():"",
+            "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
+            "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
+            "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
+            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
+            "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+            "imprime" => $liste_imprime,
+        ];
+
+        $response = new JsonResponse([$autre_service/* , $carte_grise, $vehicule */]);
+        $response->headers->set('Access-Control-Allow-Headers', '*');
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/ct/identification/vente/speciale", name="ct_identification_vente_speciale", methods={"GET","POST"})
+     */
+    public function RechercheIdentificationVenteSpeciale(Request $request, CtImprimeTechUseRepository $ctImprimeTechUseRepository): Response
+    {
+        $numero = strtoupper(trim($request->query->get('numero')));
+        /* $numeros = explode(' ', $numero);
+        $numero = "";
+        foreach($numeros as $num){
+            $numero .= strtoupper($num);
+        } */
+
+        if($numero == ''){
+            return $this->render('ct_statistique/recherche_id.html.twig');
+        }
+        $ctCarteGrise = new CtCarteGrise();
+        $cg_vehicule = new CtVehicule();
+        $id = $numero;
+        $as = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(["id" => $id]);
+        $ctCarteGrise = $as->getCtCarteGrise();
+        if ($ctCarteGrise != null){
+            $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
+        }
+        $liste_imprime = "";
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        foreach($imprimes as $imp){
+            if($liste_imprime != ""){
+                $liste_imprime .= " - ";
+            }
+            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autre_service = [
+            "type_operation" => "VS",
+            "id_autre_service" => $as->getId()?$as->getId():"",
+            "centre" => $as->getCtCentre()?$as->getCtCentre()->getCtrNom():"",
+            "secretaire" => $as->getCtUser()?$as->getCtUser()->getUsrName():"",
+            "verificateur" => $as->getCtVerificateur()?$as->getCtVerificateur()->getUsrName():"",
+            "numero_controle" => $as->getAsNumPv()?$as->getAsNumPv():"",
+            "date_controle" => $as->getAsCreated()?$as->getAsCreated()->format('d/m/Y'):"",
+            "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
+            "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
+        /* ];
+        $carte_grise = [ */
+            "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
+            "carrosserie" => $ctCarteGrise->getCtCarosserie()?$ctCarteGrise->getCtCarosserie()->getCrsLibelle():"",
+            "centre_carte_grise" => $ctCarteGrise->getCtCentre()?$ctCarteGrise->getCtCentre()->getCtrNom():"",
+            "source_energie" => $ctCarteGrise->getCtSourceEnergie()?$ctCarteGrise->getCtSourceEnergie()->getSreLibelle():"",
+            "date_emission" => $ctCarteGrise->getCgDateEmission()?$ctCarteGrise->getCgDateEmission()->format('d/m/Y'):"",
+            "nom" => $ctCarteGrise->getCgNom()?$ctCarteGrise->getCgNom():"",
+            "prenom" => $ctCarteGrise->getCgPrenom()?$ctCarteGrise->getCgPrenom():"",
+            "profession" => $ctCarteGrise->getCgProfession()?$ctCarteGrise->getCgProfession():"",
+            "adresse" => $ctCarteGrise->getCgAdresse()?$ctCarteGrise->getCgAdresse():"",
+            "telephone" => $ctCarteGrise->getCgPhone()?$ctCarteGrise->getCgPhone():"",
+            "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
+            "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
+            "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
+            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
+            "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
+            "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
+            "rta" => $ctCarteGrise->getCgRta()?$ctCarteGrise->getCgRta():"",
+            "num_carte_violette" => $ctCarteGrise->getCgNumCarteViolette()?$ctCarteGrise->getCgNumCarteViolette():"",
+            "date_carte_violette" => $ctCarteGrise->getCgDateCarteViolette()?$ctCarteGrise->getCgDateCarteViolette()->format('d/m/Y'):"",
+            "lieu_carte_violette" => $ctCarteGrise->getCgLieuCarteViolette()?$ctCarteGrise->getCgLieuCarteViolette():"",
+            "licence" => $ctCarteGrise->getCgNumVignette()?$ctCarteGrise->getCgNumVignette():"",
+            "date_licence" => $ctCarteGrise->getCgDateVignette()?$ctCarteGrise->getCgDateVignette()->format('d/m/Y'):"",
+            "lieu_licence" => $ctCarteGrise->getCgLieuVignette()?$ctCarteGrise->getCgLieuVignette():"",
+            "immatriculation" => $ctCarteGrise->getCgImmatriculation()?$ctCarteGrise->getCgImmatriculation():"",
+            "date" => $ctCarteGrise->getCgCreated()?$ctCarteGrise->getCgCreated()->format('d/m/Y'):"",
+            "nom_cooperative" => $ctCarteGrise->getCgNomCooperative()?$ctCarteGrise->getCgNomCooperative():"",
+            "itineraire" => $ctCarteGrise->getCgItineraire()?$ctCarteGrise->getCgItineraire():"",
+            "transporteur" => $ctCarteGrise->getCgIsTransport()?$ctCarteGrise->getCgIsTransport():"",
+            "numero_identification" => $ctCarteGrise->getCgNumIdentification()?$ctCarteGrise->getCgNumIdentification():"",
+            "zone_desserte" => $ctCarteGrise->getCtZoneDeserte()?$ctCarteGrise->getCtZoneDeserte()->getZdLibelle():"",
+        /* ];
+        $vehicule = [ */
+            "id_vehicule" => $cg_vehicule->getId()?$cg_vehicule->getId():"",
+            "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
+            "marque" => $cg_vehicule->getCtMarque()?$cg_vehicule->getCtMarque()->getMrqLibelle():"",
+            "cylindre" => $cg_vehicule->getVhcCylindre()?$cg_vehicule->getVhcCylindre():"",
+            "puissance" => $cg_vehicule->getVhcPuissance()?$cg_vehicule->getVhcPuissance():"",
+            "poids_a_vide" => $cg_vehicule->getVhcPoidsVide()?$cg_vehicule->getVhcPoidsVide():"",
+            "charge_utile" => $cg_vehicule->getVhcChargeUtile()?$cg_vehicule->getVhcChargeUtile():"",
+            "hauteur" => $cg_vehicule->getVhcHauteur()?$cg_vehicule->getVhcHauteur():"",
+            "largeur" => $cg_vehicule->getVhcLargeur()?$cg_vehicule->getVhcLargeur():"",
+            "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
+            "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
+            "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
+            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
+            "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
+            "imprime" => $liste_imprime,
+        ];
+
+        $response = new JsonResponse([$autre_service/* , $carte_grise, $vehicule */]);
         $response->headers->set('Access-Control-Allow-Headers', '*');
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
