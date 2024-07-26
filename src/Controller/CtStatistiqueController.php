@@ -13,6 +13,7 @@ use App\Entity\CtConstAvDedsConstAvDedCaracs;
 use App\Entity\CtVisiteAnomalie;
 use App\Entity\CtAutreSce;
 use App\Form\CtConstAvDedCaracType;
+use App\Repository\CtAutreSceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -887,13 +888,14 @@ class CtStatistiqueController extends AbstractController
             $_key  = array_search($_str, $_code);
             $_decrypted .= $_base[$_key];
         }
+        //var_dump($_decrypted);
         return $_decrypted;
     }
 
     /**
      * @Route("/ct/identification/qr_code", name="ct_identification_qr_code", methods={"GET", "POST"})
      */
-    public function identificationQrCode(Request $request, CtAutreSce $ctAutreSce)
+    public function identificationQrCode(Request $request, CtAutreSce $ctAutreSce, CtAutreSceRepository $ctAutreSceRepository)
     {
         $code = trim($request->query->get('code'));
         $decoded_string = $this->DecryptageDGSR_v2024($code);
@@ -901,9 +903,10 @@ class CtStatistiqueController extends AbstractController
         $type_operation = $result_value[0];
         $id = $result_value[1];
         if($type_operation == "AS"){
-            $id_as = $result_value[1];
-            $autre_service = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(['id' => $id_as]);
-            switch($autre_service->getCtTypeAutreSce()){
+            $id_as = $id;
+            //$autre_service = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(['id' => $id_as]);
+            $autre_service = $ctAutreSceRepository->findOneBy(['id' => $id_as]);
+            switch($autre_service->getCtTypeAutreSce()->getId()){
                 case 1:
                     $type_operation = "AVF";
                     $id = $autre_service->getId();
