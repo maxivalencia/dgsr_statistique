@@ -895,18 +895,19 @@ class CtStatistiqueController extends AbstractController
     /**
      * @Route("/ct/identification/qr_code", name="ct_identification_qr_code", methods={"GET", "POST"})
      */
-    public function identificationQrCode(Request $request, CtAutreSce $ctAutreSce, CtAutreSceRepository $ctAutreSceRepository)
+    public function identificationQrCode(Request $request)
     {
         $code = trim($request->query->get('code'));
         $decoded_string = $this->DecryptageDGSR_v2024($code);
         $result_value = explode("-", $decoded_string);
         $type_operation = $result_value[0];
         $id = $result_value[1];
+        //var_dump($id);
         if($type_operation == "AS"){
-            $id_as = $id;
-            //$autre_service = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(['id' => $id_as]);
-            $autre_service = $ctAutreSceRepository->findOneBy(['id' => $id_as]);
-            //var_dump($autre_service->getCtTypeAutreSce()->getId());
+            $id_as = (int)$id;
+            $autre_service = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(['id' => $id_as]);
+            //$autre_service = $ctAutreSceRepository->findOneBy(['id' => $id_as]);
+            var_dump($autre_service->getCtTypeAutreSce()->getId());
             switch($autre_service->getCtTypeAutreSce()->getId()){
                 case 1:
                     $type_operation = "AVF";
