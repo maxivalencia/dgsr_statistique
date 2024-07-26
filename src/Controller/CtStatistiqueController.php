@@ -906,6 +906,7 @@ class CtStatistiqueController extends AbstractController
             $id_as = $id;
             //$autre_service = $this->getDoctrine()->getRepository(CtAutreSce::class)->findOneBy(['id' => $id_as]);
             $autre_service = $ctAutreSceRepository->findOneBy(['id' => $id_as]);
+            var_dump($autre_service->getCtTypeAutreSce()->getId());
             switch($autre_service->getCtTypeAutreSce()->getId()){
                 case 1:
                     $type_operation = "AVF";
