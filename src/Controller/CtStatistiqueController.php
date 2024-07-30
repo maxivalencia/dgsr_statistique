@@ -1032,7 +1032,7 @@ class CtStatistiqueController extends AbstractController
             "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
             "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
             "option_vitre_fumee" => $as->getCtOptionVitreFumee()?$as->getCtOptionVitreFumee()->getOvfLibelle():"",
-            "validite" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale():"",
+            "validite" => $as->getAsValiditeFumee()?$as->getAsValiditeFumee():"",
         /* ];
         $carte_grise = [ */
             "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
