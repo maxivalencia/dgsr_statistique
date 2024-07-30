@@ -1139,7 +1139,8 @@ class CtStatistiqueController extends AbstractController
             "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
             "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
             "itineraire" => $as->getAsItineraireSpeciale()?$as->getAsItineraireSpeciale():"",
-            "validite" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale()->format('d/m/Y'):"",
+            "depart" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale()->format('d/m/Y'):"",
+            "validite" => $as->getAsCreated()?$as->getAsCreated()->modify('+15 days')->format('d/m/Y'):"",
         /* ];
         $carte_grise = [ */
             "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
