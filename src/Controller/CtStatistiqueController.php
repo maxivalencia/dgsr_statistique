@@ -561,6 +561,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
         //$response = $this->json([$visite, $carte_grise, $vehicule]);
 
         return $response;
@@ -649,6 +650,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
         //$response = $this->json([$reception, $vehicule]);
 
         return $response;
@@ -856,6 +858,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
         //$response = $this->json([$constatation_information, $constatation_carte_grise, $constatation_corps_vehicule, $constatation_note_descriptive]);
 
         return $response;
@@ -981,6 +984,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1087,6 +1091,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1193,6 +1198,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1297,6 +1303,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1400,6 +1407,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }

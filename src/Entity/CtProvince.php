@@ -26,30 +26,30 @@ class CtProvince
     /**
      * @var string|null
      *
-     * @ORM\Column(name="prv_nom", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prv_nom", type="string", length=255, nullable=true)
      */
-    private $prvNom = 'NULL';
+    private $prvNom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="prv_code", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prv_code", type="string", length=255, nullable=true)
      */
-    private $prvCode = 'NULL';
+    private $prvCode;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="prv_created_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prv_created_at", type="datetime", nullable=true)
      */
-    private $prvCreatedAt = 'NULL';
+    private $prvCreatedAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="prv_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prv_updated_at", type="datetime", nullable=true)
      */
-    private $prvUpdatedAt = 'NULL';
+    private $prvUpdatedAt;
 
     public function getId(): ?int
     {

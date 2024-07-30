@@ -17,7 +17,7 @@ class CtArretePrix
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -26,37 +26,37 @@ class CtArretePrix
     /**
      * @var string
      *
-     * @ORM\Column(name="art_numero", type="string", length=124, nullable=false)
+     * @ORM\Column(name="art_numero", type="string", length=124)
      */
     private $artNumero;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="art_date", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="art_date", type="date", nullable=true)
      */
-    private $artDate = 'NULL';
+    private $artDate;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="art_date_applic", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="art_date_applic", type="date", nullable=true)
      */
-    private $artDateApplic = 'NULL';
+    private $artDateApplic;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="art_created_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="art_created_at", type="datetime", nullable=true)
      */
-    private $artCreatedAt = 'NULL';
+    private $artCreatedAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="art_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="art_updated_at", type="datetime", nullable=true)
      */
-    private $artUpdatedAt = 'NULL';
+    private $artUpdatedAt;
 
     /**
      * @var \CtUser

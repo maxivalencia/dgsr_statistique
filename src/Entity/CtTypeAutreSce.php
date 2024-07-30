@@ -26,9 +26,9 @@ class CtTypeAutreSce
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tpas_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="tpas_libelle", type="string", length=45, nullable=true)
      */
-    private $tpasLibelle = 'NULL';
+    private $tpasLibelle;
 
     public function getId(): ?int
     {

@@ -26,72 +26,72 @@ class CtReception
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="rcp_mise_service", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_mise_service", type="date", nullable=true)
      */
-    private $rcpMiseService = 'NULL';
+    private $rcpMiseService;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_immatriculation", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_immatriculation", type="string", length=45, nullable=true)
      */
-    private $rcpImmatriculation = 'NULL';
+    private $rcpImmatriculation;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_proprietaire", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_proprietaire", type="string", length=255, nullable=true)
      */
-    private $rcpProprietaire = 'NULL';
+    private $rcpProprietaire;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_profession", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_profession", type="string", length=100, nullable=true)
      */
-    private $rcpProfession = 'NULL';
+    private $rcpProfession;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_adresse", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_adresse", type="string", length=255, nullable=true)
      */
-    private $rcpAdresse = 'NULL';
+    private $rcpAdresse;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="rcp_nbr_assis", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_nbr_assis", type="integer", nullable=true)
      */
-    private $rcpNbrAssis = 'NULL';
+    private $rcpNbrAssis;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="rcp_nbr_debout", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_nbr_debout", type="integer", nullable=true)
      */
-    private $rcpNbrDebout = 'NULL';
+    private $rcpNbrDebout;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_num_pv", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_num_pv", type="string", length=100, nullable=true)
      */
-    private $rcpNumPv = 'NULL';
+    private $rcpNumPv;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="rcp_num_group", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_num_group", type="string", length=255, nullable=true)
      */
-    private $rcpNumGroup = 'NULL';
+    private $rcpNumGroup;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="rcp_created", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="rcp_created", type="date", nullable=true)
      */
-    private $rcpCreated = 'NULL';
+    private $rcpCreated;
 
     /**
      * @var \CtVehicule

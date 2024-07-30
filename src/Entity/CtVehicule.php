@@ -26,93 +26,93 @@ class CtVehicule
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vhc_cylindre", type="string", length=10, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_cylindre", type="string", length=10, nullable=true)
      */
-    private $vhcCylindre = 'NULL';
+    private $vhcCylindre;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vhc_puissance", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_puissance", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vhcPuissance = 'NULL';
+    private $vhcPuissance;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vhc_poids_vide", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_poids_vide", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vhcPoidsVide = 'NULL';
+    private $vhcPoidsVide;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vhc_charge_utile", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_charge_utile", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vhcChargeUtile = 'NULL';
+    private $vhcChargeUtile;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vhc_hauteur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_hauteur", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vhcHauteur = 'NULL';
+    private $vhcHauteur;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vhc_largeur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_largeur", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vhcLargeur = 'NULL';
+    private $vhcLargeur;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vhc_longueur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_longueur", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vhcLongueur = 'NULL';
+    private $vhcLongueur;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vhc_num_serie", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_num_serie", type="string", length=100, nullable=true)
      */
-    private $vhcNumSerie = 'NULL';
+    private $vhcNumSerie;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vhc_num_moteur", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_num_moteur", type="string", length=100, nullable=true)
      */
-    private $vhcNumMoteur = 'NULL';
+    private $vhcNumMoteur;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vhc_created", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_created", type="datetime", nullable=true)
      */
-    private $vhcCreated = 'NULL';
+    private $vhcCreated;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vhc_provenance", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_provenance", type="string", length=45, nullable=true)
      */
-    private $vhcProvenance = 'NULL';
+    private $vhcProvenance;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vhc_type", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_type", type="string", length=45, nullable=true)
      */
-    private $vhcType = 'NULL';
+    private $vhcType;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vhc_poids_total_charge", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vhc_poids_total_charge", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vhcPoidsTotalCharge = 'NULL';
+    private $vhcPoidsTotalCharge;
 
     /**
      * @var \CtMarque

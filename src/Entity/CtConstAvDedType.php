@@ -26,9 +26,9 @@ class CtConstAvDedType
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_tp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_tp_libelle", type="string", length=45, nullable=true)
      */
-    private $cadTpLibelle = 'NULL';
+    private $cadTpLibelle;
 
     public function getId(): ?int
     {

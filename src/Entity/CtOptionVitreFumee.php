@@ -26,9 +26,9 @@ class CtOptionVitreFumee
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ovf_libelle", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ovf_libelle", type="string", length=100, nullable=true)
      */
-    private $ovfLibelle = 'NULL';
+    private $ovfLibelle;
 
     public function getId(): ?int
     {

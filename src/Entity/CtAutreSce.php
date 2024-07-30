@@ -28,30 +28,30 @@ class CtAutreSce
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_controle_id", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ct_controle_id", type="integer", nullable=true)
      */
-    private $ctControleId = 'NULL';
+    private $ctControleId;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="as_date", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_date", type="date", nullable=true)
      */
-    private $asDate = 'NULL';
+    private $asDate;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="as_created", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_created", type="datetime", nullable=true)
      */
-    private $asCreated = 'NULL';
+    private $asCreated;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="as_updated", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_updated", type="datetime", nullable=true)
      */
-    private $asUpdated = 'NULL';
+    private $asUpdated;
 
     /**
      * @var bool
@@ -63,44 +63,44 @@ class CtAutreSce
     /**
      * @var string|null
      *
-     * @ORM\Column(name="as_motif_deleted", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_motif_deleted", type="string", length=255, nullable=true)
      */
-    private $asMotifDeleted = 'NULL';
+    private $asMotifDeleted;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="as_validite_fumee", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_validite_fumee", type="string", length=255, nullable=true)
      */
-    private $asValiditeFumee = 'NULL';
+    private $asValiditeFumee;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="as_itineraire_speciale", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_itineraire_speciale", type="string", length=255, nullable=true)
      */
-    private $asItineraireSpeciale = 'NULL';
+    private $asItineraireSpeciale;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="as_validite_speciale", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_validite_speciale", type="date", nullable=true)
      */
-    private $asValiditeSpeciale = 'NULL';
+    private $asValiditeSpeciale;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="as_deleted", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_deleted", type="datetime", nullable=true)
      */
-    private $asDeleted = 'NULL';
+    private $asDeleted;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="as_num_pv", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="as_num_pv", type="string", length=100, nullable=true)
      */
-    private $asNumPv = 'NULL';
+    private $asNumPv;
 
     /**
      * @var \CtUtilisation

@@ -26,9 +26,9 @@ class CtGenreCategorie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="gc_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="gc_libelle", type="string", length=255, nullable=true)
      */
-    private $gcLibelle = 'NULL';
+    private $gcLibelle;
 
     /**
      * @var bool

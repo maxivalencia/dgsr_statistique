@@ -26,16 +26,16 @@ class CtAnomalie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="anml_libelle", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="anml_libelle", type="string", length=100, nullable=true)
      */
-    private $anmlLibelle = 'NULL';
+    private $anmlLibelle;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="anml_code", type="string", length=10, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="anml_code", type="string", length=10, nullable=true)
      */
-    private $anmlCode = 'NULL';
+    private $anmlCode;
 
     /**
      * @var \CtAnomalieType

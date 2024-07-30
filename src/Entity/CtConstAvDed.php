@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-
-
+use App\Entity\CtUser;
+use App\Entity\CtCentre;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use DateTimeInterface;
 
 /**
  * CtConstAvDed
@@ -28,107 +30,107 @@ class CtConstAvDed
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_provenance", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_provenance", type="string", length=45, nullable=true)
      */
-    private $cadProvenance = 'NULL';
+    private $cadProvenance;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_divers", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_divers", type="string", length=100, nullable=true)
      */
-    private $cadDivers = 'NULL';
+    private $cadDivers;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_proprietaire_nom", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_proprietaire_nom", type="string", length=100, nullable=true)
      */
-    private $cadProprietaireNom = 'NULL';
+    private $cadProprietaireNom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_proprietaire_adresse", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_proprietaire_adresse", type="string", length=100, nullable=true)
      */
-    private $cadProprietaireAdresse = 'NULL';
+    private $cadProprietaireAdresse;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_bon_etat", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_bon_etat", type="boolean", nullable=true)
      */
-    private $cadBonEtat = 'NULL';
+    private $cadBonEtat;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_sec_pers", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_sec_pers", type="boolean", nullable=true)
      */
-    private $cadSecPers = 'NULL';
+    private $cadSecPers;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_sec_march", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_sec_march", type="boolean", nullable=true)
      */
-    private $cadSecMarch = 'NULL';
+    private $cadSecMarch;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_protec_env", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_protec_env", type="boolean", nullable=true)
      */
-    private $cadProtecEnv = 'NULL';
+    private $cadProtecEnv;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_numero", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_numero", type="string", length=45, nullable=true)
      */
-    private $cadNumero = 'NULL';
+    private $cadNumer;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_immatriculation", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_immatriculation", type="string", length=45, nullable=true)
      */
-    private $cadImmatriculation = 'NULL';
+    private $cadImmatriculation;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cad_date_embarquement", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_date_embarquement", type="datetime", nullable=true)
      */
-    private $cadDateEmbarquement = 'NULL';
+    private $cadDateEmbarquement;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_lieu_embarquement", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_lieu_embarquement", type="string", length=45, nullable=true)
      */
-    private $cadLieuEmbarquement = 'NULL';
+    private $cadLieuEmbarquement;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cad_created", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_created", type="datetime", nullable=true)
      */
-    private $cadCreated = 'NULL';
+    private $cadCreated;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="cad_conforme", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_conforme", type="boolean", nullable=true)
      */
-    private $cadConforme = 'NULL';
+    private $cadConforme;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_observation", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_observation", type="string", length=255, nullable=true)
      */
-    private $cadObservation = 'NULL';
+    private $cadObservation;
 
     /**
      * @var \CtCentre
