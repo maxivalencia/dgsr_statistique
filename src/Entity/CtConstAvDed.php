@@ -88,7 +88,7 @@ class CtConstAvDed
      *
      * @ORM\Column(name="cad_numero", type="string", length=45, nullable=true)
      */
-    private $cadNumer;
+    private $cadNumero;
 
     /**
      * @var string|null
