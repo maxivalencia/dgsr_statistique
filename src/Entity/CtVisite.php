@@ -165,11 +165,19 @@ class CtVisite
     private $ctVisiteExtra;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="CtAnomalie", mappedBy="ctVisite")
+     */
+    private $ctVisiteAnomalies;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->ctVisiteExtra = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ctVisiteAnomalies = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -380,6 +388,34 @@ class CtVisite
         if ($this->ctVisiteExtra->contains($ctVisiteExtra)) {
             $this->ctVisiteExtra->removeElement($ctVisiteExtra);
             $ctVisiteExtra->removeCtVisite($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CtVisiteAnomalies[]
+     */
+    public function getCtVisiteAnomalie(): Collection
+    {
+        return $this->ctVisiteAnomalies;
+    }
+
+    public function addCtVisiteAnomalie(CtVisiteAnomalie $ctVisiteAnomalies): self
+    {
+        if (!$this->ctVisiteAnomalies->contains($ctVisiteAnomalies)) {
+            $this->ctVisiteAnomalies[] = $ctVisiteAnomalies;
+            $ctVisiteAnomalies->addCtVisite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCtVisiteAnomalie(CtVisiteAnomalie $ctVisiteAnomalies): self
+    {
+        if ($this->ctVisiteAnomalies->contains($ctVisiteAnomalies)) {
+            $this->ctVisiteAnomalies->removeElement($ctVisiteAnomalies);
+            $ctVisiteAnomalies->removeCtVisite($this);
         }
 
         return $this;
