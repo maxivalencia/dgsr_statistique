@@ -1068,7 +1068,7 @@ class CtStatistiqueController extends AbstractController
             "verificateur" => $as->getCtVerificateur()?$as->getCtVerificateur()->getUsrName():"",
             "numero_controle" => $as->getAsNumPv()?$as->getAsNumPv():"",
             "date_expiration" => $as->getAsValiditeFumee()?$as->getAsValiditeFumee():"",
-            "date_controle" => $as->setAsCreated()?$as->setAsCreated()->format('d/m/Y'):"",
+            "date_controle" => $as->getAsCreated()?$as->getAsCreated()->format('d/m/Y'):"",
             "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
             "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
             "option_vitre_fumee" => $as->getCtOptionVitreFumee()?$as->getCtOptionVitreFumee()->getOvfLibelle():"",
