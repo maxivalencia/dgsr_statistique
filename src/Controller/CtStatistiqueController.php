@@ -477,6 +477,16 @@ class CtStatistiqueController extends AbstractController
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
         }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
+        }
         foreach($liste_anomalies as $anm){
             //$anomalies_to_string .= $anm->getVsteLibelle();
             //$anomalie = $this->getDoctrine()->getRepository(CtAnomalie::class)->findOneBy(['id' => $anm->getCtAnomalieId()]);
@@ -604,6 +614,16 @@ class CtStatistiqueController extends AbstractController
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $reception = [
             "type_operation" => "RT",
@@ -746,6 +766,16 @@ class CtStatistiqueController extends AbstractController
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         //var_dump($cad);
         $constatation[] = $cad;
@@ -1013,12 +1043,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Authenticité"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "AVF",
@@ -1028,7 +1068,7 @@ class CtStatistiqueController extends AbstractController
             "verificateur" => $as->getCtVerificateur()?$as->getCtVerificateur()->getUsrName():"",
             "numero_controle" => $as->getAsNumPv()?$as->getAsNumPv():"",
             "date_expiration" => $as->getAsValiditeFumee()?$as->getAsValiditeFumee():"",
-            "date_controle" => $as->getAsCreated()?$as->getAsCreated()->format('d/m/Y'):"",
+            "date_controle" => $as->setAsCreated()?$as->setAsCreated()->format('d/m/Y'):"",
             "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
             "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
             "option_vitre_fumee" => $as->getCtOptionVitreFumee()?$as->getCtOptionVitreFumee()->getOvfLibelle():"",
@@ -1120,12 +1160,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Spéciale"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "VTS",
@@ -1228,12 +1278,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Caractéristique"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "CAR",
@@ -1333,12 +1393,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Vente spéciale"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "VS",
