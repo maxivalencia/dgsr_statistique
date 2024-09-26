@@ -47,16 +47,16 @@ class CtHistorique
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ct_centre_id", type="integer", nullable=true)
      */
-    private $ctCentreId = 'NULL';
+    private $ctCentreId;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="hist_type", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="hist_type", type="string", length=20, nullable=true)
      */
-    private $histType = 'NULL';
+    private $histType;
 
     /**
      * @var \CtUser

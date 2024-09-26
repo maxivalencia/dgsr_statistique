@@ -26,16 +26,16 @@ class CtUsageTarif
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usg_trf_annee", type="string", length=4, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usg_trf_annee", type="string", length=4, nullable=true)
      */
-    private $usgTrfAnnee = 'NULL';
+    private $usgTrfAnnee;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="usg_trf_prix", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usg_trf_prix", type="float", precision=10, scale=0, nullable=true)
      */
-    private $usgTrfPrix = 'NULL';
+    private $usgTrfPrix;
 
     /**
      * @var \CtArretePrix

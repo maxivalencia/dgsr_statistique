@@ -26,30 +26,30 @@ class CtCentre
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ctr_nom", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ctr_nom", type="string", length=255, nullable=true)
      */
-    private $ctrNom = 'NULL';
+    private $ctrNom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ctr_code", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ctr_code", type="string", length=255, nullable=true)
      */
-    private $ctrCode = 'NULL';
+    private $ctrCode;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="ctr_created_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ctr_created_at", type="datetime", nullable=true)
      */
-    private $ctrCreatedAt = 'NULL';
+    private $ctrCreatedAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="ctr_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ctr_updated_at", type="datetime", nullable=true)
      */
-    private $ctrUpdatedAt = 'NULL';
+    private $ctrUpdatedAt;
 
     /**
      * @var \CtProvince

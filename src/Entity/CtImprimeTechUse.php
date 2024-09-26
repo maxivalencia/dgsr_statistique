@@ -26,58 +26,58 @@ class CtImprimeTechUse
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_controle_id", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ct_controle_id", type="integer", nullable=true)
      */
-    private $ctControleId = 'NULL';
+    private $ctControleId;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="itu_numero", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="itu_numero", type="integer", nullable=true)
      */
-    private $ituNumero = 'NULL';
+    private $ituNumero;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="itu_used", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="itu_used", type="boolean", nullable=true)
      */
-    private $ituUsed = 'NULL';
+    private $ituUsed;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="itu_motif_used", type="string", length=64, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="itu_motif_used", type="string", length=64, nullable=true)
      */
-    private $ituMotifUsed = 'NULL';
+    private $ituMotifUsed;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="actived_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="actived_at", type="datetime", nullable=true)
      */
-    private $activedAt = 'NULL';
+    private $activedAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
-    private $createdAt = 'NULL';
+    private $createdAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updatedAt = 'NULL';
+    private $updatedAt;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="itu_observation", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="itu_observation", type="string", length=255, nullable=true)
      */
-    private $ituObservation = 'NULL';
+    private $ituObservation;
 
     /**
      * @var \CtImprimeTech

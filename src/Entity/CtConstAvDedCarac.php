@@ -28,100 +28,100 @@ class CtConstAvDedCarac
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_cylindre", type="string", length=10, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_cylindre", type="string", length=10, nullable=true)
      */
-    private $cadCylindre = 'NULL';
+    private $cadCylindre;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_puissance", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_puissance", type="float", precision=10, scale=0, nullable=true)
      */
-    private $cadPuissance = 'NULL';
+    private $cadPuissance;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_poids_vide", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_poids_vide", type="float", precision=10, scale=0, nullable=true)
      */
-    private $cadPoidsVide = 'NULL';
+    private $cadPoidsVide;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_charge_utile", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_charge_utile", type="float", precision=10, scale=0, nullable=true)
      */
-    private $cadChargeUtile = 'NULL';
+    private $cadChargeUtile;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_hauteur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_hauteur", type="float", precision=10, scale=0, nullable=true)
      */
-    private $cadHauteur = 'NULL';
+    private $cadHauteur;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_largeur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_largeur", type="float", precision=10, scale=0, nullable=true)
      */
-    private $cadLargeur = 'NULL';
+    private $cadLargeur;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_longueur", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_longueur", type="float", precision=10, scale=0, nullable=true)
      */
-    private $cadLongueur = 'NULL';
+    private $cadLongueur;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_num_serie_type", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_num_serie_type", type="string", length=100, nullable=true)
      */
-    private $cadNumSerieType = 'NULL';
+    private $cadNumSerieType;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_num_moteur", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_num_moteur", type="string", length=100, nullable=true)
      */
-    private $cadNumMoteur = 'NULL';
+    private $cadNumMoteur;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_type_car", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_type_car", type="string", length=45, nullable=true)
      */
-    private $cadTypeCar = 'NULL';
+    private $cadTypeCar;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_poids_maxima", type="text", length=65535, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_poids_maxima", type="text", length=65535, nullable=true)
      */
-    private $cadPoidsMaxima = 'NULL';
+    private $cadPoidsMaxima;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="cad_poids_total_charge", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_poids_total_charge", type="float", precision=10, scale=0, nullable=true)
      */
-    private $cadPoidsTotalCharge = 'NULL';
+    private $cadPoidsTotalCharge;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cad_premiere_circule", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_premiere_circule", type="string", length=100, nullable=true)
      */
-    private $cadPremiereCircule = 'NULL';
+    private $cadPremiereCircule;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="cad_nbr_assis", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cad_nbr_assis", type="integer", nullable=true)
      */
-    private $cadNbrAssis = 'NULL';
+    private $cadNbrAssis;
 
     /**
      * @var \CtSourceEnergie

@@ -477,6 +477,16 @@ class CtStatistiqueController extends AbstractController
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
         }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
+        }
         foreach($liste_anomalies as $anm){
             //$anomalies_to_string .= $anm->getVsteLibelle();
             //$anomalie = $this->getDoctrine()->getRepository(CtAnomalie::class)->findOneBy(['id' => $anm->getCtAnomalieId()]);
@@ -561,6 +571,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
         //$response = $this->json([$visite, $carte_grise, $vehicule]);
 
         return $response;
@@ -603,6 +614,16 @@ class CtStatistiqueController extends AbstractController
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $reception = [
             "type_operation" => "RT",
@@ -649,6 +670,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
         //$response = $this->json([$reception, $vehicule]);
 
         return $response;
@@ -744,6 +766,16 @@ class CtStatistiqueController extends AbstractController
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         //var_dump($cad);
         $constatation[] = $cad;
@@ -856,6 +888,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
         //$response = $this->json([$constatation_information, $constatation_carte_grise, $constatation_corps_vehicule, $constatation_note_descriptive]);
 
         return $response;
@@ -981,6 +1014,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1009,12 +1043,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Authenticité"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "AVF",
@@ -1028,7 +1072,7 @@ class CtStatistiqueController extends AbstractController
             "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
             "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
             "option_vitre_fumee" => $as->getCtOptionVitreFumee()?$as->getCtOptionVitreFumee()->getOvfLibelle():"",
-            "validite" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale()->format('d/m/Y'):"",
+            "validite" => $as->getAsValiditeFumee()?$as->getAsValiditeFumee():"",
         /* ];
         $carte_grise = [ */
             "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
@@ -1087,6 +1131,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1115,12 +1160,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Spéciale"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "VTS",
@@ -1134,7 +1189,8 @@ class CtStatistiqueController extends AbstractController
             "date_modification" => $as->getAsUpdated()?$as->getAsUpdated()->format('d/m/Y'):"",
             "utilisation" => $as->getCtUtilisation()?$as->getCtUtilisation()->getUtLibelle():"",
             "itineraire" => $as->getAsItineraireSpeciale()?$as->getAsItineraireSpeciale():"",
-            "validite" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale()->format('d/m/Y'):"",
+            "depart" => $as->getAsValiditeSpeciale()?$as->getAsValiditeSpeciale()->format('d/m/Y'):"",
+            "validite" => $as->getAsCreated()?$as->getAsCreated()->modify('+15 days')->format('d/m/Y'):"",
         /* ];
         $carte_grise = [ */
             "id_carte_grise" => $ctCarteGrise->getId()?$ctCarteGrise->getId():"",
@@ -1193,6 +1249,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1221,12 +1278,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Caractéristique"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "CAR",
@@ -1297,6 +1364,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }
@@ -1325,12 +1393,22 @@ class CtStatistiqueController extends AbstractController
             $cg_vehicule = $this->getDoctrine()->getRepository(CtVehicule::class)->findOneBy(['vhcNumSerie' => $ctCarteGrise->getCtVehicule()->getVhcNumSerie()]);
         }
         $liste_imprime = "";
-        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Visite"]);
+        $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $as->getId(), "ituMotifUsed" => "Vente spéciale"]);
         foreach($imprimes as $imp){
             if($liste_imprime != ""){
                 $liste_imprime .= " - ";
             }
             $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+        }
+        $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $id]);
+        foreach($autresService as $aS){
+            $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+            foreach($imprimesAutreService as $impAS){
+                if($liste_imprime != ""){
+                    $liste_imprime .= " - ";
+                }
+                $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+            }
         }
         $autre_service = [
             "type_operation" => "VS",
@@ -1400,6 +1478,7 @@ class CtStatistiqueController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        $response->headers->set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
 
         return $response;
     }

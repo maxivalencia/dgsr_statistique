@@ -26,9 +26,9 @@ class CtCarosserie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="crs_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="crs_libelle", type="string", length=255, nullable=true)
      */
-    private $crsLibelle = 'NULL';
+    private $crsLibelle;
 
     public function getId(): ?int
     {

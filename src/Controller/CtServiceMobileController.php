@@ -22,6 +22,7 @@ use App\Repository\CtImprimeTechRepository;
 use App\Entity\ImprimeTech;
 use App\Entity\CtCarteGrise;
 use App\Entity\CtImprimeTechUse;
+use App\Entity\CtAutreSce;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -182,6 +183,16 @@ class CtServiceMobileController extends AbstractController
                             $liste_imprime .= " - ";
                         }
                         $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+                    }
+                    $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $visite->getId()]);
+                    foreach($autresService as $aS){
+                        $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+                        foreach($imprimesAutreService as $impAS){
+                            if($liste_imprime != ""){
+                                $liste_imprime .= " - ";
+                            }
+                            $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+                        }
                     }
                     $info_vehicule = [
                         "cg_immatriculation" => $carte_grise->getCgImmatriculation()?(string)$carte_grise->getCgImmatriculation():"",

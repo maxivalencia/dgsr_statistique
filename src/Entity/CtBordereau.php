@@ -47,30 +47,30 @@ class CtBordereau
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="bl_created_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="bl_created_at", type="datetime", nullable=true)
      */
-    private $blCreatedAt = 'NULL';
+    private $blCreatedAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="bl_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="bl_updated_at", type="datetime", nullable=true)
      */
-    private $blUpdatedAt = 'NULL';
+    private $blUpdatedAt;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ref_expr", type="string", length=64, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ref_expr", type="string", length=64, nullable=true)
      */
-    private $refExpr = 'NULL';
+    private $refExpr;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="date_ref_expr", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="date_ref_expr", type="datetime", nullable=true)
      */
-    private $dateRefExpr = 'NULL';
+    private $dateRefExpr;
 
     /**
      * @var \CtImprimeTech

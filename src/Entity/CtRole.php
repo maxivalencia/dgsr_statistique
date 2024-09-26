@@ -26,9 +26,9 @@ class CtRole
     /**
      * @var string|null
      *
-     * @ORM\Column(name="role_name", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="role_name", type="string", length=45, nullable=true)
      */
-    private $roleName = 'NULL';
+    private $roleName;
 
     public function getId(): ?int
     {

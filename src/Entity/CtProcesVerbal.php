@@ -26,16 +26,16 @@ class CtProcesVerbal
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pv_type", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="pv_type", type="string", length=255, nullable=true)
      */
-    private $pvType = 'NULL';
+    private $pvType;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="pv_tarif", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="pv_tarif", type="float", precision=10, scale=0, nullable=true)
      */
-    private $pvTarif = 'NULL';
+    private $pvTarif;
 
     /**
      * @var \CtArretePrix

@@ -26,16 +26,16 @@ class CtGenreTarif
     /**
      * @var float|null
      *
-     * @ORM\Column(name="grt_prix", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="grt_prix", type="float", precision=10, scale=0, nullable=true)
      */
-    private $grtPrix = 'NULL';
+    private $grtPrix;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="grt_annee", type="string", length=4, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="grt_annee", type="string", length=4, nullable=true)
      */
-    private $grtAnnee = 'NULL';
+    private $grtAnnee;
 
     /**
      * @var \CtGenre
