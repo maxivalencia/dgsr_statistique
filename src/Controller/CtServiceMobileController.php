@@ -152,7 +152,7 @@ class CtServiceMobileController extends AbstractController
                     $source_energie = $ctSourceEnergieRepository->findOneBy(["id" => $carte_grise->getCtSourceEnergie()]);
                     $marque = $ctMarqueRepository->findOneBy(["id" => $vehicule->getCtMarque()]);
                     $genre = $ctGenreRepository->findOneBy(["id" => $vehicule->getCtGenre()]);
-                    $visite = $ctVisiteRepository->findOneBy(["ctCarteGrise" => $carte_grise->getId()], ["id" => "DESC"]);
+                    $visite = $ctVisiteRepository->findOneBy(["ctCarteGrise" => $carte_grise->getId()], ["vstCreated" => "DESC"]);
                     $centre = $ctCentreRepository->findOneBy(["id" => $visite->getCtCentre()]);
                     $province = $ctProvinceRepository->findOneBy(["id" => $centre->getCtProvince()]);
                     $usage = $ctUsageRepository->findOneBy(["id" => $visite->getCtUsage()]);
