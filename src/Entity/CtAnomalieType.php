@@ -26,9 +26,9 @@ class CtAnomalieType
     /**
      * @var string|null
      *
-     * @ORM\Column(name="atp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="atp_libelle", type="string", length=45, nullable=true)
      */
-    private $atpLibelle = 'NULL';
+    private $atpLibelle;
 
     public function getId(): ?int
     {

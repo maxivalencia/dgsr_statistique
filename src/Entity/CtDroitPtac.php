@@ -26,23 +26,23 @@ class CtDroitPtac
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_prix_min", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dp_prix_min", type="float", precision=10, scale=0, nullable=true)
      */
-    private $dpPrixMin = 'NULL';
+    private $dpPrixMin;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_prix_max", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dp_prix_max", type="float", precision=10, scale=0, nullable=true)
      */
-    private $dpPrixMax = 'NULL';
+    private $dpPrixMax;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_droit", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dp_droit", type="float", precision=10, scale=0, nullable=true)
      */
-    private $dpDroit = 'NULL';
+    private $dpDroit;
 
     /**
      * @var \CtGenreCategorie

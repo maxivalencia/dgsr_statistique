@@ -26,9 +26,9 @@ class CtTypeVisite
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tpv_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="tpv_libelle", type="string", length=45, nullable=true)
      */
-    private $tpvLibelle = 'NULL';
+    private $tpvLibelle;
 
     public function getId(): ?int
     {

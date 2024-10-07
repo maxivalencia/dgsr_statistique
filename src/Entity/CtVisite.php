@@ -8,6 +8,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\CtUser;
+use App\Entity\CtUsage;
+use App\Entity\CtCentre;
+use App\Entity\CtCarteGrise;
+use App\Entity\CtTypeVisite;
+use App\Entity\CtUtilisation;
 
 /**
  * CtVisite
@@ -29,58 +34,58 @@ class CtVisite
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_num_pv", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_num_pv", type="string", length=255, nullable=true)
      */
-    private $vstNumPv = 'NULL';
+    private $vstNumPv;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_num_feuille_caisse", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_num_feuille_caisse", type="string", length=255, nullable=true)
      */
-    private $vstNumFeuilleCaisse = 'NULL';
+    private $vstNumFeuilleCaisse;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_date_expiration", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_date_expiration", type="date", nullable=true)
      */
-    private $vstDateExpiration = 'NULL';
+    private $vstDateExpiration;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_created", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_created", type="datetime", nullable=true)
      */
-    private $vstCreated = 'NULL';
+    private $vstCreated;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="vst_updated", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_updated", type="datetime", nullable=true)
      */
-    private $vstUpdated = 'NULL';
+    private $vstUpdated;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="vst_is_apte", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_is_apte", type="boolean", nullable=true)
      */
-    private $vstIsApte = 'NULL';
+    private $vstIsApte;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="vst_is_contre_visite", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_is_contre_visite", type="boolean", nullable=true)
      */
-    private $vstIsContreVisite = 'NULL';
+    private $vstIsContreVisite;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vst_duree_reparation", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vst_duree_reparation", type="string", length=100, nullable=true)
      */
-    private $vstDureeReparation = 'NULL';
+    private $vstDureeReparation;
 
     /**
      * @var \CtUtilisation
@@ -160,11 +165,19 @@ class CtVisite
     private $ctVisiteExtra;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="CtAnomalie", mappedBy="ctVisite")
+     */
+    private $ctVisiteAnomalies;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->ctVisiteExtra = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ctVisiteAnomalies = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -375,6 +388,34 @@ class CtVisite
         if ($this->ctVisiteExtra->contains($ctVisiteExtra)) {
             $this->ctVisiteExtra->removeElement($ctVisiteExtra);
             $ctVisiteExtra->removeCtVisite($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CtVisiteAnomalies[]
+     */
+    public function getCtVisiteAnomalie(): Collection
+    {
+        return $this->ctVisiteAnomalies;
+    }
+
+    public function addCtVisiteAnomalie(CtVisiteAnomalie $ctVisiteAnomalies): self
+    {
+        if (!$this->ctVisiteAnomalies->contains($ctVisiteAnomalies)) {
+            $this->ctVisiteAnomalies[] = $ctVisiteAnomalies;
+            $ctVisiteAnomalies->addCtVisite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCtVisiteAnomalie(CtVisiteAnomalie $ctVisiteAnomalies): self
+    {
+        if ($this->ctVisiteAnomalies->contains($ctVisiteAnomalies)) {
+            $this->ctVisiteAnomalies->removeElement($ctVisiteAnomalies);
+            $ctVisiteAnomalies->removeCtVisite($this);
         }
 
         return $this;

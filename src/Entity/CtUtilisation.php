@@ -26,9 +26,9 @@ class CtUtilisation
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ut_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ut_libelle", type="string", length=45, nullable=true)
      */
-    private $utLibelle = 'NULL';
+    private $utLibelle;
 
     public function getId(): ?int
     {

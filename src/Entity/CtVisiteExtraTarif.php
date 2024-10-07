@@ -28,16 +28,16 @@ class CtVisiteExtraTarif
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vet_annee", type="string", length=4, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vet_annee", type="string", length=4, nullable=true)
      */
-    private $vetAnnee = 'NULL';
+    private $vetAnnee;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="vet_prix", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vet_prix", type="float", precision=10, scale=0, nullable=true)
      */
-    private $vetPrix = 'NULL';
+    private $vetPrix;
 
     /**
      * @var \CtVisiteExtra

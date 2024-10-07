@@ -26,9 +26,9 @@ class CtTypeDroitPtac
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tp_dp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="tp_dp_libelle", type="string", length=45, nullable=true)
      */
-    private $tpDpLibelle = 'NULL';
+    private $tpDpLibelle;
 
     public function getId(): ?int
     {

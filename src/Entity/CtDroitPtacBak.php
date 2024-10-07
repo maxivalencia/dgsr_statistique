@@ -26,37 +26,37 @@ class CtDroitPtacBak
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_genre_categorie_id", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ct_genre_categorie_id", type="integer", nullable=true)
      */
-    private $ctGenreCategorieId = 'NULL';
+    private $ctGenreCategorieId;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_prix_min", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dp_prix_min", type="float", precision=10, scale=0, nullable=true)
      */
-    private $dpPrixMin = 'NULL';
+    private $dpPrixMin;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_prix_max", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dp_prix_max", type="float", precision=10, scale=0, nullable=true)
      */
-    private $dpPrixMax = 'NULL';
+    private $dpPrixMax;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="dp_droit", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dp_droit", type="float", precision=10, scale=0, nullable=true)
      */
-    private $dpDroit = 'NULL';
+    private $dpDroit;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="ct_type_droit_ptac_id", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ct_type_droit_ptac_id", type="integer", nullable=true)
      */
-    private $ctTypeDroitPtacId = 'NULL';
+    private $ctTypeDroitPtacId;
 
     public function getId(): ?int
     {

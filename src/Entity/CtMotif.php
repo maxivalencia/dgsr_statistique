@@ -26,9 +26,9 @@ class CtMotif
     /**
      * @var string|null
      *
-     * @ORM\Column(name="mtf_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="mtf_libelle", type="string", length=255, nullable=true)
      */
-    private $mtfLibelle = 'NULL';
+    private $mtfLibelle;
 
     /**
      * @var bool

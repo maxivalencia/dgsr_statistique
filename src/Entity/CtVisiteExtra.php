@@ -28,9 +28,9 @@ class CtVisiteExtra
     /**
      * @var string|null
      *
-     * @ORM\Column(name="vste_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="vste_libelle", type="string", length=255, nullable=true)
      */
-    private $vsteLibelle = 'NULL';
+    private $vsteLibelle;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

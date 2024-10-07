@@ -26,16 +26,16 @@ class CtGenre
     /**
      * @var string|null
      *
-     * @ORM\Column(name="gr_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="gr_libelle", type="string", length=255, nullable=true)
      */
-    private $grLibelle = 'NULL';
+    private $grLibelle;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="gr_code", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="gr_code", type="string", length=50, nullable=true)
      */
-    private $grCode = 'NULL';
+    private $grCode;
 
     /**
      * @var \CtGenreCategorie

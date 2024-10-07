@@ -26,16 +26,16 @@ class CtPlaqueChassis
     /**
      * @var string|null
      *
-     * @ORM\Column(name="plq_type", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="plq_type", type="string", length=255, nullable=true)
      */
-    private $plqType = 'NULL';
+    private $plqType;
 
     /**
      * @var float|null
      *
-     * @ORM\Column(name="plq_tarif", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="plq_tarif", type="float", precision=10, scale=0, nullable=true)
      */
-    private $plqTarif = 'NULL';
+    private $plqTarif;
 
     /**
      * @var \CtArretePrix

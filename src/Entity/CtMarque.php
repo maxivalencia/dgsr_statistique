@@ -26,9 +26,9 @@ class CtMarque
     /**
      * @var string|null
      *
-     * @ORM\Column(name="mrq_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="mrq_libelle", type="string", length=255, nullable=true)
      */
-    private $mrqLibelle = 'NULL';
+    private $mrqLibelle;
 
     public function getId(): ?int
     {

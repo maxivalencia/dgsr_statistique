@@ -26,9 +26,9 @@ class CtTypeReception
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tprcp_libelle", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="tprcp_libelle", type="string", length=45, nullable=true)
      */
-    private $tprcpLibelle = 'NULL';
+    private $tprcpLibelle;
 
     public function getId(): ?int
     {

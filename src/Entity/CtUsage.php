@@ -26,23 +26,23 @@ class CtUsage
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usg_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usg_libelle", type="string", length=255, nullable=true)
      */
-    private $usgLibelle = 'NULL';
+    private $usgLibelle;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usg_validite", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usg_validite", type="string", length=255, nullable=true)
      */
-    private $usgValidite = 'NULL';
+    private $usgValidite;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="usg_created", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usg_created", type="datetime", nullable=true)
      */
-    private $usgCreated = 'NULL';
+    private $usgCreated;
 
     /**
      * @var \CtTypeUsage

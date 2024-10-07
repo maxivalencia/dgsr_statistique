@@ -26,170 +26,170 @@ class CtCarteGrise
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cg_date_emission", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_date_emission", type="date", nullable=true)
      */
-    private $cgDateEmission = 'NULL';
+    private $cgDateEmission;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_nom", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_nom", type="string", length=255, nullable=true)
      */
-    private $cgNom = 'NULL';
+    private $cgNom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_prenom", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_prenom", type="string", length=255, nullable=true)
      */
-    private $cgPrenom = 'NULL';
+    private $cgPrenom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_profession", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_profession", type="string", length=255, nullable=true)
      */
-    private $cgProfession = 'NULL';
+    private $cgProfession;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_adresse", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_adresse", type="string", length=255, nullable=true)
      */
-    private $cgAdresse = 'NULL';
+    private $cgAdresse;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_phone", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_phone", type="string", length=255, nullable=true)
      */
-    private $cgPhone = 'NULL';
+    private $cgPhone;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_commune", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_commune", type="string", length=255, nullable=true)
      */
-    private $cgCommune = 'NULL';
+    private $cgCommune;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="cg_nbr_assis", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_nbr_assis", type="integer", nullable=true)
      */
-    private $cgNbrAssis = 'NULL';
+    private $cgNbrAssis;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="cg_nbr_debout", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_nbr_debout", type="integer", nullable=true)
      */
-    private $cgNbrDebout = 'NULL';
+    private $cgNbrDebout;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="cg_puissance_admin", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_puissance_admin", type="integer", nullable=true)
      */
-    private $cgPuissanceAdmin = 'NULL';
+    private $cgPuissanceAdmin;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cg_mise_en_service", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_mise_en_service", type="date", nullable=true)
      */
-    private $cgMiseEnService = 'NULL';
+    private $cgMiseEnService;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_patente", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_patente", type="string", length=255, nullable=true)
      */
-    private $cgPatente = 'NULL';
+    private $cgPatente;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_ani", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_ani", type="string", length=255, nullable=true)
      */
-    private $cgAni = 'NULL';
+    private $cgAni;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_rta", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_rta", type="string", length=255, nullable=true)
      */
-    private $cgRta = 'NULL';
+    private $cgRta;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_num_carte_violette", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_num_carte_violette", type="string", length=255, nullable=true)
      */
-    private $cgNumCarteViolette = 'NULL';
+    private $cgNumCarteViolette;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cg_date_carte_violette", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_date_carte_violette", type="date", nullable=true)
      */
-    private $cgDateCarteViolette = 'NULL';
+    private $cgDateCarteViolette;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_lieu_carte_violette", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_lieu_carte_violette", type="string", length=255, nullable=true)
      */
-    private $cgLieuCarteViolette = 'NULL';
+    private $cgLieuCarteViolette;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_num_vignette", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_num_vignette", type="string", length=255, nullable=true)
      */
-    private $cgNumVignette = 'NULL';
+    private $cgNumVignette;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cg_date_vignette", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_date_vignette", type="date", nullable=true)
      */
-    private $cgDateVignette = 'NULL';
+    private $cgDateVignette;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_lieu_vignette", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_lieu_vignette", type="string", length=255, nullable=true)
      */
-    private $cgLieuVignette = 'NULL';
+    private $cgLieuVignette;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_immatriculation", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_immatriculation", type="string", length=45, nullable=true)
      */
-    private $cgImmatriculation = 'NULL';
+    private $cgImmatriculation;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="cg_created", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_created", type="datetime", nullable=true)
      */
-    private $cgCreated = 'NULL';
+    private $cgCreated;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_nom_cooperative", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_nom_cooperative", type="string", length=100, nullable=true)
      */
-    private $cgNomCooperative = 'NULL';
+    private $cgNomCooperative;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_itineraire", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_itineraire", type="string", length=100, nullable=true)
      */
-    private $cgItineraire = 'NULL';
+    private $cgItineraire;
 
     /**
      * @var bool
@@ -201,16 +201,16 @@ class CtCarteGrise
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_num_identification", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_num_identification", type="string", length=45, nullable=true)
      */
-    private $cgNumIdentification = 'NULL';
+    private $cgNumIdentification;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cg_zone_deserte", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cg_zone_deserte", type="string", length=255, nullable=true)
      */
-    private $cgZoneDeserte = 'NULL';
+    private $cgZoneDeserte;
 
     /**
      * @var \CtVehicule

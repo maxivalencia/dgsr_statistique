@@ -49,16 +49,16 @@ class CtImprimeTech
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="prtt_created_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prtt_created_at", type="datetime", nullable=true)
      */
-    private $prttCreatedAt = 'NULL';
+    private $prttCreatedAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="prtt_updated_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prtt_updated_at", type="datetime", nullable=true)
      */
-    private $prttUpdatedAt = 'NULL';
+    private $prttUpdatedAt;
 
     /**
      * @var \CtUser

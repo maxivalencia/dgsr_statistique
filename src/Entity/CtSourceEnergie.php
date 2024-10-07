@@ -26,9 +26,9 @@ class CtSourceEnergie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="sre_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="sre_libelle", type="string", length=255, nullable=true)
      */
-    private $sreLibelle = 'NULL';
+    private $sreLibelle;
 
     public function getId(): ?int
     {

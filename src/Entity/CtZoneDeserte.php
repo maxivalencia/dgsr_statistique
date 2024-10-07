@@ -26,9 +26,9 @@ class CtZoneDeserte
     /**
      * @var string|null
      *
-     * @ORM\Column(name="zd_libelle", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="zd_libelle", type="string", length=255, nullable=true)
      */
-    private $zdLibelle = 'NULL';
+    private $zdLibelle;
 
     public function getId(): ?int
     {
