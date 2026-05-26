@@ -85,6 +85,7 @@ class CtServiceMobileController extends AbstractController
     public function recherche(Request $request, CtReceptionRepository $ctReceptionRepository, CtImprimeTechUseRepository $ctImprimeTechUseRepository, CtAnomalieRepository $ctAnomalieRepository, CtVisiteAnomalieRepository $ctVisiteAnomalieRepository, CtUtilisationRepository $ctUtilisationRepository, CtUserRepository $ctUserRepository, CtUsageRepository $ctUsageRepository, CtProvinceRepository $ctProvinceRepository, CtCentreRepository $ctCentreRepository, CtVisiteRepository $ctVisiteRepository, CtGenreRepository $ctGenreRepository, CtMarqueRepository $ctMarqueRepository, CtSourceEnergieRepository $ctSourceEnergieRepository, CtCarteGriseRepository $ctCarteGriseRepository, CtVehiculeRepository $ctVehiculeRepository, CtCarosserieRepository $ctCarosserieRepository)
     {
         $array_vehicule = new ArrayCollection();
+        $recepiton_exist = 0;
         $info_vehicule = [
             "cg_immatriculation" => "",
             "cg_nom" => "",
@@ -137,6 +138,7 @@ class CtServiceMobileController extends AbstractController
         if($immatriculation == null){
             $immatriculation = $request->request->get("IMM");
         }
+        $immatriculation_reception = $immatriculation;
         $chiffre_immatriculation = substr($immatriculation, 0, 4);
         $lettre_immatriculation = strtoupper(substr($immatriculation, 4));
         foreach($separateurs_saisie as $separateur){
@@ -244,7 +246,7 @@ class CtServiceMobileController extends AbstractController
             }
             foreach($separateurs as $separateur){
                 $imm = $chiffre_immatriculation.$separateur.$lettre_immatriculation;
-                $reception = $ctReceptionRepository->findOneBy(["rcpImmatriculation" => $imm]);
+                $reception = $ctReceptionRepository->findOneBy(["rcpImmatriculation" => $imm], ["rcpCreated" => "DESC"]);
                 if($reception != null) {
                     $vehicule = $ctVehiculeRepository->findOneBy(["id" => $reception->getCtVehicule()]);
                     $carosserie = $ctCarosserieRepository->findOneBy(["id" => $reception->getCtCarosserie()]);
@@ -260,7 +262,7 @@ class CtServiceMobileController extends AbstractController
                     $utilisation = $ctUtilisationRepository->findOneBy(["id" => $reception->getCtUtilisation()]);
                     $liste_anomalies = "";
                     $liste_imprime = "";
-                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite"]);
+                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId()]);
                     // $imprimesVisite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite"]);
                     // $imprimesContre = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Contre"]);
                     // $imprimes = array_merge($imprimesVisite, $imprimesContre);
@@ -282,12 +284,12 @@ class CtServiceMobileController extends AbstractController
                     } */
                     $info_vehicule = [
                         "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
-                        "cg_nom" => $reception->getRcpProprietaire()?(string)$carte_grise->getCgNom():"",
-                        "cg_profession" => $reception->getRcpProfession()?(string)$carte_grise->getCgProfession():"",
-                        "cg_adresse" => $reception->getRcpAdresse()?(string)$carte_grise->getCgAdresse():"",
-                        "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$carte_grise->getCgNbrAssis():"",
-                        "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$carte_grise->getCgNbrDebout():"",
-                        "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$carte_grise->getCgMiseEnService()->format('Y-m-d'):"",
+                        "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
+                        "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
+                        "cg_adresse" => $reception->getRcpAdresse()?(string)$reception->getRcpAdresse():"",
+                        "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$reception->getRcpNbrAssis():"",
+                        "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$reception->getRcpNbrDebout():"",
+                        "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$reception->getRcpMiseService()->format('Y-m-d'):"",
                         "crs_libelle" => $carosserie->getCrsLibelle()?(string)$carosserie->getCrsLibelle():"",
                         "sre_libelle" => $source_energie->getSreLibelle()?(string)$source_energie->getSreLibelle():"",
                         "vhc_num_serie" => $vehicule->getVhcNumSerie()?(string)$vehicule->getVhcNumSerie():"",
@@ -298,8 +300,8 @@ class CtServiceMobileController extends AbstractController
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
                         "mrq_libelle" => $marque->getMrqLibelle()?(string)$marque->getMrqLibelle():"",
                         "gr_libelle" => $genre->getGrLibelle()?(string)$genre->getGrLibelle():"",
-                        "vst_num_pv" => $reception->getRcpNumPv()?(string)$visite->getVstNumPv():"",
-                        "vst_created" => $reception->getRcpCreated()?(string)$visite->getVstCreated()->format('Y-m-d H:m:s'):"",
+                        "vst_num_pv" => $reception->getRcpNumPv()?$reception->getRcpNumPv():"",
+                        "vst_created" => $reception->getRcpCreated()?(string)$reception->getRcpCreated()->format('Y-m-d H:m:s'):"",
                         "ctr_nom" => $centre->getCtrNom()?(string)$centre->getCtrNom():"",
                         "prv_nom" => $province->getPrvNom()?(string)$province->getPrvNom():"",
                         "usr_name" => $secretaire?(string)$secretaire->getUsrName():"",
@@ -307,6 +309,75 @@ class CtServiceMobileController extends AbstractController
                         "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
                         "imprime" => $liste_imprime,
                     ];
+                    $recepiton_exist++;
+                    $array_vehicule->add($info_vehicule);
+                }
+            }
+            if($immatriculation_reception != null && $recepiton_exist == 0) {
+                $reception = $ctReceptionRepository->findOneBy(["rcpImmatriculation" => $immatriculation_reception], ["rcpCreated" => "DESC"]);
+                if($reception != null){
+                    $vehicule = $ctVehiculeRepository->findOneBy(["id" => $reception->getCtVehicule()]);
+                    $carosserie = $ctCarosserieRepository->findOneBy(["id" => $reception->getCtCarosserie()]);
+                    $source_energie = $ctSourceEnergieRepository->findOneBy(["id" => $reception->getCtSourceEnergie()]);
+                    $marque = $ctMarqueRepository->findOneBy(["id" => $vehicule->getCtMarque()]);
+                    $genre = $ctGenreRepository->findOneBy(["id" => $vehicule->getCtGenre()]);
+                    // $recep = $ctVisiteRepository->findOneBy(["ctCarteGrise" => $reception->getId()], ["vstCreated" => "DESC"]);
+                    $centre = $ctCentreRepository->findOneBy(["id" => $reception->getCtCentre()]);
+                    $province = $ctProvinceRepository->findOneBy(["id" => $centre->getCtProvince()]);
+                    // $usage = $ctUsageRepository->findOneBy(["id" => $visite->getCtUsage()]);
+                    // $verificateur = $ctUserRepository->findOneBy(["id" => $visite->getCtVerificateur()]);
+                    $secretaire = $ctUserRepository->findOneBy(["id" => $reception->getCtUser()]);
+                    $utilisation = $ctUtilisationRepository->findOneBy(["id" => $reception->getCtUtilisation()]);
+                    $liste_anomalies = "";
+                    $liste_imprime = "";
+                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId()]);
+                    // $imprimesVisite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite"]);
+                    // $imprimesContre = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Contre"]);
+                    // $imprimes = array_merge($imprimesVisite, $imprimesContre);
+                    foreach($imprimes as $imp){
+                        if($liste_imprime != ""){
+                            $liste_imprime .= " - ";
+                        }
+                        $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+                    }
+                    /* $autresService = $this->getDoctrine()->getRepository(CtAutreSce::class)->findBy(["ctControleId" => $visite->getId()]);
+                    foreach($autresService as $aS){
+                        $imprimesAutreService = $ctImprimeTechUseRepository->findBy(["ctControleId" => $aS->getId()]);
+                        foreach($imprimesAutreService as $impAS){
+                            if($liste_imprime != ""){
+                                $liste_imprime .= " - ";
+                            }
+                            $liste_imprime .= $impAS->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $impAS->getItuNumero();
+                        }
+                    } */
+                    $info_vehicule = [
+                        "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
+                        "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
+                        "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
+                        "cg_adresse" => $reception->getRcpAdresse()?(string)$reception->getRcpAdresse():"",
+                        "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$reception->getRcpNbrAssis():"",
+                        "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$reception->getRcpNbrDebout():"",
+                        "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$reception->getRcpMiseService()->format('Y-m-d'):"",
+                        "crs_libelle" => $carosserie->getCrsLibelle()?(string)$carosserie->getCrsLibelle():"",
+                        "sre_libelle" => $source_energie->getSreLibelle()?(string)$source_energie->getSreLibelle():"",
+                        "vhc_num_serie" => $vehicule->getVhcNumSerie()?(string)$vehicule->getVhcNumSerie():"",
+                        "vhc_num_moteur" => $vehicule->getVhcNumMoteur()?(string)$vehicule->getVhcNumMoteur():"",
+                        "vhc_type" => $vehicule->getVhcType()?(string)$vehicule->getVhcType():"",
+                        "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
+                        "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
+                        "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                        "mrq_libelle" => $marque->getMrqLibelle()?(string)$marque->getMrqLibelle():"",
+                        "gr_libelle" => $genre->getGrLibelle()?(string)$genre->getGrLibelle():"",
+                        "vst_num_pv" => $reception->getRcpNumPv()?$reception->getRcpNumPv():"",
+                        "vst_created" => $reception->getRcpCreated()?(string)$reception->getRcpCreated()->format('Y-m-d H:m:s'):"",
+                        "ctr_nom" => $centre->getCtrNom()?(string)$centre->getCtrNom():"",
+                        "prv_nom" => $province->getPrvNom()?(string)$province->getPrvNom():"",
+                        "usr_name" => $secretaire?(string)$secretaire->getUsrName():"",
+                        "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
+                        "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
+                        "imprime" => $liste_imprime,
+                    ];
+                    $recepiton_exist++;
                     $array_vehicule->add($info_vehicule);
                 }
             }
