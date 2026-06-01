@@ -221,6 +221,53 @@ class CtServiceMobileController extends AbstractController
                         }
                     }
                     $info_vehicule = [
+                        "cg_puissance_admin" => $carte_grise->getCgPuissanceAdmin()?(string)$carte_grise->getCgPuissanceAdmin():"",
+                        "cg_nbr_assis" => $carte_grise->getCgNbrAssis()?(string)$carte_grise->getCgNbrAssis():"",
+                        "cg_nbr_debout" => $carte_grise->getCgNbrDebout()?(string)$carte_grise->getCgNbrDebout():"",
+                        "cg_mise_en_service" => $carte_grise->getCgMiseEnService()?(string)$carte_grise->getCgMiseEnService()->format('Y-m-d'):"",
+                        "cg_num_carte_violette" => $carte_grise->getCgNumCarteViolette()?(string)$carte_grise->getCgNumCarteViolette():"",
+                        "cg_date_carte_violette" => $carte_grise->getCgDateCarteViolette()?(string)$carte_grise->getCgDateCarteViolette()->format('Y-m-d'):"",
+                        "cg_patente" => $carte_grise->getCgPatente()?(string)$carte_grise->getCgPatente():"",
+                        "cg_ani" => $carte_grise->getCgAni()?(string)$carte_grise->getCgAni():"",
+                        "cg_num_vignette" => $carte_grise->getCgNumVignette()?(string)$carte_grise->getCgNumVignette():"",
+                        "cg_date_vignette" => $carte_grise->getCgDateVignette()?(string)$carte_grise->getCgDateVignette()->format('Y-m-d'):"",
+                        "crs_libelle" => $carosserie->getCrsLibelle()?(string)$carosserie->getCrsLibelle():"",
+                        "sre_libelle" => $source_energie->getSreLibelle()?(string)$source_energie->getSreLibelle():"",
+                        "vhc_num_serie" => $vehicule->getVhcNumSerie()?(string)$vehicule->getVhcNumSerie():"",
+                        "vhc_num_moteur" => $vehicule->getVhcNumMoteur()?(string)$vehicule->getVhcNumMoteur():"",
+                        "vhc_type" => $vehicule->getVhcType()?(string)$vehicule->getVhcType():"",
+                        "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
+                        "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
+                        "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                    ];
+                    $info_proprietaire = [
+                        "cg_immatriculation" => $carte_grise->getCgImmatriculation()?(string)$carte_grise->getCgImmatriculation():"",
+                        "cg_nom" => $carte_grise->getCgNom()?(string)$carte_grise->getCgNom():"",
+                        "cg_prenom" => trim((string)$carte_grise->getCgPrenom()),
+                        "cg_phone" => trim((string)$carte_grise->getCgPhone()),
+                        "cg_profession" => $carte_grise->getCgProfession()?(string)$carte_grise->getCgProfession():"",
+                        "cg_nom_cooperative" => $carte_grise->getCgNomCooperative()?(string)$carte_grise->getCgNomCooperative():"",
+                        "cg_adresse" => $carte_grise->getCgAdresse()?(string)$carte_grise->getCgAdresse():"",
+                        "cg_commune" => $carte_grise->getCgCommune()?(string)$carte_grise->getCgCommune():"",
+                    ];
+                    $info_visite = [
+                        "mrq_libelle" => $marque->getMrqLibelle()?(string)$marque->getMrqLibelle():"",
+                        "gr_libelle" => $genre->getGrLibelle()?(string)$genre->getGrLibelle():"",
+                        "vst_num_pv" => $visite->getVstNumPv()?(string)$visite->getVstNumPv():"",
+                        "vst_date_expiration" => (string)$visite->getVstIsApte()=="1"?(string)$visite->getVstDateExpiration()->format('Y-m-d'):$visite->getVstDureeReparation(),
+                        "vst_is_apte" => $visite->getVstIsApte()?(string)$visite->getVstIsApte():"0",
+                        "vst_is_contre_visite" => $visite->getVstIsContreVisite()?(string)$visite->getVstIsContreVisite():"0",
+                        "vst_created" => $visite->getVstCreated()?(string)$visite->getVstCreated()->format('Y-m-d H:m:s'):"",
+                        "ctr_nom" => $centre->getCtrNom()?(string)$centre->getCtrNom():"",
+                        "prv_nom" => $province->getPrvNom()?(string)$province->getPrvNom():"",
+                        "usg_libelle" => $usage->getUsgLibelle()?(string)$usage->getUsgLibelle():"",
+                        "nom_verificateur" => $verificateur?(string)$verificateur->getUsrName():"",
+                        "usr_name" => $secretaire?(string)$secretaire->getUsrName():"",
+                        "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
+                        "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
+                        "imprime" => $liste_imprime,
+                    ];
+                    /* $info_vehicule = [
                         "cg_immatriculation" => $carte_grise->getCgImmatriculation()?(string)$carte_grise->getCgImmatriculation():"",
                         "cg_nom" => $carte_grise->getCgNom()?(string)$carte_grise->getCgNom():"",
                         "cg_prenom" => trim((string)$carte_grise->getCgPrenom()),
@@ -262,8 +309,13 @@ class CtServiceMobileController extends AbstractController
                         "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
                         "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
                         "imprime" => $liste_imprime,
-                    ];
+                    ]; */
                     $array_vehicule->add($info_vehicule);
+                    $vehicule_exist++;
+                    $array_proprietaire->add($info_proprietaire);
+                    $proprietaire_exist++;
+                    $array_visite->add($info_visite);
+                    $visite_exist++;
                     //"vst_date_expiration" => $visite->getVstDateExpiration()?(string)$visite->getVstDateExpiration()->format('Y-m-d'):"",
                 }
             }
@@ -306,6 +358,36 @@ class CtServiceMobileController extends AbstractController
                         }
                     } */
                     $info_vehicule = [
+                        "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$reception->getRcpNbrAssis():"",
+                        "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$reception->getRcpNbrDebout():"",
+                        "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$reception->getRcpMiseService()->format('Y-m-d'):"",
+                        "crs_libelle" => $carosserie->getCrsLibelle()?(string)$carosserie->getCrsLibelle():"",
+                        "sre_libelle" => $source_energie->getSreLibelle()?(string)$source_energie->getSreLibelle():"",
+                        "vhc_num_serie" => $vehicule->getVhcNumSerie()?(string)$vehicule->getVhcNumSerie():"",
+                        "vhc_num_moteur" => $vehicule->getVhcNumMoteur()?(string)$vehicule->getVhcNumMoteur():"",
+                        "vhc_type" => $vehicule->getVhcType()?(string)$vehicule->getVhcType():"",
+                        "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
+                        "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
+                        "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                    ];
+                    $info_proprietaire = [
+                        "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
+                        "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
+                        "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
+                        "cg_adresse" => $reception->getRcpAdresse()?(string)$reception->getRcpAdresse():"",
+                    ];
+                    $info_reception = [
+                        "mrq_libelle" => $marque->getMrqLibelle()?(string)$marque->getMrqLibelle():"",
+                        "gr_libelle" => $genre->getGrLibelle()?(string)$genre->getGrLibelle():"",
+                        "rcp_num_pv" => $reception->getRcpNumPv()?$reception->getRcpNumPv():"",
+                        "rcp_created" => $reception->getRcpCreated()?(string)$reception->getRcpCreated()->format('Y-m-d H:m:s'):"",
+                        "ctr_nom" => $centre->getCtrNom()?(string)$centre->getCtrNom():"",
+                        "prv_nom" => $province->getPrvNom()?(string)$province->getPrvNom():"",
+                        "usr_name" => $secretaire?(string)$secretaire->getUsrName():"",
+                        "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
+                        "imprime" => $liste_imprime,
+                    ];
+                    /* $info_vehicule = [
                         "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
                         "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
                         "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
@@ -329,14 +411,21 @@ class CtServiceMobileController extends AbstractController
                         "prv_nom" => $province->getPrvNom()?(string)$province->getPrvNom():"",
                         "usr_name" => $secretaire?(string)$secretaire->getUsrName():"",
                         "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
-                        "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
                         "imprime" => $liste_imprime,
-                    ];
+                    ]; */
+                    if($vehicule_exist <= 0) {
+                        $array_vehicule->add($info_vehicule);
+                        $vehicule_exist++;
+                    }
+                    if($proprietaire_exist <= 0) {
+                        $array_proprietaire->add($info_proprietaire);
+                        $proprietaire_exist++;
+                    }
+                    $array_reception->add($info_reception);
                     $reception_exist++;
-                    $array_vehicule->add($info_vehicule);
                 }
             }
-            if($immatriculation_reception != null && $reception_exist == 0) {
+            if($immatriculation_reception != null && $reception_exist <= 0) {
                 $reception = $ctReceptionRepository->findOneBy(["rcpImmatriculation" => $immatriculation_reception], ["rcpCreated" => "DESC"]);
                 if($reception != null){
                     $vehicule = $ctVehiculeRepository->findOneBy(["id" => $reception->getCtVehicule()]);
@@ -374,6 +463,36 @@ class CtServiceMobileController extends AbstractController
                         }
                     } */
                     $info_vehicule = [
+                        "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$reception->getRcpNbrAssis():"",
+                        "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$reception->getRcpNbrDebout():"",
+                        "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$reception->getRcpMiseService()->format('Y-m-d'):"",
+                        "crs_libelle" => $carosserie->getCrsLibelle()?(string)$carosserie->getCrsLibelle():"",
+                        "sre_libelle" => $source_energie->getSreLibelle()?(string)$source_energie->getSreLibelle():"",
+                        "vhc_num_serie" => $vehicule->getVhcNumSerie()?(string)$vehicule->getVhcNumSerie():"",
+                        "vhc_num_moteur" => $vehicule->getVhcNumMoteur()?(string)$vehicule->getVhcNumMoteur():"",
+                        "vhc_type" => $vehicule->getVhcType()?(string)$vehicule->getVhcType():"",
+                        "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
+                        "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
+                        "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                    ];
+                    $info_proprietaire = [
+                        "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
+                        "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
+                        "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
+                        "cg_adresse" => $reception->getRcpAdresse()?(string)$reception->getRcpAdresse():"",
+                    ];
+                    $info_reception = [
+                        "mrq_libelle" => $marque->getMrqLibelle()?(string)$marque->getMrqLibelle():"",
+                        "gr_libelle" => $genre->getGrLibelle()?(string)$genre->getGrLibelle():"",
+                        "rcp_num_pv" => $reception->getRcpNumPv()?$reception->getRcpNumPv():"",
+                        "rcp_created" => $reception->getRcpCreated()?(string)$reception->getRcpCreated()->format('Y-m-d H:m:s'):"",
+                        "ctr_nom" => $centre->getCtrNom()?(string)$centre->getCtrNom():"",
+                        "prv_nom" => $province->getPrvNom()?(string)$province->getPrvNom():"",
+                        "usr_name" => $secretaire?(string)$secretaire->getUsrName():"",
+                        "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
+                        "imprime" => $liste_imprime,
+                    ];
+                    /* $info_vehicule = [
                         "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
                         "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
                         "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
@@ -399,12 +518,26 @@ class CtServiceMobileController extends AbstractController
                         "ut_libelle" => $utilisation->getUtLibelle()?(string)$utilisation->getUtLibelle():"",
                         "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
                         "imprime" => $liste_imprime,
-                    ];
-                    $recepiton_exist++;
-                    $array_vehicule->add($info_vehicule);
+                    ]; */
+                    if($vehicule_exist <= 0) {
+                        $array_vehicule->add($info_vehicule);
+                        $vehicule_exist++;
+                    }
+                    if($proprietaire_exist <= 0) {
+                        $array_proprietaire->add($info_proprietaire);
+                        $proprietaire_exist++;
+                    }
+                    $array_reception->add($info_reception);
+                    $reception_exist++;
                 }
             }
-
+            $resultat = [
+                "Visite" => $array_visite->toArray(),
+                "Reception" => $array_reception->toArray(),
+                "Vehicule" => $array_vehicule->toArray(),
+                "Proprietaire" => $array_proprietaire->toArray(),
+            ];
+            $array_resultat->add($resultat);
             // $response = new JsonResponse($array_vehicule->toArray());
             $response = new JsonResponse($array_resultat->toArray());
             $response->headers->set('Access-Control-Allow-Headers', '*');
