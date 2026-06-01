@@ -85,16 +85,54 @@ class CtServiceMobileController extends AbstractController
     public function recherche(Request $request, CtReceptionRepository $ctReceptionRepository, CtImprimeTechUseRepository $ctImprimeTechUseRepository, CtAnomalieRepository $ctAnomalieRepository, CtVisiteAnomalieRepository $ctVisiteAnomalieRepository, CtUtilisationRepository $ctUtilisationRepository, CtUserRepository $ctUserRepository, CtUsageRepository $ctUsageRepository, CtProvinceRepository $ctProvinceRepository, CtCentreRepository $ctCentreRepository, CtVisiteRepository $ctVisiteRepository, CtGenreRepository $ctGenreRepository, CtMarqueRepository $ctMarqueRepository, CtSourceEnergieRepository $ctSourceEnergieRepository, CtCarteGriseRepository $ctCarteGriseRepository, CtVehiculeRepository $ctVehiculeRepository, CtCarosserieRepository $ctCarosserieRepository)
     {
         $array_vehicule = new ArrayCollection();
-        $recepiton_exist = 0;
-        $info_vehicule = [
+        $array_visite = new ArrayCollection();
+        $array_reception = new ArrayCollection();
+        $array_constatation = new ArrayCollection();
+        $array_proprietaire = new ArrayCollection();
+        $array_resultat = new ArrayCollection();
+        $reception_exist = 0;
+        $visite_exist = 0;
+        $constatation_exist = 0;
+        $vehicule_exist = 0;
+        $proprietaire_exist = 0;
+        $info_visite = [
+            "mrq_libelle" => "",
+            "gr_libelle" => "",
+            "vst_num_pv" => "",
+            "vst_date_expiration" => "",
+            "vst_is_apte" => "",
+            "vst_is_contre_visite" => "",
+            "vst_created" => "",
+            "ctr_nom" => "",
+            "prv_nom" => "",
+            "usg_libelle" => "",
+            "nom_verificateur" => "",
+            "usr_name" => "",
+            "ut_libelle" => "",
+            "vst_anomalies" => "",
+            "imprime" => "",
+        ];
+        $info_reception = [
+            "gr_libelle" => "",
+            "rcp_num_pv" => "",
+            "rcp_created" => "",
+            "ctr_nom" => "",
+            "prv_nom" => "",
+            "usr_name" => "",
+            "ut_libelle" => "",
+        ];
+        $info_constatation = [];
+        $info_proprietaire = [
             "cg_immatriculation" => "",
             "cg_nom" => "",
             "cg_prenom" => "",
             "cg_phone" => "",
             "cg_profession" => "",
             "cg_nom_cooperative" => "",
-            "cg_adresse" => "C",
+            "cg_adresse" => "",
             "cg_commune" => "",
+        ];
+        $info_vehicule = [
             "cg_puissance_admin" => "",
             "cg_nbr_assis" => "",
             "cg_nbr_debout" => "",
@@ -113,21 +151,6 @@ class CtServiceMobileController extends AbstractController
             "vhc_charge_utile" => "",
             "vhc_poids_vide" => "",
             "vhc_poids_total_charge" => "",
-            "mrq_libelle" => "",
-            "gr_libelle" => "",
-            "vst_num_pv" => "",
-            "vst_date_expiration" => "",
-            "vst_is_apte" => "",
-            "vst_is_contre_visite" => "",
-            "vst_created" => "",
-            "ctr_nom" => "",
-            "prv_nom" => "",
-            "usg_libelle" => "",
-            "nom_verificateur" => "",
-            "usr_name" => "",
-            "ut_libelle" => "",
-            "vst_anomalies" => "",
-            "imprime" => "",
         ];
         $separateurs = ["", " ", ".", "_", "-"];
         $separateurs_saisie = ["", " ", ".", "_", "-"];
@@ -309,11 +332,11 @@ class CtServiceMobileController extends AbstractController
                         "vst_anomalies" => $liste_anomalies?trim((string)$liste_anomalies):"",
                         "imprime" => $liste_imprime,
                     ];
-                    $recepiton_exist++;
+                    $reception_exist++;
                     $array_vehicule->add($info_vehicule);
                 }
             }
-            if($immatriculation_reception != null && $recepiton_exist == 0) {
+            if($immatriculation_reception != null && $reception_exist == 0) {
                 $reception = $ctReceptionRepository->findOneBy(["rcpImmatriculation" => $immatriculation_reception], ["rcpCreated" => "DESC"]);
                 if($reception != null){
                     $vehicule = $ctVehiculeRepository->findOneBy(["id" => $reception->getCtVehicule()]);
@@ -382,7 +405,8 @@ class CtServiceMobileController extends AbstractController
                 }
             }
 
-            $response = new JsonResponse($array_vehicule->toArray());
+            // $response = new JsonResponse($array_vehicule->toArray());
+            $response = new JsonResponse($array_resultat->toArray());
             $response->headers->set('Access-Control-Allow-Headers', '*');
             $response->headers->set('Content-Type', 'application/json');
             $response->headers->set('Access-Control-Allow-Origin', '*');
