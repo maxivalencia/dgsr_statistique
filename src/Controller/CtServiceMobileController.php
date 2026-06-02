@@ -146,7 +146,6 @@ class CtServiceMobileController extends AbstractController
             "cad_observation" => "",
         ];
         $info_proprietaire = [
-            "cg_immatriculation" => "",
             "cg_nom" => "",
             "cg_prenom" => "",
             "cg_phone" => "",
@@ -156,6 +155,7 @@ class CtServiceMobileController extends AbstractController
             "cg_commune" => "",
         ];
         $info_vehicule = [
+            "cg_immatriculation" => "",
             "cg_puissance_admin" => "",
             "cg_nbr_assis" => "",
             "cg_nbr_debout" => "",
@@ -245,6 +245,7 @@ class CtServiceMobileController extends AbstractController
                         }
                     }
                     $info_vehicule = [
+                        "cg_immatriculation" => $carte_grise->getCgImmatriculation()?(string)$carte_grise->getCgImmatriculation():"",
                         "cg_puissance_admin" => $carte_grise->getCgPuissanceAdmin()?(string)$carte_grise->getCgPuissanceAdmin():"",
                         "cg_nbr_assis" => $carte_grise->getCgNbrAssis()?(string)$carte_grise->getCgNbrAssis():"",
                         "cg_nbr_debout" => $carte_grise->getCgNbrDebout()?(string)$carte_grise->getCgNbrDebout():"",
@@ -265,7 +266,6 @@ class CtServiceMobileController extends AbstractController
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
                     ];
                     $info_proprietaire = [
-                        "cg_immatriculation" => $carte_grise->getCgImmatriculation()?(string)$carte_grise->getCgImmatriculation():"",
                         "cg_nom" => $carte_grise->getCgNom()?(string)$carte_grise->getCgNom():"",
                         "cg_prenom" => trim((string)$carte_grise->getCgPrenom()),
                         "cg_phone" => trim((string)$carte_grise->getCgPhone()),
@@ -332,6 +332,7 @@ class CtServiceMobileController extends AbstractController
                         $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
                     }
                     $info_vehicule = [
+                        "cg_immatriculation" => $reception->getRcpImmatriculation()?$reception->getRcpImmatriculation():"",
                         "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$reception->getRcpNbrAssis():"",
                         "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$reception->getRcpNbrDebout():"",
                         "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$reception->getRcpMiseService()->format('Y-m-d'):"",
@@ -345,7 +346,7 @@ class CtServiceMobileController extends AbstractController
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
                     ];
                     $info_proprietaire = [
-                        "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
+                        // "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
                         "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
                         "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
                         "cg_adresse" => $reception->getRcpAdresse()?(string)$reception->getRcpAdresse():"",
@@ -404,6 +405,7 @@ class CtServiceMobileController extends AbstractController
                         $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
                     }
                     $info_vehicule = [
+                        "cg_immatriculation" => $reception->getRcpImmatriculation()?$reception->getRcpImmatriculation():"",
                         "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$reception->getRcpNbrAssis():"",
                         "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$reception->getRcpNbrDebout():"",
                         "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$reception->getRcpMiseService()->format('Y-m-d'):"",
@@ -417,7 +419,7 @@ class CtServiceMobileController extends AbstractController
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
                     ];
                     $info_proprietaire = [
-                        "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
+                        // "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
                         "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
                         "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
                         "cg_adresse" => $reception->getRcpAdresse()?(string)$reception->getRcpAdresse():"",
@@ -478,6 +480,7 @@ class CtServiceMobileController extends AbstractController
                         $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
                     }
                     $info_vehicule = [
+                        "cg_immatriculation" => $reception->getRcpImmatriculation()?$reception->getRcpImmatriculation():"",
                         "cg_nbr_assis" => $reception->getRcpNbrAssis()?(string)$reception->getRcpNbrAssis():"",
                         "cg_nbr_debout" => $reception->getRcpNbrDebout()?(string)$reception->getRcpNbrDebout():"",
                         "cg_mise_en_service" => $reception->getRcpMiseService()?(string)$reception->getRcpMiseService()->format('Y-m-d'):"",
@@ -491,7 +494,7 @@ class CtServiceMobileController extends AbstractController
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
                     ];
                     $info_proprietaire = [
-                        "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
+                        // "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
                         "cg_nom" => $reception->getRcpProprietaire()?(string)$reception->getRcpProprietaire():"",
                         "cg_profession" => $reception->getRcpProfession()?(string)$reception->getRcpProfession():"",
                         "cg_adresse" => $reception->getRcpAdresse()?(string)$reception->getRcpAdresse():"",
