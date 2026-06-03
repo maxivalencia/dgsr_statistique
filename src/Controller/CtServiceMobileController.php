@@ -174,6 +174,7 @@ class CtServiceMobileController extends AbstractController
             "vhc_charge_utile" => "",
             "vhc_poids_vide" => "",
             "vhc_poids_total_charge" => "",
+            "vhc_puissance" => "",
         ];
         $separateurs = ["", " ", ".", "_", "-"];
         $separateurs_saisie = ["", " ", ".", "_", "-"];
@@ -264,6 +265,7 @@ class CtServiceMobileController extends AbstractController
                         "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
                         "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                        "vhc_puissance" => $vehicule->getVhcPuissance()?$vehicule->getVhcPuissance():"",
                     ];
                     $info_proprietaire = [
                         "cg_nom" => $carte_grise->getCgNom()?(string)$carte_grise->getCgNom():"",
@@ -344,6 +346,7 @@ class CtServiceMobileController extends AbstractController
                         "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
                         "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                        "vhc_puissance" => $vehicule->getVhcPuissance()?$vehicule->getVhcPuissance():"",
                     ];
                     $info_proprietaire = [
                         // "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
@@ -417,6 +420,7 @@ class CtServiceMobileController extends AbstractController
                         "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
                         "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                        "vhc_puissance" => $vehicule->getVhcPuissance()?$vehicule->getVhcPuissance():"",
                     ];
                     $info_proprietaire = [
                         // "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
@@ -492,6 +496,7 @@ class CtServiceMobileController extends AbstractController
                         "vhc_charge_utile" => $vehicule->getVhcChargeUtile()?(string)$vehicule->getVhcChargeUtile():"",
                         "vhc_poids_vide" => $vehicule->getVhcPoidsVide()?(string)$vehicule->getVhcPoidsVide():"",
                         "vhc_poids_total_charge" => $vehicule->getVhcPoidsTotalCharge()?(string)$vehicule->getVhcPoidsTotalCharge():"",
+                        "vhc_puissance" => $vehicule->getVhcPuissance()?$vehicule->getVhcPuissance():"",
                     ];
                     $info_proprietaire = [
                         // "cg_immatriculation" => $reception->getRcpImmatriculation()?(string)$reception->getRcpImmatriculation():"",
