@@ -217,7 +217,19 @@ class CtServiceMobileController extends AbstractController
                     //$imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite"]);
                     $imprimesVisite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite"]);
                     $imprimesContre = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Contre"]);
-                    $imprimes = array_merge($imprimesVisite, $imprimesContre);
+                    $imprimesAuthenticite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Authenticité"]);
+                    $imprimesMutation = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Mutation"]);
+                    $imprimesVenteSpeciale = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Vente spéciale"]);
+                    $imprimesDuplicata = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Duplicata"]);
+                    $imprimesSpeciale = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Spéciale"]);
+                    $imprimesCaracteristique = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Caractéristique"]);
+                    $imprimesDuplicataVisite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Duplicata visite"]);
+                    $imprimesAutres = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Autres"]);
+                    $imprimesVisiteTechniqueSpeciale = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Visite technique spéciale"]);
+                    $imprimesDuplicataAuthenticite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Duplicata authenticité"]);
+                    $imprimesMutationAuthenticite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Mutation authenticité"]);
+                    $imprimesChangementOption = $ctImprimeTechUseRepository->findBy(["ctControleId" => $visite->getId(), "ituMotifUsed" => "Changement option"]);
+                    $imprimes = array_merge($imprimesVisite, $imprimesContre, $imprimesAuthenticite, $imprimesMutation, $imprimesVenteSpeciale, $imprimesDuplicata, $imprimesSpeciale, $imprimesCaracteristique, $imprimesDuplicataVisite, $imprimesAutres, $imprimesVisiteTechniqueSpeciale, $imprimesDuplicataAuthenticite, $imprimesMutationAuthenticite, $imprimesChangementOption);
                     $numero_de_serie = $vehicule->getVhcNumSerie();
                     if($visite->getVstIsApte() == 0){
                         //$anomalies = $ctVisiteAnomalieRepository->find(["ctAnomalieId" => $visite->getId()]);
@@ -323,7 +335,9 @@ class CtServiceMobileController extends AbstractController
                     $utilisation = $ctUtilisationRepository->findOneBy(["id" => $reception->getCtUtilisation()]);
                     $liste_anomalies = "";
                     $liste_imprime = "";
-                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId()]);
+                    $imprimesReception = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId(), "ituMotifUsed" => "Réception"]);
+                    $imprimesDuplicataReception = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId(), "ituMotifUsed" => "Duplicata réception"]);
+                    $imprimes = array_merge($imprimesReception, $imprimesDuplicataReception);
                     if($numero_de_serie == ""){
                         $numero_de_serie = $vehicule->getVhcNumSerie();
                     }
@@ -399,7 +413,9 @@ class CtServiceMobileController extends AbstractController
                     $utilisation = $ctUtilisationRepository->findOneBy(["id" => $reception->getCtUtilisation()]);
                     $liste_anomalies = "";
                     $liste_imprime = "";
-                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId()]);
+                    $imprimesReception = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId(), "ituMotifUsed" => "Réception"]);
+                    $imprimesDuplicataReception = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId(), "ituMotifUsed" => "Duplicata réception"]);
+                    $imprimes = array_merge($imprimesReception, $imprimesDuplicataReception);
                     if($numero_de_serie == ""){
                         $numero_de_serie = $vehicule->getVhcNumSerie();
                     }
@@ -477,7 +493,9 @@ class CtServiceMobileController extends AbstractController
                     $utilisation = $ctUtilisationRepository->findOneBy(["id" => $reception->getCtUtilisation()]);
                     $liste_anomalies = "";
                     $liste_imprime = "";
-                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId()]);
+                    $imprimesReception = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId(), "ituMotifUsed" => "Réception"]);
+                    $imprimesDuplicataReception = $ctImprimeTechUseRepository->findBy(["ctControleId" => $reception->getId(), "ituMotifUsed" => "Duplicata réception"]);
+                    $imprimes = array_merge($imprimesReception, $imprimesDuplicataReception);
                     if($numero_de_serie == ""){
                         $numero_de_serie = $vehicule->getVhcNumSerie();
                     }
@@ -543,7 +561,7 @@ class CtServiceMobileController extends AbstractController
                     $constatation_avant_dedouanement_constatation_caracteristique = $ctConstAvDedsConstAvDedCaracsRepository->findOneBy(["const_av_ded_carac_id" => $constatation_caracteristique_id]);
                     $constatation = $ctConstAvDedRepository->findOneBy(["id" => $constatation_avant_dedouanement_constatation_caracteristique->getConstAvDedId()]);
                     // $constatation = $ctConstAvDedRepository->findOneBy(["id" => $constatation_id]);
-                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $constatation->getId()]);
+                    $imprimes = $ctImprimeTechUseRepository->findBy(["ctControleId" => $constatation->getId(), "ituMotifUsed" => "Constatation"]);
                     $genre = $ctGenreRepository->findOneBy(["id" => $constatation_caracteristique->getCtGenre()]);
                     $marque = $ctMarqueRepository->findOneBy(["id" => $constatation_caracteristique->getCtMarque()]);
                     $liste_imprime = "";
