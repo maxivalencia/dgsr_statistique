@@ -95,8 +95,8 @@ class CtStatistiqueController extends AbstractController
         }
         // Récupération des constatations avant dédouanement
         if ($cg_vehicule != null) {
-            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
-            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
             $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
             if ($constatations_jointures != null) {
                 //$jointure = new CtConstAvDedsConstAvDedCaracs();
@@ -105,8 +105,8 @@ class CtStatistiqueController extends AbstractController
                 //}
             }
         } else {
-            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero]);
-            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero]);
             $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
             if ($constatations_jointures != null) {
                 //$jointure = new CtConstAvDedsConstAvDedCaracs();
@@ -201,8 +201,8 @@ class CtStatistiqueController extends AbstractController
         }
         // Récupération des constatations avant dédouanement
         if ($cg_vehicule != null) {
-            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
-            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
             $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
             if ($constatations_jointures != null) {
                 //$jointure = new CtConstAvDedsConstAvDedCaracs();
@@ -211,8 +211,8 @@ class CtStatistiqueController extends AbstractController
                 //}
             }
         } else {
-            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero]);
-            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero]);
             $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
             if ($constatations_jointures != null) {
                 //$jointure = new CtConstAvDedsConstAvDedCaracs();
@@ -291,8 +291,8 @@ class CtStatistiqueController extends AbstractController
         }
         // Récupération des constatations avant dédouanement
         if ($cg_vehicule != null) {
-            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
-            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()], ['id' => 'DESC']);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $cg_vehicule->getVhcNumSerie()]);
             $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
             if ($constatations_jointures != null) {
                 //$jointure = new CtConstAvDedsConstAvDedCaracs();
@@ -301,8 +301,8 @@ class CtStatistiqueController extends AbstractController
                 //}
             }
         } else {
-            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero]);
-            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatations_caracteristiques = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findBy(['cadNumSerieType' => $numero], ['id' => 'DESC']);
+            $constatation_caracteristique = $this->getDoctrine()->getRepository(CtConstAvDedCarac::class)->findOneBy(['cadNumSerieType' => $numero]);
             $constatations_jointures = $this->getDoctrine()->getRepository(CtConstAvDedsConstAvDedCaracs::class)->findOneBy(['const_av_ded_carac_id' => $constatation_caracteristique]);
             if ($constatations_jointures != null) {
                 //$jointure = new CtConstAvDedsConstAvDedCaracs();
@@ -528,7 +528,7 @@ class CtStatistiqueController extends AbstractController
             "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
             "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
             "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
-            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            // "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
             "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
             "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
             "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
@@ -560,7 +560,7 @@ class CtStatistiqueController extends AbstractController
             "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
             "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
             "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
-            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            // "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
             "imprime" => $liste_imprime,
@@ -648,7 +648,7 @@ class CtStatistiqueController extends AbstractController
         /* ];
         $vehicule = [ */
             "id_vehicule" => $cg_vehicule->getId()?$cg_vehicule->getId():"",
-            "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
+            // "genre" => $cg_vehicule->getCtGenre()?$cg_vehicule->getCtGenre()->getGrLibelle():"",
             "marque" => $cg_vehicule->getCtMarque()?$cg_vehicule->getCtMarque()->getMrqLibelle():"",
             "cylindre" => $cg_vehicule->getVhcCylindre()?$cg_vehicule->getVhcCylindre():"",
             "puissance" => $cg_vehicule->getVhcPuissance()?$cg_vehicule->getVhcPuissance():"",
@@ -659,7 +659,7 @@ class CtStatistiqueController extends AbstractController
             "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
             "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
             "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
-            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            // "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
             "imprime" => $liste_imprime,
@@ -964,19 +964,23 @@ class CtStatistiqueController extends AbstractController
                     break;
                 case 6:
                     $type_operation = "AVF";
-                    $id = $autre_service->getCtControleId();
+                    // $id = $autre_service->getCtControleId();
+                    $id = $autre_service->getId();
                     break;
                 case 7:
                     $type_operation = "AVF";
-                    $id = $autre_service->getCtControleId();
+                    // $id = $autre_service->getCtControleId();
+                    $id = $autre_service->getId();
                     break;
                 case 8:
                     $type_operation = "CAR";
-                    $id = $autre_service->getCtControleId();
+                    // $id = $autre_service->getCtControleId();
+                    $id = $autre_service->getId();
                     break;
                 case 9:
                     $type_operation = "VS";
-                    $id = $autre_service->getCtControleId();
+                    // $id = $autre_service->getCtControleId();
+                    $id = $autre_service->getId();
                     break;
                 default:
                     $type_operation = "ND";
@@ -1088,7 +1092,7 @@ class CtStatistiqueController extends AbstractController
             "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
             "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
             "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
-            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            // "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
             "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
             "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
             "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
@@ -1120,7 +1124,7 @@ class CtStatistiqueController extends AbstractController
             "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
             "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
             "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
-            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            // "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
             "imprime" => $liste_imprime,
@@ -1206,7 +1210,7 @@ class CtStatistiqueController extends AbstractController
             "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
             "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
             "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
-            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            // "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
             "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
             "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
             "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
@@ -1220,7 +1224,7 @@ class CtStatistiqueController extends AbstractController
             "immatriculation" => $ctCarteGrise->getCgImmatriculation()?$ctCarteGrise->getCgImmatriculation():"",
             "date" => $ctCarteGrise->getCgCreated()?$ctCarteGrise->getCgCreated()->format('d/m/Y'):"",
             "nom_cooperative" => $ctCarteGrise->getCgNomCooperative()?$ctCarteGrise->getCgNomCooperative():"",
-            "itineraire" => $ctCarteGrise->getCgItineraire()?$ctCarteGrise->getCgItineraire():"",
+            // "itineraire" => $ctCarteGrise->getCgItineraire()?$ctCarteGrise->getCgItineraire():"",
             "transporteur" => $ctCarteGrise->getCgIsTransport()?$ctCarteGrise->getCgIsTransport():"",
             "numero_identification" => $ctCarteGrise->getCgNumIdentification()?$ctCarteGrise->getCgNumIdentification():"",
             "zone_desserte" => $ctCarteGrise->getCtZoneDeserte()?$ctCarteGrise->getCtZoneDeserte()->getZdLibelle():"",
@@ -1238,7 +1242,7 @@ class CtStatistiqueController extends AbstractController
             "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
             "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
             "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
-            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            // "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
             "imprime" => $liste_imprime,
@@ -1321,7 +1325,7 @@ class CtStatistiqueController extends AbstractController
             "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
             "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
             "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
-            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            // "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
             "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
             "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
             "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
@@ -1353,7 +1357,7 @@ class CtStatistiqueController extends AbstractController
             "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
             "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
             "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
-            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            // "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
             "imprime" => $liste_imprime,
@@ -1435,7 +1439,7 @@ class CtStatistiqueController extends AbstractController
             "commune" => $ctCarteGrise->getCgCommune()?$ctCarteGrise->getCgCommune():"",
             "nombre_place_assis" => $ctCarteGrise->getCgNbrAssis()?$ctCarteGrise->getCgNbrAssis():"",
             "nombre_place_debout" => $ctCarteGrise->getCgNbrDebout()?$ctCarteGrise->getCgNbrDebout():"",
-            "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
+            // "puissance" => $ctCarteGrise->getCgPuissanceAdmin()?$ctCarteGrise->getCgPuissanceAdmin():"",
             "date_mise_en_service" => $ctCarteGrise->getCgMiseEnService()?$ctCarteGrise->getCgMiseEnService()->format('d/m/Y'):"",
             "patente" => $ctCarteGrise->getCgPatente()?$ctCarteGrise->getCgPatente():"",
             "ani" => $ctCarteGrise->getCgAni()?$ctCarteGrise->getCgAni():"",
@@ -1467,7 +1471,7 @@ class CtStatistiqueController extends AbstractController
             "longueur" => $cg_vehicule->getVhcLongueur()?$cg_vehicule->getVhcLongueur():"",
             "numero_serie" => $cg_vehicule->getVhcNumSerie()?$cg_vehicule->getVhcNumSerie():"",
             "numero_moteur" => $cg_vehicule->getVhcNumMoteur()?$cg_vehicule->getVhcNumMoteur():"",
-            "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
+            // "date" => $cg_vehicule->getVhcCreated()?$cg_vehicule->getVhcCreated()->format('d/m/Y'):"",
             "type" => $cg_vehicule->getVhcType()?$cg_vehicule->getVhcType():"",
             "poids_total_a_charge" => $cg_vehicule-> getVhcPoidsTotalCharge()?$cg_vehicule-> getVhcPoidsTotalCharge():"",
             "imprime" => $liste_imprime,
