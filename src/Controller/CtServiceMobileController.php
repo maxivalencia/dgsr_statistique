@@ -24,6 +24,9 @@ use App\Repository\CtReceptionRepository;
 use App\Repository\CtConstAvDedRepository;
 use App\Repository\CtConstAvDedsConstAvDedCaracsRepository;
 use App\Repository\CtAvDedCaracRepository;
+use App\Repository\CtAutreSceRepository;
+use App\Repository\CtTypeAutreSceRepository;
+use App\Repository\CtOptionVitreFumeeRepository;
 use App\Repository\CtConstAvDedCarac;
 use App\Entity\ImprimeTech;
 use App\Entity\CtCarteGrise;
@@ -87,19 +90,23 @@ class CtServiceMobileController extends AbstractController
     /**
      * @Route("/mobile/recherche", name="ct_service_mobile_recherche_immatriculation", methods={"GET", "POST"})
      */
-    public function recherche(Request $request, CtMotifRepository $ctMotifRepository, CtAvDedCaracRepository $ctAvDedCaracRepository, CtConstAvDedsConstAvDedCaracsRepository $ctConstAvDedsConstAvDedCaracsRepository, CtConstAvDedRepository $ctConstAvDedRepository, CtReceptionRepository $ctReceptionRepository, CtImprimeTechUseRepository $ctImprimeTechUseRepository, CtAnomalieRepository $ctAnomalieRepository, CtVisiteAnomalieRepository $ctVisiteAnomalieRepository, CtUtilisationRepository $ctUtilisationRepository, CtUserRepository $ctUserRepository, CtUsageRepository $ctUsageRepository, CtProvinceRepository $ctProvinceRepository, CtCentreRepository $ctCentreRepository, CtVisiteRepository $ctVisiteRepository, CtGenreRepository $ctGenreRepository, CtMarqueRepository $ctMarqueRepository, CtSourceEnergieRepository $ctSourceEnergieRepository, CtCarteGriseRepository $ctCarteGriseRepository, CtVehiculeRepository $ctVehiculeRepository, CtCarosserieRepository $ctCarosserieRepository)
+    public function recherche(Request $request, CtTypeAutreSceRepository $ctTypeAutreSceRepository, CtOptionVitreFumeeRepository $ctOptionVitreFumeeRepository, CtAutreSceRepository $ctAutreSceRepository, CtMotifRepository $ctMotifRepository, CtAvDedCaracRepository $ctAvDedCaracRepository, CtConstAvDedsConstAvDedCaracsRepository $ctConstAvDedsConstAvDedCaracsRepository, CtConstAvDedRepository $ctConstAvDedRepository, CtReceptionRepository $ctReceptionRepository, CtImprimeTechUseRepository $ctImprimeTechUseRepository, CtAnomalieRepository $ctAnomalieRepository, CtVisiteAnomalieRepository $ctVisiteAnomalieRepository, CtUtilisationRepository $ctUtilisationRepository, CtUserRepository $ctUserRepository, CtUsageRepository $ctUsageRepository, CtProvinceRepository $ctProvinceRepository, CtCentreRepository $ctCentreRepository, CtVisiteRepository $ctVisiteRepository, CtGenreRepository $ctGenreRepository, CtMarqueRepository $ctMarqueRepository, CtSourceEnergieRepository $ctSourceEnergieRepository, CtCarteGriseRepository $ctCarteGriseRepository, CtVehiculeRepository $ctVehiculeRepository, CtCarosserieRepository $ctCarosserieRepository)
     {
         $array_vehicule = new ArrayCollection();
         $array_visite = new ArrayCollection();
         $array_reception = new ArrayCollection();
         $array_constatation = new ArrayCollection();
         $array_proprietaire = new ArrayCollection();
+        $array_authenticite = new ArrayCollection();
+        $array_carte_grise = new ArrayCollection();
         $array_resultat = new ArrayCollection();
         $reception_exist = 0;
         $visite_exist = 0;
         $constatation_exist = 0;
         $vehicule_exist = 0;
         $proprietaire_exist = 0;
+        $authenticite_exist = 0;
+        $carte_grise_id = 0;
         $numero_de_serie = "";
         $info_visite = [
             "vst_num_pv" => "",
@@ -125,6 +132,7 @@ class CtServiceMobileController extends AbstractController
             "usr_name" => "",
             "ut_libelle" => "",
             "mtf_libelle" => "",
+            "imprime" => "",
         ];
         $info_constatation = [
             "ctr_nom" => "",
@@ -144,6 +152,7 @@ class CtServiceMobileController extends AbstractController
             "cad_created" => "",
             "cad_conforme" => "",
             "cad_observation" => "",
+            "imprime" => "",
         ];
         $info_proprietaire = [
             "cg_nom" => "",
@@ -178,6 +187,20 @@ class CtServiceMobileController extends AbstractController
             "vhc_poids_total_charge" => "",
             "vhc_puissance" => "",
         ];
+        $info_authenticite = [
+            "avf_num_pv" => "",
+            "avf_date" => "",
+            "avf_utilisation" => "",
+            "avf_centre" => "",
+            "avf_user" => "",
+            "avf_verificateur" => "",
+            "avf_option_vitre_fume" => "",
+            "avf_validite" => "",
+            "imprime" => "",
+        ];
+        $liste_carte_grise = [
+            "carte_grise_id" => "",
+        ];
         $separateurs = ["", " ", ".", "_", "-"];
         $separateurs_saisie = ["", " ", ".", "_", "-"];
         $immatriculation = $request->get("IMM");
@@ -199,6 +222,12 @@ class CtServiceMobileController extends AbstractController
             foreach($separateurs as $separateur){
                 $imm = $chiffre_immatriculation.$separateur.$lettre_immatriculation;
                 $carte_grise = $ctCarteGriseRepository->findOneBy(["cgImmatriculation" => $imm]);
+                if($carte_grise != null){
+                    $carte_grise_id = $carte_grise->getId();
+                    if(!$array_carte_grise->contains($carte_grise_id)){
+                        $array_carte_grise->add($carte_grise_id);
+                    }
+                }
                 if($carte_grise != null) {
                     $vehicule = $ctVehiculeRepository->findOneBy(["id" => $carte_grise->getCtVehicule()]);
                     $carosserie = $ctCarosserieRepository->findOneBy(["id" => $carte_grise->getCtCarosserie()]);
@@ -320,6 +349,18 @@ class CtServiceMobileController extends AbstractController
                 $imm = $chiffre_immatriculation.$separateur.$lettre_immatriculation;
                 $reception = $ctReceptionRepository->findOneBy(["rcpImmatriculation" => $imm], ["rcpCreated" => "DESC"]);
                 if($reception != null) {
+                    $vehicule_id = $reception->getCtVehicule();
+                    if($vehicule_id != null){
+                        $carte_grise_reception = $ctCarteGriseRepository->findOneBy(["ctVehicule" => $vehicule_id]);
+                        if($carte_grise_reception != null){
+                            $carte_grise_id = $carte_grise_reception->getId();
+                            if(!$array_carte_grise->contains($carte_grise_id)){
+                                $array_carte_grise->add($carte_grise_id);
+                            }
+                        }
+                    }
+                }
+                if($reception != null) {
                     $vehicule = $ctVehiculeRepository->findOneBy(["id" => $reception->getCtVehicule()]);
                     $carosserie = $ctCarosserieRepository->findOneBy(["id" => $reception->getCtCarosserie()]);
                     $source_energie = $ctSourceEnergieRepository->findOneBy(["id" => $reception->getCtSourceEnergie()]);
@@ -397,6 +438,18 @@ class CtServiceMobileController extends AbstractController
             }
             if($immatriculation_reception != null && $reception_exist <= 0) {
                 $reception = $ctReceptionRepository->findOneBy(["rcpImmatriculation" => $immatriculation_reception], ["rcpCreated" => "DESC"]);
+                if($reception != null) {
+                    $vehicule_id = $reception->getCtVehicule();
+                    if($vehicule_id != null){
+                        $carte_grise_reception = $ctCarteGriseRepository->findOneBy(["ctVehicule" => $vehicule_id]);
+                        if($carte_grise_reception != null){
+                            $carte_grise_id = $carte_grise_reception->getId();
+                            if(!$array_carte_grise->contains($carte_grise_id)){
+                                $array_carte_grise->add($carte_grise_id);
+                            }
+                        }
+                    }
+                }
                 if($reception != null){
                     $vehicule = $ctVehiculeRepository->findOneBy(["id" => $reception->getCtVehicule()]);
                     $carosserie = $ctCarosserieRepository->findOneBy(["id" => $reception->getCtCarosserie()]);
@@ -477,6 +530,18 @@ class CtServiceMobileController extends AbstractController
             if($reception_exist <= 0 && $numero_de_serie != "") {
                 $vehicule = $ctVehiculeRepository->findOneBy(["vhcNumSerie" => $numero_de_serie]);
                 $reception = $ctReceptionRepository->findOneBy(["ctVehicule" => $vehicule], ["rcpCreated" => "DESC"]);
+                    if($reception != null) {
+                    $vehicule_id = $reception->getCtVehicule();
+                    if($vehicule_id != null){
+                        $carte_grise_reception = $ctCarteGriseRepository->findOneBy(["ctVehicule" => $vehicule_id]);
+                        if($carte_grise_reception != null){
+                            $carte_grise_id = $carte_grise_reception->getId();
+                            if(!$array_carte_grise->contains($carte_grise_id)){
+                                $array_carte_grise->add($carte_grise_id);
+                            }
+                        }
+                    }
+                }
                 if($reception != null){
                     $vehicule = $ctVehiculeRepository->findOneBy(["id" => $reception->getCtVehicule()]);
                     $carosserie = $ctCarosserieRepository->findOneBy(["id" => $reception->getCtCarosserie()]);
@@ -598,12 +663,57 @@ class CtServiceMobileController extends AbstractController
                     $constatation_exist++;
                 }
             }
+            // pour l'authenticité vitre fumée
+            foreach($array_carte_grise as $carte_grise){
+                $option_authenticite = [
+                    $ctTypeAutreSceRepository->findOneBy(["id" => 1]),
+                    $ctTypeAutreSceRepository->findOneBy(["id" => 6]),
+                    $ctTypeAutreSceRepository->findOneBy(["id" => 7]),
+                    $ctTypeAutreSceRepository->findOneBy(["id" => 10]),
+                ];
+                $authenticite = $ctAutreSceRepository->findOneBy(["ctCarteGrise" => $carte_grise, "ctTypeAutreSce" => $option_authenticite]);
+                $utilisation = $authenticite->getCtUtilisation();
+                $centre = $authenticite->getCtCentre();
+                $user = $authenticite->getCtUser();
+                $verificateur = $authenticite->getCtVerificateur();
+                $option_vitre_fume = $authenticite->getCtOptionVitreFumee();
+                $validite_vitre_fume = $authenticite->getAsValiditeFumee();
+                $ituMotifUsed = [
+                    "Authenticité",
+                    "Duplicata authenticité",
+                    "Mutation authenticité",
+                ];
+                $liste_imprime = "";
+                    $imprimesAuthenticite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $authenticite->getId(), "ituMotifUsed" => $ituMotifUsed]);
+                    foreach($imprimesAuthenticite as $imp){
+                        if($liste_imprime != ""){
+                            $liste_imprime .= " - ";
+                        }
+                        $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+                    }
+                if($authenticite != null){
+                    $info_authenticite = [
+                        "avf_num_pv" => $authenticite->getAsNumPv()?$authenticite->getAsNumPv():"",
+                        "avf_date" => $authenticite->getAsDate()?$authenticite->getAsDate()->format('Y-m-d H:m:s'):"",
+                        "avf_utilisation" => $utilisation->getUtLibelle()?$utilisation->getUtLibelle():"",
+                        "avf_centre" => $centre->getCtrNom()?$centre->getCtrNom():"",
+                        "avf_user" => $user->getUsrName()?$user->getUsrName():"",
+                        "avf_verificateur" => $verificateur->getUsrName()?$verificateur->getUsrName():"",
+                        "avf_option_vitre_fume" => $option_vitre_fume->getOvfLibelle()?$option_vitre_fume->getOvfLibelle():"",
+                        "avf_validite" => $validite_vitre_fume?$validite_vitre_fume:"",
+                        "imprime" => $liste_imprime,
+                    ];
+                    $array_authenticite->add($info_authenticite);
+                    $authenticite_exist++;
+                }
+            }
             $resultat = [
                 "Visite" => $array_visite->toArray(),
                 "Reception" => $array_reception->toArray(),
                 "Constatation" => $array_constatation->toArray(),
                 "Vehicule" => $array_vehicule->toArray(),
                 "Proprietaire" => $array_proprietaire->toArray(),
+                "Authenticite" => $array_authenticite->toArray(),
             ];
             $array_resultat->add($resultat);
             // $response = new JsonResponse($array_vehicule->toArray());
