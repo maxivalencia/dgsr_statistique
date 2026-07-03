@@ -672,39 +672,41 @@ class CtServiceMobileController extends AbstractController
                     $ctTypeAutreSceRepository->findOneBy(["id" => 10]),
                 ];
                 $authenticite = $ctAutreSceRepository->findOneBy(["ctCarteGrise" => $carte_grise, "ctTypeAutreSce" => $option_authenticite]);
-                $utilisation = $authenticite->getCtUtilisation();
-                $centre = $authenticite->getCtCentre();
-                $user = $authenticite->getCtUser();
-                $verificateur = $authenticite->getCtVerificateur();
-                $option_vitre_fume = $authenticite->getCtOptionVitreFumee();
-                $validite_vitre_fume = $authenticite->getAsValiditeFumee();
-                $ituMotifUsed = [
-                    "Authenticité",
-                    "Duplicata authenticité",
-                    "Mutation authenticité",
-                ];
-                $liste_imprime = "";
-                    $imprimesAuthenticite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $authenticite->getId(), "ituMotifUsed" => $ituMotifUsed]);
-                    foreach($imprimesAuthenticite as $imp){
-                        if($liste_imprime != ""){
-                            $liste_imprime .= " - ";
-                        }
-                        $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
-                    }
                 if($authenticite != null){
-                    $info_authenticite = [
-                        "avf_num_pv" => $authenticite->getAsNumPv()?$authenticite->getAsNumPv():"",
-                        "avf_date" => $authenticite->getAsDate()?$authenticite->getAsDate()->format('Y-m-d H:m:s'):"",
-                        "avf_utilisation" => $utilisation->getUtLibelle()?$utilisation->getUtLibelle():"",
-                        "avf_centre" => $centre->getCtrNom()?$centre->getCtrNom():"",
-                        "avf_user" => $user->getUsrName()?$user->getUsrName():"",
-                        "avf_verificateur" => $verificateur->getUsrName()?$verificateur->getUsrName():"",
-                        "avf_option_vitre_fume" => $option_vitre_fume->getOvfLibelle()?$option_vitre_fume->getOvfLibelle():"",
-                        "avf_validite" => $validite_vitre_fume?$validite_vitre_fume:"",
-                        "imprime" => $liste_imprime,
+                    $utilisation = $authenticite->getCtUtilisation();
+                    $centre = $authenticite->getCtCentre();
+                    $user = $authenticite->getCtUser();
+                    $verificateur = $authenticite->getCtVerificateur();
+                    $option_vitre_fume = $authenticite->getCtOptionVitreFumee();
+                    $validite_vitre_fume = $authenticite->getAsValiditeFumee();
+                    $ituMotifUsed = [
+                        "Authenticité",
+                        "Duplicata authenticité",
+                        "Mutation authenticité",
                     ];
-                    $array_authenticite->add($info_authenticite);
-                    $authenticite_exist++;
+                    $liste_imprime = "";
+                        $imprimesAuthenticite = $ctImprimeTechUseRepository->findBy(["ctControleId" => $authenticite->getId(), "ituMotifUsed" => $ituMotifUsed]);
+                        foreach($imprimesAuthenticite as $imp){
+                            if($liste_imprime != ""){
+                                $liste_imprime .= " - ";
+                            }
+                            $liste_imprime .= $imp->getCtImprimeTech()->getAbrevImprimeTech() . " : " . $imp->getItuNumero();
+                        }
+                    if($authenticite != null){
+                        $info_authenticite = [
+                            "avf_num_pv" => $authenticite->getAsNumPv()?$authenticite->getAsNumPv():"",
+                            "avf_date" => $authenticite->getAsDate()?$authenticite->getAsDate()->format('Y-m-d H:m:s'):"",
+                            "avf_utilisation" => $utilisation->getUtLibelle()?$utilisation->getUtLibelle():"",
+                            "avf_centre" => $centre->getCtrNom()?$centre->getCtrNom():"",
+                            "avf_user" => $user->getUsrName()?$user->getUsrName():"",
+                            "avf_verificateur" => $verificateur->getUsrName()?$verificateur->getUsrName():"",
+                            "avf_option_vitre_fume" => $option_vitre_fume->getOvfLibelle()?$option_vitre_fume->getOvfLibelle():"",
+                            "avf_validite" => $validite_vitre_fume?$validite_vitre_fume:"",
+                            "imprime" => $liste_imprime,
+                        ];
+                        $array_authenticite->add($info_authenticite);
+                        $authenticite_exist++;
+                    }
                 }
             }
             $resultat = [
